@@ -1,0 +1,1286 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="65b6760d-c374-47ff-ba1c-c3ad46ca73d2" name="Default" comment="" />
+    <ignored path="$PROJECT_DIR$/commons-mvc/target/" />
+    <ignored path="$PROJECT_DIR$/service-activity/target/" />
+    <ignored path="$PROJECT_DIR$/service-quartz/target/" />
+    <ignored path="$PROJECT_DIR$/commons-fdfs/target/" />
+    <ignored path="$PROJECT_DIR$/service-user/target/" />
+    <ignored path="$PROJECT_DIR$/commons-stream/target/" />
+    <ignored path="$PROJECT_DIR$/config-server/target/" />
+    <ignored path="$PROJECT_DIR$/commons-db/target/" />
+    <ignored path="$PROJECT_DIR$/eureka-server/target/" />
+    <ignored path="$PROJECT_DIR$/target/" />
+    <ignored path="$PROJECT_DIR$/gateway/target/" />
+    <ignored path="$PROJECT_DIR$/commons-lib/target/" />
+    <ignored path="$PROJECT_DIR$/service-marketing/target/" />
+    <ignored path="$PROJECT_DIR$/service-socket/target/" />
+    <ignored path="$PROJECT_DIR$/third-interface/target/" />
+    <ignored path="$PROJECT_DIR$/service-task/target/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/idream_community$ServiceActivityApplication.ic" NAME="ServiceActivityApplication Coverage Results" MODIFIED="1527042615419" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/idream_community$ServiceMarketingApplication.ic" NAME="ServiceMarketingApplication Coverage Results" MODIFIED="1535440064241" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="JSONPublicParam.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/commons-lib/src/main/java/com/idream/commons/lib/dto/JSONPublicParam.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="300">
+              <caret line="17" column="21" selection-start-line="17" selection-start-column="21" selection-end-line="17" selection-end-column="21" />
+              <folding>
+                <element signature="e#608#609#0" expanded="true" />
+                <element signature="e#643#644#0" expanded="true" />
+                <element signature="e#787#788#0" expanded="true" />
+                <element signature="e#822#823#0" expanded="true" />
+                <element signature="e#884#885#0" expanded="true" />
+                <element signature="e#932#933#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ActivityInvitationRecordMapper.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/commons-lib/src/main/resources/mapper/ActivityInvitationRecordMapper.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="467">
+              <caret line="168" column="55" selection-start-line="168" selection-start-column="55" selection-end-line="168" selection-end-column="55" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ActivityInfoMapper.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/commons-lib/src/main/resources/mapper/ActivityInfoMapper.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="75">
+              <caret line="3" column="77" selection-start-line="3" selection-start-column="77" selection-end-line="3" selection-end-column="77" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ActivityInfo.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/commons-lib/src/main/java/com/idream/commons/lib/model/ActivityInfo.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="575">
+              <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ServiceMarketingApplication.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/service-marketing/src/main/java/com/idream/ServiceMarketingApplication.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="175">
+              <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UserActivityRecordMapper.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/commons-lib/src/main/resources/mapper/UserActivityRecordMapper.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="617">
+              <caret line="285" column="33" lean-forward="true" selection-start-line="285" selection-start-column="33" selection-end-line="285" selection-end-column="33" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UserLoginRecordMapper.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/commons-lib/src/main/resources/mapper/UserLoginRecordMapper.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1425">
+              <caret line="57" column="17" lean-forward="true" selection-start-line="57" selection-start-column="17" selection-end-line="57" selection-end-column="17" />
+              <folding>
+                <element signature="e#5818#5822#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AppCommunityLifeParams.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/commons-lib/src/main/java/com/idream/commons/lib/dto/activity/AppCommunityLifeParams.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="325">
+              <caret line="20" column="5" selection-start-line="20" selection-start-column="5" selection-end-line="20" selection-end-column="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="IntegrationServiceImpl.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/service-marketing/src/main/java/com/idream/service/impl/IntegrationServiceImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret line="18" column="1" lean-forward="true" selection-start-line="18" selection-start-column="1" selection-end-line="18" selection-end-column="1" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="IntegrationPoolMapper.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/commons-lib/src/main/resources/mapper/IntegrationPoolMapper.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="50">
+              <caret line="396" column="29" lean-forward="true" selection-start-line="396" selection-start-column="29" selection-end-line="396" selection-end-column="29" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>getappuserinfo</find>
+      <find>getAppUserInfo</find>
+      <find>updateUserInfo</find>
+      <find>logout</find>
+      <find>getJoinActivityByUserId</find>
+      <find>listProfessions</find>
+      <find>targethomepage</find>
+      <find>targethomePage</find>
+      <find>userInfoMapper</find>
+      <find>doAppR</find>
+      <find>targetHomePage</find>
+      <find>selectActivitySignDetail</find>
+      <find>date_f</find>
+      <find>target</find>
+      <find>selectActivityInfoByLotteryId</find>
+      <find>selectOneByCouponId</find>
+      <find>a.from_type =3</find>
+      <find>selectByDevice</find>
+      <find>selectAwardsByBookId</find>
+      <find>selectAllAwardPoolsByRegion</find>
+      <find>selectAwardPoolsByUserId</find>
+      <find>selectAwardsByUserAndBookIds</find>
+      <find>selectLotteryListByNear</find>
+      <find>recomm</find>
+      <find>selectLotteryDetail</find>
+      <find>exchangeTime</find>
+      <find>exchangeBookName</find>
+      <find>selectAwardDetail</find>
+      <find>selectRegionByUserId</find>
+      <find>selectIntegrationPoolByCity</find>
+    </findStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="ROOT_SYNC" value="DONT_SYNC" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/service-activity/src/main/java/com/idream/service/AdminActivityStatisticsService.java" />
+        <option value="$PROJECT_DIR$/commons-lib/src/main/java/com/idream/commons/lib/dto/activity/AdminActivityInviteStatisticsParams.java" />
+        <option value="$PROJECT_DIR$/service-activity/src/main/java/com/idream/controller/admin/ActivityStatisticsController.java" />
+        <option value="$PROJECT_DIR$/commons-lib/src/main/java/com/idream/commons/lib/dto/activity/AdminActivityInviteStatisticsDto.java" />
+        <option value="$PROJECT_DIR$/service-marketing/src/main/java/com/idream/service/StatisticsService.java" />
+        <option value="$PROJECT_DIR$/commons-lib/src/main/java/com/idream/commons/lib/dto/marketing/MarketIntegrationStaticsDto.java" />
+        <option value="$PROJECT_DIR$/service-marketing/src/main/java/com/idream/controller/admin/MarketStatisticsController.java" />
+        <option value="$PROJECT_DIR$/commons-lib/src/main/java/com/idream/commons/lib/dto/marketing/MarketDetailStaticsParams.java" />
+        <option value="$PROJECT_DIR$/service-marketing/src/main/resources/bootstrap.properties" />
+        <option value="$PROJECT_DIR$/gateway/src/main/resources/bootstrap.properties" />
+        <option value="$PROJECT_DIR$/commons-lib/src/main/java/com/idream/commons/lib/dto/user/AdminUserStatisticsDetailDto.java" />
+        <option value="$PROJECT_DIR$/commons-lib/src/main/java/com/idream/commons/lib/dto/user/AdminUserStatisticsDetailParams.java" />
+        <option value="$PROJECT_DIR$/service-user/src/main/java/com/idream/service/AdminUserStatisticsService.java" />
+        <option value="$PROJECT_DIR$/service-user/src/main/java/com/idream/controller/admin/AdminUserStatisticsController.java" />
+        <option value="$PROJECT_DIR$/service-marketing/src/main/java/com/idream/controller/miniprogram/MiniCouponController.java" />
+        <option value="$PROJECT_DIR$/commons-lib/src/main/java/com/idream/commons/lib/dto/marketing/LotteryActivityInfoDto.java" />
+        <option value="$PROJECT_DIR$/commons-lib/src/main/resources/mapper/LotteryInfoMapper.xml" />
+        <option value="$PROJECT_DIR$/commons-lib/src/main/java/com/idream/commons/lib/dto/marketing/CouponInfoDto.java" />
+        <option value="$PROJECT_DIR$/commons-mvc/pom.xml" />
+        <option value="$PROJECT_DIR$/commons-lib/src/main/java/com/idream/commons/lib/mapper/UserLoginRecordMapper.java" />
+        <option value="$PROJECT_DIR$/commons-lib/src/main/java/com/idream/commons/lib/dto/user/AdminUserStatisticsDto.java" />
+        <option value="$PROJECT_DIR$/commons-lib/src/main/java/com/idream/commons/lib/mapper/UserVisitRecordMapper.java" />
+        <option value="$PROJECT_DIR$/commons-lib/src/main/resources/mapper/UserVisitRecordMapper.xml" />
+        <option value="$PROJECT_DIR$/commons-lib/src/main/java/com/idream/commons/lib/dto/activity/AdminActivityStatisticsDto.java" />
+        <option value="$PROJECT_DIR$/commons-lib/src/main/java/com/idream/commons/lib/mapper/UserActivityRecordMapper.java" />
+        <option value="$PROJECT_DIR$/commons-lib/src/main/java/com/idream/commons/lib/mapper/ActivityTaskRecordMapper.java" />
+        <option value="$PROJECT_DIR$/commons-lib/src/main/java/com/idream/commons/lib/mapper/ActivityInvitationRecordMapper.java" />
+        <option value="$PROJECT_DIR$/commons-lib/src/main/java/com/idream/commons/lib/mapper/CommunityLifeMapper.java" />
+        <option value="$PROJECT_DIR$/commons-lib/src/main/resources/mapper/CommunityLifeMapper.xml" />
+        <option value="$PROJECT_DIR$/commons-lib/src/main/java/com/idream/commons/lib/dto/marketing/MarketStaticsDto.java" />
+        <option value="$PROJECT_DIR$/commons-lib/src/main/java/com/idream/commons/lib/mapper/CouponInfoMapper.java" />
+        <option value="$PROJECT_DIR$/service-activity/src/main/java/com/idream/service/impl/AdminActivityStatisticsServiceImpl.java" />
+        <option value="$PROJECT_DIR$/service-marketing/src/main/java/com/idream/service/impl/StatisticsServiceImpl.java" />
+        <option value="$PROJECT_DIR$/service-user/src/main/java/com/idream/service/impl/AdminUserStatisticsServiceImpl.java" />
+        <option value="$PROJECT_DIR$/commons-lib/src/main/java/com/idream/commons/lib/mapper/AwardPoolMapper.java" />
+        <option value="$PROJECT_DIR$/commons-lib/src/main/resources/mapper/AwardPoolMapper.xml" />
+        <option value="$PROJECT_DIR$/service-marketing/src/main/java/com/idream/service/impl/AwardServiceImpl.java" />
+        <option value="$PROJECT_DIR$/service-marketing/src/main/java/com/idream/controller/app/AppAwardController.java" />
+        <option value="$PROJECT_DIR$/commons-lib/src/main/java/com/idream/commons/lib/base/RetCodeConstants.java" />
+        <option value="$PROJECT_DIR$/service-marketing/src/main/java/com/idream/controller/miniprogram/MiniAwardController.java" />
+        <option value="$PROJECT_DIR$/commons-lib/src/main/resources/mapper/ActivityTaskRecordMapper.xml" />
+        <option value="$PROJECT_DIR$/commons-lib/src/main/java/com/idream/commons/lib/dto/activity/AdminActivityTaskStatisticsDto.java" />
+        <option value="$PROJECT_DIR$/commons-lib/src/main/resources/mapper/UserLoginRecordMapper.xml" />
+        <option value="$PROJECT_DIR$/commons-lib/src/main/java/com/idream/commons/lib/dto/marketing/MarketLotteryStaticsDto.java" />
+        <option value="$PROJECT_DIR$/commons-lib/src/main/resources/mapper/CouponInfoMapper.xml" />
+        <option value="$PROJECT_DIR$/commons-lib/src/main/java/com/idream/commons/lib/dto/marketing/MarketAwardStaticsDto.java" />
+        <option value="$PROJECT_DIR$/commons-lib/src/main/resources/mapper/IntegrationPoolMapper.xml" />
+        <option value="$PROJECT_DIR$/commons-lib/src/main/java/com/idream/commons/lib/dto/JSONPublicParam.java" />
+        <option value="$PROJECT_DIR$/commons-lib/src/main/resources/mapper/UserActivityRecordMapper.xml" />
+        <option value="$PROJECT_DIR$/commons-lib/src/main/resources/mapper/ActivityInvitationRecordMapper.xml" />
+        <option value="$PROJECT_DIR$/commons-lib/src/main/java/com/idream/commons/lib/model/ActivityInfo.java" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="D:/Program Files/Java/maven/apache-maven-3.5.3" />
+        <option name="userSettingsFile" value="D:\Program Files\Java\maven\apache-maven-3.5.3\conf\settings.xml" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="MavenProjectNavigator">
+    <treeState>
+      <expand>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="commons-stream" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+        </path>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="service-marketing" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+        </path>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="service-marketing" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+          <item name="Lifecycle" type="58874e2:MavenProjectsStructure$LifecycleNode" />
+        </path>
+      </expand>
+      <select />
+    </treeState>
+  </component>
+  <component name="MavenRunner">
+    <option name="skipTests" value="true" />
+  </component>
+  <component name="NodePackageJsonFileManager">
+    <packageJsonPaths />
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-4" />
+    <option name="y" value="76" />
+    <option name="width" value="1936" />
+    <option name="height" value="1056" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="PackagesPane" />
+      <pane id="AndroidView" />
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="idream-community" type="b2602c69:ProjectViewProjectNode" />
+              <item name="idream-community" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="idream-community" type="b2602c69:ProjectViewProjectNode" />
+              <item name="idream-community" type="462c0819:PsiDirectoryNode" />
+              <item name="service-marketing" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="idream-community" type="b2602c69:ProjectViewProjectNode" />
+              <item name="idream-community" type="462c0819:PsiDirectoryNode" />
+              <item name="service-marketing" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="idream-community" type="b2602c69:ProjectViewProjectNode" />
+              <item name="idream-community" type="462c0819:PsiDirectoryNode" />
+              <item name="service-marketing" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="idream-community" type="b2602c69:ProjectViewProjectNode" />
+              <item name="idream-community" type="462c0819:PsiDirectoryNode" />
+              <item name="service-marketing" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="idream-community" type="b2602c69:ProjectViewProjectNode" />
+              <item name="idream-community" type="462c0819:PsiDirectoryNode" />
+              <item name="service-marketing" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="idream" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="idream-community" type="b2602c69:ProjectViewProjectNode" />
+              <item name="idream-community" type="462c0819:PsiDirectoryNode" />
+              <item name="service-marketing" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="idream" type="462c0819:PsiDirectoryNode" />
+              <item name="controller" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="idream-community" type="b2602c69:ProjectViewProjectNode" />
+              <item name="idream-community" type="462c0819:PsiDirectoryNode" />
+              <item name="service-marketing" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="idream" type="462c0819:PsiDirectoryNode" />
+              <item name="controller" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="idream-community" type="b2602c69:ProjectViewProjectNode" />
+              <item name="idream-community" type="462c0819:PsiDirectoryNode" />
+              <item name="service-marketing" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="idream" type="462c0819:PsiDirectoryNode" />
+              <item name="controller" type="462c0819:PsiDirectoryNode" />
+              <item name="miniprogram" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="idream-community" type="b2602c69:ProjectViewProjectNode" />
+              <item name="idream-community" type="462c0819:PsiDirectoryNode" />
+              <item name="service-marketing" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="idream" type="462c0819:PsiDirectoryNode" />
+              <item name="init" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="idream-community" type="b2602c69:ProjectViewProjectNode" />
+              <item name="idream-community" type="462c0819:PsiDirectoryNode" />
+              <item name="service-marketing" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="idream" type="462c0819:PsiDirectoryNode" />
+              <item name="rabbit" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="idream-community" type="b2602c69:ProjectViewProjectNode" />
+              <item name="idream-community" type="462c0819:PsiDirectoryNode" />
+              <item name="service-marketing" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="idream" type="462c0819:PsiDirectoryNode" />
+              <item name="service" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="idream-community" type="b2602c69:ProjectViewProjectNode" />
+              <item name="idream-community" type="462c0819:PsiDirectoryNode" />
+              <item name="service-marketing" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="idream" type="462c0819:PsiDirectoryNode" />
+              <item name="service" type="462c0819:PsiDirectoryNode" />
+              <item name="impl" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="idream-community" type="b2602c69:ProjectViewProjectNode" />
+              <item name="idream-community" type="462c0819:PsiDirectoryNode" />
+              <item name="service-marketing" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="idream-community" type="b2602c69:ProjectViewProjectNode" />
+              <item name="idream-community" type="462c0819:PsiDirectoryNode" />
+              <item name="third-interface" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="idream-community" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Scratches and Consoles" type="1a2a3e82:ScratchProjectViewPane$MyProjectNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="GenerateAntBuildDialog.backupFiles" value="true" />
+    <property name="GenerateAntBuildDialog.enableUiFormCompile" value="true" />
+    <property name="GenerateAntBuildDialog.forceTargetJdk" value="true" />
+    <property name="GenerateAntBuildDialog.outputFileNameProperty" value="idream-community" />
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="SearchEverywhereHistoryKey" value="activinfoma&#9;FILE&#9;file://D:/project/java/idream-community/commons-lib/src/main/resources/mapper/ActivityInfoMapper.xml&#10;activrecord&#9;FILE&#9;file://D:/project/java/idream-community/commons-lib/src/main/resources/mapper/UserActivityRecordMapper.xml&#10;activinv&#9;FILE&#9;file://D:/project/java/idream-community/commons-lib/src/main/resources/mapper/ActivityInvitationRecordMapper.xml&#10;userloginRe&#9;FILE&#9;file://D:/project/java/idream-community/commons-lib/src/main/resources/mapper/UserLoginRecordMapper.xml&#10;inte&#9;FILE&#9;file://D:/project/java/idream-community/service-marketing/src/main/java/com/idream/service/impl/IntegrationServiceImpl.java&#10;intser&#9;FILE&#9;file://D:/project/java/idream-community/service-marketing/src/main/java/com/idream/service/impl/IntegrationServiceImpl.java&#10;couin&#9;FILE&#9;file://D:/project/java/idream-community/commons-lib/src/main/resources/mapper/CouponInfoMapper.xml&#10;co&#9;FILE&#9;file://D:/project/java/idream-community/commons-lib/src/main/resources/mapper/CouponInfoMapper.xml&#10;bootstrap&#9;FILE&#9;file://D:/project/java/idream-community/gateway/src/main/resources/bootstrap.properties&#10;boots&#9;FILE&#9;file://D:/project/java/idream-community/service-marketing/src/main/resources/bootstrap.properties&#10;userlo&#9;FILE&#9;file://D:/project/java/idream-community/commons-lib/src/main/resources/mapper/UserLoginRecordMapper.xml&#10;inteser&#9;PSI&#9;JAVA://com.idream.service.impl.IntegrationServiceImpl&#10;cou&#9;FILE&#9;file://D:/project/java/idream-community/commons-lib/src/main/resources/mapper/CouponInfoMapper.xml&#10;actiinvi&#9;FILE&#9;file://D:/project/java/idream-community/commons-lib/src/main/resources/mapper/ActivityInvitationRecordMapper.xml&#10;activityTask&#9;FILE&#9;file://D:/project/java/idream-community/commons-lib/src/main/resources/mapper/ActivityTaskRecordMapper.xml&#10;activtas&#9;FILE&#9;file://D:/project/java/idream-community/commons-lib/src/main/resources/mapper/ActivityTaskMapper.xml&#10;actask&#9;FILE&#9;file://D:/project/java/idream-community/commons-lib/src/main/resources/mapper/ActivityTaskMapper.xml&#10;usera&#9;FILE&#9;file://D:/project/java/idream-community/commons-lib/src/main/resources/mapper/UserActivityRecordMapper.xml&#10;awser&#9;FILE&#9;file://D:/project/java/idream-community/service-marketing/src/main/java/com/idream/service/impl/AwardServiceImpl.java&#10;useracre&#9;FILE&#9;file://D:/project/java/idream-community/commons-lib/src/main/resources/mapper/UserActivityRecordMapper.xml&#10;lotterys&#9;FILE&#9;file://D:/project/java/idream-community/service-marketing/src/main/java/com/idream/service/impl/LotteryServiceImpl.java&#10;lotterySer&#9;PSI&#9;JAVA://com.idream.service.impl.LotteryServiceImpl&#10;market&#9;FILE&#9;file://D:/project/java/idream-community/service-marketing/src/main/java/com/idream/controller/admin/MarketStatisticsController.java&#10;accfi&#9;PSI&#9;JAVA://com.idream.filter.AccessFilter&#10;rate&#9;FILE&#9;file://D:/project/java/idream-community/gateway/src/main/java/com/idream/filter/RateLimitFilter.java&#10;userlogin&#9;FILE&#9;file://D:/project/java/idream-community/commons-lib/src/main/resources/mapper/UserLoginRecordMapper.xml&#10;rateli&#9;PSI&#9;JAVA://com.idream.filter.RateLimitFilter&#10;userlog&#9;FILE&#9;file://D:/project/java/idream-community/commons-lib/src/main/resources/mapper/UserLoginRecordMapper.xml&#10;awardse&#9;FILE&#9;file://D:/project/java/idream-community/service-marketing/src/main/java/com/idream/service/impl/AwardServiceImpl.java&#10;statis&#9;FILE&#9;file://D:/project/java/idream-community/service-marketing/src/main/java/com/idream/service/impl/StatisticsServiceImpl.java&#10;activst&#9;FILE&#9;file://D:/project/java/idream-community/service-activity/src/main/java/com/idream/service/impl/AdminActivityStatisticsServiceImpl.java&#10;userstat&#9;FILE&#9;file://D:/project/java/idream-community/service-user/src/main/java/com/idream/service/impl/AdminUserStatisticsServiceImpl.java&#10;bootst&#9;FILE&#9;file://D:/project/java/idream-community/gateway/src/main/resources/bootstrap.properties&#10;statiser&#9;PSI&#9;JAVA://com.idream.service.impl.StatisticsServiceImpl&#10;actiser&#9;FILE&#9;file://D:/project/java/idream-community/service-activity/src/main/java/com/idream/service/impl/AdminActivityStatisticsServiceImpl.java&#10;activitystats&#9;PSI&#9;JAVA://com.idream.service.impl.AdminActivityStatisticsServiceImpl&#10;userstatser&#9;PSI&#9;JAVA://com.idream.service.impl.AdminUserStatisticsServiceImpl&#10;lotteryIn&#9;FILE&#9;file://D:/project/java/idream-community/commons-lib/src/main/resources/mapper/LotteryInfoMapper.xml&#10;lotteryser&#9;PSI&#9;JAVA://com.idream.service.impl.LotteryServiceImpl&#10;imageu&#9;PSI&#9;JAVA://com.idream.controller.ImageUploadController&#10;appusers&#9;PSI&#9;JAVA://com.idream.service.impl.AppUserServiceImpl&#10;userser&#9;PSI&#9;JAVA://com.idream.service.impl.UserServiceImpl&#10;ratel&#9;PSI&#9;JAVA://com.idream.filter.RateLimitFilter&#10;config.js&#9;FILE&#9;file://D:/project/java/idream-community/service-user/src/main/resources/config.json&#10;coup&#9;FILE&#9;file://D:/project/java/idream-community/commons-lib/src/main/resources/mapper/CouponInfoMapper.xml&#10;appcoupon&#9;PSI&#9;JAVA://com.idream.controller.app.AppCouponController&#10;catch&#9;PSI&#9;JAVA://org.aspectj.lang.reflect.CatchClauseSignature&#10;couponin&#9;FILE&#9;file://D:/project/java/idream-community/commons-lib/src/main/resources/mapper/CouponInfoMapper.xml&#10;userma&#9;FILE&#9;file://D:/project/java/idream-community/commons-lib/src/main/resources/mapper/UserLoginRecordMapper.xml&#10;users&#9;FILE&#9;file://D:/project/java/idream-community/service-user/src/main/java/com/idream/service/impl/UserServiceImpl.java" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="full.screen.before.presentation.mode" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../johnhuster/db-record" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="settings.editor.selected.configurable" value="MavenSettings" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.idream.controller.miniprogram" />
+      <recent name="com.idream.commons.lib.dto.user" />
+      <recent name="com.idream.commons.lib.dto.marketing" />
+      <recent name="com.idream.commons.lib.dto.activity" />
+      <recent name="com.idream.config" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Spring Boot.ServiceMarketingApplication">
+    <configuration default="true" type="Application" factoryName="Application">
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+    </configuration>
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <patterns />
+    </configuration>
+    <configuration name="ConfigServerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="config-server" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.idream.ConfigServerApplication" />
+    </configuration>
+    <configuration name="EurekaServerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="eureka-server" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.idream.EurekaServerApplication" />
+    </configuration>
+    <configuration name="GatewayApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="gateway" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.idream.GatewayApplication" />
+    </configuration>
+    <configuration name="QuartzApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="service-quartz" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.idream.QuartzApplication" />
+    </configuration>
+    <configuration name="ServiceActivityApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="service-activity" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.idream.ServiceActivityApplication" />
+    </configuration>
+    <configuration name="ServiceMarketingApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="service-marketing" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.idream.ServiceMarketingApplication" />
+    </configuration>
+    <configuration name="ServiceSocketApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="service-socket" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.idream.service.socket.ServiceSocketApplication" />
+    </configuration>
+    <configuration name="ServiceTaskApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="service-task" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.idream.ServiceTaskApplication" />
+    </configuration>
+    <configuration name="ServiceUserApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="service-user" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.idream.ServiceUserApplication" />
+    </configuration>
+    <configuration name="StreamApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="commons-stream" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.idream.StreamApplication" />
+    </configuration>
+    <configuration name="ThirdInterfaceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="third-interface" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.idream.ThirdInterfaceApplication" />
+    </configuration>
+    <configuration default="true" type="TestNG" factoryName="TestNG">
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SUITE_NAME" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="GROUP_NAME" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <option name="OUTPUT_DIRECTORY" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <option name="USE_DEFAULT_REPORTERS" value="false" />
+      <option name="PROPERTIES_FILE" />
+      <properties />
+      <listeners />
+    </configuration>
+    <list>
+      <item itemvalue="Spring Boot.ServiceActivityApplication" />
+      <item itemvalue="Spring Boot.QuartzApplication" />
+      <item itemvalue="Spring Boot.ServiceUserApplication" />
+      <item itemvalue="Spring Boot.StreamApplication" />
+      <item itemvalue="Spring Boot.ConfigServerApplication" />
+      <item itemvalue="Spring Boot.EurekaServerApplication" />
+      <item itemvalue="Spring Boot.GatewayApplication" />
+      <item itemvalue="Spring Boot.ServiceMarketingApplication" />
+      <item itemvalue="Spring Boot.ServiceSocketApplication" />
+      <item itemvalue="Spring Boot.ThirdInterfaceApplication" />
+      <item itemvalue="Spring Boot.ServiceTaskApplication" />
+    </list>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="65b6760d-c374-47ff-ba1c-c3ad46ca73d2" name="Default" comment="" />
+      <created>1525830271190</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1525830271190</updated>
+      <workItem from="1525830274499" duration="17172000" />
+      <workItem from="1525858148441" duration="11833000" />
+      <workItem from="1525914886000" duration="20281000" />
+      <workItem from="1526001304645" duration="2844000" />
+      <workItem from="1526023889397" duration="2829000" />
+      <workItem from="1526029443905" duration="2525000" />
+      <workItem from="1526035277305" duration="36821000" />
+      <workItem from="1526260962535" duration="83585000" />
+      <workItem from="1526457733872" duration="11893000" />
+      <workItem from="1526519715297" duration="58297000" />
+      <workItem from="1526692966973" duration="59044000" />
+      <workItem from="1526951294358" duration="66067000" />
+      <workItem from="1527124517014" duration="3988000" />
+      <workItem from="1527128808130" duration="27462000" />
+      <workItem from="1527210393304" duration="27114000" />
+      <workItem from="1527297638639" duration="10132000" />
+      <workItem from="1527471118538" duration="4000" />
+      <workItem from="1527471267841" duration="2000" />
+      <workItem from="1527471819183" duration="23439000" />
+      <workItem from="1527556959000" duration="25584000" />
+      <workItem from="1527642873144" duration="17201000" />
+      <workItem from="1527729365155" duration="13735000" />
+      <workItem from="1527814879449" duration="27320000" />
+      <workItem from="1528075792242" duration="28893000" />
+      <workItem from="1528185880811" duration="37651000" />
+      <workItem from="1528421308187" duration="16318000" />
+      <workItem from="1528507322869" duration="7381000" />
+      <workItem from="1528679749951" duration="36081000" />
+      <workItem from="1528854862940" duration="19099000" />
+      <workItem from="1528939081606" duration="22645000" />
+      <workItem from="1528975784650" duration="2625000" />
+      <workItem from="1529025178825" duration="19382000" />
+      <workItem from="1529070889450" duration="605000" />
+      <workItem from="1529372845947" duration="15571000" />
+      <workItem from="1529458236916" duration="26634000" />
+      <workItem from="1529543350395" duration="51700000" />
+      <workItem from="1529889300735" duration="24838000" />
+      <workItem from="1529975875088" duration="37312000" />
+      <workItem from="1530148591042" duration="24585000" />
+      <workItem from="1530235111998" duration="20355000" />
+      <workItem from="1530321491300" duration="18687000" />
+      <workItem from="1530494661744" duration="26618000" />
+      <workItem from="1530580756900" duration="30760000" />
+      <workItem from="1530667013052" duration="50795000" />
+      <workItem from="1530779176010" duration="25554000" />
+      <workItem from="1530926410624" duration="23941000" />
+      <workItem from="1531099180941" duration="8986000" />
+      <workItem from="1531109736141" duration="72888000" />
+      <workItem from="1531310274604" duration="2251000" />
+      <workItem from="1531358282528" duration="24353000" />
+      <workItem from="1531444195422" duration="25626000" />
+      <workItem from="1531531329696" duration="6197000" />
+      <workItem from="1531545407601" duration="15764000" />
+      <workItem from="1531705562338" duration="28300000" />
+      <workItem from="1531789862467" duration="56099000" />
+      <workItem from="1531962876554" duration="56760000" />
+      <workItem from="1532136164697" duration="52494000" />
+      <workItem from="1532395093808" duration="120823000" />
+      <workItem from="1532915220328" duration="11996000" />
+      <workItem from="1532999866803" duration="23686000" />
+      <workItem from="1533085839126" duration="26887000" />
+      <workItem from="1533172837758" duration="14290000" />
+      <workItem from="1533196218667" duration="18578000" />
+      <workItem from="1533366910944" duration="4492000" />
+      <workItem from="1533517872623" duration="13592000" />
+      <workItem from="1533604740566" duration="89109000" />
+      <workItem from="1533951100679" duration="13358000" />
+      <workItem from="1534124010083" duration="18969000" />
+      <workItem from="1534209132882" duration="29565000" />
+      <workItem from="1534329285460" duration="19969000" />
+      <workItem from="1534468540183" duration="5771000" />
+      <workItem from="1534555752307" duration="41011000" />
+      <workItem from="1534728128001" duration="4346000" />
+      <workItem from="1534814094243" duration="10000000" />
+      <workItem from="1534901643249" duration="7354000" />
+      <workItem from="1534988256747" duration="102523000" />
+      <workItem from="1535682816792" duration="18464000" />
+      <workItem from="1535937123244" duration="46349000" />
+      <workItem from="1536110793154" duration="26139000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="2134191000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="bottom" id="Event Log" order="13" sideWeight="0.50053304" side_tool="true" weight="0.35441658" />
+      <window_info anchor="right" id="Maven Projects" order="10" sideWeight="0.49945474" weight="0.14925373" />
+      <window_info anchor="bottom" id="Database Changes" order="10" show_stripe_button="false" />
+      <window_info id="Capture Tool" order="7" />
+      <window_info id="Designer" order="2" />
+      <window_info anchor="right" id="Database" order="5" weight="0.32995737" />
+      <window_info id="Structure" order="1" sideWeight="0.50208336" side_tool="true" weight="0.24200426" />
+      <window_info anchor="right" id="Ant Build" order="1" sideWeight="0.49945474" weight="0.14285715" />
+      <window_info id="UI Designer" order="4" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39476553" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.3827699" />
+      <window_info anchor="right" id="Palette&#9;" order="6" />
+      <window_info id="Image Layers" order="3" />
+      <window_info anchor="bottom" id="Java Enterprise" order="9" weight="0.32061067" />
+      <window_info anchor="right" id="Capture Analysis" order="4" />
+      <window_info anchor="bottom" id="Version Control" order="12" weight="0.46564886" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.41112322" />
+      <window_info anchor="bottom" id="Spring" order="7" weight="0.3293348" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.31079608" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49791667" visible="true" weight="0.24093817" />
+      <window_info anchor="right" id="Bean Validation" order="8" weight="0.32995737" />
+      <window_info id="Web" order="6" side_tool="true" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.34242094" />
+      <window_info anchor="right" id="Theme Preview" order="7" />
+      <window_info id="Favorites" order="5" side_tool="true" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="right" id="Module Dependencies" order="9" visible="true" weight="0.32995737" />
+      <window_info anchor="bottom" id="Messages" order="11" sideWeight="0.49946696" weight="0.58560526" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" sideWeight="0.49836424" visible="true" weight="0.12260128" />
+      <window_info anchor="right" id="Coverage" order="11" sideWeight="0.50054526" side_tool="true" weight="0.14285715" />
+    </layout>
+    <layout-to-restore>
+      <window_info id="Designer" order="2" />
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="bottom" id="Spring" order="7" weight="0.3293348" />
+      <window_info id="Image Layers" order="3" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.31624863" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.14285715" />
+      <window_info id="UI Designer" order="4" />
+      <window_info id="Favorites" order="5" side_tool="true" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.31079608" />
+      <window_info id="Capture Tool" order="7" />
+      <window_info anchor="right" id="Capture Analysis" order="4" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="bottom" id="Event Log" order="13" sideWeight="0.50053304" side_tool="true" weight="0.35441658" />
+      <window_info anchor="bottom" id="Messages" order="11" sideWeight="0.49946696" weight="0.3391494" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.3827699" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" sideWeight="0.49836424" visible="true" weight="0.12260128" />
+      <window_info anchor="bottom" id="Java Enterprise" order="9" weight="0.32061067" />
+      <window_info anchor="right" id="Module Dependencies" order="9" visible="true" weight="0.32995737" />
+      <window_info anchor="bottom" id="Database Changes" order="10" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="12" weight="0.46564886" />
+      <window_info anchor="right" id="Maven Projects" order="10" sideWeight="0.49945474" weight="0.14925373" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49791667" visible="true" weight="0.19189766" />
+      <window_info anchor="right" id="Database" order="5" weight="0.32995737" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info id="Web" order="6" side_tool="true" />
+      <window_info anchor="right" id="Palette&#9;" order="6" />
+      <window_info anchor="right" id="Theme Preview" order="7" />
+      <window_info id="Structure" order="1" sideWeight="0.50208336" side_tool="true" weight="0.24200426" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="right" id="Coverage" order="11" sideWeight="0.5016358" side_tool="true" weight="0.17590618" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.34242094" />
+      <window_info anchor="right" id="Bean Validation" order="8" weight="0.32995737" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.55725193" />
+    </layout-to-restore>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ORDER">
+      <list>
+        <option value="0" />
+        <option value="2" />
+        <option value="3" />
+        <option value="1" />
+      </list>
+    </option>
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
+              <option name="COLUMN_ORDER">
+                <list>
+                  <option value="0" />
+                  <option value="1" />
+                  <option value="2" />
+                  <option value="3" />
+                </list>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/service-marketing/src/main/java/com/idream/service/impl/StatisticsServiceImpl.java</url>
+          <line>130</line>
+          <properties />
+          <option name="timeStamp" value="151" />
+        </line-breakpoint>
+      </breakpoints>
+      <breakpoints-dialog>
+        <breakpoints-dialog />
+      </breakpoints-dialog>
+      <option name="time" value="152" />
+    </breakpoint-manager>
+  </component>
+  <component name="antWorkspaceConfiguration">
+    <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
+    <option name="FILTER_TARGETS" value="false" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/commons-mvc/src/main/java/com/idream/commons/mvc/utils/SensitiveWordUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3983">
+          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/commons-stream/src/main/java/com/idream/rabbit/WangyiIMCallBackProcessor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="22" selection-start-column="22" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/netflix/zuul/zuul-core/1.3.1/zuul-core-1.3.1.jar!/com/netflix/zuul/context/RequestContext.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="297">
+          <caret line="316" column="37" selection-start-line="316" selection-start-column="37" selection-end-line="316" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gateway/src/main/java/com/idream/filter/AccessFilter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="492">
+          <caret line="202" column="46" selection-start-line="202" selection-start-column="46" selection-end-line="202" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/commons-stream/src/main/java/com/idream/channel/handle/WangyiIMCallbackHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="25">
+          <caret line="19" column="30" selection-start-line="19" selection-start-column="30" selection-end-line="19" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/commons-stream/src/main/java/com/idream/channel/handle/UserRequestRecordHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="19" column="13" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/commons-stream/src/main/java/com/idream/channel/handle/SmsHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="575">
+          <caret line="45" column="26" selection-start-line="45" selection-start-column="26" selection-end-line="45" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/boot/spring-boot/2.0.0.RELEASE/spring-boot-2.0.0.RELEASE.jar!/org/springframework/boot/web/servlet/FilterRegistrationBean.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/logs/service-activity.2018-06-25.log">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-34225">
+          <caret line="14" column="14" selection-start-line="14" selection-start-column="14" selection-end-line="14" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/commons-stream/src/main/java/com/idream/config/DruidDataSourceConfiguration.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="250">
+          <caret line="23" column="3" lean-forward="true" selection-start-line="23" selection-start-column="3" selection-end-line="23" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/service-marketing/src/main/java/com/idream/service/StatisticsService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="20" column="38" selection-start-line="20" selection-start-column="38" selection-end-line="20" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/service-marketing/src/main/java/com/idream/controller/admin/MarketStatisticsController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1125">
+          <caret line="58" column="89" lean-forward="true" selection-start-line="58" selection-start-column="89" selection-end-line="58" selection-end-column="89" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/commons-lib/src/main/resources/mapper/LotteryInfoMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="704">
+          <caret line="419" column="25" selection-start-line="419" selection-start-column="17" selection-end-line="419" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/commons-lib/src/main/java/com/idream/commons/lib/mapper/LotteryInfoMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="125">
+          <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/service-marketing/src/main/java/com/idream/service/impl/LotteryServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="690" column="15" selection-start-line="690" selection-start-column="15" selection-end-line="690" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/service-marketing/src/main/java/com/idream/service/impl/AwardServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="808">
+          <caret line="454" column="49" selection-start-line="454" selection-start-column="49" selection-end-line="454" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/service-marketing/src/main/java/com/idream/service/IntegrationService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="26" column="17" selection-start-line="26" selection-start-column="17" selection-end-line="26" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/service-marketing/src/main/java/com/idream/controller/miniprogram/MiniAwardController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="400">
+          <caret line="36" column="62" selection-start-line="36" selection-start-column="62" selection-end-line="36" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/commons-lib/src/main/resources/mapper/ActivityTaskMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4892">
+          <caret line="249" column="34" selection-start-line="249" selection-start-column="34" selection-end-line="249" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/commons-lib/src/main/resources/mapper/ActivityTaskRecordMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="117">
+          <caret line="122" column="80" selection-start-line="122" selection-start-column="80" selection-end-line="122" selection-end-column="80" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/commons-lib/src/main/java/com/idream/commons/lib/dto/activity/AdminActivityTaskStatisticsDto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-572">
+          <caret line="12" column="43" selection-start-line="12" selection-start-column="43" selection-end-line="12" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/commons-lib/src/main/java/com/idream/commons/lib/model/IntegrationPool.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/third-interface/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="575">
+          <caret line="23" column="29" selection-start-line="23" selection-start-column="29" selection-end-line="23" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/service-marketing/src/main/java/com/idream/service/impl/StatisticsServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="129">
+          <caret line="141" column="70" selection-start-line="141" selection-start-column="70" selection-end-line="141" selection-end-column="70" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/mybatis/mybatis-spring/1.3.2/mybatis-spring-1.3.2.jar!/org/mybatis/spring/MyBatisExceptionTranslator.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="40" selection-start-line="40" selection-end-line="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/commons-lib/src/main/java/com/idream/commons/lib/dto/marketing/MarketDetailStaticsParams.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="275">
+          <caret line="15" column="29" selection-start-line="15" selection-start-column="16" selection-end-line="15" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/commons-lib/src/main/java/com/idream/commons/lib/mapper/CouponInfoMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="388">
+          <caret line="91" column="77" selection-start-line="91" selection-start-column="77" selection-end-line="91" selection-end-column="77" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/service-marketing/src/main/resources/bootstrap.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-111">
+          <caret line="3" column="45" selection-start-line="3" selection-start-column="45" selection-end-line="3" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gateway/src/main/resources/bootstrap.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-186" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gateway/src/main/java/com/idream/GatewayApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="110">
+          <caret line="35" column="27" selection-start-line="35" selection-start-column="27" selection-end-line="35" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/commons-lib/src/main/java/com/idream/commons/lib/dto/marketing/MarketLotteryStaticsDto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="675">
+          <caret line="30" column="35" selection-start-line="30" selection-start-column="19" selection-end-line="30" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/commons-lib/src/main/java/com/idream/commons/lib/dto/marketing/MarketIntegrationStaticsDto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/commons-lib/src/main/java/com/idream/commons/lib/dto/marketing/MarketAwardStaticsDto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="625">
+          <caret line="28" column="33" selection-start-line="28" selection-start-column="33" selection-end-line="28" selection-end-column="33" />
+          <folding>
+            <element signature="e#2420#2421#0" expanded="true" />
+            <element signature="e#2459#2460#0" expanded="true" />
+            <element signature="e#2523#2524#0" expanded="true" />
+            <element signature="e#2579#2580#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/commons-lib/src/main/java/com/idream/commons/lib/mapper/UserRegionRelationMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="13" column="30" selection-start-line="13" selection-start-column="30" selection-end-line="13" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/commons-lib/src/main/resources/mapper/UserRegionRelationMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2525">
+          <caret line="101" column="36" selection-start-line="101" selection-start-column="16" selection-end-line="101" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/commons-lib/src/main/java/com/idream/commons/lib/mapper/IntegrationPoolMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="125">
+          <caret line="13" column="33" selection-start-line="13" selection-start-column="33" selection-end-line="13" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/commons-lib/src/main/java/com/idream/commons/lib/dto/marketing/UserRegionPoolInfo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/commons-lib/src/main/resources/mapper/IntegrationPoolMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="50">
+          <caret line="396" column="29" lean-forward="true" selection-start-line="396" selection-start-column="29" selection-end-line="396" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/service-marketing/src/main/java/com/idream/service/impl/IntegrationServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret line="18" column="1" lean-forward="true" selection-start-line="18" selection-start-column="1" selection-end-line="18" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/commons-lib/src/main/resources/mapper/CouponInfoMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="8425">
+          <caret line="337" column="13" lean-forward="true" selection-start-line="337" selection-start-column="13" selection-end-line="337" selection-end-column="13" />
+          <folding>
+            <element signature="e#13025#13029#0" expanded="true" />
+            <element signature="e#13746#13750#0" expanded="true" />
+            <element signature="e#24096#24100#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/commons-lib/src/main/java/com/idream/commons/lib/annotation/SensitiveWordVaild.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="325">
+          <caret line="18" column="25" lean-forward="true" selection-start-line="18" selection-start-column="25" selection-end-line="18" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/logs/service-marketing.2018-09-04.log">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1675">
+          <caret line="9" column="186" lean-forward="true" selection-start-line="9" selection-start-column="186" selection-end-line="9" selection-end-column="186" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/mybatis/mybatis/3.4.6/mybatis-3.4.6.jar!/org/apache/ibatis/builder/xml/mybatis-3-mapper.dtd">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="251" column="10" selection-start-line="251" selection-start-column="10" selection-end-line="251" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/commons-lib/src/main/java/com/idream/commons/lib/dto/activity/AppCommunityLifeParams.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="325">
+          <caret line="20" column="5" selection-start-line="20" selection-start-column="5" selection-end-line="20" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/commons-lib/src/main/resources/mapper/UserLoginRecordMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1425">
+          <caret line="57" column="17" lean-forward="true" selection-start-line="57" selection-start-column="17" selection-end-line="57" selection-end-column="17" />
+          <folding>
+            <element signature="e#5818#5822#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/commons-lib/src/main/java/com/idream/commons/lib/dto/JSONPublicParam.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="17" column="21" selection-start-line="17" selection-start-column="21" selection-end-line="17" selection-end-column="21" />
+          <folding>
+            <element signature="e#608#609#0" expanded="true" />
+            <element signature="e#643#644#0" expanded="true" />
+            <element signature="e#787#788#0" expanded="true" />
+            <element signature="e#822#823#0" expanded="true" />
+            <element signature="e#884#885#0" expanded="true" />
+            <element signature="e#932#933#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/service-marketing/src/main/java/com/idream/ServiceMarketingApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="175">
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/commons-lib/src/main/resources/mapper/UserActivityRecordMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="617">
+          <caret line="285" column="33" lean-forward="true" selection-start-line="285" selection-start-column="33" selection-end-line="285" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/commons-lib/src/main/resources/mapper/ActivityInvitationRecordMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="467">
+          <caret line="168" column="55" selection-start-line="168" selection-start-column="55" selection-end-line="168" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/commons-lib/src/main/resources/mapper/ActivityInfoMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="3" column="77" selection-start-line="3" selection-start-column="77" selection-end-line="3" selection-end-column="77" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/commons-lib/src/main/java/com/idream/commons/lib/model/ActivityInfo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="575">
+          <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>Spring</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>commons-mvc</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <last-edited>Maven: antlr:antlr:2.7.7</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>

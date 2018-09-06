@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.idream.commons.lib.mapper.AchievementUserMapper">
+    <resultMap id="BaseResultMap" type="com.idream.commons.lib.model.AchievementUser">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="user_id" property="userId" jdbcType="INTEGER"/>
+        <result column="achieve_id" property="achieveId" jdbcType="INTEGER"/>
+        <result column="achieve_name" property="achieveName" jdbcType="VARCHAR"/>
+        <result column="completed" property="completed" jdbcType="BIT"/>
+        <result column="complete_time" property="completeTime" jdbcType="TIMESTAMP"/>
+        <result column="complete_num" property="completeNum" jdbcType="INTEGER"/>
+        <result column="received" property="received" jdbcType="BIT"/>
+        <result column="receive_time" property="receiveTime" jdbcType="TIMESTAMP"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, user_id, achieve_id, achieve_name, completed, complete_time, complete_num, received,
+        receive_time, create_time, update_time
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from achievement_user
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from achievement_user
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.idream.commons.lib.model.AchievementUser" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into achievement_user (user_id, achieve_id, achieve_name,
+        completed, complete_time, complete_num,
+        received, receive_time, create_time,
+        update_time)
+        values (#{userId,jdbcType=INTEGER}, #{achieveId,jdbcType=INTEGER}, #{achieveName,jdbcType=VARCHAR},
+        #{completed,jdbcType=BIT}, #{completeTime,jdbcType=TIMESTAMP}, #{completeNum,jdbcType=INTEGER},
+        #{received,jdbcType=BIT}, #{receiveTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP},
+        #{updateTime,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="com.idream.commons.lib.model.AchievementUser" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into achievement_user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userId != null">
+                user_id,
+            </if>
+            <if test="achieveId != null">
+                achieve_id,
+            </if>
+            <if test="achieveName != null">
+                achieve_name,
+            </if>
+            <if test="completed != null">
+                completed,
+            </if>
+            <if test="completeTime != null">
+                complete_time,
+            </if>
+            <if test="completeNum != null">
+                complete_num,
+            </if>
+            <if test="received != null">
+                received,
+            </if>
+            <if test="receiveTime != null">
+                receive_time,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="userId != null">
+                #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="achieveId != null">
+                #{achieveId,jdbcType=INTEGER},
+            </if>
+            <if test="achieveName != null">
+                #{achieveName,jdbcType=VARCHAR},
+            </if>
+            <if test="completed != null">
+                #{completed,jdbcType=BIT},
+            </if>
+            <if test="completeTime != null">
+                #{completeTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="completeNum != null">
+                #{completeNum,jdbcType=INTEGER},
+            </if>
+            <if test="received != null">
+                #{received,jdbcType=BIT},
+            </if>
+            <if test="receiveTime != null">
+                #{receiveTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.idream.commons.lib.model.AchievementUser">
+        update achievement_user
+        <set>
+            <if test="userId != null">
+                user_id = #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="achieveId != null">
+                achieve_id = #{achieveId,jdbcType=INTEGER},
+            </if>
+            <if test="achieveName != null">
+                achieve_name = #{achieveName,jdbcType=VARCHAR},
+            </if>
+            <if test="completed != null">
+                completed = #{completed,jdbcType=BIT},
+            </if>
+            <if test="completeTime != null">
+                complete_time = #{completeTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="completeNum != null">
+                complete_num = #{completeNum,jdbcType=INTEGER},
+            </if>
+            <if test="received != null">
+                received = #{received,jdbcType=BIT},
+            </if>
+            <if test="receiveTime != null">
+                receive_time = #{receiveTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.idream.commons.lib.model.AchievementUser">
+        update achievement_user
+        set user_id = #{userId,jdbcType=INTEGER},
+        achieve_id = #{achieveId,jdbcType=INTEGER},
+        achieve_name = #{achieveName,jdbcType=VARCHAR},
+        completed = #{completed,jdbcType=BIT},
+        complete_time = #{completeTime,jdbcType=TIMESTAMP},
+        complete_num = #{completeNum,jdbcType=INTEGER},
+        received = #{received,jdbcType=BIT},
+        receive_time = #{receiveTime,jdbcType=TIMESTAMP},
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+        update_time = #{updateTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <select id="selectAchievementInfoListByUserId"
+            resultType="com.idream.commons.lib.dto.activity.AppUserAchievementDto">
+        SELECT
+        a.`name` achievementName,
+        a.id achievementId,
+        CASE
+        WHEN b.completed = 1 THEN
+        a.bright_image
+        ELSE
+        a.black_image
+        END AS icon,
+        CASE WHEN b.completed THEN 1 ELSE 0 END AS completed,
+        CASE WHEN b.received THEN 1 ELSE 0 END AS received,
+        a.category_id
+        FROM
+        achievement_info a
+        LEFT JOIN achievement_user b ON a.id = b.achieve_id AND b.user_id = #{userId}
+        WHERE a.`status`=1 OR b.completed=TRUE
+        ORDER BY a.sorted
+    </select>
+
+    <select id="selectCompletedAchievement"
+            resultType="com.idream.commons.lib.dto.activity.AdminUserAchievementDto">
+        SELECT
+        a.complete_time completeTime,
+        b.name achievementName,
+        b.id achievementId
+        FROM
+        achievement_user a
+        LEFT JOIN achievement_info b ON a.achieve_id = b.id
+        where a.completed =1 and a.user_id = #{userId}
+    </select>
+    <select id="selectByUserIdAndAchieveId" resultType="com.idream.commons.lib.model.AchievementUser">
+        select
+        <include refid="Base_Column_List"/>
+        from achievement_user
+        where user_id = #{userId} AND achieve_id=#{achieveId}
+    </select>
+    <update id="updateCompletedByUserIdAndAchieveId">
+        UPDATE achievement_user
+        SET completed = TRUE,
+        complete_time = #{createTime},
+        update_time = #{createTime}
+        WHERE
+        user_id = #{userId}
+        AND achieve_id = #{achieveId}
+    </update>
+    <select id="selectDetailByUserIdAndAchievementId"
+            resultType="com.idream.commons.lib.dto.achievement.UserAchieveDetailDto">
+        SELECT
+        a.`name` achievementName,
+        b.completed,
+        b.complete_time,
+        (SELECT COUNT(*) FROM achievement_user d WHERE d.achieve_id=#{achievementId}) AS total_num,
+        a.instructions,
+        CASE
+        WHEN b.completed = 1 THEN
+        a.bright_image
+        ELSE
+        a.black_image
+        END AS icon,
+        c.count AS nowStep,
+        a.count AS totalStep
+        FROM
+        achievement_info a
+        LEFT JOIN achievement_user b ON b.achieve_id = a.id
+        AND b.user_id = #{userId}
+        LEFT JOIN achievement_user_record c ON c.event_id = a.event_id
+        AND c.user_id = #{userId}
+        WHERE
+        a.id = #{achievementId}
+    </select>
+    <select id="selectUncompleteByEventIdAndUserId" resultType="com.idream.commons.lib.model.AchievementUser">
+        SELECT
+        a.user_id,
+        b.id achieveId,
+        b.name achieve_name
+        FROM
+        achievement_user_record a
+        INNER JOIN achievement_info b ON a.event_id=b.event_id
+        WHERE a.user_id=#{userId} AND a.event_id=#{eventId} and a.count &gt;= b.count and
+        NOT EXISTS (SELECT * FROM achievement_user c WHERE c.user_id=a.user_id AND c.achieve_id=b.id)
+    </select>
+    <select id="selectCompletedUserByAchievementId"
+            resultType="com.idream.commons.lib.dto.achievement.AdminAchievementUserDto">
+        SELECT
+        b.phone,
+        b.nick_name,
+        a.create_time
+        FROM
+        achievement_user a
+        INNER JOIN user_info b ON a.user_id = b.id
+        WHERE
+        a.achieve_id = #{achievementId}
+
+        AND a.completed = TRUE
+        <if test="phone!=null and phone!=''">
+            and b.phone like concat('%',#{phone},'%')
+        </if>
+    </select>
+</mapper>

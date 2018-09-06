@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.idream.commons.lib.mapper.UserRequestRecordMapper">
+    <resultMap id="BaseResultMap" type="com.idream.commons.lib.model.UserRequestRecord">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="user_id" property="userId" jdbcType="INTEGER"/>
+        <result column="ip" property="ip" jdbcType="VARCHAR"/>
+        <result column="device_type" property="deviceType" jdbcType="TINYINT"/>
+        <result column="app_version" property="appVersion" jdbcType="VARCHAR"/>
+        <result column="request_time" property="requestTime" jdbcType="INTEGER"/>
+        <result column="start_time" property="startTime" jdbcType="TIMESTAMP"/>
+        <result column="request_method" property="requestMethod" jdbcType="VARCHAR"/>
+        <result column="request_url" property="requestUrl" jdbcType="VARCHAR"/>
+        <result column="request_param" property="requestParam" jdbcType="VARCHAR"/>
+        <result column="end_time" property="endTime" jdbcType="TIMESTAMP"/>
+        <result column="response_data" property="responseData" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, user_id, ip, device_type, app_version, request_time, start_time, request_method,
+        request_url, request_param, end_time, response_data, create_time
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from user_request_record
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from user_request_record
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.idream.commons.lib.model.UserRequestRecord" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into user_request_record (user_id, ip, device_type,
+        app_version, request_time, start_time,
+        request_method, request_url, request_param,
+        end_time, response_data, create_time
+        )
+        values (#{userId,jdbcType=INTEGER}, #{ip,jdbcType=VARCHAR}, #{deviceType,jdbcType=TINYINT},
+        #{appVersion,jdbcType=VARCHAR}, #{requestTime,jdbcType=INTEGER}, #{startTime,jdbcType=TIMESTAMP},
+        #{requestMethod,jdbcType=VARCHAR}, #{requestUrl,jdbcType=VARCHAR}, #{requestParam,jdbcType=VARCHAR},
+        #{endTime,jdbcType=TIMESTAMP}, #{responseData,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}
+        )
+    </insert>
+    <insert id="insertSelective" parameterType="com.idream.commons.lib.model.UserRequestRecord" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into user_request_record
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userId != null">
+                user_id,
+            </if>
+            <if test="ip != null">
+                ip,
+            </if>
+            <if test="deviceType != null">
+                device_type,
+            </if>
+            <if test="appVersion != null">
+                app_version,
+            </if>
+            <if test="requestTime != null">
+                request_time,
+            </if>
+            <if test="startTime != null">
+                start_time,
+            </if>
+            <if test="requestMethod != null">
+                request_method,
+            </if>
+            <if test="requestUrl != null">
+                request_url,
+            </if>
+            <if test="requestParam != null">
+                request_param,
+            </if>
+            <if test="endTime != null">
+                end_time,
+            </if>
+            <if test="responseData != null">
+                response_data,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="userId != null">
+                #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="ip != null">
+                #{ip,jdbcType=VARCHAR},
+            </if>
+            <if test="deviceType != null">
+                #{deviceType,jdbcType=TINYINT},
+            </if>
+            <if test="appVersion != null">
+                #{appVersion,jdbcType=VARCHAR},
+            </if>
+            <if test="requestTime != null">
+                #{requestTime,jdbcType=INTEGER},
+            </if>
+            <if test="startTime != null">
+                #{startTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="requestMethod != null">
+                #{requestMethod,jdbcType=VARCHAR},
+            </if>
+            <if test="requestUrl != null">
+                #{requestUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="requestParam != null">
+                #{requestParam,jdbcType=VARCHAR},
+            </if>
+            <if test="endTime != null">
+                #{endTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="responseData != null">
+                #{responseData,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.idream.commons.lib.model.UserRequestRecord">
+        update user_request_record
+        <set>
+            <if test="userId != null">
+                user_id = #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="ip != null">
+                ip = #{ip,jdbcType=VARCHAR},
+            </if>
+            <if test="deviceType != null">
+                device_type = #{deviceType,jdbcType=TINYINT},
+            </if>
+            <if test="appVersion != null">
+                app_version = #{appVersion,jdbcType=VARCHAR},
+            </if>
+            <if test="requestTime != null">
+                request_time = #{requestTime,jdbcType=INTEGER},
+            </if>
+            <if test="startTime != null">
+                start_time = #{startTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="requestMethod != null">
+                request_method = #{requestMethod,jdbcType=VARCHAR},
+            </if>
+            <if test="requestUrl != null">
+                request_url = #{requestUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="requestParam != null">
+                request_param = #{requestParam,jdbcType=VARCHAR},
+            </if>
+            <if test="endTime != null">
+                end_time = #{endTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="responseData != null">
+                response_data = #{responseData,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.idream.commons.lib.model.UserRequestRecord">
+        update user_request_record
+        set user_id = #{userId,jdbcType=INTEGER},
+        ip = #{ip,jdbcType=VARCHAR},
+        device_type = #{deviceType,jdbcType=TINYINT},
+        app_version = #{appVersion,jdbcType=VARCHAR},
+        request_time = #{requestTime,jdbcType=INTEGER},
+        start_time = #{startTime,jdbcType=TIMESTAMP},
+        request_method = #{requestMethod,jdbcType=VARCHAR},
+        request_url = #{requestUrl,jdbcType=VARCHAR},
+        request_param = #{requestParam,jdbcType=VARCHAR},
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+        response_data = #{responseData,jdbcType=VARCHAR},
+        create_time = #{createTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+</mapper>

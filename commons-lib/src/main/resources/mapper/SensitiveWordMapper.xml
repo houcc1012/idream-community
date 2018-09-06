@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.idream.commons.lib.mapper.SensitiveWordMapper" >
+  <resultMap id="BaseResultMap" type="com.idream.commons.lib.model.SensitiveWord" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="word" property="word" jdbcType="VARCHAR" />
+    <result column="pin_yin" property="pinYin" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, word, pin_yin, create_time, update_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from sensitive_word
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sensitive_word
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.idream.commons.lib.model.SensitiveWord" useGeneratedKeys="true" keyProperty="id" >
+    insert into sensitive_word (word, pin_yin, create_time, 
+      update_time)
+    values (#{word,jdbcType=VARCHAR}, #{pinYin,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.idream.commons.lib.model.SensitiveWord" useGeneratedKeys="true" keyProperty="id" >
+    insert into sensitive_word
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="word != null" >
+        word,
+      </if>
+      <if test="pinYin != null" >
+        pin_yin,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="word != null" >
+        #{word,jdbcType=VARCHAR},
+      </if>
+      <if test="pinYin != null" >
+        #{pinYin,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.idream.commons.lib.model.SensitiveWord" >
+    update sensitive_word
+    <set >
+      <if test="word != null" >
+        word = #{word,jdbcType=VARCHAR},
+      </if>
+      <if test="pinYin != null" >
+        pin_yin = #{pinYin,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.idream.commons.lib.model.SensitiveWord" >
+    update sensitive_word
+    set word = #{word,jdbcType=VARCHAR},
+      pin_yin = #{pinYin,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectSensitiveWordList" resultType="com.idream.commons.lib.dto.setting.SearchSensitiveWordsDto"
+          parameterType="com.idream.commons.lib.dto.setting.SearchSensitiveWordsParams">
+      select id, word from sensitive_word
+      <where>
+        <if test=" word != null and word != ''">
+          <![CDATA[ word like CONCAT('%',#{word,jdbcType=VARCHAR} ,'%' ) ]]>
+        </if>
+      </where>
+      order by id desc
+  </select>
+</mapper>

@@ -1,0 +1,835 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.idream.commons.lib.mapper.CommunityInfoMapper">
+    <resultMap id="BaseResultMap" type="com.idream.commons.lib.model.CommunityInfo">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="community_name" property="communityName" jdbcType="VARCHAR"/>
+        <result column="longitude" property="longitude" jdbcType="DECIMAL"/>
+        <result column="latitude" property="latitude" jdbcType="DECIMAL"/>
+        <result column="description" property="description" jdbcType="VARCHAR"/>
+        <result column="address" property="address" jdbcType="VARCHAR"/>
+        <result column="province" property="province" jdbcType="VARCHAR"/>
+        <result column="province_code" property="provinceCode" jdbcType="VARCHAR"/>
+        <result column="city_code" property="cityCode" jdbcType="VARCHAR"/>
+        <result column="city" property="city" jdbcType="VARCHAR"/>
+        <result column="district" property="district" jdbcType="VARCHAR"/>
+        <result column="ad_code" property="adCode" jdbcType="VARCHAR"/>
+        <result column="region_id" property="regionId" jdbcType="INTEGER"/>
+        <result column="status" property="status" jdbcType="TINYINT"/>
+        <result column="icon" property="icon" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, community_name, longitude, latitude, description, address, province, province_code,
+        city_code, city, district, ad_code, region_id, status, icon, create_time, update_time
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from community_info
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from community_info
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.idream.commons.lib.model.CommunityInfo" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into community_info (community_name, longitude, latitude,
+        description, address, province,
+        province_code, city_code, city,
+        district, ad_code, region_id,
+        status, icon, create_time,
+        update_time)
+        values (#{communityName,jdbcType=VARCHAR}, #{longitude,jdbcType=DECIMAL}, #{latitude,jdbcType=DECIMAL},
+        #{description,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{province,jdbcType=VARCHAR},
+        #{provinceCode,jdbcType=VARCHAR}, #{cityCode,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR},
+        #{district,jdbcType=VARCHAR}, #{adCode,jdbcType=VARCHAR}, #{regionId,jdbcType=INTEGER},
+        #{status,jdbcType=TINYINT}, #{icon,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP},
+        #{updateTime,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="com.idream.commons.lib.model.CommunityInfo" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into community_info
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="communityName != null">
+                community_name,
+            </if>
+            <if test="longitude != null">
+                longitude,
+            </if>
+            <if test="latitude != null">
+                latitude,
+            </if>
+            <if test="description != null">
+                description,
+            </if>
+            <if test="address != null">
+                address,
+            </if>
+            <if test="province != null">
+                province,
+            </if>
+            <if test="provinceCode != null">
+                province_code,
+            </if>
+            <if test="cityCode != null">
+                city_code,
+            </if>
+            <if test="city != null">
+                city,
+            </if>
+            <if test="district != null">
+                district,
+            </if>
+            <if test="adCode != null">
+                ad_code,
+            </if>
+            <if test="regionId != null">
+                region_id,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+            <if test="icon != null">
+                icon,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="communityName != null">
+                #{communityName,jdbcType=VARCHAR},
+            </if>
+            <if test="longitude != null">
+                #{longitude,jdbcType=DECIMAL},
+            </if>
+            <if test="latitude != null">
+                #{latitude,jdbcType=DECIMAL},
+            </if>
+            <if test="description != null">
+                #{description,jdbcType=VARCHAR},
+            </if>
+            <if test="address != null">
+                #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="province != null">
+                #{province,jdbcType=VARCHAR},
+            </if>
+            <if test="provinceCode != null">
+                #{provinceCode,jdbcType=VARCHAR},
+            </if>
+            <if test="cityCode != null">
+                #{cityCode,jdbcType=VARCHAR},
+            </if>
+            <if test="city != null">
+                #{city,jdbcType=VARCHAR},
+            </if>
+            <if test="district != null">
+                #{district,jdbcType=VARCHAR},
+            </if>
+            <if test="adCode != null">
+                #{adCode,jdbcType=VARCHAR},
+            </if>
+            <if test="regionId != null">
+                #{regionId,jdbcType=INTEGER},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=TINYINT},
+            </if>
+            <if test="icon != null">
+                #{icon,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.idream.commons.lib.model.CommunityInfo">
+        update community_info
+        <set>
+            <if test="communityName != null">
+                community_name = #{communityName,jdbcType=VARCHAR},
+            </if>
+            <if test="longitude != null">
+                longitude = #{longitude,jdbcType=DECIMAL},
+            </if>
+            <if test="latitude != null">
+                latitude = #{latitude,jdbcType=DECIMAL},
+            </if>
+            <if test="description != null">
+                description = #{description,jdbcType=VARCHAR},
+            </if>
+            <if test="address != null">
+                address = #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="province != null">
+                province = #{province,jdbcType=VARCHAR},
+            </if>
+            <if test="provinceCode != null">
+                province_code = #{provinceCode,jdbcType=VARCHAR},
+            </if>
+            <if test="cityCode != null">
+                city_code = #{cityCode,jdbcType=VARCHAR},
+            </if>
+            <if test="city != null">
+                city = #{city,jdbcType=VARCHAR},
+            </if>
+            <if test="district != null">
+                district = #{district,jdbcType=VARCHAR},
+            </if>
+            <if test="adCode != null">
+                ad_code = #{adCode,jdbcType=VARCHAR},
+            </if>
+            <if test="regionId != null">
+                region_id = #{regionId,jdbcType=INTEGER},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=TINYINT},
+            </if>
+            <if test="icon != null">
+                icon = #{icon,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.idream.commons.lib.model.CommunityInfo">
+        update community_info
+        set community_name = #{communityName,jdbcType=VARCHAR},
+        longitude = #{longitude,jdbcType=DECIMAL},
+        latitude = #{latitude,jdbcType=DECIMAL},
+        description = #{description,jdbcType=VARCHAR},
+        address = #{address,jdbcType=VARCHAR},
+        province = #{province,jdbcType=VARCHAR},
+        province_code = #{provinceCode,jdbcType=VARCHAR},
+        city_code = #{cityCode,jdbcType=VARCHAR},
+        city = #{city,jdbcType=VARCHAR},
+        district = #{district,jdbcType=VARCHAR},
+        ad_code = #{adCode,jdbcType=VARCHAR},
+        region_id = #{regionId,jdbcType=INTEGER},
+        status = #{status,jdbcType=TINYINT},
+        icon = #{icon,jdbcType=VARCHAR},
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+        update_time = #{updateTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <!-- 根据city查询 -->
+    <select id="getCommunityInfoByCity" parameterType="java.lang.String"
+            resultType="com.idream.commons.lib.dto.activity.ActivityDataDto">
+        SELECT
+        a.id,
+        a.title,
+        a.subtitle,
+        a.image,
+        a.content,
+        a.status,
+        a.start_time startTime,
+        a.end_time endTime,
+        a.user_id userId,
+        a.type_id typeId,
+        a.city_code cityCode,
+        a.city,
+        a.create_time createTime,
+        a.update_time updateTime,
+        c.longitude,
+        c.latitude,
+        c.community_name communityName,
+        c.address,
+        c.province,
+        c.district,
+        c.id communityId
+        FROM activity_info AS a
+        LEFT JOIN activity_community_relation acr ON acr.activity_id=a.id
+        LEFT JOIN community_info AS c ON c.id=acr.community_id
+        WHERE c.city LIKE CONCAT(#{city}, '%') AND a.status=4 AND a.end_time &gt; NOW()
+    </select>
+
+    <!-- 根据用户位置查询附近社区 -->
+    <select id="selectCommunitiesByLocation" parameterType="String"
+            resultType="com.idream.commons.lib.model.CommunityInfo">
+        SELECT id,
+        community_name communityName,
+        longitude,
+        latitude,
+        address
+        FROM
+        community_info
+        WHERE
+        city LIKE CONCAT(#{city}, '%')
+    </select>
+
+    <!-- 根据用户id查询周围已发布的社区 -->
+    <select id="selectCommunitiesByUserId" parameterType="Integer"
+            resultType="com.idream.commons.lib.model.CommunityInfo">
+        SELECT DISTINCT c.id,c.community_name communityName,longitude,latitude
+        FROM activity_info a
+        inner JOIN activity_community_relation acr ON acr.activity_id=a.id
+        inner JOIN community_info c ON c.id=acr.community_id
+        WHERE a.user_id=#{id} AND a.status = 4
+    </select>
+
+    <select id="listCommunitiesByQuery" resultType="com.idream.commons.lib.model.CommunityInfo">
+        select
+        <include refid="Base_Column_List"/>
+        from community_info
+        <if test="query!=null and query!=''">
+            where community_name like CONCAT(#{query},'%')
+        </if>
+    </select>
+
+    <!-- 根据活动id查询区域名和社区名 -->
+    <select id="getDistrictAndCommunityByActivityId" parameterType="Integer"
+            resultType="com.idream.commons.lib.dto.activity.DistrictCommunityDto">
+        SELECT
+        ci.district,ci.community_name
+        FROM
+        community_info ci INNER JOIN activity_community_relation acr
+        ON ci.id = acr.community_id
+        INNER JOIN activity_info ai
+        ON acr.activity_id = ai.id
+        WHERE
+        ai.id = #{activityId}
+    </select>
+    <!-- 根据条件(无社区关联)查询社区列表 -->
+    <select id="selectCommunityListByExample"
+            parameterType="com.idream.commons.lib.dto.activity.CommunityBookHouseRequestDto"
+            resultType="com.idream.commons.lib.model.CommunityInfo">
+        select
+        id,
+        community_name communityName,
+        province,
+        city,
+        district,
+        ad_code adCode,
+        address,
+        latitude,
+        longitude
+        from community_info
+        <where>
+            <if test="communityName != null">
+                and community_name LIKE CONCAT(CONCAT('%', #{communityName}), '%')
+            </if>
+            <if test="adCode != null">
+                and ad_code = #{adCode}
+            </if>
+        </where>
+
+    </select>
+    <!-- 根据条件(有社区关联)查询社区列表 -->
+    <resultMap id="getCommunityBookHouseList" type="com.idream.commons.lib.dto.activity.CommunityBookHouseDto">
+        <id column="id" property="communityId"/>
+        <result column="community_name" property="communityName"/>
+        <result column="province" property="province"/>
+        <result column="city" property="city"/>
+        <result column="district" property="district"/>
+        <result column="ad_code" property="adCode"/>
+        <result column="communityAddress" property="communityAddress"/>
+        <result column="latitude" property="latitude"/>
+        <result column="longitude" property="longitude"/>
+        <result column="create_time" property="communityCreateTime"/>
+        <result column="bookHouseId" property="bookHouseId"/>
+        <result column="name" property="bookHouseName"/>
+        <result column="bookHouseAddress" property="bookHouseAddress"/>
+        <result column="bookHouseLatitude" property="bookHouseLatitude"/>
+        <result column="bookHouseLongitude" property="bookHouseLongitude"/>
+        <collection property="realName" ofType="java.lang.String">
+            <result column="realName" property="realName"/>
+        </collection>
+    </resultMap>
+    <select id="selectCommunityBookHouseListByExample"
+            parameterType="com.idream.commons.lib.dto.activity.CommunityBookHouseRequestDto"
+            resultMap="getCommunityBookHouseList">
+        select
+        a.id ,
+        a.community_name ,
+        a.province,
+        a.city,
+        a.district,
+        a.ad_code ,
+        a.address communityAddress,
+        a.latitude,
+        a.longitude,
+        a.create_time,
+        b.id bookHouseId,
+        b.name ,
+        b.address bookHouseAddress,
+        b.latitude bookHouseLatitude,
+        b.longitude bookHouseLongitude,
+        d.real_name realName
+        from (SELECT id ,community_name ,province,city,district,ad_code ,address ,latitude,longitude,create_time,book_id
+        FROM community_info
+        <where>
+            <if test="communityName != null and communityName!='' ">
+                <![CDATA[  and community_name LIKE  CONCAT('%', #{communityName}, '%') ESCAPE '/' ]]>
+            </if>
+            <if test="adCode != null and adCode!=''">
+                and ad_code = #{adCode}
+            </if>
+            <if test="isHaving !=null and isHaving==true">
+                and book_id is not null
+            </if>
+            <if test="isHaving !=null and isHaving==false">
+                and book_id is null
+            </if>
+        </where>
+        order by create_time DESC limit #{page},#{rows}) a
+        LEFT JOIN book_house b ON a.book_id = b.id
+        LEFT JOIN user_manager c ON b.id = c.book_id
+        LEFT JOIN user_info d ON c.user_id = d.id
+        <where>
+            <if test="bookHouseName != null and bookHouseName!=''">
+                and b.name = #{bookHouseName}
+            </if>
+        </where>
+        order by a.create_time DESC
+    </select>
+    <select id="getTotal"
+            parameterType="com.idream.commons.lib.dto.activity.CommunityBookHouseRequestDto"
+            resultType="java.lang.Integer">
+        SELECT count(*) FROM community_info
+        <where>
+            <if test="communityName != null and communityName!='' ">
+                <![CDATA[  and community_name LIKE  CONCAT('%', #{communityName}, '%') ESCAPE '/' ]]>
+            </if>
+            <if test="adCode != null and adCode!=''">
+                and ad_code = #{adCode}
+            </if>
+            <if test="isHaving !=null and isHaving==true">
+                and book_id is not null
+            </if>
+            <if test="isHaving !=null and isHaving==false">
+                and book_id is null
+            </if>
+        </where>
+    </select>
+    <!-- 社区列表空白页查询 -->
+    <select id="selectCommunityBookHouseListAll" resultType="com.idream.commons.lib.dto.activity.CommunityBookHouseDto">
+        select
+        a.id communityId,
+        a.community_name communityName,
+        a.province,
+        a.city,
+        a.district,
+        a.ad_code adCode,
+        a.address communityAddress,
+        a.latitude,
+        a.longitude,
+        b.id bookHouseId,
+        b.name bookHouseName,
+        b.address bookHouseAddress,
+        b.latitude bookHouseLatitude,
+        b.longitude bookHouseLongitude,
+        d.nick_name nickName
+        from community_info a
+        LEFT JOIN book_house b ON a.book_id = b.id
+        LEFT JOIN user_manager c ON b.id = c.book_id
+        LEFT JOIN user_info d ON c.user_id = d.id
+    </select>
+    <select id="selectByCommunityId" resultType="com.idream.commons.lib.dto.marketing.CommunityDto"
+            parameterType="java.lang.Integer">
+        select
+        id as communityId,
+        community_name as communityName,
+        province as provinceName,
+        province_code as provinceId,
+        city_code as cityId,
+        city as cityName,
+        ad_code as regionId,
+        district as regionName
+        from community_info
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <!-- 编辑社区数据回显 -->
+    <select id="selectCommunityAndBookHouse" parameterType="java.lang.Integer"
+            resultType="com.idream.commons.lib.dto.activity.CommunityBookHouseDto">
+        select
+        a.id communityId,
+        a.community_name communityName,
+        a.province,
+        a.city,
+        a.district,
+        a.ad_code adCode,
+        a.address communityAddress,
+        a.latitude,
+        a.longitude,
+        a.description communityDescription,
+        b.id bookHouseId,
+        b.name bookHouseName,
+        b.address bookHouseAddress,
+        b.latitude bookHouseLatitude,
+        b.longitude bookHouseLongitude,
+        b.description
+        from community_info a
+        LEFT JOIN book_house b ON a.book_id = b.id
+        where a.id = #{communityId}
+    </select>
+    <select id="selectCommunityById" parameterType="java.lang.Integer"
+            resultType="com.idream.commons.lib.dto.activity.CommunityBookHouseDto">
+        select
+        id communityId,
+        community_name communityName,
+        province,
+        city,
+        district,
+        ad_code adCode,
+        address communityAddress,
+        description communityDescription,
+        latitude,
+        longitude
+        from community_info
+        where id = #{communityId}
+    </select>
+    <!-- 发现页 活动列表 默认展示所有城市活动 -->
+    <select id="selectActivityInfoAll" resultType="com.idream.commons.lib.dto.activity.CommunityActivityResponseDto">
+        SELECT
+        a.id,
+        a.title,
+        a.subtitle,
+        a.image,
+        a.content,
+        a.status,
+        a.start_time startTime,
+        a.end_time endTime,
+        a.user_id userId,
+        a.type_id typeId,
+        a.city_code cityCode,
+        a.city,
+        a.create_time createTime,
+        a.update_time updateTime,
+        c.longitude,
+        c.latitude,
+        c.community_name communityName,
+        c.address,
+        c.province,
+        c.district,
+        c.id communityId
+        FROM activity_info AS a
+        LEFT JOIN activity_community_relation acr ON acr.activity_id=a.id
+        LEFT JOIN community_info AS c ON c.id=acr.community_id
+        WHERE a.status=4 AND NOW() &lt; DATE_ADD(a.end_time, INTERVAL 3 DAY)
+        group by a.city,a.id
+        order by a.start_time DESC ,a.end_time DESC
+    </select>
+    <select id="getCommunityInfoAndActivityByCity" parameterType="java.lang.String"
+            resultType="com.idream.commons.lib.dto.activity.CommunityActivityResponseDto">
+        SELECT
+        a.id,
+        a.title,
+        a.subtitle,
+        a.image,
+        a.content,
+        a.status,
+        a.start_time startTime,
+        a.end_time endTime,
+        a.user_id userId,
+        a.type_id typeId,
+        a.city_code cityCode,
+        a.city,
+        a.create_time createTime,
+        a.update_time updateTime,
+        c.longitude,
+        c.latitude,
+        c.community_name communityName,
+        c.address,
+        c.province,
+        c.district,
+        c.id communityId
+        FROM activity_info AS a
+        LEFT JOIN activity_community_relation acr ON acr.activity_id=a.id
+        LEFT JOIN community_info AS c ON c.id=acr.community_id
+        WHERE a.city LIKE CONCAT(#{city}, '%') AND a.status=4 AND NOW() &lt; DATE_ADD(a.end_time, INTERVAL 3 DAY)
+        order by a.start_time DESC ,a.end_time DESC
+    </select>
+    <select id="getCommunityInfoAndActivityByCommunityActivityRequestDto"
+            parameterType="com.idream.commons.lib.dto.activity.CommunityActivityRequestDto"
+            resultType="com.idream.commons.lib.dto.activity.CommunityActivityResponseDto">
+        SELECT
+        a.id,
+        a.title,
+        a.subtitle,
+        a.image,
+        a.content,
+        a.status,
+        a.start_time startTime,
+        a.end_time endTime,
+        a.user_id userId,
+        a.type_id typeId,
+        a.city_code cityCode,
+        a.city,
+        a.create_time createTime,
+        a.update_time updateTime,
+        c.longitude,
+        c.latitude,
+        c.community_name communityName,
+        c.address,
+        c.province,
+        c.district,
+        c.id communityId,
+        ( 3959 * ACOS ( COS ( RADIANS(#{latitude}) ) * COS( RADIANS( c.latitude ) ) * COS
+        ( RADIANS( c.longitude ) - RADIANS(#{longitude}) ) + sin ( RADIANS(#{latitude}) ) * sin( RADIANS( c.latitude ) )
+        ) )*1609.344 AS distance
+        FROM activity_info AS a
+        LEFT JOIN activity_community_relation acr ON acr.activity_id=a.id
+        LEFT JOIN community_info AS c ON c.id=acr.community_id
+        WHERE a.city LIKE CONCAT(#{city}, '%') AND a.status=4 AND NOW() &lt; DATE_ADD(a.end_time, INTERVAL 3 DAY)
+    </select>
+    <select id="getCommunityByUserId" parameterType="java.lang.Integer"
+            resultType="com.idream.commons.lib.dto.activity.FindUserAsocciationCommunityResponseDto">
+        SELECT
+        a.id communityId,a.book_id bookId,a.community_name communityName
+        FROM community_info a LEFT JOIN book_user_relation b ON a.book_id=b.book_id
+        where b.user_id = #{userId}
+    </select>
+
+    <!-- 通过管理员id查找社区 -->
+    <select id="selectCommunitiesByManagerUserId" parameterType="int" resultMap="BaseResultMap">
+        SELECT c.*
+        FROM community_info c
+        INNER JOIN book_house b ON b.id=c.book_id
+        LEFT JOIN user_manager m ON m.book_id=b.id
+        WHERE m.user_id=#{managerUserId} AND c.book_id IS NOT NULL
+    </select>
+    <!-- app社区列表搜索社区 -->
+    <select id="selectCommunityInfoListByCommunityName"
+            resultType="com.idream.commons.lib.dto.app.CommunityInfoResponseDto">
+        select
+        id communityId,
+        community_name communityName,
+        CONCAT(city,district,address) address,
+        ad_code adCode,
+        book_id bookId,
+        d.region_name,
+        (
+        3959 * ACOS(
+        COS(RADIANS(#{latitude})) * cos(radians(latitude)) * cos(
+        RADIANS(longitude) - RADIANS(#{longitude})
+        ) + sin(radians(#{latitude})) * sin(radians(latitude))
+        )
+        ) * 1609.344 AS distance
+        from community_info a
+        LEFT JOIN (SELECT b.region_name,c.community_id FROM community_region_info b JOIN community_region_relation c ON
+        c.region_id=b.id ) d ON d.community_id=a.id
+        <where>
+            <if test="communityName != null and communityName != ''">
+                and community_name like CONCAT('%', #{communityName}, '%')
+            </if>
+            <if test="cityCode != null and cityCode != ''">
+                and city_code=#{cityCode}
+            </if>
+        </where>
+        order by distance
+    </select>
+    <!-- app端附近的社区 -->
+    <select id="selectNeighborCommunity" resultType="com.idream.commons.lib.dto.app.NeighborCommunityListResponseDto">
+        select
+        id communityId,
+        community_name communityName,
+        longitude,
+        latitude,
+        (
+        3959 * ACOS(
+        COS(RADIANS(#{latitude})) * cos(radians(latitude)) * cos(
+        RADIANS(longitude) - RADIANS(#{longitude})
+        ) + sin(radians(#{latitude})) * sin(radians(latitude))
+        )
+        ) * 1609.344 AS distance
+        from community_info
+        order by distance
+    </select>
+
+    <!-- 书屋验证 -->
+    <select id="selectCommunityListByBookId" resultType="com.idream.commons.lib.dto.app.BookHouseListResponseDto">
+        select
+        id communityId,
+        community_name communityName
+        from community_info
+        where book_id=#{bookId}
+    </select>
+    <select id="selectCommunityInfoListByBookIdAndLocation"
+            resultType="com.idream.commons.lib.dto.app.CommunityInfoResponseDto">
+        select
+        id communityId,
+        community_name communityName,
+        CONCAT(city,district,address) address,
+        ad_code adCode,
+        book_id bookId,
+        (
+        3959 * ACOS(
+        COS(RADIANS(#{latitude})) * cos(radians(latitude)) * cos(
+        RADIANS(longitude) - RADIANS(#{longitude})
+        ) + sin(radians(#{latitude})) * sin(radians(latitude))
+        )
+        ) * 1609.344 AS distance
+        from community_info
+        where book_id=#{bookId}
+    </select>
+    <select id="getPublishActivityCommunityByUserId" parameterType="java.lang.Integer"
+            resultType="com.idream.commons.lib.dto.activity.FindUserAsocciationCommunityResponseDto">
+        SELECT DISTINCT a.id communityId, a.community_name communityName
+        FROM community_info a
+        LEFT JOIN activity_community_relation b ON a.id=b.community_id
+        LEFT JOIN activity_info c on c.id=b.activity_id
+        WHERE
+        c.user_id = #{userId}
+    </select>
+    <select id="getCommunityInfoAndActivityByCityLatitudeLongitude"
+            resultType="com.idream.commons.lib.dto.activity.CommunityActivityResponseDto">
+        SELECT
+        a.id,
+        a.title,
+        a.subtitle,
+        a.image,
+        a.content,
+        a.status,
+        a.start_time startTime,
+        a.end_time endTime,
+        a.user_id userId,
+        a.type_id typeId,
+        a.city_code cityCode,
+        a.city,
+        a.create_time createTime,
+        a.update_time updateTime,
+        c.longitude,
+        c.latitude,
+        c.community_name communityName,
+        c.address,
+        c.province,
+        c.district,
+        c.id communityId,
+        (
+        3959 * ACOS(
+        COS(RADIANS(#{latitude})) * cos(radians(latitude)) * cos(
+        RADIANS(longitude) - RADIANS(#{longitude})
+        ) + sin(radians(#{latitude})) * sin(radians(latitude))
+        )
+        ) * 1609.344 AS distance
+        FROM activity_info AS a
+        LEFT JOIN activity_community_relation acr ON acr.activity_id=a.id
+        LEFT JOIN community_info AS c ON c.id=acr.community_id
+        WHERE a.city LIKE CONCAT(#{city}, '%') AND a.status=4 AND NOW() &lt; DATE_ADD(a.end_time, INTERVAL 3 DAY)
+        order by a.start_time,a.end_time DESC
+    </select>
+
+    <select id="getActivityListByCriteria" parameterType="com.idream.commons.lib.dto.admin.ActivityInfoParams"
+            resultType="com.idream.commons.lib.dto.admin.ActivityInfoDto">
+        SELECT
+        b.id activityId,
+        b.title,
+        b.subtitle,
+        b.image,
+        b.content,
+        b.start_time startTime,
+        b.end_time endTime,
+        b.user_id userId,
+        CASE WHEN NOW() &lt; b.start_time THEN 1
+        WHEN NOW() &gt; b.start_time AND NOW() &lt; b.end_time THEN 2
+        ELSE 3
+        END AS activityStatus,
+        b.time_type timeType,
+        b.week_day weekDay,
+        b.address,
+        TIMESTAMPDIFF(SECOND,NOW(),b.start_time) AS distanceCurrentDay,
+        (
+        3959 * ACOS(
+        COS(RADIANS(#{latitude})) * cos(radians(latitude)) * cos(
+        RADIANS(longitude) - RADIANS(#{longitude})
+        ) + sin(radians(#{latitude})) * sin(radians(latitude))
+        )
+        ) * 1609.344 AS distance,
+        CASE (SELECT count(*) FROM user_activity_record u WHERE u.activity_id = a.activity_id AND u.user_id = #{userId})
+        WHEN 0 THEN 0
+        ELSE 1
+        END AS joinedStatus
+        FROM activity_display_relation a
+        INNER JOIN activity_info b ON b.id = a.activity_id AND b.`status` = 4
+        WHERE NOW() &gt; a.start_time AND NOW() &lt; a.end_time
+        AND CASE WHEN a.display_type = 20 THEN a.display_id = #{cityCode}
+        WHEN a.display_type = 1 THEN TRUE
+        WHEN a.display_type =40 THEN a.display_id in (SELECT h.region_id FROM user_region_relation h WHERE
+        h.user_id=#{userId})
+        END
+        GROUP BY b.id
+        ORDER BY FIELD(activityStatus,2,1,3),a.display_type DESC,distance
+    </select>
+
+    <select id="getActivityListByHotCity" parameterType="com.idream.commons.lib.dto.admin.HotCityRequestParams"
+            resultType="com.idream.commons.lib.dto.admin.ActivityInfoDto">
+        SELECT
+        b.id activityId,
+        b.title,
+        b.subtitle,
+        b.image,
+        b.content,
+        b.start_time startTime,
+        b.end_time endTime,
+        b.user_id userId,
+        CASE WHEN NOW() &lt; b.start_time THEN 1
+        WHEN NOW() &gt; b.start_time AND NOW() &lt; b.end_time THEN 2
+        ELSE 3
+        END AS activityStatus,
+        b.time_type timeType,
+        b.week_day weekDay,
+        b.address,
+        CASE (SELECT count(*) FROM user_activity_record u WHERE u.activity_id = a.activity_id AND u.exit_status = 1 AND
+        u.user_id = #{userId})
+        WHEN 0 THEN 0
+        ELSE 1
+        END AS joinedStatus
+        FROM activity_display_relation a
+        INNER JOIN activity_info b ON b.id = a.activity_id AND b.`status` = 4
+        WHERE NOW() &gt; a.start_time AND NOW() &lt; a.end_time
+        AND CASE WHEN a.display_type = 20 THEN a.display_id = #{cityCode}
+        WHEN a.display_type = 1 THEN TRUE
+        WHEN a.display_type =40 THEN a.display_id in (SELECT h.region_id FROM user_region_relation h WHERE
+        h.user_id=#{userId})
+        END
+        GROUP BY b.id
+        ORDER BY FIELD(activityStatus,2,1,3),a.display_type DESC
+    </select>
+
+    <select id="getActivityListByAllCountry" resultType="com.idream.commons.lib.dto.admin.ActivityInfoDto">
+        SELECT
+        b.id activityId,
+        b.title,
+        b.subtitle,
+        b.image,
+        b.content,
+        b.start_time startTime,
+        b.end_time endTime,
+        b.user_id userId,
+        CASE WHEN NOW() &lt; b.start_time THEN 1
+        WHEN NOW() &gt; b.start_time AND NOW() &lt; b.end_time THEN 2
+        ELSE 3
+        END AS activityStatus,
+        b.time_type timeType,
+        b.week_day weekDay,
+        b.address,
+        TIMESTAMPDIFF(SECOND,NOW(),b.start_time) AS distanceCurrentDay,
+        CASE (SELECT count(*) FROM user_activity_record u WHERE u.activity_id = a.activity_id AND u.user_id = #{userId})
+        WHEN 0 THEN 0
+        ELSE 1
+        END AS joinedStatus
+        FROM activity_display_relation a
+        INNER JOIN activity_info b ON b.id = a.activity_id AND b.`status` = 4
+        WHERE NOW() &gt; a.start_time AND NOW() &lt; a.end_time
+        AND CASE WHEN a.display_type = 1 THEN TRUE
+        END
+        GROUP BY b.id
+        ORDER BY FIELD(activityStatus,2,1,3)
+    </select>
+</mapper>

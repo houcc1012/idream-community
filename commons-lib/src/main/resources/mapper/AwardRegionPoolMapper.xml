@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.idream.commons.lib.mapper.AwardRegionPoolMapper">
+    <resultMap id="BaseResultMap" type="com.idream.commons.lib.model.AwardRegionPool">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="award_pool_id" property="awardPoolId" jdbcType="INTEGER"/>
+        <result column="book_id" property="bookId" jdbcType="INTEGER"/>
+        <result column="exchange_score" property="exchangeScore" jdbcType="INTEGER"/>
+        <result column="count" property="count" jdbcType="INTEGER"/>
+        <result column="status" property="status" jdbcType="TINYINT"/>
+        <result column="exchange_count" property="exchangeCount" jdbcType="SMALLINT"/>
+        <result column="total_exchange_conut" property="totalExchangeConut" jdbcType="SMALLINT"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, award_pool_id, book_id, exchange_score, count, status, exchange_count, total_exchange_conut,
+        update_time, create_time
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from award_region_pool
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from award_region_pool
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.idream.commons.lib.model.AwardRegionPool" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into award_region_pool (award_pool_id, book_id, exchange_score,
+        count, status, exchange_count,
+        total_exchange_conut, update_time, create_time
+        )
+        values (#{awardPoolId,jdbcType=INTEGER}, #{bookId,jdbcType=INTEGER}, #{exchangeScore,jdbcType=INTEGER},
+        #{count,jdbcType=INTEGER}, #{status,jdbcType=TINYINT}, #{exchangeCount,jdbcType=SMALLINT},
+        #{totalExchangeConut,jdbcType=SMALLINT}, #{updateTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP}
+        )
+    </insert>
+    <insert id="insertSelective" parameterType="com.idream.commons.lib.model.AwardRegionPool" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into award_region_pool
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="awardPoolId != null">
+                award_pool_id,
+            </if>
+            <if test="bookId != null">
+                book_id,
+            </if>
+            <if test="exchangeScore != null">
+                exchange_score,
+            </if>
+            <if test="count != null">
+                count,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+            <if test="exchangeCount != null">
+                exchange_count,
+            </if>
+            <if test="totalExchangeConut != null">
+                total_exchange_conut,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="awardPoolId != null">
+                #{awardPoolId,jdbcType=INTEGER},
+            </if>
+            <if test="bookId != null">
+                #{bookId,jdbcType=INTEGER},
+            </if>
+            <if test="exchangeScore != null">
+                #{exchangeScore,jdbcType=INTEGER},
+            </if>
+            <if test="count != null">
+                #{count,jdbcType=INTEGER},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=TINYINT},
+            </if>
+            <if test="exchangeCount != null">
+                #{exchangeCount,jdbcType=SMALLINT},
+            </if>
+            <if test="totalExchangeConut != null">
+                #{totalExchangeConut,jdbcType=SMALLINT},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.idream.commons.lib.model.AwardRegionPool">
+        update award_region_pool
+        <set>
+            <if test="awardPoolId != null">
+                award_pool_id = #{awardPoolId,jdbcType=INTEGER},
+            </if>
+            <if test="bookId != null">
+                book_id = #{bookId,jdbcType=INTEGER},
+            </if>
+            <if test="exchangeScore != null">
+                exchange_score = #{exchangeScore,jdbcType=INTEGER},
+            </if>
+            <if test="count != null">
+                count = #{count,jdbcType=INTEGER},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=TINYINT},
+            </if>
+            <if test="exchangeCount != null">
+                exchange_count = #{exchangeCount,jdbcType=SMALLINT},
+            </if>
+            <if test="totalExchangeConut != null">
+                total_exchange_conut = #{totalExchangeConut,jdbcType=SMALLINT},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.idream.commons.lib.model.AwardRegionPool">
+        update award_region_pool
+        set award_pool_id = #{awardPoolId,jdbcType=INTEGER},
+        book_id = #{bookId,jdbcType=INTEGER},
+        exchange_score = #{exchangeScore,jdbcType=INTEGER},
+        count = #{count,jdbcType=INTEGER},
+        status = #{status,jdbcType=TINYINT},
+        exchange_count = #{exchangeCount,jdbcType=SMALLINT},
+        total_exchange_conut = #{totalExchangeConut,jdbcType=SMALLINT},
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+        create_time = #{createTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <select id="selectAwardInfoByPrimaryKey" parameterType="java.lang.Integer"
+            resultType="com.idream.commons.lib.model.AwardPool">
+        select
+        a.id,a.region_id,a.exchange_score,a.count,a.status,a.exchange_count,a.total_exchange_conut,b.expire_day,b.name,b.description,
+        b.instructions,b.start_time,b.end_time,b.type,b.info_enable,b.image,b.introduce
+        from award_region_pool a
+        left join award_pool b
+        on a.award_pool_id = b.id
+        where a.id = #{id}
+    </select>
+</mapper>

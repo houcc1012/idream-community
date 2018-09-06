@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.idream.commons.lib.mapper.PromotionTeamMapper">
+    <resultMap id="BaseResultMap" type="com.idream.commons.lib.model.PromotionTeam">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="code" property="code" jdbcType="VARCHAR"/>
+        <result column="province" property="province" jdbcType="VARCHAR"/>
+        <result column="province_code" property="provinceCode" jdbcType="VARCHAR"/>
+        <result column="city" property="city" jdbcType="VARCHAR"/>
+        <result column="city_code" property="cityCode" jdbcType="VARCHAR"/>
+        <result column="district" property="district" jdbcType="VARCHAR"/>
+        <result column="district_code" property="districtCode" jdbcType="VARCHAR"/>
+        <result column="qr_code" property="qrCode" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, name, code, province, province_code, city, city_code, district, district_code,
+        qr_code, create_time, update_time
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from promotion_team
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from promotion_team
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.idream.commons.lib.model.PromotionTeam" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into promotion_team (name, code, province,
+        province_code, city, city_code,
+        district, district_code, qr_code,
+        create_time, update_time)
+        values (#{name,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, #{province,jdbcType=VARCHAR},
+        #{provinceCode,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, #{cityCode,jdbcType=VARCHAR},
+        #{district,jdbcType=VARCHAR}, #{districtCode,jdbcType=VARCHAR}, #{qrCode,jdbcType=VARCHAR},
+        #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="com.idream.commons.lib.model.PromotionTeam" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into promotion_team
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="name != null">
+                name,
+            </if>
+            <if test="code != null">
+                code,
+            </if>
+            <if test="province != null">
+                province,
+            </if>
+            <if test="provinceCode != null">
+                province_code,
+            </if>
+            <if test="city != null">
+                city,
+            </if>
+            <if test="cityCode != null">
+                city_code,
+            </if>
+            <if test="district != null">
+                district,
+            </if>
+            <if test="districtCode != null">
+                district_code,
+            </if>
+            <if test="qrCode != null">
+                qr_code,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="code != null">
+                #{code,jdbcType=VARCHAR},
+            </if>
+            <if test="province != null">
+                #{province,jdbcType=VARCHAR},
+            </if>
+            <if test="provinceCode != null">
+                #{provinceCode,jdbcType=VARCHAR},
+            </if>
+            <if test="city != null">
+                #{city,jdbcType=VARCHAR},
+            </if>
+            <if test="cityCode != null">
+                #{cityCode,jdbcType=VARCHAR},
+            </if>
+            <if test="district != null">
+                #{district,jdbcType=VARCHAR},
+            </if>
+            <if test="districtCode != null">
+                #{districtCode,jdbcType=VARCHAR},
+            </if>
+            <if test="qrCode != null">
+                #{qrCode,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.idream.commons.lib.model.PromotionTeam">
+        update promotion_team
+        <set>
+            <if test="name != null">
+                name = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="code != null">
+                code = #{code,jdbcType=VARCHAR},
+            </if>
+            <if test="province != null">
+                province = #{province,jdbcType=VARCHAR},
+            </if>
+            <if test="provinceCode != null">
+                province_code = #{provinceCode,jdbcType=VARCHAR},
+            </if>
+            <if test="city != null">
+                city = #{city,jdbcType=VARCHAR},
+            </if>
+            <if test="cityCode != null">
+                city_code = #{cityCode,jdbcType=VARCHAR},
+            </if>
+            <if test="district != null">
+                district = #{district,jdbcType=VARCHAR},
+            </if>
+            <if test="districtCode != null">
+                district_code = #{districtCode,jdbcType=VARCHAR},
+            </if>
+            <if test="qrCode != null">
+                qr_code = #{qrCode,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.idream.commons.lib.model.PromotionTeam">
+        update promotion_team
+        set name = #{name,jdbcType=VARCHAR},
+        code = #{code,jdbcType=VARCHAR},
+        province = #{province,jdbcType=VARCHAR},
+        province_code = #{provinceCode,jdbcType=VARCHAR},
+        city = #{city,jdbcType=VARCHAR},
+        city_code = #{cityCode,jdbcType=VARCHAR},
+        district = #{district,jdbcType=VARCHAR},
+        district_code = #{districtCode,jdbcType=VARCHAR},
+        qr_code = #{qrCode,jdbcType=VARCHAR},
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+        update_time = #{updateTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <select id="getOtherPromotionList" parameterType="com.idream.commons.lib.dto.admin.OtherPromotionParams"
+            resultType="com.idream.commons.lib.dto.admin.OtherPromotionDto">
+        SELECT
+        a.id,
+        a.`name`,
+        a.`code`,
+        a.city,
+        a.qr_code qrCode,
+        b.nowAddCount,
+        c.registerCount
+        FROM promotion_team a
+        LEFT JOIN (SELECT COUNT(*) nowAddCount,business_id FROM promotion_record WHERE create_time = NOW() AND
+        business_type = 2 GROUP BY business_id) b ON b.business_id = a.id
+        LEFT JOIN (SELECT COUNT(*) registerCount,business_id FROM promotion_record WHERE business_type = 2 GROUP BY
+        business_id) c ON c.business_id = a.id
+        <where>
+            <if test="provinceCode != null and provinceCode != ''">
+                AND a.province_code = #{provinceCode}
+            </if>
+            <if test="cityCode != null and cityCode != ''">
+                AND a.city_code = #{cityCode}
+            </if>
+            <if test="teamName != null and teamName != ''">
+                AND a.`name` LIKE CONCAT('%', #{teamName}, '%')
+            </if>
+        </where>
+        ORDER BY a.create_time DESC
+    </select>
+    <select id="selectPromotionTeamCountByExample"
+            parameterType="com.idream.commons.lib.dto.admin.AddPromotionTeamParams" resultType="java.lang.Integer">
+        SELECT
+        count(*) AS count
+        FROM
+        promotion_team
+        <where>
+            <if test="provinceCode != null and provinceCode != ''">
+                AND province_code = #{provinceCode}
+            </if>
+            <if test="cityCode != null and cityCode != ''">
+                AND city_code = #{cityCode}
+            </if>
+            AND name = #{teamName}
+        </where>
+    </select>
+</mapper>

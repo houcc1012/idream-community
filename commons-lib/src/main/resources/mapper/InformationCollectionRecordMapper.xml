@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.idream.commons.lib.mapper.InformationCollectionRecordMapper">
+    <resultMap id="BaseResultMap" type="com.idream.commons.lib.model.InformationCollectionRecord">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="info_id" property="infoId" jdbcType="INTEGER"/>
+        <result column="info_name" property="infoName" jdbcType="VARCHAR"/>
+        <result column="type" property="type" jdbcType="TINYINT"/>
+        <result column="relation_id" property="relationId" jdbcType="INTEGER"/>
+        <result column="user_id" property="userId" jdbcType="INTEGER"/>
+        <result column="detail" property="detail" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, info_id, info_name, type, relation_id, user_id, detail, create_time, update_time
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from information_collection_record
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from information_collection_record
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.idream.commons.lib.model.InformationCollectionRecord" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into information_collection_record (info_id, info_name, type,
+        relation_id, user_id, detail,
+        create_time, update_time)
+        values (#{infoId,jdbcType=INTEGER}, #{infoName,jdbcType=VARCHAR}, #{type,jdbcType=TINYINT},
+        #{relationId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{detail,jdbcType=VARCHAR},
+        #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="com.idream.commons.lib.model.InformationCollectionRecord"
+            useGeneratedKeys="true" keyProperty="id">
+        insert into information_collection_record
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="infoId != null">
+                info_id,
+            </if>
+            <if test="infoName != null">
+                info_name,
+            </if>
+            <if test="type != null">
+                type,
+            </if>
+            <if test="relationId != null">
+                relation_id,
+            </if>
+            <if test="userId != null">
+                user_id,
+            </if>
+            <if test="detail != null">
+                detail,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="infoId != null">
+                #{infoId,jdbcType=INTEGER},
+            </if>
+            <if test="infoName != null">
+                #{infoName,jdbcType=VARCHAR},
+            </if>
+            <if test="type != null">
+                #{type,jdbcType=TINYINT},
+            </if>
+            <if test="relationId != null">
+                #{relationId,jdbcType=INTEGER},
+            </if>
+            <if test="userId != null">
+                #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="detail != null">
+                #{detail,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.idream.commons.lib.model.InformationCollectionRecord">
+        update information_collection_record
+        <set>
+            <if test="infoId != null">
+                info_id = #{infoId,jdbcType=INTEGER},
+            </if>
+            <if test="infoName != null">
+                info_name = #{infoName,jdbcType=VARCHAR},
+            </if>
+            <if test="type != null">
+                type = #{type,jdbcType=TINYINT},
+            </if>
+            <if test="relationId != null">
+                relation_id = #{relationId,jdbcType=INTEGER},
+            </if>
+            <if test="userId != null">
+                user_id = #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="detail != null">
+                detail = #{detail,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.idream.commons.lib.model.InformationCollectionRecord">
+        update information_collection_record
+        set info_id = #{infoId,jdbcType=INTEGER},
+        info_name = #{infoName,jdbcType=VARCHAR},
+        type = #{type,jdbcType=TINYINT},
+        relation_id = #{relationId,jdbcType=INTEGER},
+        user_id = #{userId,jdbcType=INTEGER},
+        detail = #{detail,jdbcType=VARCHAR},
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+        update_time = #{updateTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <!--根据活动ID和用户ID查询用户活动收集信息-->
+    <select id="getUserActivityInfo" parameterType="java.lang.Integer"
+            resultType="com.idream.commons.lib.dto.activity.InformationCollectionRecordDto">
+        SELECT
+        b.detail,
+        c.name as tagName
+        FROM
+        activity_information_relation a
+        left join
+        information_collection_record b
+        on b.activity_information_id = a.id
+        left join information_rule c
+        on a.info_id=c.id
+        WHERE
+        a.activity_id = #{arg0}
+        and b.user_id = #{arg1}
+    </select>
+
+    <select id="getLatestUserInfo" parameterType="java.lang.Integer"
+            resultType="com.idream.commons.lib.dto.appactivity.AppUserInfoResponseDto">
+        SELECT
+        DISTINCT
+        a.info_id,b.`name`,a.detail,c.`name` ageInfo,a.create_time createTime
+        FROM
+        information_collection_record a
+        INNER JOIN
+        information_rule b
+        ON b.id=a.info_id
+        LEFT JOIN
+        user_age_info c
+        ON a.detail=c.id
+        WHERE
+        a.user_id = #{userId}
+        GROUP BY a.info_id
+        HAVING MAX(a.id)
+    </select>
+    <select id="getLastUserRecord"
+            resultType="com.idream.commons.lib.dto.information.InformationUserRecordDto">
+        SELECT
+        c.`code` infoCode,
+        a.detail
+        FROM
+        information_collection_record a
+        INNER JOIN information_rule c ON c.id = a.info_id
+        WHERE
+        a.user_id = #{userId}
+        AND a.id = (
+        SELECT
+        MAX(b.id)
+        FROM
+        information_collection_record b
+        INNER JOIN information_rule d ON d.id = b.info_id
+        WHERE
+        b.user_id = a.user_id
+        AND d. CODE = c.`code`
+        )
+        ORDER BY
+        c.sort
+    </select>
+</mapper>

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.idream.commons.lib.mapper.UserWyimBlacklistRelMapper">
+    <resultMap id="BaseResultMap" type="com.idream.commons.lib.model.UserWyimBlacklistRel">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="user_id" property="userId" jdbcType="INTEGER"/>
+        <result column="blacklist_user_id" property="blacklistUserId" jdbcType="INTEGER"/>
+        <result column="memo" property="memo" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, user_id, blacklist_user_id, memo, create_time
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from user_wyim_blacklist_rel
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from user_wyim_blacklist_rel
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.idream.commons.lib.model.UserWyimBlacklistRel" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into user_wyim_blacklist_rel (user_id, blacklist_user_id, memo,
+        create_time)
+        values (#{userId,jdbcType=INTEGER}, #{blacklistUserId,jdbcType=INTEGER}, #{memo,jdbcType=VARCHAR},
+        #{createTime,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="com.idream.commons.lib.model.UserWyimBlacklistRel"
+            useGeneratedKeys="true" keyProperty="id">
+        insert into user_wyim_blacklist_rel
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userId != null">
+                user_id,
+            </if>
+            <if test="blacklistUserId != null">
+                blacklist_user_id,
+            </if>
+            <if test="memo != null">
+                memo,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="userId != null">
+                #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="blacklistUserId != null">
+                #{blacklistUserId,jdbcType=INTEGER},
+            </if>
+            <if test="memo != null">
+                #{memo,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.idream.commons.lib.model.UserWyimBlacklistRel">
+        update user_wyim_blacklist_rel
+        <set>
+            <if test="userId != null">
+                user_id = #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="blacklistUserId != null">
+                blacklist_user_id = #{blacklistUserId,jdbcType=INTEGER},
+            </if>
+            <if test="memo != null">
+                memo = #{memo,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.idream.commons.lib.model.UserWyimBlacklistRel">
+        update user_wyim_blacklist_rel
+        set user_id = #{userId,jdbcType=INTEGER},
+        blacklist_user_id = #{blacklistUserId,jdbcType=INTEGER},
+        memo = #{memo,jdbcType=VARCHAR},
+        create_time = #{createTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+
+    <select id="queryBlackListByUserId"
+            resultType="com.idream.commons.lib.dto.wangyi.QueryBlackListResponseParams"
+            parameterType="java.lang.Integer">
+
+        select bl.blacklist_user_id as userId , uwc.acc_id as accid,ui.nick_name as nickName,ui.image as icon,ui.gender
+        as gender
+        from
+        user_wyim_blacklist_rel bl
+        inner join user_info ui
+        on bl.blacklist_user_id = ui.id
+        inner join user_wyim_account uwc
+        on bl.blacklist_user_id = uwc.user_id
+        where bl.user_id = #{userId}
+    </select>
+
+
+</mapper>

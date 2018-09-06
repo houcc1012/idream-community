@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.idream.commons.lib.mapper.ActivityThemeExtensionMapper">
+    <resultMap id="BaseResultMap" type="com.idream.commons.lib.model.ActivityThemeExtension">
+        <id column="theme_id" property="themeId" jdbcType="INTEGER"/>
+        <result column="visit_count" property="visitCount" jdbcType="INTEGER"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        theme_id, visit_count, create_time, update_time
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from activity_theme_extension
+        where theme_id = #{themeId,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from activity_theme_extension
+        where theme_id = #{themeId,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.idream.commons.lib.model.ActivityThemeExtension">
+        insert into activity_theme_extension (theme_id, visit_count, create_time,
+        update_time)
+        values (#{themeId,jdbcType=INTEGER}, #{visitCount,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP},
+        #{updateTime,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="com.idream.commons.lib.model.ActivityThemeExtension">
+        insert into activity_theme_extension
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="themeId != null">
+                theme_id,
+            </if>
+            <if test="visitCount != null">
+                visit_count,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="themeId != null">
+                #{themeId,jdbcType=INTEGER},
+            </if>
+            <if test="visitCount != null">
+                #{visitCount,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.idream.commons.lib.model.ActivityThemeExtension">
+        update activity_theme_extension
+        <set>
+            <if test="visitCount != null">
+                visit_count = #{visitCount,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where theme_id = #{themeId,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.idream.commons.lib.model.ActivityThemeExtension">
+        update activity_theme_extension
+        set visit_count = #{visitCount,jdbcType=INTEGER},
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+        update_time = #{updateTime,jdbcType=TIMESTAMP}
+        where theme_id = #{themeId,jdbcType=INTEGER}
+    </update>
+</mapper>

@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.idream.commons.lib.mapper.AchievementPoolMapper">
+    <resultMap id="BaseResultMap" type="com.idream.commons.lib.model.AchievementPool">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="achieve_id" property="achieveId" jdbcType="INTEGER"/>
+        <result column="type" property="type" jdbcType="TINYINT"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="award_value" property="awardValue" jdbcType="VARCHAR"/>
+        <result column="description" property="description" jdbcType="VARCHAR"/>
+        <result column="instructions" property="instructions" jdbcType="VARCHAR"/>
+        <result column="expire_day" property="expireDay" jdbcType="INTEGER"/>
+        <result column="time_type" property="timeType" jdbcType="TINYINT"/>
+        <result column="start_time" property="startTime" jdbcType="TIMESTAMP"/>
+        <result column="end_time" property="endTime" jdbcType="TIMESTAMP"/>
+        <result column="count" property="count" jdbcType="INTEGER"/>
+        <result column="info_enable" property="infoEnable" jdbcType="BIT"/>
+        <result column="status" property="status" jdbcType="TINYINT"/>
+        <result column="image" property="image" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, achieve_id, type, name, award_value, description, instructions, expire_day, time_type,
+        start_time, end_time, count, info_enable, status, image, create_time, update_time
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from achievement_pool
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from achievement_pool
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.idream.commons.lib.model.AchievementPool" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into achievement_pool (achieve_id, type, name,
+        award_value, description, instructions,
+        expire_day, time_type, start_time,
+        end_time, count, info_enable,
+        status, image, create_time,
+        update_time)
+        values (#{achieveId,jdbcType=INTEGER}, #{type,jdbcType=TINYINT}, #{name,jdbcType=VARCHAR},
+        #{awardValue,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{instructions,jdbcType=VARCHAR},
+        #{expireDay,jdbcType=INTEGER}, #{timeType,jdbcType=TINYINT}, #{startTime,jdbcType=TIMESTAMP},
+        #{endTime,jdbcType=TIMESTAMP}, #{count,jdbcType=INTEGER}, #{infoEnable,jdbcType=BIT},
+        #{status,jdbcType=TINYINT}, #{image,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP},
+        #{updateTime,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="com.idream.commons.lib.model.AchievementPool" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into achievement_pool
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="achieveId != null">
+                achieve_id,
+            </if>
+            <if test="type != null">
+                type,
+            </if>
+            <if test="name != null">
+                name,
+            </if>
+            <if test="awardValue != null">
+                award_value,
+            </if>
+            <if test="description != null">
+                description,
+            </if>
+            <if test="instructions != null">
+                instructions,
+            </if>
+            <if test="expireDay != null">
+                expire_day,
+            </if>
+            <if test="timeType != null">
+                time_type,
+            </if>
+            <if test="startTime != null">
+                start_time,
+            </if>
+            <if test="endTime != null">
+                end_time,
+            </if>
+            <if test="count != null">
+                count,
+            </if>
+            <if test="infoEnable != null">
+                info_enable,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+            <if test="image != null">
+                image,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="achieveId != null">
+                #{achieveId,jdbcType=INTEGER},
+            </if>
+            <if test="type != null">
+                #{type,jdbcType=TINYINT},
+            </if>
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="awardValue != null">
+                #{awardValue,jdbcType=VARCHAR},
+            </if>
+            <if test="description != null">
+                #{description,jdbcType=VARCHAR},
+            </if>
+            <if test="instructions != null">
+                #{instructions,jdbcType=VARCHAR},
+            </if>
+            <if test="expireDay != null">
+                #{expireDay,jdbcType=INTEGER},
+            </if>
+            <if test="timeType != null">
+                #{timeType,jdbcType=TINYINT},
+            </if>
+            <if test="startTime != null">
+                #{startTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="endTime != null">
+                #{endTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="count != null">
+                #{count,jdbcType=INTEGER},
+            </if>
+            <if test="infoEnable != null">
+                #{infoEnable,jdbcType=BIT},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=TINYINT},
+            </if>
+            <if test="image != null">
+                #{image,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.idream.commons.lib.model.AchievementPool">
+        update achievement_pool
+        <set>
+            <if test="achieveId != null">
+                achieve_id = #{achieveId,jdbcType=INTEGER},
+            </if>
+            <if test="type != null">
+                type = #{type,jdbcType=TINYINT},
+            </if>
+            <if test="name != null">
+                name = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="awardValue != null">
+                award_value = #{awardValue,jdbcType=VARCHAR},
+            </if>
+            <if test="description != null">
+                description = #{description,jdbcType=VARCHAR},
+            </if>
+            <if test="instructions != null">
+                instructions = #{instructions,jdbcType=VARCHAR},
+            </if>
+            <if test="expireDay != null">
+                expire_day = #{expireDay,jdbcType=INTEGER},
+            </if>
+            <if test="timeType != null">
+                time_type = #{timeType,jdbcType=TINYINT},
+            </if>
+            <if test="startTime != null">
+                start_time = #{startTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="endTime != null">
+                end_time = #{endTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="count != null">
+                count = #{count,jdbcType=INTEGER},
+            </if>
+            <if test="infoEnable != null">
+                info_enable = #{infoEnable,jdbcType=BIT},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=TINYINT},
+            </if>
+            <if test="image != null">
+                image = #{image,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.idream.commons.lib.model.AchievementPool">
+        update achievement_pool
+        set achieve_id = #{achieveId,jdbcType=INTEGER},
+        type = #{type,jdbcType=TINYINT},
+        name = #{name,jdbcType=VARCHAR},
+        award_value = #{awardValue,jdbcType=VARCHAR},
+        description = #{description,jdbcType=VARCHAR},
+        instructions = #{instructions,jdbcType=VARCHAR},
+        expire_day = #{expireDay,jdbcType=INTEGER},
+        time_type = #{timeType,jdbcType=TINYINT},
+        start_time = #{startTime,jdbcType=TIMESTAMP},
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+        count = #{count,jdbcType=INTEGER},
+        info_enable = #{infoEnable,jdbcType=BIT},
+        status = #{status,jdbcType=TINYINT},
+        image = #{image,jdbcType=VARCHAR},
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+        update_time = #{updateTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+</mapper>

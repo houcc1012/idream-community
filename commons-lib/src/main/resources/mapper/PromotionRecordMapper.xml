@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.idream.commons.lib.mapper.PromotionRecordMapper">
+    <resultMap id="BaseResultMap" type="com.idream.commons.lib.model.PromotionRecord">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="business_id" property="businessId" jdbcType="INTEGER"/>
+        <result column="business_type" property="businessType" jdbcType="TINYINT"/>
+        <result column="user_id" property="userId" jdbcType="INTEGER"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, business_id, business_type, user_id, create_time
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from promotion_record
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from promotion_record
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.idream.commons.lib.model.PromotionRecord" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into promotion_record (business_id, business_type, user_id,
+        create_time)
+        values (#{businessId,jdbcType=INTEGER}, #{businessType,jdbcType=TINYINT}, #{userId,jdbcType=INTEGER},
+        #{createTime,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="com.idream.commons.lib.model.PromotionRecord" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into promotion_record
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="businessId != null">
+                business_id,
+            </if>
+            <if test="businessType != null">
+                business_type,
+            </if>
+            <if test="userId != null">
+                user_id,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="businessId != null">
+                #{businessId,jdbcType=INTEGER},
+            </if>
+            <if test="businessType != null">
+                #{businessType,jdbcType=TINYINT},
+            </if>
+            <if test="userId != null">
+                #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.idream.commons.lib.model.PromotionRecord">
+        update promotion_record
+        <set>
+            <if test="businessId != null">
+                business_id = #{businessId,jdbcType=INTEGER},
+            </if>
+            <if test="businessType != null">
+                business_type = #{businessType,jdbcType=TINYINT},
+            </if>
+            <if test="userId != null">
+                user_id = #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.idream.commons.lib.model.PromotionRecord">
+        update promotion_record
+        set business_id = #{businessId,jdbcType=INTEGER},
+        business_type = #{businessType,jdbcType=TINYINT},
+        user_id = #{userId,jdbcType=INTEGER},
+        create_time = #{createTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <select id="getBookPromotionList" parameterType="com.idream.commons.lib.dto.admin.BookHousePromotionParams"
+            resultType="com.idream.commons.lib.dto.admin.BookHousePromotionDto">
+        SELECT
+        b.id bookId,
+        b.`name` bookHouseName,
+        b.city,
+        c.nowAddCount,
+        d.registerCount
+        FROM promotion_record a
+        INNER JOIN region_group_info b ON a.business_id = b.id AND b.category = 2
+        LEFT JOIN (SELECT COUNT(*) nowAddCount,business_id FROM promotion_record WHERE TO_DAYS(create_time) =
+        TO_DAYS(NOW()) AND business_type = 1 GROUP BY business_id ) c ON c.business_id = b.id
+        LEFT JOIN (SELECT COUNT(*) registerCount,business_id FROM promotion_record WHERE business_type = 1 GROUP BY
+        business_id) d ON d.business_id = b.id
+        <where>
+            AND a.business_type = 1
+            <if test="provinceCode != null and provinceCode != ''">
+                AND b.province_code = #{provinceCode}
+            </if>
+            <if test="cityCode != null and cityCode != ''">
+                AND b.city_code = #{cityCode}
+            </if>
+            <if test="districtCode != null and districtCode != ''">
+                AND b.district_code = #{districtCode}
+            </if>
+            <if test="bookHouseName != null and bookHouseName != ''">
+                AND b.`name` LIKE CONCAT('%', #{bookHouseName}, '%')
+            </if>
+        </where>
+        ORDER BY a.create_time DESC
+    </select>
+    <select id="getBookPromotionDetailList"
+            parameterType="com.idream.commons.lib.dto.admin.BookHousePromotionDetailParams"
+            resultType="com.idream.commons.lib.dto.admin.BookHousePromotionDetailDto">
+        SELECT
+        b.phone,
+        b.nick_name nickName,
+        a.create_time createTime
+        FROM promotion_record a
+        LEFT JOIN user_info b ON b.id = a.user_id
+        <where>
+            a.business_type = 1 AND a.business_id = #{bookId}
+            <if test="registerDate != null and registerDate != ''">
+                AND DATE(a.create_time) = DATE(#{registerDate})
+            </if>
+        </where>
+        ORDER BY a.create_time DESC
+    </select>
+    <select id="getOtherPromotionDetailList" parameterType="com.idream.commons.lib.dto.admin.OtherPromotionDetailParams"
+            resultType="com.idream.commons.lib.dto.admin.BookHousePromotionDetailDto">
+        SELECT
+        b.phone,
+        b.nick_name nickName,
+        a.create_time createTime
+        FROM promotion_record a
+        LEFT JOIN user_info b ON b.id = a.user_id
+        <where>
+            a.business_type = 2 AND a.business_id = #{id}
+            <if test="registerDate != null and registerDate != ''">
+                AND DATE(a.create_time) = DATE(#{registerDate})
+            </if>
+        </where>
+        ORDER BY a.create_time DESC
+    </select>
+</mapper>

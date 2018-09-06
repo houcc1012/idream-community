@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.idream.commons.lib.mapper.ActivityTaskRecordMapper">
+    <resultMap id="BaseResultMap" type="com.idream.commons.lib.model.ActivityTaskRecord">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="task_id" property="taskId" jdbcType="INTEGER"/>
+        <result column="user_id" property="userId" jdbcType="INTEGER"/>
+        <result column="activity_id" property="activityId" jdbcType="INTEGER"/>
+        <result column="longitude" property="longitude" jdbcType="DECIMAL"/>
+        <result column="latitude" property="latitude" jdbcType="DECIMAL"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, task_id, user_id, activity_id, longitude, latitude, create_time
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from activity_task_record
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from activity_task_record
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.idream.commons.lib.model.ActivityTaskRecord" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into activity_task_record (task_id, user_id, activity_id,
+        longitude, latitude, create_time
+        )
+        values (#{taskId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{activityId,jdbcType=INTEGER},
+        #{longitude,jdbcType=DECIMAL}, #{latitude,jdbcType=DECIMAL}, #{createTime,jdbcType=TIMESTAMP}
+        )
+    </insert>
+    <insert id="insertSelective" parameterType="com.idream.commons.lib.model.ActivityTaskRecord" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into activity_task_record
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="taskId != null">
+                task_id,
+            </if>
+            <if test="userId != null">
+                user_id,
+            </if>
+            <if test="activityId != null">
+                activity_id,
+            </if>
+            <if test="longitude != null">
+                longitude,
+            </if>
+            <if test="latitude != null">
+                latitude,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="taskId != null">
+                #{taskId,jdbcType=INTEGER},
+            </if>
+            <if test="userId != null">
+                #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="activityId != null">
+                #{activityId,jdbcType=INTEGER},
+            </if>
+            <if test="longitude != null">
+                #{longitude,jdbcType=DECIMAL},
+            </if>
+            <if test="latitude != null">
+                #{latitude,jdbcType=DECIMAL},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.idream.commons.lib.model.ActivityTaskRecord">
+        update activity_task_record
+        <set>
+            <if test="taskId != null">
+                task_id = #{taskId,jdbcType=INTEGER},
+            </if>
+            <if test="userId != null">
+                user_id = #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="activityId != null">
+                activity_id = #{activityId,jdbcType=INTEGER},
+            </if>
+            <if test="longitude != null">
+                longitude = #{longitude,jdbcType=DECIMAL},
+            </if>
+            <if test="latitude != null">
+                latitude = #{latitude,jdbcType=DECIMAL},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.idream.commons.lib.model.ActivityTaskRecord">
+        update activity_task_record
+        set task_id = #{taskId,jdbcType=INTEGER},
+        user_id = #{userId,jdbcType=INTEGER},
+        activity_id = #{activityId,jdbcType=INTEGER},
+        longitude = #{longitude,jdbcType=DECIMAL},
+        latitude = #{latitude,jdbcType=DECIMAL},
+        create_time = #{createTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <!--查询时间段内的打卡人数-->
+    <select id="selectTasksByDate" resultType="com.idream.commons.lib.dto.activity.AdminActivityStatisticsDto">
+        SELECT count(*) as count ,DATE_FORMAT(create_time,'%Y%m%d') as date
+        FROM activity_task_record
+        WHERE create_time between #{startTime} and #{endTime}
+        group by DATE_FORMAT(create_time,'%Y%m%d') order by date asc
+    </select>
+    <!--打卡明细-->
+    <select id="selectActivityTaskDetail"
+            resultType="com.idream.commons.lib.dto.activity.AdminActivityTaskStatisticsDto">
+        SELECT b.phone,b.nick_name,a.create_time as signDate,c.title as activityTitle,
+        (case WHEN c.create_id = c.user_id THEN f.`name` else d.nick_name END ) publishBook
+        from activity_task_record a
+        left join user_info b
+        ON a.user_id = b.id
+        LEFT JOIN activity_info c
+        ON a.activity_id = c.id
+        LEFT JOIN user_info d ON c.user_id = d.id AND c.create_id !=c.user_id
+        LEFT JOIN user_manager e on c.user_id=e.user_id AND c.create_id = c.user_id
+        LEFT JOIN region_group_info f ON f.id = e.book_id
+        WHERE DATE_FORMAT(a.create_time,'%Y%m%d') BETWEEN #{startTime} AND #{endTime}
+        <if test="activityTitle != null and activityTitle != ''">
+            and c.title LIKE CONCAT('%',#{activityTitle},'%')
+        </if>
+        <if test="publishBook != null and publishBook != ''">
+            and IF(c.create_id =c.user_id,f.`name`,d.nick_name) LIKE CONCAT('%',#{publishBook},'%')
+        </if>
+    </select>
+
+    <select id="selectTotalTasks" resultType="java.lang.Integer">
+        SELECT count(*)  FROM activity_task_record
+
+    </select>
+</mapper>

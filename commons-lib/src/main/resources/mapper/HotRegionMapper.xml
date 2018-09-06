@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.idream.commons.lib.mapper.HotRegionMapper">
+    <resultMap id="BaseResultMap" type="com.idream.commons.lib.model.HotRegion">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="region_id" property="regionId" jdbcType="INTEGER"/>
+        <result column="active_value" property="activeValue" jdbcType="INTEGER"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, region_id, active_value, create_time
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from hot_region
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from hot_region
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.idream.commons.lib.model.HotRegion" useGeneratedKeys="true" keyProperty="id">
+        insert into hot_region (region_id, active_value, create_time
+        )
+        values (#{regionId,jdbcType=INTEGER}, #{activeValue,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}
+        )
+    </insert>
+    <insert id="insertSelective" parameterType="com.idream.commons.lib.model.HotRegion" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into hot_region
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="regionId != null">
+                region_id,
+            </if>
+            <if test="activeValue != null">
+                active_value,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="regionId != null">
+                #{regionId,jdbcType=INTEGER},
+            </if>
+            <if test="activeValue != null">
+                #{activeValue,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.idream.commons.lib.model.HotRegion">
+        update hot_region
+        <set>
+            <if test="regionId != null">
+                region_id = #{regionId,jdbcType=INTEGER},
+            </if>
+            <if test="activeValue != null">
+                active_value = #{activeValue,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.idream.commons.lib.model.HotRegion">
+        update hot_region
+        set region_id = #{regionId,jdbcType=INTEGER},
+        active_value = #{activeValue,jdbcType=INTEGER},
+        create_time = #{createTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <delete id="deleteAll">
+        delete from hot_region
+    </delete>
+    <!-- app端热门社区查询 -->
+    <resultMap id="getReginInfoAll" type="com.idream.commons.lib.dto.app.HotRegionInfoResponseDto">
+        <id column="region_id" property="regionId"/>
+        <result column="region_name" property="regionName"/>
+        <result column="active_value" property="activeValue"/>
+        <result column="city" property="city"/>
+        <result column="district" property="district"/>
+        <collection property="communityDtos" ofType="com.idream.commons.lib.dto.app.CommunityDto">
+            <id column="id" property="communityId"/>
+            <result column="name" property="communityName"/>
+        </collection>
+    </resultMap>
+    <select id="selectHotRegionAll" resultMap="getReginInfoAll">
+        SELECT
+        a.region_id ,
+        b.region_name ,
+        a.active_value ,
+        d.id ,
+        d.name ,
+        b.city,
+        b.district
+        FROM hot_region a
+        LEFT JOIN region_info b ON b.id = a.region_id AND b.type = 2
+        LEFT JOIN region_group_relation c ON c.region_id = b.id
+        LEFT JOIN region_group_info d ON d.id = c.group_id AND d.category = 1
+        ORDER BY active_value DESC
+    </select>
+</mapper>

@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.idream.commons.lib.mapper.ActivityInvitationRecordMapper">
+    <resultMap id="BaseResultMap" type="com.idream.commons.lib.model.ActivityInvitationRecord">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="activity_id" property="activityId" jdbcType="INTEGER"/>
+        <result column="invitation_id" property="invitationId" jdbcType="INTEGER"/>
+        <result column="accept_id" property="acceptId" jdbcType="INTEGER"/>
+        <result column="status" property="status" jdbcType="TINYINT"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, activity_id, invitation_id, accept_id, status, create_time, update_time
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from activity_invitation_record
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from activity_invitation_record
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.idream.commons.lib.model.ActivityInvitationRecord" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into activity_invitation_record (activity_id, invitation_id, accept_id,
+        status, create_time, update_time
+        )
+        values (#{activityId,jdbcType=INTEGER}, #{invitationId,jdbcType=INTEGER}, #{acceptId,jdbcType=INTEGER},
+        #{status,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+        )
+    </insert>
+    <insert id="insertSelective" parameterType="com.idream.commons.lib.model.ActivityInvitationRecord"
+            useGeneratedKeys="true" keyProperty="id">
+        insert into activity_invitation_record
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="activityId != null">
+                activity_id,
+            </if>
+            <if test="invitationId != null">
+                invitation_id,
+            </if>
+            <if test="acceptId != null">
+                accept_id,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="activityId != null">
+                #{activityId,jdbcType=INTEGER},
+            </if>
+            <if test="invitationId != null">
+                #{invitationId,jdbcType=INTEGER},
+            </if>
+            <if test="acceptId != null">
+                #{acceptId,jdbcType=INTEGER},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=TINYINT},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.idream.commons.lib.model.ActivityInvitationRecord">
+        update activity_invitation_record
+        <set>
+            <if test="activityId != null">
+                activity_id = #{activityId,jdbcType=INTEGER},
+            </if>
+            <if test="invitationId != null">
+                invitation_id = #{invitationId,jdbcType=INTEGER},
+            </if>
+            <if test="acceptId != null">
+                accept_id = #{acceptId,jdbcType=INTEGER},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=TINYINT},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.idream.commons.lib.model.ActivityInvitationRecord">
+        update activity_invitation_record
+        set activity_id = #{activityId,jdbcType=INTEGER},
+        invitation_id = #{invitationId,jdbcType=INTEGER},
+        accept_id = #{acceptId,jdbcType=INTEGER},
+        status = #{status,jdbcType=TINYINT},
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+        update_time = #{updateTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <!--根据主键查询-->
+    <select id="getIdByOtherId" parameterType="com.idream.commons.lib.dto.activity.ShareInfoDto"
+            resultType="com.idream.commons.lib.model.ActivityInvitationRecord">
+        SELECT a.id,
+        a.activity_id,
+        a.invitation_id,
+        a.accept_id,
+        a.create_time,
+        a.update_time,
+        a.status
+        FROM activity_invitation_record a
+        WHERE
+        a.activity_id = #{activityId}
+        and
+        a.invitation_id= #{sharedUserId}
+        and
+        a.accept_id = #{userId}
+    </select>
+    <select id="getUserIdByUnionId" resultType="java.lang.Integer">
+        select id from user_info where union_id = #{unionId}
+    </select>
+
+    <select id="getInvitationInfoByActivityId" parameterType="java.lang.Integer"
+            resultType="com.idream.commons.lib.dto.activity.FindInvitationResponseDto">
+        SELECT
+        u.phone phone,
+        u.nick_name nickName,
+        u2.phone acceptPhone,
+        u2.nick_name acceptNickName,
+        uar.create_time time
+        FROM
+        activity_invitation_record air
+        LEFT JOIN user_info u ON u.id = air.invitation_id
+        LEFT JOIN user_info u2 ON u2.id = air.accept_id
+        LEFT JOIN user_activity_record uar ON uar.activity_id = air.activity_id AND uar.user_id = air.accept_id
+        WHERE
+        air.activity_id = #{activityId}
+    </select>
+
+    <select id="selectInvitesByDate" resultType="com.idream.commons.lib.dto.activity.AdminActivityStatisticsDto">
+        SELECT count(*) as count ,DATE_FORMAT(create_time,'%Y%m%d') as date
+        FROM activity_invitation_record
+        WHERE status=1 and a.invitation_id!=a.accept_id and create_time between #{startTime} and #{endTime}
+        group by DATE_FORMAT(create_time,'%Y%m%d') order by date asc
+    </select>
+    <!--邀请明细-->
+    <select id="selectActivityInviteDetail"
+            resultType="com.idream.commons.lib.dto.activity.AdminActivityInviteStatisticsDto">
+        SELECT b.phone,b.nick_name,a.create_time as signDate,c.title as activityTitle,d.phone as invitePhone,d.nick_name
+        as inviteNickName
+        from activity_invitation_record a
+        left join user_info b
+        ON a.accept_id = b.id
+        LEFT JOIN activity_info c
+        ON a.activity_id = c.id
+        LEFT JOIN user_info d ON a.invitation_id = d.id
+        WHERE a.invitation_id!=a.accept_id AND DATE_FORMAT(a.create_time,'%Y%m%d') BETWEEN #{startTime} AND #{endTime}
+        <if test="activityTitle != null and activityTitle != ''">
+            and c.title LIKE CONCAT('%',#{activityTitle},'%')
+        </if>
+    </select>
+    <select id="selectTotalInvites" resultType="java.lang.Integer">
+        SELECT count(*)  FROM activity_invitation_record WHERE status=1 and invitation_id!=accept_id
+    </select>
+
+</mapper>

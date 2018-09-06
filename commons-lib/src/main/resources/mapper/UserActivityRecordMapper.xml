@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.idream.commons.lib.mapper.UserActivityRecordMapper">
+    <resultMap id="BaseResultMap" type="com.idream.commons.lib.model.UserActivityRecord">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="user_id" property="userId" jdbcType="INTEGER"/>
+        <result column="activity_id" property="activityId" jdbcType="INTEGER"/>
+        <result column="exit_status" property="exitStatus" jdbcType="TINYINT"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, user_id, activity_id, exit_status, create_time, update_time
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from user_activity_record
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from user_activity_record
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.idream.commons.lib.model.UserActivityRecord" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into user_activity_record (user_id, activity_id, exit_status,
+        create_time, update_time)
+        values (#{userId,jdbcType=INTEGER}, #{activityId,jdbcType=INTEGER}, #{exitStatus,jdbcType=TINYINT},
+        #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="com.idream.commons.lib.model.UserActivityRecord" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into user_activity_record
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userId != null">
+                user_id,
+            </if>
+            <if test="activityId != null">
+                activity_id,
+            </if>
+            <if test="exitStatus != null">
+                exit_status,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="userId != null">
+                #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="activityId != null">
+                #{activityId,jdbcType=INTEGER},
+            </if>
+            <if test="exitStatus != null">
+                #{exitStatus,jdbcType=TINYINT},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.idream.commons.lib.model.UserActivityRecord">
+        update user_activity_record
+        <set>
+            <if test="userId != null">
+                user_id = #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="activityId != null">
+                activity_id = #{activityId,jdbcType=INTEGER},
+            </if>
+            <if test="exitStatus != null">
+                exit_status = #{exitStatus,jdbcType=TINYINT},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.idream.commons.lib.model.UserActivityRecord">
+        update user_activity_record
+        set user_id = #{userId,jdbcType=INTEGER},
+        activity_id = #{activityId,jdbcType=INTEGER},
+        exit_status = #{exitStatus,jdbcType=TINYINT},
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+        update_time = #{updateTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <!-- 查询用户union_id是否匹配 -->
+    <select id="getUserActivityRecordById" parameterType="java.lang.Integer"
+            resultType="com.idream.commons.lib.model.UserActivityRecord">
+        SELECT
+        a.id,
+        a.nick_name,
+        a.union_id
+        FROM user_info a
+        LEFT JOIN user_activity_record b
+        on
+        a.id=b.user_id
+    </select>
+    <!-- 通过user_id查询 -->
+    <select id="getUserActivityRecordByUserId" parameterType="java.lang.Integer"
+            resultType="com.idream.commons.lib.model.UserActivityRecord">
+        SELECT
+        id,
+        user_id userId,
+        activity_id activityId,
+        exit_status exitStatus,
+        create_time createTime,
+        update_time updateTime
+        FROM user_activity_record
+        WHERE user_id=#{authUserId}
+    </select>
+
+    <!-- 报名明细 -->
+    <resultMap type="com.idream.commons.lib.dto.activity.FindRegisterResponseDto" id="RegistInfoResultMap">
+        <id column="a_id" property="id"/>
+        <result column="phone" property="phone"/>
+        <result column="nickName" property="nickName"/>
+        <result column="identity" property="identity"/>
+        <result column="time" property="time"/>
+        <result column="userName" property="userName"/>
+        <result column="age" property="age"/>
+        <result column="tag" property="tag"/>
+        <result column="address" property="address"/>
+        <result column="childNum" property="childNum"/>
+        <collection property="customInfoList" ofType="com.idream.commons.lib.dto.activity.ActivityAdminCustomerInfoDto">
+            <result column="infoId" property="infoId"/>
+            <result column="infoName" property="infoName"/>
+            <result column="detail" property="detail"/>
+        </collection>
+    </resultMap>
+
+    <select id="getRegistInfoByUserId" resultMap="RegistInfoResultMap">
+        SELECT
+            a.id a_id,
+            a.create_time time,
+            b.phone phone,
+            b.nick_name nickName,
+            b.identity identity,
+            f.info_id infoId,
+            f.info_name infoName,
+            f.detail detail,
+            (
+                SELECT
+                    detail
+                FROM
+                    information_collection_record c
+                WHERE
+                    c.info_id = 1
+                AND c.relation_id = a.activity_id
+                AND c.user_id = a.user_id
+                AND c.type = 1
+            ) userName,
+            (
+                SELECT
+                    e.`name`
+                FROM
+                    information_collection_record c
+                LEFT JOIN user_age_info e ON c.detail = e.id
+                WHERE
+                    c.info_id = 2
+                AND c.relation_id = a.activity_id
+                AND c.user_id = a.user_id
+                AND c.type = 1
+            ) age,
+            (
+                SELECT
+                    GROUP_CONCAT(d.label)
+                FROM
+                    information_collection_record c
+                LEFT JOIN user_tag d ON d.id = c.detail
+                WHERE
+                    c.info_id = 3
+                AND c.relation_id = a.activity_id
+                AND c.user_id = a.user_id
+                AND c.type = 1
+            ) tag,
+            (
+                SELECT
+                    detail
+                FROM
+                    information_collection_record c
+                WHERE
+                    c.info_id = 13
+                AND c.relation_id = a.activity_id
+                AND c.user_id = a.user_id
+                AND c.type = 1
+            ) address,
+            (
+                SELECT
+                    detail
+                FROM
+                    information_collection_record c
+                WHERE
+                    c.info_id = 14
+                AND c.relation_id = a.activity_id
+                AND c.user_id = a.user_id
+                AND c.type = 1
+            ) childNum
+        FROM
+            user_activity_record a
+        LEFT JOIN user_info b ON a.user_id = b.id
+        LEFT JOIN information_collection_record f ON f.relation_id = a.activity_id
+        AND f.user_id = a.user_id
+        AND f.type = 1
+        AND f.info_id = 15
+        WHERE
+            a.user_id = #{userId}
+        AND a.activity_id = #{activityId}
+        AND a.exit_status = 1
+    </select>
+
+    <select id="selectJoinActivityRecordByUserId" parameterType="int"
+            resultType="com.idream.commons.lib.dto.activity.AppJoinActivityDto">
+        SELECT
+        uar.activity_id activityId,
+        a.title,
+        a.subtitle,
+        a.image,
+        a.start_time startDate,
+        a.end_time endDate,
+        a.start_time startTime,
+        a.end_time endTime,
+        a.status
+        FROM
+        user_activity_record uar
+        LEFT JOIN activity_info a ON a.id = uar.activity_id
+        WHERE
+        uar.exit_status = 1 and uar.user_id=#{userId}
+    </select>
+    <select id="getRecordByUserIdAndActivityId" resultType="com.idream.commons.lib.model.UserActivityRecord">
+        SELECT
+        id,user_id userId,activity_id activityId,exit_status exitStatus,create_time createTime,update_time updateTime
+        FROM user_activity_record
+        WHERE user_id =#{userId} AND activity_id = #{activityId}
+    </select>
+
+    <select id="selectRecordByDate" resultType="com.idream.commons.lib.dto.activity.AdminActivityStatisticsDto">
+        SELECT count(*) as count ,DATE_FORMAT(create_time,'%Y%m%d') as date
+        FROM user_activity_record
+        WHERE exit_status =1 and create_time between #{startTime} and #{endTime}
+        group by DATE_FORMAT(create_time,'%Y%m%d') order by date asc
+    </select>
+
+
+    <select id="getActivityJoinedAndCurrentCountPeople"
+            resultType="com.idream.commons.lib.dto.activity.ActivityJoinedStatusAndCount">
+        SELECT
+        DISTINCT
+        CASE (SELECT COUNT(id) FROM user_activity_record WHERE user_id = #{authUserId} AND activity_id = #{activityId})
+        WHEN 0 THEN 0 ELSE 1 END joinedStatus,
+        (SELECT COUNT(id) FROM user_activity_record WHERE activity_id = #{activityId}) currentActivityCountPeople
+        FROM user_activity_record where activity_id = #{activityId}
+    </select>
+
+    <select id="selectActivitySignDetail"
+            resultType="com.idream.commons.lib.dto.activity.AdminActivitySignStatisticsDto">
+        SELECT b.phone,b.nick_name,a.create_time as signDate,c.title as activityTitle,
+        (case WHEN c.create_id = c.user_id THEN f.`name` else d.nick_name END ) publishBook
+        from user_activity_record a
+        left join user_info b
+        ON a.user_id = b.id
+        LEFT JOIN activity_info c
+        ON a.activity_id = c.id
+        LEFT JOIN user_info d ON c.user_id = d.id AND c.create_id !=c.user_id
+        LEFT JOIN user_manager e on c.user_id=e.user_id AND c.create_id = c.user_id
+        LEFT JOIN region_group_info f ON f.id = e.book_id
+        WHERE DATE_FORMAT(a.create_time,'%Y%m%d') BETWEEN #{startTime} AND #{endTime}
+        <if test="activityTitle != null and activityTitle != ''">
+            and c.title LIKE CONCAT('%',#{activityTitle},'%')
+        </if>
+        <if test="publishBook != null and publishBook != ''">
+            and IF(c.create_id =c.user_id,f.`name`,d.nick_name) LIKE CONCAT('%',#{publishBook},'%')
+        </if>
+        order by a.create_time desc
+    </select>
+
+    <select id="selectTotalRecord" resultType="java.lang.Integer">
+        SELECT count(*)  FROM user_activity_record WHERE exit_status =1
+    </select>
+</mapper>

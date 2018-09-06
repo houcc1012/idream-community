@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.idream.commons.lib.mapper.NotificationInfoMapper">
+    <resultMap id="BaseResultMap" type="com.idream.commons.lib.model.NotificationInfo">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="send_id" property="sendId" jdbcType="INTEGER"/>
+        <result column="receive_id" property="receiveId" jdbcType="INTEGER"/>
+        <result column="system_notice_id" property="systemNoticeId" jdbcType="INTEGER"/>
+        <result column="title" property="title" jdbcType="VARCHAR"/>
+        <result column="content" property="content" jdbcType="VARCHAR"/>
+        <result column="type" property="type" jdbcType="TINYINT"/>
+        <result column="status" property="status" jdbcType="TINYINT"/>
+        <result column="go_to_url" property="goToUrl" jdbcType="VARCHAR"/>
+        <result column="extra_info" property="extraInfo" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, send_id, receive_id, system_notice_id, title, content, type, status, go_to_url,
+        extra_info, create_time, update_time
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from notification_info
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from notification_info
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.idream.commons.lib.model.NotificationInfo" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into notification_info (send_id, receive_id, system_notice_id,
+        title, content, type,
+        status, go_to_url, extra_info,
+        create_time, update_time)
+        values (#{sendId,jdbcType=INTEGER}, #{receiveId,jdbcType=INTEGER}, #{systemNoticeId,jdbcType=INTEGER},
+        #{title,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, #{type,jdbcType=TINYINT},
+        #{status,jdbcType=TINYINT}, #{goToUrl,jdbcType=VARCHAR}, #{extraInfo,jdbcType=VARCHAR},
+        #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="com.idream.commons.lib.model.NotificationInfo" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into notification_info
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="sendId != null">
+                send_id,
+            </if>
+            <if test="receiveId != null">
+                receive_id,
+            </if>
+            <if test="systemNoticeId != null">
+                system_notice_id,
+            </if>
+            <if test="title != null">
+                title,
+            </if>
+            <if test="content != null">
+                content,
+            </if>
+            <if test="type != null">
+                type,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+            <if test="goToUrl != null">
+                go_to_url,
+            </if>
+            <if test="extraInfo != null">
+                extra_info,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="sendId != null">
+                #{sendId,jdbcType=INTEGER},
+            </if>
+            <if test="receiveId != null">
+                #{receiveId,jdbcType=INTEGER},
+            </if>
+            <if test="systemNoticeId != null">
+                #{systemNoticeId,jdbcType=INTEGER},
+            </if>
+            <if test="title != null">
+                #{title,jdbcType=VARCHAR},
+            </if>
+            <if test="content != null">
+                #{content,jdbcType=VARCHAR},
+            </if>
+            <if test="type != null">
+                #{type,jdbcType=TINYINT},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=TINYINT},
+            </if>
+            <if test="goToUrl != null">
+                #{goToUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="extraInfo != null">
+                #{extraInfo,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.idream.commons.lib.model.NotificationInfo">
+        update notification_info
+        <set>
+            <if test="sendId != null">
+                send_id = #{sendId,jdbcType=INTEGER},
+            </if>
+            <if test="receiveId != null">
+                receive_id = #{receiveId,jdbcType=INTEGER},
+            </if>
+            <if test="systemNoticeId != null">
+                system_notice_id = #{systemNoticeId,jdbcType=INTEGER},
+            </if>
+            <if test="title != null">
+                title = #{title,jdbcType=VARCHAR},
+            </if>
+            <if test="content != null">
+                content = #{content,jdbcType=VARCHAR},
+            </if>
+            <if test="type != null">
+                type = #{type,jdbcType=TINYINT},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=TINYINT},
+            </if>
+            <if test="goToUrl != null">
+                go_to_url = #{goToUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="extraInfo != null">
+                extra_info = #{extraInfo,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.idream.commons.lib.model.NotificationInfo">
+        update notification_info
+        set send_id = #{sendId,jdbcType=INTEGER},
+        receive_id = #{receiveId,jdbcType=INTEGER},
+        system_notice_id = #{systemNoticeId,jdbcType=INTEGER},
+        title = #{title,jdbcType=VARCHAR},
+        content = #{content,jdbcType=VARCHAR},
+        type = #{type,jdbcType=TINYINT},
+        status = #{status,jdbcType=TINYINT},
+        go_to_url = #{goToUrl,jdbcType=VARCHAR},
+        extra_info = #{extraInfo,jdbcType=VARCHAR},
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+        update_time = #{updateTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+</mapper>

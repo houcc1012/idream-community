@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.idream.commons.lib.mapper.UserComplaintHandleRecordMapper">
+    <resultMap id="BaseResultMap" type="com.idream.commons.lib.model.UserComplaintHandleRecord">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="complaint_id" property="complaintId" jdbcType="INTEGER"/>
+        <result column="business_id" property="businessId" jdbcType="INTEGER"/>
+        <result column="business_type" property="businessType" jdbcType="TINYINT"/>
+        <result column="admin_user_id" property="adminUserId" jdbcType="INTEGER"/>
+        <result column="handle_code" property="handleCode" jdbcType="VARCHAR"/>
+        <result column="handle_name" property="handleName" jdbcType="VARCHAR"/>
+        <result column="start_time" property="startTime" jdbcType="TIMESTAMP"/>
+        <result column="end_time" property="endTime" jdbcType="TIMESTAMP"/>
+        <result column="description" property="description" jdbcType="VARCHAR"/>
+        <result column="status" property="status" jdbcType="TINYINT"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, complaint_id, business_id, business_type, admin_user_id, handle_code, handle_name,
+        start_time, end_time, description, status, create_time
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from user_complaint_handle_record
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from user_complaint_handle_record
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.idream.commons.lib.model.UserComplaintHandleRecord" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into user_complaint_handle_record (complaint_id, business_id, business_type,
+        admin_user_id, handle_code, handle_name,
+        start_time, end_time, description,
+        status, create_time)
+        values (#{complaintId,jdbcType=INTEGER}, #{businessId,jdbcType=INTEGER}, #{businessType,jdbcType=TINYINT},
+        #{adminUserId,jdbcType=INTEGER}, #{handleCode,jdbcType=VARCHAR}, #{handleName,jdbcType=VARCHAR},
+        #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, #{description,jdbcType=VARCHAR},
+        #{status,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="com.idream.commons.lib.model.UserComplaintHandleRecord"
+            useGeneratedKeys="true" keyProperty="id">
+        insert into user_complaint_handle_record
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="complaintId != null">
+                complaint_id,
+            </if>
+            <if test="businessId != null">
+                business_id,
+            </if>
+            <if test="businessType != null">
+                business_type,
+            </if>
+            <if test="adminUserId != null">
+                admin_user_id,
+            </if>
+            <if test="handleCode != null">
+                handle_code,
+            </if>
+            <if test="handleName != null">
+                handle_name,
+            </if>
+            <if test="startTime != null">
+                start_time,
+            </if>
+            <if test="endTime != null">
+                end_time,
+            </if>
+            <if test="description != null">
+                description,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="complaintId != null">
+                #{complaintId,jdbcType=INTEGER},
+            </if>
+            <if test="businessId != null">
+                #{businessId,jdbcType=INTEGER},
+            </if>
+            <if test="businessType != null">
+                #{businessType,jdbcType=TINYINT},
+            </if>
+            <if test="adminUserId != null">
+                #{adminUserId,jdbcType=INTEGER},
+            </if>
+            <if test="handleCode != null">
+                #{handleCode,jdbcType=VARCHAR},
+            </if>
+            <if test="handleName != null">
+                #{handleName,jdbcType=VARCHAR},
+            </if>
+            <if test="startTime != null">
+                #{startTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="endTime != null">
+                #{endTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="description != null">
+                #{description,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=TINYINT},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.idream.commons.lib.model.UserComplaintHandleRecord">
+        update user_complaint_handle_record
+        <set>
+            <if test="complaintId != null">
+                complaint_id = #{complaintId,jdbcType=INTEGER},
+            </if>
+            <if test="businessId != null">
+                business_id = #{businessId,jdbcType=INTEGER},
+            </if>
+            <if test="businessType != null">
+                business_type = #{businessType,jdbcType=TINYINT},
+            </if>
+            <if test="adminUserId != null">
+                admin_user_id = #{adminUserId,jdbcType=INTEGER},
+            </if>
+            <if test="handleCode != null">
+                handle_code = #{handleCode,jdbcType=VARCHAR},
+            </if>
+            <if test="handleName != null">
+                handle_name = #{handleName,jdbcType=VARCHAR},
+            </if>
+            <if test="startTime != null">
+                start_time = #{startTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="endTime != null">
+                end_time = #{endTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="description != null">
+                description = #{description,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=TINYINT},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.idream.commons.lib.model.UserComplaintHandleRecord">
+        update user_complaint_handle_record
+        set complaint_id = #{complaintId,jdbcType=INTEGER},
+        business_id = #{businessId,jdbcType=INTEGER},
+        business_type = #{businessType,jdbcType=TINYINT},
+        admin_user_id = #{adminUserId,jdbcType=INTEGER},
+        handle_code = #{handleCode,jdbcType=VARCHAR},
+        handle_name = #{handleName,jdbcType=VARCHAR},
+        start_time = #{startTime,jdbcType=TIMESTAMP},
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+        description = #{description,jdbcType=VARCHAR},
+        status = #{status,jdbcType=TINYINT},
+        create_time = #{createTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <select id="queryUserBanStatus" resultType="com.idream.commons.lib.model.UserComplaintHandleRecord"
+            parameterType="java.lang.Integer">
+        select *
+        from user_complaint_handle_record
+        where business_id = #{userId}
+        and business_type = 1
+        and handle_code = 'ban'
+        and status = 1
+        and now() &lt; end_time
+    </select>
+
+</mapper>

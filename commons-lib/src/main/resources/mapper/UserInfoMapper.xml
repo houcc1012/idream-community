@@ -1,0 +1,618 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.idream.commons.lib.mapper.UserInfoMapper">
+    <resultMap id="BaseResultMap" type="com.idream.commons.lib.model.UserInfo">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="phone" property="phone" jdbcType="VARCHAR"/>
+        <result column="nick_name" property="nickName" jdbcType="VARCHAR"/>
+        <result column="real_name" property="realName" jdbcType="VARCHAR"/>
+        <result column="gender" property="gender" jdbcType="TINYINT"/>
+        <result column="birthday" property="birthday" jdbcType="DATE"/>
+        <result column="profession_id" property="professionId" jdbcType="INTEGER"/>
+        <result column="profession_name" property="professionName" jdbcType="VARCHAR"/>
+        <result column="image" property="image" jdbcType="VARCHAR"/>
+        <result column="user_role" property="userRole" jdbcType="TINYINT"/>
+        <result column="user_type" property="userType" jdbcType="TINYINT"/>
+        <result column="province_code" property="provinceCode" jdbcType="VARCHAR"/>
+        <result column="province_name" property="provinceName" jdbcType="VARCHAR"/>
+        <result column="city_code" property="cityCode" jdbcType="VARCHAR"/>
+        <result column="city_name" property="cityName" jdbcType="VARCHAR"/>
+        <result column="district_code" property="districtCode" jdbcType="VARCHAR"/>
+        <result column="district_name" property="districtName" jdbcType="VARCHAR"/>
+        <result column="identity" property="identity" jdbcType="VARCHAR"/>
+        <result column="user_info_update" property="userInfoUpdate" jdbcType="TINYINT"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, phone, nick_name, real_name, gender, birthday, profession_id, profession_name,
+        image, user_role, user_type, province_code, province_name, city_code, city_name,
+        district_code, district_name, identity, user_info_update, create_time, update_time
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from user_info
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from user_info
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.idream.commons.lib.model.UserInfo" useGeneratedKeys="true" keyProperty="id">
+        insert into user_info (phone, nick_name, real_name,
+        gender, birthday, profession_id,
+        profession_name, image, user_role,
+        user_type, province_code, province_name,
+        city_code, city_name, district_code,
+        district_name, identity, user_info_update,
+        create_time, update_time)
+        values (#{phone,jdbcType=VARCHAR}, #{nickName,jdbcType=VARCHAR}, #{realName,jdbcType=VARCHAR},
+        #{gender,jdbcType=TINYINT}, #{birthday,jdbcType=DATE}, #{professionId,jdbcType=INTEGER},
+        #{professionName,jdbcType=VARCHAR}, #{image,jdbcType=VARCHAR}, #{userRole,jdbcType=TINYINT},
+        #{userType,jdbcType=TINYINT}, #{provinceCode,jdbcType=VARCHAR}, #{provinceName,jdbcType=VARCHAR},
+        #{cityCode,jdbcType=VARCHAR}, #{cityName,jdbcType=VARCHAR}, #{districtCode,jdbcType=VARCHAR},
+        #{districtName,jdbcType=VARCHAR}, #{identity,jdbcType=VARCHAR}, #{userInfoUpdate,jdbcType=TINYINT},
+        #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="com.idream.commons.lib.model.UserInfo" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into user_info
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="phone != null">
+                phone,
+            </if>
+            <if test="nickName != null">
+                nick_name,
+            </if>
+            <if test="realName != null">
+                real_name,
+            </if>
+            <if test="gender != null">
+                gender,
+            </if>
+            <if test="birthday != null">
+                birthday,
+            </if>
+            <if test="professionId != null">
+                profession_id,
+            </if>
+            <if test="professionName != null">
+                profession_name,
+            </if>
+            <if test="image != null">
+                image,
+            </if>
+            <if test="userRole != null">
+                user_role,
+            </if>
+            <if test="userType != null">
+                user_type,
+            </if>
+            <if test="provinceCode != null">
+                province_code,
+            </if>
+            <if test="provinceName != null">
+                province_name,
+            </if>
+            <if test="cityCode != null">
+                city_code,
+            </if>
+            <if test="cityName != null">
+                city_name,
+            </if>
+            <if test="districtCode != null">
+                district_code,
+            </if>
+            <if test="districtName != null">
+                district_name,
+            </if>
+            <if test="identity != null">
+                identity,
+            </if>
+            <if test="userInfoUpdate != null">
+                user_info_update,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="phone != null">
+                #{phone,jdbcType=VARCHAR},
+            </if>
+            <if test="nickName != null">
+                #{nickName,jdbcType=VARCHAR},
+            </if>
+            <if test="realName != null">
+                #{realName,jdbcType=VARCHAR},
+            </if>
+            <if test="gender != null">
+                #{gender,jdbcType=TINYINT},
+            </if>
+            <if test="birthday != null">
+                #{birthday,jdbcType=DATE},
+            </if>
+            <if test="professionId != null">
+                #{professionId,jdbcType=INTEGER},
+            </if>
+            <if test="professionName != null">
+                #{professionName,jdbcType=VARCHAR},
+            </if>
+            <if test="image != null">
+                #{image,jdbcType=VARCHAR},
+            </if>
+            <if test="userRole != null">
+                #{userRole,jdbcType=TINYINT},
+            </if>
+            <if test="userType != null">
+                #{userType,jdbcType=TINYINT},
+            </if>
+            <if test="provinceCode != null">
+                #{provinceCode,jdbcType=VARCHAR},
+            </if>
+            <if test="provinceName != null">
+                #{provinceName,jdbcType=VARCHAR},
+            </if>
+            <if test="cityCode != null">
+                #{cityCode,jdbcType=VARCHAR},
+            </if>
+            <if test="cityName != null">
+                #{cityName,jdbcType=VARCHAR},
+            </if>
+            <if test="districtCode != null">
+                #{districtCode,jdbcType=VARCHAR},
+            </if>
+            <if test="districtName != null">
+                #{districtName,jdbcType=VARCHAR},
+            </if>
+            <if test="identity != null">
+                #{identity,jdbcType=VARCHAR},
+            </if>
+            <if test="userInfoUpdate != null">
+                #{userInfoUpdate,jdbcType=TINYINT},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.idream.commons.lib.model.UserInfo">
+        update user_info
+        <set>
+            <if test="phone != null">
+                phone = #{phone,jdbcType=VARCHAR},
+            </if>
+            <if test="nickName != null">
+                nick_name = #{nickName,jdbcType=VARCHAR},
+            </if>
+            <if test="realName != null">
+                real_name = #{realName,jdbcType=VARCHAR},
+            </if>
+            <if test="gender != null">
+                gender = #{gender,jdbcType=TINYINT},
+            </if>
+            <if test="birthday != null">
+                birthday = #{birthday,jdbcType=DATE},
+            </if>
+            <if test="professionId != null">
+                profession_id = #{professionId,jdbcType=INTEGER},
+            </if>
+            <if test="professionName != null">
+                profession_name = #{professionName,jdbcType=VARCHAR},
+            </if>
+            <if test="image != null">
+                image = #{image,jdbcType=VARCHAR},
+            </if>
+            <if test="userRole != null">
+                user_role = #{userRole,jdbcType=TINYINT},
+            </if>
+            <if test="userType != null">
+                user_type = #{userType,jdbcType=TINYINT},
+            </if>
+            <if test="provinceCode != null">
+                province_code = #{provinceCode,jdbcType=VARCHAR},
+            </if>
+            <if test="provinceName != null">
+                province_name = #{provinceName,jdbcType=VARCHAR},
+            </if>
+            <if test="cityCode != null">
+                city_code = #{cityCode,jdbcType=VARCHAR},
+            </if>
+            <if test="cityName != null">
+                city_name = #{cityName,jdbcType=VARCHAR},
+            </if>
+            <if test="districtCode != null">
+                district_code = #{districtCode,jdbcType=VARCHAR},
+            </if>
+            <if test="districtName != null">
+                district_name = #{districtName,jdbcType=VARCHAR},
+            </if>
+            <if test="identity != null">
+                identity = #{identity,jdbcType=VARCHAR},
+            </if>
+            <if test="userInfoUpdate != null">
+                user_info_update = #{userInfoUpdate,jdbcType=TINYINT},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.idream.commons.lib.model.UserInfo">
+        update user_info
+        set phone = #{phone,jdbcType=VARCHAR},
+        nick_name = #{nickName,jdbcType=VARCHAR},
+        real_name = #{realName,jdbcType=VARCHAR},
+        gender = #{gender,jdbcType=TINYINT},
+        birthday = #{birthday,jdbcType=DATE},
+        profession_id = #{professionId,jdbcType=INTEGER},
+        profession_name = #{professionName,jdbcType=VARCHAR},
+        image = #{image,jdbcType=VARCHAR},
+        user_role = #{userRole,jdbcType=TINYINT},
+        user_type = #{userType,jdbcType=TINYINT},
+        province_code = #{provinceCode,jdbcType=VARCHAR},
+        province_name = #{provinceName,jdbcType=VARCHAR},
+        city_code = #{cityCode,jdbcType=VARCHAR},
+        city_name = #{cityName,jdbcType=VARCHAR},
+        district_code = #{districtCode,jdbcType=VARCHAR},
+        district_name = #{districtName,jdbcType=VARCHAR},
+        identity = #{identity,jdbcType=VARCHAR},
+        user_info_update = #{userInfoUpdate,jdbcType=TINYINT},
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+        update_time = #{updateTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <!-- 查询参加的活动列表 -->
+    <select id="getUserActivityPartake"
+            resultType="com.idream.commons.lib.dto.user.ParticipateActivityDto"
+            parameterType="java.lang.Integer">
+        SELECT
+        b.id as activityId,
+        b.title,
+        b.subtitle,
+        b.image,
+        b.time_type AS timeType,
+        b.week_day AS weekDay,
+        CASE WHEN c.start_time IS NULL THEN b.start_time ELSE c.start_time END AS startTime,
+        CASE WHEN c.end_time IS NULL THEN b.end_time ELSE c.end_time END AS endTime,
+        CASE WHEN c.distanceCurrentDay IS NULL THEN -1 ELSE c.distanceCurrentDay END AS distanceCurrentDay,
+        b.address,
+        CASE
+        WHEN  NOW() &lt; c.start_time THEN 1
+        WHEN  NOW() &lt; c.end_time  THEN 2
+        ELSE 3 END AS activityStatus
+        FROM user_activity_record a
+        LEFT JOIN activity_info b ON a.activity_id=b.id
+        LEFT JOIN (SELECT activity_id, start_time, end_time, TIMESTAMPDIFF(SECOND,NOW(), start_time) AS
+        distanceCurrentDay
+        FROM activity_task WHERE NOW() &lt; end_time GROUP BY activity_id ORDER BY end_time) c
+        ON b.id = c.activity_id
+        WHERE
+        a.user_id = #{userId}
+        AND b.`status` = 4 ORDER BY FIELD(activityStatus,2,1,3) , startTime
+    </select>
+
+    <!-- 根据用户id和活动id集合退出活动 修改状态 -->
+    <update id="deleteUserJoinActivity" useGeneratedKeys="true"
+            keyProperty="id">
+        update user_activity_record set exit_status = 2 where
+        user_id = #{userId} and activity_id in (${activityIds})
+    </update>
+
+    <!--查询前台用户列表-->
+    <select id="selectClientUserList" parameterType="com.idream.commons.lib.dto.user.AdminClientUserListParams"
+            resultType="com.idream.commons.lib.dto.user.AdminClientUserListDto">
+        select a.id, a.phone, a.identity, a.nick_name, a.real_name, a.city_name city, a.user_role, a.create_time,
+        IFNULL(g.status, 0) as managerIsAuthorize,IFNULL(j.isComplainted,0) as complainted ,j.handleId
+        from user_info a
+        left join (
+        SELECT f1.id, f1.user_id, device FROM user_login_record f1
+        JOIN
+        (SELECT id, MIN(create_time) registerTime FROM user_login_record GROUP BY user_id) f2
+        ON f1.id = f2.id AND f1.create_time = f2.registerTime
+        ) f
+        on a.id = f.user_id
+        left join user_manager g on a.id = g.user_id
+        left join (select id handleId, business_id user_id ,count(distinct (business_id)) isComplainted from
+        user_complaint_handle_record
+        where handle_code = 'ban' and status = 1 and business_type = 1 and now() &lt; end_time group by business_id) j
+        on a.id = j.user_id
+        where a.user_type=1 and a.user_role &lt; 9
+        <if test="phone != null and phone != ''">
+            and <![CDATA[ a.phone like CONCAT('%',#{phone,jdbcType=VARCHAR} ,'%' ) ]]>
+        </if>
+        <if test="userRole != null and userRole != ''">
+            and a.user_role = #{userRole}
+        </if>
+        order by a.create_time desc
+    </select>
+
+    <select id="selectUserList" resultType="com.idream.commons.lib.dto.user.UserDetailDto">
+        select a.id as userId, b.score as scoreBalance,c.couponCount, d.signCount,
+        e.joinActivityCount,h.fansCount,i.communityLifeCount,j.achievementCount
+        from user_info a
+        left join integration_info b on a.id = b.user_id
+        left join (select user_id, count(*) couponCount from coupon_info where status = 1 and expire_date >= now() group
+        by user_id) c on a.id =
+        c.user_id
+        left join (select user_id, count(*) signCount from integration_record where from_type = 1 and type = 1 group by
+        user_id) d on a.id = d.user_id
+        left join (select user_id, count(*) joinActivityCount from user_activity_record where exit_status = 1 group by
+        user_id) e on a.id = e.user_id
+        left join (
+        SELECT f1.id, f1.user_id, device FROM user_login_record f1
+        JOIN
+        (SELECT id, MIN(create_time) registerTime FROM user_login_record GROUP BY user_id) f2
+        ON f1.id = f2.id AND f1.create_time = f2.registerTime
+        ) f
+        on a.id = f.user_id
+        left join user_manager g on a.id = g.user_id
+        left join (select target_user_id ,count(*) fansCount from user_attention group by target_user_id ) h
+        on a.id =h.target_user_id
+        left join (select user_id,count(*) communityLifeCount from community_life where status = 2 group by user_id ) i
+        on a.id = i.user_id
+        left join (select user_id,count(*) achievementCount from achievement_user where completed=1 group by user_id ) j
+        on a.id = j.user_id
+        where a.user_type=1
+        order by a.create_time desc
+    </select>
+    <!--查询用户详细信息-->
+    <select id="selectUserDetailsById" parameterType="java.lang.Integer"
+            resultType="com.idream.commons.lib.dto.user.UserDetailDto">
+        SELECT
+        a.id as userId, phone, nick_name, gender, birthday, p.name as professionName, image, user_role,
+        identity, lastLoginTime, device, ip, city, registerTime,IFNULL(d.handleId,-1) as handleId,IFNULL(g.status, 0) as
+        managerIsAuthorize,a.user_role as userRole,h.score as scoreBalance,i.couponCount,j.signCount,
+        k.joinActivityCount,
+        l.fansCount,m.communityLifeCount,n.achievementCount
+        FROM user_info a
+        LEFT JOIN
+        (SELECT user_id, MAX(create_time) lastLoginTime FROM user_login_record GROUP BY user_id) b
+        ON a.id = b.user_id
+        LEFT JOIN
+        (
+        SELECT c1.id, c1.user_id, device, ip, city, registerTime FROM user_login_record c1
+        JOIN
+        (SELECT id,user_id, MIN(create_time) registerTime FROM user_login_record GROUP BY user_id) c2
+        ON c1.id = c2.id AND c1.create_time = c2.registerTime
+        ) c
+        ON a.id = c.user_id
+        LEFT JOIN
+        (select id handleId, business_id user_id from user_complaint_handle_record
+        where handle_code = 'ban' and status = 1 and business_type = 1 and now() &lt; end_time group by business_id
+        ) d
+        ON a.id = d.user_id
+        LEFT JOIN profession_info p
+        ON a.profession_id = p.id
+        LEFT JOIN user_manager g
+        ON a.id = g.user_id
+        left join integration_info h
+        on a.id = h.user_id
+        left join (select user_id, count(*) couponCount from coupon_info where status = 1 and expire_date >=
+        date_format(NOW(),'%Y-%m-%d 00:00:00') group
+        by user_id) i on a.id = i.user_id
+        left join (select user_id, count(*) signCount from integration_record where from_type = 1 and type = 1 group by
+        user_id) j on a.id = j.user_id
+        left join (select user_id, count(*) joinActivityCount from user_activity_record where exit_status = 1 group by
+        user_id) k on a.id = k.user_id
+        left join (select target_user_id ,count(*) fansCount from user_attention group by target_user_id ) l
+        on a.id =l.target_user_id
+        left join (select user_id,count(*) communityLifeCount from community_life where status = 2 group by user_id ) m
+        on a.id = m.user_id
+        left join (select user_id,count(distinct(achieve_id)) as achievementCount from achievement_user where
+        completed=1 group by
+        user_id) n
+        on a.id = n.user_id
+        WHERE a.id = #{userId}
+    </select>
+
+    <select id="selectClientManageUserList" resultType="com.idream.commons.lib.dto.user.AdminClientManageUserListDto"
+            parameterType="com.idream.commons.lib.dto.user.AdminClientManageUserListParams">
+        select a.id, a.user_id, b.phone, b.real_name, b.nick_name, d.district_code as adCode,
+        d.name as bookHouseName, e.totalPublishActivityCount, a.status as managerStatus
+        from user_manager a inner join user_info b on a.user_id = b.id
+        left join region_group_info d on a.book_id = d.id AND d.category = 2
+        left join (
+        select create_id, count(*) as totalPublishActivityCount
+        from activity_info where status=4 group by create_id
+        ) e on a.user_id = e.create_id
+        where 1 = 1
+        <if test="phone != null and phone != ''">
+            and <![CDATA[ b.phone like CONCAT('%',#{phone,jdbcType=VARCHAR} ,'%' ) ]]>
+        </if>
+        <if test="bookHouseName != null and bookHouseName != ''">
+            and d.name like CONCAT('%',#{bookHouseName,jdbcType=VARCHAR} ,'%' )
+        </if>
+        <if test="province != null and province != ''">
+            and d.province_code = #{province}
+        </if>
+        <if test="city != null and city != ''">
+            and d.city_code = #{city}
+        </if>
+        <if test="district != null and district != ''">
+            and d.district_code = #{district}
+        </if>
+        group by a.id
+        order by a.create_time desc
+    </select>
+
+    <select id="getUserAndActivityRelation" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from user_info
+        where id = #{activityId,jdbcType=INTEGER} and user_id = #{userId,jdbcType=INTEGER}
+    </select>
+    <resultMap id="getUserInfoDetail" type="com.idream.commons.lib.dto.activity.AdminUserInfoResponseDto">
+        <id column="id" property="userId"/>
+        <result column="phone" property="phone"/>
+        <result column="nick_name" property="nickName"/>
+        <result column="user_role" property="userRole"/>
+        <result column="fanCount" property="fanCount"/>
+        <result column="lifeCount" property="lifeCount"/>
+        <result column="score" property="score"/>
+        <result column="couponCount" property="couponCount"/>
+        <result column="signCount" property="signCount"/>
+        <result column="joinCount" property="joinCount"/>
+        <collection property="communityName" ofType="java.lang.String">
+            <result column="name" property="communityName"/>
+        </collection>
+    </resultMap>
+    <!-- 后台管理  用户明细 -->
+    <select id="selectUserInfo" resultMap="getUserInfoDetail">
+        select
+        a.id ,
+        a.phone,
+        a.nick_name ,
+        a.user_role ,
+        j.name ,
+        b.fanCount,
+        c.lifeCount,
+        d.score,
+        e.couponCount,
+        f.signCount,
+        g.joinCount
+        from user_info a
+        left join (select target_user_id,count(*) fanCount from user_attention group by target_user_id) b on a.id = b.target_user_id
+        left join (select user_id,count(*) lifeCount from community_life WHERE from_type = 1 group by user_id) c on a.id = c.user_id
+        left join (select user_id,score from integration_info  group by user_id) d on a.id = d.user_id
+        left join (select user_id,count(*) couponCount from coupon_info WHERE status = 1 and expire_date >=
+        date_format(NOW(),'%Y-%m-%d 00:00:00') group by user_id) e on a.id = e.user_id
+        left join (select user_id,count(*) signCount from integration_record WHERE from_type = 1 group by user_id) f on a.id = f.user_id
+        left join (select user_id,count(*) joinCount from user_activity_record WHERE exit_status = 1 group by user_id) g on a.id = g.user_id
+        INNER join user_region_relation h on a.id = h.user_id
+        left join user_community_relation i on i.user_id = a.id
+        left join region_group_info j on j.id = i.community_id AND j.category = 1
+        <where>
+            <if test="regionId != null and regionId != ''">
+                and h.region_id = #{regionId}
+            </if>
+            <if test="phone != null and phone != ''">
+                and a.phone like CONCAT('%',#{phone},'%')
+            </if>
+            <if test="nickName != null and nickName != ''">
+                and a.nick_name like CONCAT('%',#{nickName},'%')
+            </if>
+        </where>
+        order by phone DESC
+    </select>
+
+    <select id="selectPhoneNickName" resultType="com.idream.commons.lib.dto.activity.AdminUserResponseDto">
+        select
+        id,
+        phone,
+        nick_name nickName
+        from user_info
+        <where>
+            <if test="phone != null and phone != ''">
+                and phone like CONCAT('%',#{phone} ,'%' )
+            </if>
+            <if test="nickName != null and nickName != ''">
+                and nick_name like CONCAT('%',#{nickName} ,'%' )
+            </if>
+        </where>
+    </select>
+    <select id="selectUserByNickName" resultType="com.idream.commons.lib.dto.user.AppUserSearchDto">
+        SELECT a.id userId,a.nick_name,a.image,
+        (SELECT COUNT(*) FROM user_activity_record b  inner join activity_info c on c.id=b.activity_id and c.status=4 where a.id=b.user_id) activityCount,
+        (SELECT COUNT(*) FROM user_attention c WHERE a.id=c.target_user_id) fansCount,
+        CASE WHEN (SELECT COUNT(*) FROM user_attention d WHERE d.target_user_id=a.id AND d.user_id=#{userId}) THEN TRUE ELSE FALSE END attention,
+        CASE WHEN (SELECT COUNT(*) FROM user_attention d WHERE d.user_id=a.id AND d.target_user_id=#{userId}) THEN TRUE ELSE FALSE END targetAttention,
+        CASE
+        WHEN a.nick_name=#{nickName} THEN 1
+        ELSE 2
+        END orderNum
+        FROM user_info a
+        WHERE a.user_type=1 and a.user_role &lt; 9
+        <if test="nickName==''">
+            and FALSE
+        </if>
+        and a.nick_name LIKE CONCAT('%',#{nickName},'%')
+        and a.id != #{userId}
+        GROUP BY a.id
+        ORDER BY orderNum
+    </select>
+
+    <resultMap id="getSuggestAttention" type="com.idream.commons.lib.dto.app.SuggestAttentionDto">
+        <id column="userId" property="userId"/>
+        <result column="nickName" property="nickName"/>
+        <result column="userImage" property="userImage"/>
+        <result column="fromWhere" property="fromWhere"/>
+        <result column="accid" property="accid"/>
+        <result column="attendEachOther" property="attendEachOther"/>
+        <collection property="userLabelList" ofType="com.idream.commons.lib.dto.activity.AppUserLabelDto">
+            <id column="id" property="id"/>
+            <result column="label" property="label"/>
+        </collection>
+    </resultMap>
+    <select id="getSuggestAttentionByUserId" resultMap="getSuggestAttention">
+        SELECT
+        DISTINCT(a.id) userId ,a.nick_name nickName,a.image userImage,c.achieve_id id,c.achieve_name label,3 AS
+        fromWhere,d.acc_id accid,0 attendEachOther
+        FROM user_info a
+        LEFT JOIN achievement_user c ON c.user_id = a.id AND c.completed = 1
+        LEFT JOIN user_wyim_account d ON d.user_id = a.id
+        WHERE a.user_type = 1 AND a.user_role &lt;9 AND a.id &gt;2 AND a.city_code in (SELECT city_code FROM user_info
+        WHERE id = #{userId})
+        ORDER BY c.id DESC
+    </select>
+
+    <resultMap id="getFriend" type="com.idream.commons.lib.dto.app.SuggestAttentionFriendDto">
+        <id column="userId" property="userId"/>
+        <result column="nickName" property="nickName"/>
+        <result column="userImage" property="userImage"/>
+        <result column="accid" property="accid"/>
+        <result column="attendEachOther" property="attendEachOther"/>
+        <collection property="userLabelList" ofType="com.idream.commons.lib.dto.activity.AppUserLabelDto">
+            <id column="id" property="id"/>
+            <result column="label" property="label"/>
+        </collection>
+    </resultMap>
+    <select id="getFriendByNickNameOrPhone" resultMap="getFriend">
+        SELECT
+        a.id userId,
+        a.nick_name nickName,
+        a.image userImage,
+        b.acc_id accid,
+        c.achieve_id id,
+        c.achieve_name label,
+        IF(e.attended &gt; 0,IF(d.attended &gt; 0,2,1),0) attendEachOther
+        FROM user_info a
+        LEFT JOIN user_wyim_account b ON b.user_id = a.id
+        LEFT JOIN achievement_user c ON c.user_id = a.id AND c.completed = 1
+        LEFT JOIN (select count(*) as attended,user_id from user_attention where target_user_id = #{userId} GROUP BY
+        user_id) d ON d.user_id = a.id
+        LEFT JOIN (select count(*) as attended,target_user_id from user_attention where user_id = #{userId} GROUP BY
+        target_user_id) e ON e.target_user_id =a.id
+        <where>
+            AND a.id <![CDATA[!= ]]> #{userId} AND a.user_type = 1 AND a.user_role &lt;9
+            <if test="nickNameOrPhone != null and nickNameOrPhone != ''">
+                AND (a.phone like CONCAT('%',#{nickNameOrPhone} ,'%' ) OR a.nick_name like CONCAT('%',#{nickNameOrPhone}
+                ,'%'))
+            </if>
+        </where>
+        ORDER BY attendEachOther DESC,c.id DESC
+    </select>
+    <select id="getAttentionList" resultType="com.idream.commons.lib.dto.app.SearchAttentionListDto">
+        SELECT
+        a.target_user_id userId,
+        b.nick_name nickName,
+        b.image userImage,
+        c.acc_id accid
+        FROM (SELECT target_user_id FROM user_attention WHERE user_id = #{userId}) a
+        LEFT JOIN user_info b ON b.id = a.target_user_id AND b.user_type = 1 AND b.user_role &lt;9
+        LEFT JOIN user_wyim_account c ON c.user_id = a.target_user_id
+        WHERE b.nick_name like CONCAT('%',#{nickName} ,'%')
+    </select>
+</mapper>

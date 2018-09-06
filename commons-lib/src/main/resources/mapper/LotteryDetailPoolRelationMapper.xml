@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.idream.commons.lib.mapper.LotteryDetailPoolRelationMapper">
+    <resultMap id="BaseResultMap" type="com.idream.commons.lib.model.LotteryDetailPoolRelation">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="detail_id" property="detailId" jdbcType="INTEGER"/>
+        <result column="pool_id" property="poolId" jdbcType="INTEGER"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, detail_id, pool_id, create_time, update_time
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from lottery_detail_pool_relation
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from lottery_detail_pool_relation
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.idream.commons.lib.model.LotteryDetailPoolRelation" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into lottery_detail_pool_relation (detail_id, pool_id, create_time,
+        update_time)
+        values (#{detailId,jdbcType=INTEGER}, #{poolId,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP},
+        #{updateTime,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="com.idream.commons.lib.model.LotteryDetailPoolRelation"
+            useGeneratedKeys="true" keyProperty="id">
+        insert into lottery_detail_pool_relation
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="detailId != null">
+                detail_id,
+            </if>
+            <if test="poolId != null">
+                pool_id,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="detailId != null">
+                #{detailId,jdbcType=INTEGER},
+            </if>
+            <if test="poolId != null">
+                #{poolId,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.idream.commons.lib.model.LotteryDetailPoolRelation">
+        update lottery_detail_pool_relation
+        <set>
+            <if test="detailId != null">
+                detail_id = #{detailId,jdbcType=INTEGER},
+            </if>
+            <if test="poolId != null">
+                pool_id = #{poolId,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.idream.commons.lib.model.LotteryDetailPoolRelation">
+        update lottery_detail_pool_relation
+        set detail_id = #{detailId,jdbcType=INTEGER},
+        pool_id = #{poolId,jdbcType=INTEGER},
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+        update_time = #{updateTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <select id="selectByPoolIdAndLotteryId" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+        select a.id
+        from lottery_detail_pool_relation a left join lottery_detail b
+        on a.detail_id = b.id
+        where a.pool_id = #{poolId,jdbcType=INTEGER}
+        and b.lottery_id = #{lotteryId,jdbcType=INTEGER}
+    </select>
+
+    <delete id="deleteByPoolId" parameterType="java.lang.Integer">
+        delete from lottery_detail_pool_relation
+        where pool_id = #{poolId,jdbcType=INTEGER}
+    </delete>
+
+    <!--根据开奖活动详情ID查询奖品列表-->
+    <select id="selectByLotteryDetailId" resultType="com.idream.commons.lib.dto.marketing.LotteryAwardBean">
+        select b.id, b.award_name name, b.count, b.probability prob
+        from lottery_detail_pool_relation a, lottery_pool b
+        where a.detail_id = #{lotteryDetailId}
+        and b.status = 1
+        and b.count>0
+        and a.pool_id = b.id
+    </select>
+    <delete id="deleteByDetailId" parameterType="java.lang.Integer">
+        delete from lottery_detail_pool_relation
+        where detail_id = #{detailId,jdbcType=INTEGER}
+    </delete>
+    <select id="selectByDetailId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from lottery_detail_pool_relation
+        where detail_id = #{detailId,jdbcType=INTEGER}
+    </select>
+</mapper>

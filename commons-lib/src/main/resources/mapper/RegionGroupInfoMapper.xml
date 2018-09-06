@@ -1,0 +1,763 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.idream.commons.lib.mapper.RegionGroupInfoMapper">
+    <resultMap id="BaseResultMap" type="com.idream.commons.lib.model.RegionGroupInfo">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="category" property="category" jdbcType="TINYINT"/>
+        <result column="longitude" property="longitude" jdbcType="DECIMAL"/>
+        <result column="latitude" property="latitude" jdbcType="DECIMAL"/>
+        <result column="description" property="description" jdbcType="VARCHAR"/>
+        <result column="address" property="address" jdbcType="VARCHAR"/>
+        <result column="province" property="province" jdbcType="VARCHAR"/>
+        <result column="province_code" property="provinceCode" jdbcType="VARCHAR"/>
+        <result column="city" property="city" jdbcType="VARCHAR"/>
+        <result column="city_code" property="cityCode" jdbcType="VARCHAR"/>
+        <result column="district" property="district" jdbcType="VARCHAR"/>
+        <result column="district_code" property="districtCode" jdbcType="VARCHAR"/>
+        <result column="status" property="status" jdbcType="VARCHAR"/>
+        <result column="icon" property="icon" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, name, category, longitude, latitude, description, address, province, province_code,
+        city, city_code, district, district_code, status, icon, create_time, update_time
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from region_group_info
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from region_group_info
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.idream.commons.lib.model.RegionGroupInfo" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into region_group_info (name, category, longitude,
+        latitude, description, address,
+        province, province_code, city,
+        city_code, district, district_code,
+        status, icon, create_time,
+        update_time)
+        values (#{name,jdbcType=VARCHAR}, #{category,jdbcType=TINYINT}, #{longitude,jdbcType=DECIMAL},
+        #{latitude,jdbcType=DECIMAL}, #{description,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR},
+        #{province,jdbcType=VARCHAR}, #{provinceCode,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR},
+        #{cityCode,jdbcType=VARCHAR}, #{district,jdbcType=VARCHAR}, #{districtCode,jdbcType=VARCHAR},
+        #{status,jdbcType=VARCHAR}, #{icon,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP},
+        #{updateTime,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="com.idream.commons.lib.model.RegionGroupInfo" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into region_group_info
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="name != null">
+                name,
+            </if>
+            <if test="category != null">
+                category,
+            </if>
+            <if test="longitude != null">
+                longitude,
+            </if>
+            <if test="latitude != null">
+                latitude,
+            </if>
+            <if test="description != null">
+                description,
+            </if>
+            <if test="address != null">
+                address,
+            </if>
+            <if test="province != null">
+                province,
+            </if>
+            <if test="provinceCode != null">
+                province_code,
+            </if>
+            <if test="city != null">
+                city,
+            </if>
+            <if test="cityCode != null">
+                city_code,
+            </if>
+            <if test="district != null">
+                district,
+            </if>
+            <if test="districtCode != null">
+                district_code,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+            <if test="icon != null">
+                icon,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="category != null">
+                #{category,jdbcType=TINYINT},
+            </if>
+            <if test="longitude != null">
+                #{longitude,jdbcType=DECIMAL},
+            </if>
+            <if test="latitude != null">
+                #{latitude,jdbcType=DECIMAL},
+            </if>
+            <if test="description != null">
+                #{description,jdbcType=VARCHAR},
+            </if>
+            <if test="address != null">
+                #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="province != null">
+                #{province,jdbcType=VARCHAR},
+            </if>
+            <if test="provinceCode != null">
+                #{provinceCode,jdbcType=VARCHAR},
+            </if>
+            <if test="city != null">
+                #{city,jdbcType=VARCHAR},
+            </if>
+            <if test="cityCode != null">
+                #{cityCode,jdbcType=VARCHAR},
+            </if>
+            <if test="district != null">
+                #{district,jdbcType=VARCHAR},
+            </if>
+            <if test="districtCode != null">
+                #{districtCode,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=VARCHAR},
+            </if>
+            <if test="icon != null">
+                #{icon,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.idream.commons.lib.model.RegionGroupInfo">
+        update region_group_info
+        <set>
+            <if test="name != null">
+                name = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="category != null">
+                category = #{category,jdbcType=TINYINT},
+            </if>
+            <if test="longitude != null">
+                longitude = #{longitude,jdbcType=DECIMAL},
+            </if>
+            <if test="latitude != null">
+                latitude = #{latitude,jdbcType=DECIMAL},
+            </if>
+            <if test="description != null">
+                description = #{description,jdbcType=VARCHAR},
+            </if>
+            <if test="address != null">
+                address = #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="province != null">
+                province = #{province,jdbcType=VARCHAR},
+            </if>
+            <if test="provinceCode != null">
+                province_code = #{provinceCode,jdbcType=VARCHAR},
+            </if>
+            <if test="city != null">
+                city = #{city,jdbcType=VARCHAR},
+            </if>
+            <if test="cityCode != null">
+                city_code = #{cityCode,jdbcType=VARCHAR},
+            </if>
+            <if test="district != null">
+                district = #{district,jdbcType=VARCHAR},
+            </if>
+            <if test="districtCode != null">
+                district_code = #{districtCode,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=VARCHAR},
+            </if>
+            <if test="icon != null">
+                icon = #{icon,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.idream.commons.lib.model.RegionGroupInfo">
+        update region_group_info
+        set name = #{name,jdbcType=VARCHAR},
+        category = #{category,jdbcType=TINYINT},
+        longitude = #{longitude,jdbcType=DECIMAL},
+        latitude = #{latitude,jdbcType=DECIMAL},
+        description = #{description,jdbcType=VARCHAR},
+        address = #{address,jdbcType=VARCHAR},
+        province = #{province,jdbcType=VARCHAR},
+        province_code = #{provinceCode,jdbcType=VARCHAR},
+        city = #{city,jdbcType=VARCHAR},
+        city_code = #{cityCode,jdbcType=VARCHAR},
+        district = #{district,jdbcType=VARCHAR},
+        district_code = #{districtCode,jdbcType=VARCHAR},
+        status = #{status,jdbcType=VARCHAR},
+        icon = #{icon,jdbcType=VARCHAR},
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+        update_time = #{updateTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <select id="getSmallCommunityList" parameterType="com.idream.commons.lib.dto.admin.SmallCommunityListParams"
+            resultType="com.idream.commons.lib.dto.admin.SmallCommunityListDto">
+        SELECT
+        a.id communityId,
+        a.name communityName,
+        a.province,
+        a.province_code provinceCode,
+        a.city,
+        a.city_code cityCode,
+        a.district,
+        a.district_code districtCode,
+        a.address,
+        a.create_time createTime,
+        regionId,
+        regionName
+        FROM region_group_info a
+        LEFT JOIN (select b.group_id, c.id regionId, c.region_name regionName from region_group_relation b, region_info
+        c where c.type = 2 and c.id = b.region_id ) d ON d.group_id = a.id
+        <where>
+            AND a.category = 1
+            <if test="provinceCode != null and provinceCode != ''">
+                AND a.province_code = #{provinceCode}
+            </if>
+            <if test="cityCode != null and cityCode != ''">
+                AND a.city_code = #{cityCode}
+            </if>
+            <if test="districtCode != null and districtCode != ''">
+                AND a.district_code = #{districtCode}
+            </if>
+            <if test="communityName != null and communityName != ''">
+                <![CDATA[  AND a.`name` LIKE  CONCAT('%', #{communityName}, '%') ESCAPE '/' ]]>
+            </if>
+        </where>
+        order by a.create_time DESC
+    </select>
+    <select id="getCommunityRegionListByExample"
+            parameterType="com.idream.commons.lib.dto.admin.ShowConnectRegionNameParams"
+            resultType="com.idream.commons.lib.dto.admin.ShowConnectRegionNameDto">
+        SELECT
+        id regionId,
+        region_name regionName
+        FROM region_info
+        <where>
+            AND province_code = #{provinceCode}
+            AND city_code = #{cityCode}
+            AND type = 2
+            <if test="districtCode != null and districtCode != ''">
+                AND district_code = #{districtCode}
+            </if>
+            <if test="regionName != null and regionName != ''">
+                AND region_name LIKE CONCAT('%', #{regionName}, '%')
+            </if>
+        </where>
+    </select>
+    <resultMap id="bookHouseList" type="com.idream.commons.lib.dto.admin.BookHouseListDto">
+        <result column="id" property="bookHouseId"/>
+        <result column="name" property="bookHouseName"/>
+        <result column="province" property="province"/>
+        <result column="province_code" property="provinceCode"/>
+        <result column="city" property="city"/>
+        <result column="city_code" property="cityCode"/>
+        <result column="district" property="district"/>
+        <result column="district_code" property="districtCode"/>
+        <result column="address" property="address"/>
+        <result column="code" property="bookHouseCode"/>
+        <result column="qr_code" property="qrCode"/>
+        <result column="activityTotal" property="activityTotal"/>
+        <result column="integrationTotal" property="integrationTotal"/>
+        <result column="awardTotal" property="awardTotal"/>
+        <collection property="regionInfoDtos" ofType="com.idream.commons.lib.dto.admin.RegionInfoDto">
+            <id column="region_id" property="regionId"/>
+            <result column="region_name" property="regionName"/>
+        </collection>
+        <collection property="realName" ofType="java.lang.String">
+            <result column="real_name" property="realName"/>
+        </collection>
+    </resultMap>
+    <select id="getBookHouseList" parameterType="com.idream.commons.lib.dto.admin.BookHouseListParams"
+            resultMap="bookHouseList">
+        SELECT
+        a.id ,
+        a.name ,
+        a.province,
+        a.province_code,
+        a.city,
+        a.city_code ,
+        a.district,
+        a.district_code ,
+        a.address,
+        b.code ,
+        b.qr_code,
+        d.id region_id,
+        d.region_name ,
+        f.real_name,
+        k.activityTotal,
+        i.integrationTotal,
+        j.awardTotal
+        FROM (SELECT id,name,province,province_code,city,city_code,district,district_code,address,create_time FROM
+        region_group_info
+        <where>
+            AND category = 2
+            <if test="provinceCode != null and provinceCode != ''">
+                AND province_code = #{provinceCode}
+            </if>
+            <if test="cityCode != null and cityCode != ''">
+                AND city_code = #{cityCode}
+            </if>
+            <if test="districtCode != null and districtCode != ''">
+                AND district_code = #{districtCode}
+            </if>
+            <if test="bookHouseName != null and bookHouseName != ''">
+                AND `name` LIKE CONCAT('%', #{bookHouseName}, '%')
+            </if>
+        </where>
+        order by create_time DESC limit #{page},#{rows}) a
+        LEFT JOIN book_extension b ON b.book_id = a.id
+        LEFT JOIN region_group_relation c ON c.group_id = a.id
+        LEFT JOIN region_info d ON d.id = c.region_id AND d.type = 2
+        LEFT JOIN user_manager e ON e.book_id = a.id
+        LEFT JOIN user_info f ON f.id = e.user_id
+        LEFT JOIN (SELECT count(*) AS activityTotal,a.book_id FROM user_manager a INNER JOIN activity_info b ON b.create_id = a.user_id GROUP BY a.book_id)AS k ON k.book_id = a.id
+        LEFT JOIN (SELECT COUNT(*) AS integrationTotal,book_id FROM integration_pool GROUP BY book_id)AS i ON i.book_id = a.id
+        LEFT JOIN (SELECT COUNT(*) AS awardTotal,book_id FROM award_pool GROUP BY book_id)AS j ON j.book_id = a.id
+        ORDER BY a.create_time DESC
+    </select>
+    <select id="getBookHouseTotal" parameterType="com.idream.commons.lib.dto.admin.BookHouseListParams"
+            resultType="java.lang.Integer">
+        SELECT count(*) FROM region_group_info
+        <where>
+            AND category = 2
+            <if test="provinceCode != null and provinceCode != ''">
+                AND province_code = #{provinceCode}
+            </if>
+            <if test="cityCode != null and cityCode != ''">
+                AND city_code = #{cityCode}
+            </if>
+            <if test="districtCode != null and districtCode != ''">
+                AND district_code = #{districtCode}
+            </if>
+            <if test="bookHouseName != null and bookHouseName != ''">
+                AND `name` LIKE CONCAT('%', #{bookHouseName}, '%')
+            </if>
+        </where>
+        order by create_time DESC
+    </select>
+    <select id="getRegionList" parameterType="com.idream.commons.lib.dto.admin.RegionListParams"
+            resultType="com.idream.commons.lib.dto.admin.RegionDto">
+        SELECT
+        a.id regionId,
+        a.region_name regionName,
+        a.icon,
+        a.province,
+        a.city,
+        a.district,
+        SUM(CASE c.category WHEN 1 THEN 1 ELSE 0 END )AS connectCommunityCount,
+        SUM(CASE c.category WHEN 2 THEN 1 ELSE 0 END )AS connectBookHouseCount
+        FROM region_info a
+        LEFT JOIN region_group_relation b ON b.region_id = a.id
+        LEFT JOIN region_group_info c ON c.id = b.group_id
+        <where>
+            AND a.type = 2
+            <if test="provinceCode != null and provinceCode != ''">
+                AND a.province_code = #{provinceCode}
+            </if>
+            <if test="cityCode != null and cityCode != ''">
+                AND a.city_code = #{cityCode}
+            </if>
+            <if test="districtCode != null and districtCode != ''">
+                AND a.district_code = #{districtCode}
+            </if>
+            <if test="regionName != null and regionName != ''">
+                AND a.region_name LIKE CONCAT('%', #{regionName}, '%')
+            </if>
+        </where>
+        group by a.id
+        order by a.create_time desc
+    </select>
+    <select id="getRegionByRegionId" parameterType="java.lang.Integer"
+            resultType="com.idream.commons.lib.dto.admin.UpdateRegionDto">
+        SELECT
+        id regionId,
+        region_name regionName,
+        province,
+        province_code provinceCode,
+        city,
+        city_code cityCode,
+        district,
+        district_code districtCode,
+        address,
+        longitude,
+        latitude,
+        icon,
+        description
+        FROM region_info
+        where id = #{regionId}
+    </select>
+    <select id="getCommunityListByRegionId" parameterType="java.lang.Integer"
+            resultType="com.idream.commons.lib.dto.admin.CommunityDetailDto">
+        SELECT
+        a.id regionId,
+        a.region_name regionName,
+        c.id communityId,
+        c.`name` communityName,
+        c.city,
+        c.city_code cityCode,
+        c.district,
+        c.district_code districtCode,
+        c.address
+        FROM region_info a
+        INNER JOIN region_group_relation b ON b.region_id = a.id
+        INNER JOIN region_group_info c ON c.id = b.group_id
+        WHERE a.type = 2 AND a.id = #{regionId} AND c.category = 1
+    </select>
+    <select id="getBookHouseListByRegionId" parameterType="java.lang.Integer"
+            resultType="com.idream.commons.lib.dto.admin.BookHouseDetailDto">
+        SELECT
+        a.id regionId,
+        a.region_name regionName,
+        c.id bookHouseId,
+        c.`name` bookHouseName,
+        c.city,
+        c.city_code cityCode,
+        c.district,
+        c.district_code districtCode,
+        c.address
+        FROM region_info a
+        INNER JOIN region_group_relation b ON b.region_id = a.id
+        INNER JOIN region_group_info c ON c.id = b.group_id
+        WHERE a.type = 2 AND a.id = #{regionId} AND c.category = 2
+    </select>
+    <select id="getGroupDetail" parameterType="com.idream.commons.lib.dto.admin.GroupDetailParams"
+            resultType="java.lang.String">
+        SELECT
+        name
+        FROM region_group_info
+        <where>
+            <if test="provinceCode != null and provinceCode != ''">
+                AND province_code = #{provinceCode}
+            </if>
+            <if test="cityCode != null and cityCode != ''">
+                AND city_code = #{cityCode}
+            </if>
+            <if test="districtCode != null and districtCode != ''">
+                AND district_code = #{districtCode}
+            </if>
+            <if test="groupName != null and groupName != ''">
+                AND name LIKE CONCAT('%',#{groupName},'%')
+            </if>
+            <if test="category != null">
+                AND category = #{category}
+            </if>
+        </where>
+    </select>
+    <select id="getRegionDetail" parameterType="com.idream.commons.lib.dto.admin.RegionDetailParams"
+            resultType="java.lang.String">
+        SELECT
+        region_name name
+        FROM region_info
+        <where>
+            AND type = 2
+            <if test="provinceCode != null and provinceCode != ''">
+                AND province_code = #{provinceCode}
+            </if>
+            <if test="cityCode != null and cityCode != ''">
+                AND city_code = #{cityCode}
+            </if>
+            <if test="districtCode != null and districtCode != ''">
+                AND district_code = #{districtCode}
+            </if>
+            <if test="regionName != null and regionName != ''">
+                AND region_name LIKE CONCAT('%',#{regionName},'%')
+            </if>
+        </where>
+    </select>
+
+    <select id="selectRegionInfoList"
+            parameterType="com.idream.commons.lib.dto.activity.AdminActivityCommunityListRequestDto"
+            resultType="com.idream.commons.lib.model.RegionInfo">
+        SELECT
+        *
+        FROM
+        region_info
+        <where>
+            AND type = 2
+            <if test="provinceCode != null and provinceCode != ''">
+                AND province_code = #{provinceCode}
+            </if>
+            <if test="cityCode != null and cityCode != ''">
+                AND city_code = #{cityCode}
+            </if>
+            <if test="districtCode != null and districtCode != ''">
+                AND district_code = #{districtCode}
+            </if>
+            <if test="regionName != null and regionName != ''">
+                AND region_name LIKE CONCAT('%',#{regionName},'%')
+            </if>
+        </where>
+    </select>
+
+    <select id="selectRegionGroupByRegionId" parameterType="java.lang.Integer"
+            resultType="com.idream.commons.lib.model.RegionGroupInfo">
+        SELECT
+        a.*
+        FROM
+        region_group_info a LEFT JOIN region_group_relation b ON a.id=b.group_id
+        WHERE
+        b.region_id = #{regionId} AND a.category=1
+    </select>
+    <select id="selectBookHouse" parameterType="java.lang.String"
+            resultType="com.idream.commons.lib.dto.marketing.BookHouseParams">
+        SELECT
+        id as book_id,
+        name as book_name
+        FROM
+        region_group_info
+        WHERE
+        category=2
+        <if test="regionId != null and regionId != ''">
+            AND district_code= #{regionId}
+        </if>
+        <if test="provinceId != null and provinceId != ''">
+            AND province_code= #{provinceId}
+        </if>
+        <if test="cityId != null and cityId != ''">
+            AND city_code= #{cityId}
+        </if>
+        <if test="bookName != null and bookName != ''">
+            AND name LIKE CONCAT('%',#{bookName},'%')
+        </if>
+
+    </select>
+
+    <select id="getRegionGroupInfoByCityCode" parameterType="com.idream.commons.lib.dto.app.CommunityActivityRequestDto"
+            resultType="com.idream.commons.lib.dto.app.CommunitySetParams">
+        SELECT
+        id communityId,
+        name communityName ,
+        longitude,
+        latitude,
+        (
+        3959 * ACOS(
+        COS(RADIANS(#{latitude})) * cos(radians(latitude)) * cos(
+        RADIANS(longitude) - RADIANS(#{longitude})
+        ) + sin(radians(#{latitude})) * sin(radians(latitude))
+        )
+        ) * 1609.344 AS distance
+        FROM region_group_info
+        WHERE category = 1 AND city_code = #{cityCode}
+        ORDER BY distance
+    </select>
+
+    <!-- app社区列表搜索社区 -->
+    <select id="selectCommunityInfoListByCommunityName"
+            resultType="com.idream.commons.lib.dto.app.CommunityInfoResponseDto">
+        select
+        a.id communityId,
+        a.`name` communityName,
+        CONCAT(a.city,a.district,a.address) address,
+        a.district_code adCode,
+        e.region_name,
+        l.bookName bookName,
+        (
+        3959 * ACOS(
+        COS(RADIANS(#{latitude})) * cos(radians(latitude)) * cos(
+        RADIANS(longitude) - RADIANS(#{longitude})
+        ) + sin(radians(#{latitude})) * sin(radians(latitude))
+        )
+        ) * 1609.344 AS distance
+        from region_group_info a
+        LEFT JOIN (SELECT b.id, b.region_name,c.group_id FROM region_info b INNER JOIN region_group_relation c ON
+        c.region_id=b.id INNER JOIN region_group_info d ON d.id=c.group_id AND d.category = 1 WHERE b.type = 2) e ON
+        e.group_id=a.id
+        LEFT JOIN (SELECT GROUP_CONCAT(DISTINCT(k.`name`)) bookName,j.region_id from region_group_relation j inner join
+        region_group_info k on j.group_id = k.id and k.category = 2 group by j.region_id ) l on l.region_id = e.id
+        <where>
+            AND a.category = 1
+            <if test="communityName != null and communityName != ''">
+                and a.`name` like CONCAT('%', #{communityName}, '%')
+            </if>
+            <if test="cityCode != null and cityCode != ''">
+                and a.city_code=#{cityCode}
+            </if>
+        </where>
+        order by distance
+    </select>
+
+    <!-- app端附近的社区(社区位置) -->
+    <select id="getNeighborCommunity" resultType="com.idream.commons.lib.dto.app.NeighborCommunityListResponseDto">
+        select
+        id communityId,
+        `name` communityName,
+        longitude,
+        latitude,
+        (
+        3959 * ACOS(
+        COS(RADIANS(#{latitude})) * cos(radians(latitude)) * cos(
+        RADIANS(longitude) - RADIANS(#{longitude})
+        ) + sin(radians(#{latitude})) * sin(radians(latitude))
+        )
+        ) * 1609.344 AS distance
+        from region_group_info
+        where city_code=#{cityCode} AND category = 1
+        order by distance
+    </select>
+
+    <select id="getCommunityInfoByRegionId" resultType="com.idream.commons.lib.dto.app.CommunityInfoListDto">
+        SELECT
+        a.id communityId,
+        a.`name` communityName,
+        a.longitude,
+        a.latitude,
+        (
+        3959 * ACOS(
+        COS(RADIANS(#{latitude})) * cos(radians(a.latitude)) * cos(
+        RADIANS(a.longitude) - RADIANS(#{longitude})
+        ) + sin(radians(#{latitude})) * sin(radians(a.latitude))
+        )
+        ) * 1609.344 AS distance
+        FROM
+        region_group_info a
+        INNER JOIN region_group_relation b ON b.group_id = a.id
+        INNER JOIN region_info c ON c.id = b.region_id
+        WHERE a.category = 1 AND c.id = #{regionId}
+        ORDER BY distance
+    </select>
+    <select id="selectCommunityList" resultType="com.idream.commons.lib.dto.marketing.CommunityDto"
+            parameterType="com.idream.commons.lib.dto.marketing.CommunityInfoParams">
+        SELECT
+        id as community_id,
+        region_name as community_name,
+        province as province_name,
+        province_code as province_id,
+        city_code as city_id,
+        city as city_name,
+        district_code as region_id,
+        district as region_name
+        FROM
+        region_info
+        where type=2
+        <if test="provinceId != null and provinceId != ''">
+            and province_code =#{provinceId}
+        </if>
+        <if test="cityId != null and cityId != ''">
+            and city_code =#{cityId}
+        </if>
+        <if test="regionId != null and regionId != ''">
+            and district_code =#{regionId}
+        </if>
+        <if test="communityName != null and communityName != '' ">
+            and region_name like CONCAT('%', #{communityName}, '%');
+        </if>
+    </select>
+    <select id="selectBookHouseByCityCode" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select id ,longitude,latitude
+        from region_group_info
+        where category = 2
+        <if test="cityCode != null and cityCode != '' ">
+            and city_code =#{cityCode}
+        </if>
+    </select>
+
+    <!--根据大社区ID查询关联书屋信息-->
+    <select id="getBookInfoListByRegionId" parameterType="java.util.List"
+            resultType="com.idream.commons.lib.model.RegionGroupInfo">
+        SELECT DISTINCT
+        b.id, b.name
+        FROM
+        region_group_relation a
+        LEFT JOIN region_group_info b ON a.group_id = b.id
+        WHERE region_id IN
+        <foreach collection="regionIds" open="(" close=")" separator="," item="regionId">
+            #{regionId}
+        </foreach>
+        AND b.category=2
+    </select>
+
+    <select id="selectBookListByBookNameExample"
+            parameterType="com.idream.commons.lib.dto.admin.ActivitySearchBookByExampleRequestDto"
+            resultType="com.idream.commons.lib.dto.activity.RegionGroupInfoExtention">
+        SELECT
+        DISTINCT
+        c.id,
+        c.`name`
+        FROM
+        activity_info a
+        LEFT JOIN user_manager b ON a.user_id = b.user_id
+        LEFT JOIN region_group_info c ON b.book_id = c.id
+        LEFT JOIN region_group_relation d ON c.id = d.group_id
+        LEFT JOIN region_info e ON e.id = d.region_id
+        WHERE c.category = 2
+        <if test="provinceCode != null and provinceCode != ''">
+            and e.province_code =#{provinceCode}
+        </if>
+        <if test="cityCode != null and cityCode != ''">
+            and e.city_code =#{cityCode}
+        </if>
+        <if test="districtCode != null and districtCode != ''">
+            and e.district_code =#{districtCode}
+        </if>
+        <if test="regionName != null and regionName != ''">
+            and e.region_name =#{regionName}
+        </if>
+        <if test="bookName != null and bookName != ''">
+            and c.name LIKE CONCAT('%', #{bookName}, '%')
+        </if>
+    </select>
+    <select id="selectSmallCommunityByRegionId" resultType="com.idream.commons.lib.dto.marketing.CommunityDto"
+            parameterType="com.idream.commons.lib.dto.marketing.CommunityInfoParams">
+        SELECT
+        id as community_id,
+        name as community_name,
+        province as province_name,
+        province_code as province_id,
+        city_code as city_id,
+        city as city_name,
+        district_code as region_id,
+        district as region_name
+        FROM
+        region_group_info
+        where category=1
+        <if test="provinceId != null and provinceId != ''">
+            and province_code =#{provinceId}
+        </if>
+        <if test="cityId != null and cityId != ''">
+            and city_code =#{cityId}
+        </if>
+        <if test="regionId != null and regionId != ''">
+            and district_code =#{regionId}
+        </if>
+        <if test="communityName != null and communityName != '' ">
+            and name like CONCAT('%', #{communityName}, '%');
+        </if>
+    </select>
+</mapper>

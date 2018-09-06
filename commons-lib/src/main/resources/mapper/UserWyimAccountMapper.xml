@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.idream.commons.lib.mapper.UserWyimAccountMapper">
+    <resultMap id="BaseResultMap" type="com.idream.commons.lib.model.UserWyimAccount">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="user_id" property="userId" jdbcType="INTEGER"/>
+        <result column="acc_id" property="accId" jdbcType="VARCHAR"/>
+        <result column="token" property="token" jdbcType="VARCHAR"/>
+        <result column="donnop_open" property="donnopOpen" jdbcType="BIT"/>
+        <result column="friend_argee_type" property="friendArgeeType" jdbcType="TINYINT"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, user_id, acc_id, token, donnop_open, friend_argee_type, create_time, update_time
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from user_wyim_account
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from user_wyim_account
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.idream.commons.lib.model.UserWyimAccount" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into user_wyim_account (user_id, acc_id, token,
+        donnop_open, friend_argee_type, create_time,
+        update_time)
+        values (#{userId,jdbcType=INTEGER}, #{accId,jdbcType=VARCHAR}, #{token,jdbcType=VARCHAR},
+        #{donnopOpen,jdbcType=BIT}, #{friendArgeeType,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP},
+        #{updateTime,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="com.idream.commons.lib.model.UserWyimAccount" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into user_wyim_account
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userId != null">
+                user_id,
+            </if>
+            <if test="accId != null">
+                acc_id,
+            </if>
+            <if test="token != null">
+                token,
+            </if>
+            <if test="donnopOpen != null">
+                donnop_open,
+            </if>
+            <if test="friendArgeeType != null">
+                friend_argee_type,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="userId != null">
+                #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="accId != null">
+                #{accId,jdbcType=VARCHAR},
+            </if>
+            <if test="token != null">
+                #{token,jdbcType=VARCHAR},
+            </if>
+            <if test="donnopOpen != null">
+                #{donnopOpen,jdbcType=BIT},
+            </if>
+            <if test="friendArgeeType != null">
+                #{friendArgeeType,jdbcType=TINYINT},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.idream.commons.lib.model.UserWyimAccount">
+        update user_wyim_account
+        <set>
+            <if test="userId != null">
+                user_id = #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="accId != null">
+                acc_id = #{accId,jdbcType=VARCHAR},
+            </if>
+            <if test="token != null">
+                token = #{token,jdbcType=VARCHAR},
+            </if>
+            <if test="donnopOpen != null">
+                donnop_open = #{donnopOpen,jdbcType=BIT},
+            </if>
+            <if test="friendArgeeType != null">
+                friend_argee_type = #{friendArgeeType,jdbcType=TINYINT},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.idream.commons.lib.model.UserWyimAccount">
+        update user_wyim_account
+        set user_id = #{userId,jdbcType=INTEGER},
+        acc_id = #{accId,jdbcType=VARCHAR},
+        token = #{token,jdbcType=VARCHAR},
+        donnop_open = #{donnopOpen,jdbcType=BIT},
+        friend_argee_type = #{friendArgeeType,jdbcType=TINYINT},
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+        update_time = #{updateTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+</mapper>

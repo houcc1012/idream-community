@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.idream.commons.lib.mapper.SendMqMessageRecordMapper">
+    <resultMap id="BaseResultMap" type="com.idream.commons.lib.model.SendMqMessageRecord">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="msg_id" property="msgId" jdbcType="VARCHAR"/>
+        <result column="content" property="content" jdbcType="VARCHAR"/>
+        <result column="status" property="status" jdbcType="TINYINT"/>
+        <result column="retry_max_no" property="retryMaxNo" jdbcType="SMALLINT"/>
+        <result column="retry_no" property="retryNo" jdbcType="SMALLINT"/>
+        <result column="business_type" property="businessType" jdbcType="TINYINT"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, msg_id, content, status, retry_max_no, retry_no, business_type, create_time,
+        update_time
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from send_mq_message_record
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from send_mq_message_record
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.idream.commons.lib.model.SendMqMessageRecord" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into send_mq_message_record (msg_id, content, status,
+        retry_max_no, retry_no, business_type,
+        create_time, update_time)
+        values (#{msgId,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT},
+        #{retryMaxNo,jdbcType=SMALLINT}, #{retryNo,jdbcType=SMALLINT}, #{businessType,jdbcType=TINYINT},
+        #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="com.idream.commons.lib.model.SendMqMessageRecord"
+            useGeneratedKeys="true" keyProperty="id">
+        insert into send_mq_message_record
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="msgId != null">
+                msg_id,
+            </if>
+            <if test="content != null">
+                content,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+            <if test="retryMaxNo != null">
+                retry_max_no,
+            </if>
+            <if test="retryNo != null">
+                retry_no,
+            </if>
+            <if test="businessType != null">
+                business_type,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="msgId != null">
+                #{msgId,jdbcType=VARCHAR},
+            </if>
+            <if test="content != null">
+                #{content,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=TINYINT},
+            </if>
+            <if test="retryMaxNo != null">
+                #{retryMaxNo,jdbcType=SMALLINT},
+            </if>
+            <if test="retryNo != null">
+                #{retryNo,jdbcType=SMALLINT},
+            </if>
+            <if test="businessType != null">
+                #{businessType,jdbcType=TINYINT},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.idream.commons.lib.model.SendMqMessageRecord">
+        update send_mq_message_record
+        <set>
+            <if test="msgId != null">
+                msg_id = #{msgId,jdbcType=VARCHAR},
+            </if>
+            <if test="content != null">
+                content = #{content,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=TINYINT},
+            </if>
+            <if test="retryMaxNo != null">
+                retry_max_no = #{retryMaxNo,jdbcType=SMALLINT},
+            </if>
+            <if test="retryNo != null">
+                retry_no = #{retryNo,jdbcType=SMALLINT},
+            </if>
+            <if test="businessType != null">
+                business_type = #{businessType,jdbcType=TINYINT},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.idream.commons.lib.model.SendMqMessageRecord">
+        update send_mq_message_record
+        set msg_id = #{msgId,jdbcType=VARCHAR},
+        content = #{content,jdbcType=VARCHAR},
+        status = #{status,jdbcType=TINYINT},
+        retry_max_no = #{retryMaxNo,jdbcType=SMALLINT},
+        retry_no = #{retryNo,jdbcType=SMALLINT},
+        business_type = #{businessType,jdbcType=TINYINT},
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+        update_time = #{updateTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+</mapper>

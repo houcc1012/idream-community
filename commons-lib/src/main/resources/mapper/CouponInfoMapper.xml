@@ -1,0 +1,738 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.idream.commons.lib.mapper.CouponInfoMapper">
+    <resultMap id="BaseResultMap" type="com.idream.commons.lib.model.CouponInfo">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="award_id" property="awardId" jdbcType="INTEGER"/>
+        <result column="coupon_code" property="couponCode" jdbcType="VARCHAR"/>
+        <result column="user_id" property="userId" jdbcType="INTEGER"/>
+        <result column="type" property="type" jdbcType="TINYINT"/>
+        <result column="coupon_value" property="couponValue" jdbcType="VARCHAR"/>
+        <result column="award_name" property="awardName" jdbcType="VARCHAR"/>
+        <result column="description" property="description" jdbcType="VARCHAR"/>
+        <result column="instructions" property="instructions" jdbcType="VARCHAR"/>
+        <result column="expire_date" property="expireDate" jdbcType="TIMESTAMP"/>
+        <result column="info_able" property="infoAble" jdbcType="BIT"/>
+        <result column="info_completed" property="infoCompleted" jdbcType="BIT"/>
+        <result column="status" property="status" jdbcType="TINYINT"/>
+        <result column="delete_flag" property="deleteFlag" jdbcType="TINYINT"/>
+        <result column="from_type" property="fromType" jdbcType="TINYINT"/>
+        <result column="from_description" property="fromDescription" jdbcType="VARCHAR"/>
+        <result column="image" property="image" jdbcType="VARCHAR"/>
+        <result column="operate_user_id" property="operateUserId" jdbcType="INTEGER"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, award_id, coupon_code, user_id, type, coupon_value, award_name, description,
+        instructions, expire_date, info_able, info_completed, status, delete_flag, from_type,
+        from_description, image, operate_user_id, create_time, update_time
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from coupon_info
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from coupon_info
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.idream.commons.lib.model.CouponInfo" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into coupon_info (award_id, coupon_code, user_id,
+        type, coupon_value, award_name,
+        description, instructions, expire_date,
+        info_able, info_completed, status,
+        delete_flag, from_type, from_description,
+        image, operate_user_id, create_time,
+        update_time)
+        values (#{awardId,jdbcType=INTEGER}, #{couponCode,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER},
+        #{type,jdbcType=TINYINT}, #{couponValue,jdbcType=VARCHAR}, #{awardName,jdbcType=VARCHAR},
+        #{description,jdbcType=VARCHAR}, #{instructions,jdbcType=VARCHAR}, #{expireDate,jdbcType=TIMESTAMP},
+        #{infoAble,jdbcType=BIT}, #{infoCompleted,jdbcType=BIT}, #{status,jdbcType=TINYINT},
+        #{deleteFlag,jdbcType=TINYINT}, #{fromType,jdbcType=TINYINT}, #{fromDescription,jdbcType=VARCHAR},
+        #{image,jdbcType=VARCHAR}, #{operateUserId,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP},
+        #{updateTime,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="com.idream.commons.lib.model.CouponInfo" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into coupon_info
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="awardId != null">
+                award_id,
+            </if>
+            <if test="couponCode != null">
+                coupon_code,
+            </if>
+            <if test="userId != null">
+                user_id,
+            </if>
+            <if test="type != null">
+                type,
+            </if>
+            <if test="couponValue != null">
+                coupon_value,
+            </if>
+            <if test="awardName != null">
+                award_name,
+            </if>
+            <if test="description != null">
+                description,
+            </if>
+            <if test="instructions != null">
+                instructions,
+            </if>
+            <if test="expireDate != null">
+                expire_date,
+            </if>
+            <if test="infoAble != null">
+                info_able,
+            </if>
+            <if test="infoCompleted != null">
+                info_completed,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+            <if test="deleteFlag != null">
+                delete_flag,
+            </if>
+            <if test="fromType != null">
+                from_type,
+            </if>
+            <if test="fromDescription != null">
+                from_description,
+            </if>
+            <if test="image != null">
+                image,
+            </if>
+            <if test="operateUserId != null">
+                operate_user_id,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="awardId != null">
+                #{awardId,jdbcType=INTEGER},
+            </if>
+            <if test="couponCode != null">
+                #{couponCode,jdbcType=VARCHAR},
+            </if>
+            <if test="userId != null">
+                #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="type != null">
+                #{type,jdbcType=TINYINT},
+            </if>
+            <if test="couponValue != null">
+                #{couponValue,jdbcType=VARCHAR},
+            </if>
+            <if test="awardName != null">
+                #{awardName,jdbcType=VARCHAR},
+            </if>
+            <if test="description != null">
+                #{description,jdbcType=VARCHAR},
+            </if>
+            <if test="instructions != null">
+                #{instructions,jdbcType=VARCHAR},
+            </if>
+            <if test="expireDate != null">
+                #{expireDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="infoAble != null">
+                #{infoAble,jdbcType=BIT},
+            </if>
+            <if test="infoCompleted != null">
+                #{infoCompleted,jdbcType=BIT},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=TINYINT},
+            </if>
+            <if test="deleteFlag != null">
+                #{deleteFlag,jdbcType=TINYINT},
+            </if>
+            <if test="fromType != null">
+                #{fromType,jdbcType=TINYINT},
+            </if>
+            <if test="fromDescription != null">
+                #{fromDescription,jdbcType=VARCHAR},
+            </if>
+            <if test="image != null">
+                #{image,jdbcType=VARCHAR},
+            </if>
+            <if test="operateUserId != null">
+                #{operateUserId,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.idream.commons.lib.model.CouponInfo">
+        update coupon_info
+        <set>
+            <if test="awardId != null">
+                award_id = #{awardId,jdbcType=INTEGER},
+            </if>
+            <if test="couponCode != null">
+                coupon_code = #{couponCode,jdbcType=VARCHAR},
+            </if>
+            <if test="userId != null">
+                user_id = #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="type != null">
+                type = #{type,jdbcType=TINYINT},
+            </if>
+            <if test="couponValue != null">
+                coupon_value = #{couponValue,jdbcType=VARCHAR},
+            </if>
+            <if test="awardName != null">
+                award_name = #{awardName,jdbcType=VARCHAR},
+            </if>
+            <if test="description != null">
+                description = #{description,jdbcType=VARCHAR},
+            </if>
+            <if test="instructions != null">
+                instructions = #{instructions,jdbcType=VARCHAR},
+            </if>
+            <if test="expireDate != null">
+                expire_date = #{expireDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="infoAble != null">
+                info_able = #{infoAble,jdbcType=BIT},
+            </if>
+            <if test="infoCompleted != null">
+                info_completed = #{infoCompleted,jdbcType=BIT},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=TINYINT},
+            </if>
+            <if test="deleteFlag != null">
+                delete_flag = #{deleteFlag,jdbcType=TINYINT},
+            </if>
+            <if test="fromType != null">
+                from_type = #{fromType,jdbcType=TINYINT},
+            </if>
+            <if test="fromDescription != null">
+                from_description = #{fromDescription,jdbcType=VARCHAR},
+            </if>
+            <if test="image != null">
+                image = #{image,jdbcType=VARCHAR},
+            </if>
+            <if test="operateUserId != null">
+                operate_user_id = #{operateUserId,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.idream.commons.lib.model.CouponInfo">
+        update coupon_info
+        set award_id = #{awardId,jdbcType=INTEGER},
+        coupon_code = #{couponCode,jdbcType=VARCHAR},
+        user_id = #{userId,jdbcType=INTEGER},
+        type = #{type,jdbcType=TINYINT},
+        coupon_value = #{couponValue,jdbcType=VARCHAR},
+        award_name = #{awardName,jdbcType=VARCHAR},
+        description = #{description,jdbcType=VARCHAR},
+        instructions = #{instructions,jdbcType=VARCHAR},
+        expire_date = #{expireDate,jdbcType=TIMESTAMP},
+        info_able = #{infoAble,jdbcType=BIT},
+        info_completed = #{infoCompleted,jdbcType=BIT},
+        status = #{status,jdbcType=TINYINT},
+        delete_flag = #{deleteFlag,jdbcType=TINYINT},
+        from_type = #{fromType,jdbcType=TINYINT},
+        from_description = #{fromDescription,jdbcType=VARCHAR},
+        image = #{image,jdbcType=VARCHAR},
+        operate_user_id = #{operateUserId,jdbcType=INTEGER},
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+        update_time = #{updateTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <select id="selectCouponList" resultType="com.idream.commons.lib.dto.marketing.CouponInfoDto"
+            parameterType="com.idream.commons.lib.dto.marketing.CouponInfoParam">
+        select * from ( SELECT
+        a.id,
+        a.coupon_code,
+        a.user_id,
+        a.image,
+        a.type as property,
+        a.type,
+        a.award_name,
+        a.description,
+        a.expire_date,
+        if(a.status =1 and Date(a.expire_date) &lt; Date(now()), 3, status ) as status,
+        a.info_able,
+        a.info_completed,
+        a.from_type,
+        a.from_description,
+        a.create_time,
+        c.create_time as update_time,
+        b.phone
+        FROM
+        coupon_info a
+        left join user_info b
+        on a.user_id = b.id
+        left join exchange_record c on c.coupon_id = a.id
+        where 1=1
+        <if test="fromType != null">
+            and a.from_type = #{fromType,jdbcType=TINYINT}
+        </if>
+        <if test="couponCode != null and couponCode !=''">
+            and a.coupon_code like concat('%',#{couponCode,jdbcType=VARCHAR},'%')
+        </if>
+        <if test="phone != null and phone != ''">
+            and b.phone like concat('%',#{phone,jdbcType=VARCHAR},'%')
+        </if>
+        order by status asc,a.create_time DESC ) a
+        <where>
+            <if test="status != null and status != 4">
+                a.status = #{status,jdbcType=TINYINT}
+            </if>
+        </where>
+    </select>
+    <select id="selectStatus" resultType="java.lang.Integer" parameterType="java.lang.String">
+        select
+        (CASE WHEN expire_date &lt; DATE(now()) THEN 3 ELSE (case when status =1 then 1 else 2 END)END) as status
+        from coupon_info
+        where coupon_code = #{code,jdbcType=VARCHAR}
+    </select>
+    <select id="selectOneByCode" resultMap="BaseResultMap" parameterType="java.lang.String">
+        SELECT
+        coupon_info.id,
+        coupon_info.award_id,
+        coupon_info.coupon_code,
+        coupon_info.user_id,
+        coupon_info.type,
+        coupon_info.image,
+        coupon_info.award_name,
+        coupon_info.description,
+        coupon_info.instructions,
+        coupon_info.expire_date,
+        coupon_info.info_able,
+        coupon_info.info_completed,
+        coupon_info.image,
+        (CASE WHEN coupon_info.expire_date &lt; date_format(NOW(),'%Y-%m-%d 00:00:00') THEN 3 ELSE (case when
+        coupon_info.status =1 then 1 else 2 END)END) as status,
+        coupon_info.from_type,
+        coupon_info.from_description,
+        coupon_info.create_time,
+        coupon_info.update_time
+        FROM
+        coupon_info
+        where coupon_code = #{code,jdbcType=VARCHAR}
+    </select>
+    <update id="updateStatus">
+        update coupon_info
+        set
+        status = 2, update_time = now(), operate_user_id = #{userId}
+        where coupon_code = #{code,jdbcType=VARCHAR} and status = 1
+    </update>
+    <select id="selectCouponByUserId" resultType="com.idream.commons.lib.dto.marketing.CouponInfoDto"
+            parameterType="java.lang.Integer">
+        SELECT
+        a.id,
+        a.coupon_code,
+        a.user_id,
+        a.type as property,
+        a.type,
+        a.image,
+        a.award_id as poolId,
+        a.award_name,
+        a.description,
+        a.instructions,
+        a.expire_date,
+        a.info_able,
+        a.info_completed,
+        (CASE WHEN a.expire_date &lt; date_format(NOW(),'%Y-%m-%d 00:00:00') THEN 3 ELSE (case when a.status =1 then 1
+        else 2 END)END) as status,
+        a.from_type,
+        a.from_description,
+        a.coupon_value,
+        a.create_time,
+        a.update_time,
+        b.phone,
+        (case when a.from_type=2 then (select exchange_score from award_pool where award_pool.id = a.award_id) else 0
+        end ) as exchangeScore
+        FROM
+        coupon_info a
+        left join user_info b
+        on a.user_id = b.id
+        where award_id >0 and delete_flag = 0 and if(
+        a.from_type=1,a.type&lt;5,1=1
+        )
+        <if test="userId != null">
+            and a.user_id = #{userId,jdbcType=INTEGER}
+        </if>
+        ORDER BY status asc,a.create_time DESC
+    </select>
+    <select id="selectNotDeletedCouponByUserId" resultType="com.idream.commons.lib.dto.marketing.CouponInfoDto"
+            parameterType="java.lang.Integer">
+        SELECT
+        a.id,
+        a.coupon_code,
+        a.user_id,
+        a.type as property,
+        a.type,
+        a.award_id as poolId,
+        a.image,
+        a.award_name,
+        a.description,
+        a.instructions,
+        a.expire_date,
+        a.info_able,
+        a.info_completed,
+        (CASE WHEN a.expire_date &lt; date_format(NOW(),'%Y-%m-%d 00:00:00') THEN 3 ELSE (case when a.status =1 then 1
+        else 2 END)END) as status,
+        a.from_type,
+        a.from_description,
+        a.coupon_value,
+        a.create_time,
+        a.update_time,
+        b.phone,
+        (case when a.from_type=2 then (select exchange_score from award_pool where award_pool.id = a.award_id) else 0
+        end ) as exchangeScore
+        FROM
+        coupon_info a
+        left join user_info b
+        on a.user_id = b.id
+        where award_id >0 and delete_flag = 0 and if(
+        a.from_type=1,a.type&lt;5,1=1
+        )
+        <if test="userId != null">
+            and a.user_id = #{userId,jdbcType=INTEGER}
+        </if>
+        ORDER BY status asc,a.create_time DESC
+    </select>
+    <select id="selectOneByCouponId" resultType="com.idream.commons.lib.dto.marketing.CouponInfoDto"
+            parameterType="java.lang.Integer">
+        SELECT
+        a.id,
+        a.coupon_code,
+        a.user_id,
+        a.type as property,
+        a.image,
+        a.award_name,
+        a.description,
+        a.instructions,
+        a.expire_date,
+        a.info_able,
+        a.info_completed,
+        (CASE WHEN a.expire_date &lt; date_format(NOW(),'%Y-%m-%d 00:00:00') THEN 3 ELSE (case when a.status =1 then 1
+        else 2 END)END) as status,
+        a.from_type,
+        case WHEN a.from_type =3 THEN
+        (SELECT ri.region_name
+        from lottery_pool p
+        LEFT JOIN lottery_info i
+        ON p.lottery_id = i.id
+        LEFT JOIN region_info ri
+        ON ri.id = i.community_id
+        WHERE p.id = a.award_id
+        )
+        ELSE NULL END AS communityName,
+        (case when a.from_type=2 then (select exchange_score from award_pool where award_pool.id = a.award_id) else 0
+        end ) as exchangeScore,
+        a.from_description,
+        a.coupon_value,
+        a.create_time,
+        a.update_time,
+        a.coupon_value,
+        b.phone
+        FROM
+        coupon_info a
+        left join user_info b
+        on a.user_id = b.id
+        where a.id = #{couponId,jdbcType=INTEGER}
+    </select>
+    <select id="wetherNeedWriteInfo" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+        SELECT
+        info_enable
+        from
+        <if test="type == 1">
+            integration_pool
+        </if>
+        <if test="type == 2">
+            award_pool
+        </if>
+        <if test="type == 3">
+            lottery_pool
+        </if>
+        where id = #{poolId}
+    </select>
+
+    <!--查询24小时内的积分抽奖中奖纪录-->
+    <select id="select24HoursWinningRecord" resultType="com.idream.commons.lib.dto.marketing.UserWinningRecord">
+        select b.nick_name, a.award_name from coupon_info a, user_info b
+        where a.id > 0 and a.from_type = 2 and a.create_time > DATE_SUB(now(), INTERVAL 1 DAY ) and a.user_id = b.id
+        order by a.create_time
+        limit 20
+    </select>
+    <!--查询时间段内的兑换人数和次数-->
+    <select id="selectCouponsByDate" resultType="com.idream.commons.lib.dto.marketing.MarketStaticsDto">
+        SELECT COUNT(DISTINCT(user_id)) as userCount,count(*) as marketCount ,DATE_FORMAT(create_time,'%Y%m%d') as date
+        FROM coupon_info
+        WHERE from_type=2 and create_time between #{startTime} and #{endTime}
+        group by DATE_FORMAT(create_time,'%Y%m%d') order by date asc
+    </select>
+
+    <!--查询时间段内的抽奖人数和次数-->
+    <select id="selectLotteryByDate" resultType="com.idream.commons.lib.dto.marketing.MarketStaticsDto">
+        SELECT COUNT(DISTINCT(user_id)) as userCount,count(*) as marketCount ,DATE_FORMAT(create_time,'%Y%m%d') as date
+        FROM coupon_info
+        WHERE from_type=1 and create_time between #{startTime} and #{endTime}
+        group by DATE_FORMAT(create_time,'%Y%m%d') order by date asc
+    </select>
+
+    <!--查询开奖人数和次数-->
+    <select id="selectOpenByDate" resultType="com.idream.commons.lib.dto.marketing.MarketStaticsDto">
+        SELECT COUNT(DISTINCT(user_id)) as userCount,count(*) as marketCount ,DATE_FORMAT(create_time,'%Y%m%d') as date
+        FROM coupon_info
+        WHERE from_type=3 and create_time between #{startTime} and #{endTime}
+        group by DATE_FORMAT(create_time,'%Y%m%d') order by date asc
+    </select>
+
+    <!--查询人数和次数-->
+    <select id="selectAllByDate" resultType="com.idream.commons.lib.dto.marketing.MarketStaticsDto">
+        SELECT COUNT(DISTINCT(user_id)) as userCount,count(*) as marketCount ,DATE_FORMAT(create_time,'%Y%m%d') as date
+        FROM coupon_info
+        WHERE create_time between #{startTime} and #{endTime}
+        group by DATE_FORMAT(create_time,'%Y%m%d') order by date asc
+    </select>
+    <select id="selectMyRecord" resultType="com.idream.commons.lib.dto.marketing.MyAwardRecordDto">
+        SELECT
+        a.id,
+        a.award_id as poolId,
+        a.coupon_code,
+        a.coupon_value,
+        a.user_id,
+        b.phone,
+        a.award_name,
+        a.`status`,
+        a.operate_user_id,
+        a.create_time,
+        a.update_time
+        FROM
+        coupon_info a
+        LEFT JOIN user_info b ON a.user_id = b.id
+        WHERE
+        a.operate_user_id in (select user_id from user_manager where book_id =(select book_id from user_manager where
+        user_id = #{userId}))
+        and a.from_type = #{type}
+        <if test="couponCode != null and couponCode !=''">
+            and a.coupon_code like concat('%',#{couponCode,jdbcType=VARCHAR},'%')
+        </if>
+        order by a.update_time desc
+    </select>
+    <select id="selectCouponRegion" resultType="java.lang.Integer">
+        SELECT
+        b.book_id
+        FROM
+        coupon_info a
+        LEFT JOIN
+        <if test="type == 1">
+            integration_pool b ON a.award_id = b.id and a.from_type = 1
+        </if>
+        <if test="type == 2">
+            award_pool b ON a.award_id = b.id and a.from_type = 2
+        </if>
+        WHERE
+        a.coupon_code = #{code}
+    </select>
+
+    <select id="selectIntegrationCouponCountByUserId" resultType="java.lang.Integer">
+        SELECT count(*) as count
+        FROM
+        coupon_info a
+        where a.user_id=#{userId}
+        and coupon_code!='NOT_LOTTERY_AWARD'
+        and a.status &lt;3 and a.from_type=1
+    </select>
+    <select id="selectLastRecord" resultType="com.idream.commons.lib.dto.marketing.MarketingRecordDto">
+        SELECT
+        a.id,
+        a.award_name,
+        b.nick_name,
+        b.phone,
+        a.from_type,
+        a.create_time
+        FROM
+        coupon_info a
+        INNER JOIN user_info b ON b.id = a.user_id
+        <if test="fromType != null">
+            where from_type = #{fromType}
+        </if>
+        order by a.id desc
+        LIMIT 100
+    </select>
+    <select id="selectCouponRecord" resultType="com.idream.commons.lib.dto.marketing.CouponRecordDto">
+        select * from( (SELECT
+        a.id,
+        a.award_name,
+        b.nick_name,
+        b.phone,
+        a.from_type,
+        a.create_time
+        FROM
+        coupon_info a
+        INNER JOIN user_info b ON b.id = a.user_id
+        where a.from_type = 2 order by a.create_time desc
+        LIMIT 60 )
+        union ( SELECT
+        a.id,
+        a.award_name,
+        b.nick_name,
+        b.phone,
+        a.from_type,
+        a.create_time
+        FROM
+        coupon_info a
+        INNER JOIN user_info b ON b.id = a.user_id
+        where a.from_type = 1 order by a.create_time desc
+        LIMIT 20)
+        union ( SELECT
+        a.id,
+        a.award_name,
+        b.nick_name,
+        b.phone,
+        a.from_type,
+        a.create_time
+        FROM
+        coupon_info a
+        INNER JOIN user_info b ON b.id = a.user_id
+        where a.from_type = 3 order by a.create_time desc
+        LIMIT 20 )) a order by a.create_time desc
+    </select>
+    <!--抽奖兑奖明细-->
+    <select id="selectIntegrationDetail" resultType="com.idream.commons.lib.dto.marketing.MarketIntegrationStaticsDto">
+        SELECT b.phone,b.nick_name, a.create_time as awardTime,
+        a.award_name as awardName,a.expire_date as expireTime,
+        CASE WHEN a.expire_date &lt;NOW() AND a.status=1 then 3 else a.status end  as convertStatus,
+        case when a.type=5 then a.create_time else c.create_time  end  as exchangeTime,
+        d.detail as address,CASE WHEN e.book_id =-1 THEN '凤翮筑梦书屋' ELSE f.name end  as awardPool,
+        case when a.status =2 and j.user_id is null then  '凤翮筑梦书屋' else h.name end AS exchangeBookName
+        FROM coupon_info a
+        left JOIN user_info b
+        ON a.user_id = b.id
+        LEFT JOIN exchange_record c
+        ON a.id = c.coupon_id
+        LEFT JOIN coupon_collection d
+        ON a.id = d.coupon_id AND d.info_code='address'
+        LEFT JOIN integration_pool e
+        ON a.award_id = e.id
+        LEFT JOIN region_group_info f
+        ON e.book_id = f.id
+        LEFT JOIN user_manager j
+        ON a.operate_user_id = j.user_id
+        LEFT JOIN region_group_info h
+        ON j.book_id = h.id
+        WHERE a.from_type=1 and DATE_FORMAT(a.create_time,'%Y%m%d') between #{startTime} and #{endTime}
+        <if test="exchangeBookName != null and exchangeBookName !=''">
+         AND h.name LIKE CONCAT('%',#{exchangeBookName},'%')
+        </if>
+        <if test="convertStatus != null and convertStatus !=0">
+            AND IF(a.expire_date &lt; NOW() and a.status=1,3,a.status) =#{convertStatus}
+        </if>
+        <if test="phone != null and phone !=''">
+            AND b.phone LIKE CONCAT('%',#{phone},'%')
+        </if>
+    </select>
+    <!--兑奖明细-->
+    <select id="selectAwardDetail" resultType="com.idream.commons.lib.dto.marketing.MarketAwardStaticsDto">
+        SELECT b.phone,b.nick_name, a.create_time as awardTime,
+        a.award_name as awardName,a.expire_date as expireTime,
+        CASE WHEN a.expire_date &lt;NOW()and a.status=1 then 3 else a.status end  as convertStatus,
+        c.create_time as exchangeTime,
+        d.detail as address,CASE WHEN e.book_id =-1 THEN '凤翮筑梦书屋' ELSE f.name end  as awardPool,
+        case when a.status =2 and j.user_id is null then  '凤翮筑梦书屋' else h.name end AS exchangeBookName
+        FROM coupon_info a
+        left JOIN user_info b
+        ON a.user_id = b.id
+        LEFT JOIN exchange_record c
+        ON a.id = c.coupon_id
+        LEFT JOIN coupon_collection d
+        ON a.id = d.coupon_id AND d.info_code='address'
+        LEFT JOIN award_pool e
+        ON a.award_id = e.id
+        LEFT JOIN region_group_info f
+        ON e.book_id = f.id
+        LEFT JOIN user_manager j
+        ON a.operate_user_id = j.user_id
+        LEFT JOIN region_group_info h
+        ON j.book_id = h.id
+        WHERE a.from_type=2 and DATE_FORMAT(a.create_time,'%Y%m%d') between #{startTime} and #{endTime}
+        <if test="exchangeBookName != null and exchangeBookName !=''">
+            AND h.name LIKE CONCAT('%',#{exchangeBookName},'%')
+        </if>
+        <if test="convertStatus != null and convertStatus !=0">
+            AND IF(a.expire_date &lt; NOW() and a.status=1,3,a.status) =#{convertStatus}
+        </if>
+        <if test="phone != null and phone !=''">
+            AND b.phone LIKE CONCAT('%',#{phone},'%')
+        </if>
+    </select>
+    <!--现场开奖明细-->
+    <select id="selectLotteryDetail" resultType="com.idream.commons.lib.dto.marketing.MarketLotteryStaticsDto">
+        SELECT b.phone,b.nick_name, a.create_time as awardTime,
+        a.award_name as awardName,a.expire_date as expireTime,
+        CASE WHEN a.expire_date &lt;NOW() and a.status=1 then 3 else a.status end  as convertStatus,
+        c.create_time as exchangeTime,
+        d.detail as address,IFNULL(o.bookName,'凤翮筑梦书屋') as awardPool,
+        case when a.status =2 and j.user_id is null then  '凤翮筑梦书屋' else h.name end AS exchangeBookName
+        FROM coupon_info a
+        left JOIN user_info b
+        ON a.user_id = b.id
+        LEFT JOIN exchange_record c
+        ON a.id = c.coupon_id
+        LEFT JOIN coupon_collection d
+        ON a.id = d.coupon_id AND d.info_code='address'
+        LEFT JOIN lottery_pool e
+        ON a.award_id = e.id
+        LEFT JOIN user_manager j
+        ON a.operate_user_id = j.user_id
+        LEFT JOIN region_group_info h
+        ON j.book_id = h.id
+        LEFT JOIN lottery_info m
+        on m.id = e.lottery_id
+        left join (
+          select n.region_id,group_concat(s.name) bookName
+          from region_group_relation n
+          left join  region_group_info s
+          ON n.group_id = s.id AND s.category = 2
+          group by n.region_id
+        ) o
+        ON m.community_id = o.region_id
+        WHERE a.from_type=3 and DATE_FORMAT(a.create_time,'%Y%m%d') between #{startTime} and #{endTime}
+        <if test="exchangeBookName != null and exchangeBookName !=''">
+            AND h.name LIKE CONCAT('%',#{exchangeBookName},'%')
+        </if>
+        <if test="convertStatus != null and convertStatus !=0">
+            AND IF(a.expire_date &lt; NOW() and a.status=1,3,a.status) =#{convertStatus}
+        </if>
+        <if test="phone != null and phone !=''">
+            AND b.phone LIKE CONCAT('%',#{phone},'%')
+        </if>
+    </select>
+
+    <!--查询兑奖总数-->
+    <select id="selectTotalCouponByType" resultType="com.idream.commons.lib.dto.marketing.MarketStaticsDto">
+        SELECT COUNT(DISTINCT(user_id)) as totalUserCount,count(*) as totalMarketCount
+        FROM coupon_info
+        WHERE from_type=#{fromType}
+    </select>
+
+</mapper>

@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.idream.commons.lib.mapper.ActivityExtensionMapper">
+    <resultMap id="BaseResultMap" type="com.idream.commons.lib.model.ActivityExtension">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="activity_id" property="activityId" jdbcType="INTEGER"/>
+        <result column="visit_num" property="visitNum" jdbcType="INTEGER"/>
+        <result column="sign_num" property="signNum" jdbcType="INTEGER"/>
+        <result column="task_num" property="taskNum" jdbcType="INTEGER"/>
+        <result column="invite_num" property="inviteNum" jdbcType="INTEGER"/>
+        <result column="theme_num" property="themeNum" jdbcType="INTEGER"/>
+        <result column="message_num" property="messageNum" jdbcType="INTEGER"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, activity_id, visit_num, sign_num, task_num, invite_num, theme_num, message_num,
+        create_time, update_time
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from activity_extension
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from activity_extension
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.idream.commons.lib.model.ActivityExtension" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into activity_extension (activity_id, visit_num, sign_num,
+        task_num, invite_num, theme_num,
+        message_num, create_time, update_time
+        )
+        values (#{activityId,jdbcType=INTEGER}, #{visitNum,jdbcType=INTEGER}, #{signNum,jdbcType=INTEGER},
+        #{taskNum,jdbcType=INTEGER}, #{inviteNum,jdbcType=INTEGER}, #{themeNum,jdbcType=INTEGER},
+        #{messageNum,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+        )
+    </insert>
+    <insert id="insertSelective" parameterType="com.idream.commons.lib.model.ActivityExtension" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into activity_extension
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="activityId != null">
+                activity_id,
+            </if>
+            <if test="visitNum != null">
+                visit_num,
+            </if>
+            <if test="signNum != null">
+                sign_num,
+            </if>
+            <if test="taskNum != null">
+                task_num,
+            </if>
+            <if test="inviteNum != null">
+                invite_num,
+            </if>
+            <if test="themeNum != null">
+                theme_num,
+            </if>
+            <if test="messageNum != null">
+                message_num,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="activityId != null">
+                #{activityId,jdbcType=INTEGER},
+            </if>
+            <if test="visitNum != null">
+                #{visitNum,jdbcType=INTEGER},
+            </if>
+            <if test="signNum != null">
+                #{signNum,jdbcType=INTEGER},
+            </if>
+            <if test="taskNum != null">
+                #{taskNum,jdbcType=INTEGER},
+            </if>
+            <if test="inviteNum != null">
+                #{inviteNum,jdbcType=INTEGER},
+            </if>
+            <if test="themeNum != null">
+                #{themeNum,jdbcType=INTEGER},
+            </if>
+            <if test="messageNum != null">
+                #{messageNum,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.idream.commons.lib.model.ActivityExtension">
+        update activity_extension
+        <set>
+            <if test="activityId != null">
+                activity_id = #{activityId,jdbcType=INTEGER},
+            </if>
+            <if test="visitNum != null">
+                visit_num = #{visitNum,jdbcType=INTEGER},
+            </if>
+            <if test="signNum != null">
+                sign_num = #{signNum,jdbcType=INTEGER},
+            </if>
+            <if test="taskNum != null">
+                task_num = #{taskNum,jdbcType=INTEGER},
+            </if>
+            <if test="inviteNum != null">
+                invite_num = #{inviteNum,jdbcType=INTEGER},
+            </if>
+            <if test="themeNum != null">
+                theme_num = #{themeNum,jdbcType=INTEGER},
+            </if>
+            <if test="messageNum != null">
+                message_num = #{messageNum,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.idream.commons.lib.model.ActivityExtension">
+        update activity_extension
+        set activity_id = #{activityId,jdbcType=INTEGER},
+        visit_num = #{visitNum,jdbcType=INTEGER},
+        sign_num = #{signNum,jdbcType=INTEGER},
+        task_num = #{taskNum,jdbcType=INTEGER},
+        invite_num = #{inviteNum,jdbcType=INTEGER},
+        theme_num = #{themeNum,jdbcType=INTEGER},
+        message_num = #{messageNum,jdbcType=INTEGER},
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+        update_time = #{updateTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+</mapper>

@@ -1,0 +1,717 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.idream.commons.lib.mapper.AwardPoolMapper">
+    <resultMap id="BaseResultMap" type="com.idream.commons.lib.model.AwardPool">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="property" property="property" jdbcType="TINYINT"/>
+        <result column="award_value" property="awardValue" jdbcType="VARCHAR"/>
+        <result column="description" property="description" jdbcType="VARCHAR"/>
+        <result column="instructions" property="instructions" jdbcType="VARCHAR"/>
+        <result column="exchange_score" property="exchangeScore" jdbcType="INTEGER"/>
+        <result column="exchange_count" property="exchangeCount" jdbcType="INTEGER"/>
+        <result column="total_exchange_conut" property="totalExchangeConut" jdbcType="SMALLINT"/>
+        <result column="expire_day" property="expireDay" jdbcType="INTEGER"/>
+        <result column="start_time" property="startTime" jdbcType="TIMESTAMP"/>
+        <result column="end_time" property="endTime" jdbcType="TIMESTAMP"/>
+        <result column="count" property="count" jdbcType="INTEGER"/>
+        <result column="status" property="status" jdbcType="TINYINT"/>
+        <result column="type" property="type" jdbcType="TINYINT"/>
+        <result column="user_id" property="userId" jdbcType="INTEGER"/>
+        <result column="add_user_type" property="addUserType" jdbcType="TINYINT"/>
+        <result column="book_id" property="bookId" jdbcType="INTEGER"/>
+        <result column="info_enable" property="infoEnable" jdbcType="BIT"/>
+        <result column="image" property="image" jdbcType="VARCHAR"/>
+        <result column="introduce" property="introduce" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, name, property, award_value, description, instructions, exchange_score, exchange_count,
+        total_exchange_conut, expire_day, start_time, end_time, count, status, type, user_id,
+        add_user_type, book_id, info_enable, image, introduce, create_time, update_time
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from award_pool
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from award_pool
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.idream.commons.lib.model.AwardPool" useGeneratedKeys="true" keyProperty="id">
+        insert into award_pool (name, property, award_value,
+        description, instructions, exchange_score,
+        exchange_count, total_exchange_conut, expire_day,
+        start_time, end_time, count,
+        status, type, user_id,
+        add_user_type, book_id, info_enable,
+        image, introduce, create_time,
+        update_time)
+        values (#{name,jdbcType=VARCHAR}, #{property,jdbcType=TINYINT}, #{awardValue,jdbcType=VARCHAR},
+        #{description,jdbcType=VARCHAR}, #{instructions,jdbcType=VARCHAR}, #{exchangeScore,jdbcType=INTEGER},
+        #{exchangeCount,jdbcType=INTEGER}, #{totalExchangeConut,jdbcType=SMALLINT}, #{expireDay,jdbcType=INTEGER},
+        #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, #{count,jdbcType=INTEGER},
+        #{status,jdbcType=TINYINT}, #{type,jdbcType=TINYINT}, #{userId,jdbcType=INTEGER},
+        #{addUserType,jdbcType=TINYINT}, #{bookId,jdbcType=INTEGER}, #{infoEnable,jdbcType=BIT},
+        #{image,jdbcType=VARCHAR}, #{introduce,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP},
+        #{updateTime,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="com.idream.commons.lib.model.AwardPool" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into award_pool
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="name != null">
+                name,
+            </if>
+            <if test="property != null">
+                property,
+            </if>
+            <if test="awardValue != null">
+                award_value,
+            </if>
+            <if test="description != null">
+                description,
+            </if>
+            <if test="instructions != null">
+                instructions,
+            </if>
+            <if test="exchangeScore != null">
+                exchange_score,
+            </if>
+            <if test="exchangeCount != null">
+                exchange_count,
+            </if>
+            <if test="totalExchangeConut != null">
+                total_exchange_conut,
+            </if>
+            <if test="expireDay != null">
+                expire_day,
+            </if>
+            <if test="startTime != null">
+                start_time,
+            </if>
+            <if test="endTime != null">
+                end_time,
+            </if>
+            <if test="count != null">
+                count,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+            <if test="type != null">
+                type,
+            </if>
+            <if test="userId != null">
+                user_id,
+            </if>
+            <if test="addUserType != null">
+                add_user_type,
+            </if>
+            <if test="bookId != null">
+                book_id,
+            </if>
+            <if test="infoEnable != null">
+                info_enable,
+            </if>
+            <if test="image != null">
+                image,
+            </if>
+            <if test="introduce != null">
+                introduce,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="property != null">
+                #{property,jdbcType=TINYINT},
+            </if>
+            <if test="awardValue != null">
+                #{awardValue,jdbcType=VARCHAR},
+            </if>
+            <if test="description != null">
+                #{description,jdbcType=VARCHAR},
+            </if>
+            <if test="instructions != null">
+                #{instructions,jdbcType=VARCHAR},
+            </if>
+            <if test="exchangeScore != null">
+                #{exchangeScore,jdbcType=INTEGER},
+            </if>
+            <if test="exchangeCount != null">
+                #{exchangeCount,jdbcType=INTEGER},
+            </if>
+            <if test="totalExchangeConut != null">
+                #{totalExchangeConut,jdbcType=SMALLINT},
+            </if>
+            <if test="expireDay != null">
+                #{expireDay,jdbcType=INTEGER},
+            </if>
+            <if test="startTime != null">
+                #{startTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="endTime != null">
+                #{endTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="count != null">
+                #{count,jdbcType=INTEGER},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=TINYINT},
+            </if>
+            <if test="type != null">
+                #{type,jdbcType=TINYINT},
+            </if>
+            <if test="userId != null">
+                #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="addUserType != null">
+                #{addUserType,jdbcType=TINYINT},
+            </if>
+            <if test="bookId != null">
+                #{bookId,jdbcType=INTEGER},
+            </if>
+            <if test="infoEnable != null">
+                #{infoEnable,jdbcType=BIT},
+            </if>
+            <if test="image != null">
+                #{image,jdbcType=VARCHAR},
+            </if>
+            <if test="introduce != null">
+                #{introduce,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.idream.commons.lib.model.AwardPool">
+        update award_pool
+        <set>
+            <if test="name != null">
+                name = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="property != null">
+                property = #{property,jdbcType=TINYINT},
+            </if>
+            <if test="awardValue != null">
+                award_value = #{awardValue,jdbcType=VARCHAR},
+            </if>
+            <if test="description != null">
+                description = #{description,jdbcType=VARCHAR},
+            </if>
+            <if test="instructions != null">
+                instructions = #{instructions,jdbcType=VARCHAR},
+            </if>
+            <if test="exchangeScore != null">
+                exchange_score = #{exchangeScore,jdbcType=INTEGER},
+            </if>
+            <if test="exchangeCount != null">
+                exchange_count = #{exchangeCount,jdbcType=INTEGER},
+            </if>
+            <if test="totalExchangeConut != null">
+                total_exchange_conut = #{totalExchangeConut,jdbcType=SMALLINT},
+            </if>
+            <if test="expireDay != null">
+                expire_day = #{expireDay,jdbcType=INTEGER},
+            </if>
+            <if test="startTime != null">
+                start_time = #{startTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="endTime != null">
+                end_time = #{endTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="count != null">
+                count = #{count,jdbcType=INTEGER},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=TINYINT},
+            </if>
+            <if test="type != null">
+                type = #{type,jdbcType=TINYINT},
+            </if>
+            <if test="userId != null">
+                user_id = #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="addUserType != null">
+                add_user_type = #{addUserType,jdbcType=TINYINT},
+            </if>
+            <if test="bookId != null">
+                book_id = #{bookId,jdbcType=INTEGER},
+            </if>
+            <if test="infoEnable != null">
+                info_enable = #{infoEnable,jdbcType=BIT},
+            </if>
+            <if test="image != null">
+                image = #{image,jdbcType=VARCHAR},
+            </if>
+            <if test="introduce != null">
+                introduce = #{introduce,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.idream.commons.lib.model.AwardPool">
+        update award_pool
+        set name = #{name,jdbcType=VARCHAR},
+        property = #{property,jdbcType=TINYINT},
+        award_value = #{awardValue,jdbcType=VARCHAR},
+        description = #{description,jdbcType=VARCHAR},
+        instructions = #{instructions,jdbcType=VARCHAR},
+        exchange_score = #{exchangeScore,jdbcType=INTEGER},
+        exchange_count = #{exchangeCount,jdbcType=INTEGER},
+        total_exchange_conut = #{totalExchangeConut,jdbcType=SMALLINT},
+        expire_day = #{expireDay,jdbcType=INTEGER},
+        start_time = #{startTime,jdbcType=TIMESTAMP},
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+        count = #{count,jdbcType=INTEGER},
+        status = #{status,jdbcType=TINYINT},
+        type = #{type,jdbcType=TINYINT},
+        user_id = #{userId,jdbcType=INTEGER},
+        add_user_type = #{addUserType,jdbcType=TINYINT},
+        book_id = #{bookId,jdbcType=INTEGER},
+        info_enable = #{infoEnable,jdbcType=BIT},
+        image = #{image,jdbcType=VARCHAR},
+        introduce = #{introduce,jdbcType=VARCHAR},
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+        update_time = #{updateTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <select id="selectAwardList" resultType="com.idream.commons.lib.dto.marketing.AwardPoolParams"
+            parameterType="com.idream.commons.lib.model.AwardPool">
+        select
+        <include refid="Base_Column_List"/>
+        from award_pool where book_id = -1 or add_user_type = 1 order by create_time desc
+    </select>
+    <select id="selectAwardListByBookId" resultType="com.idream.commons.lib.dto.marketing.AdminAwardPoolDto"
+            parameterType="java.lang.Integer">
+        select
+        a.id, a.name, a.award_value, a.property, a.description, a.instructions, a.exchange_score, a.exchange_count,
+        a.total_exchange_conut,
+        a.expire_day, a.start_time, a.end_time, a.count, a.status, a.type, a.user_id, a.add_user_type, a.book_id,
+        a.info_enable, a.image, a.introduce, a.create_time, a.update_time,CONCAT(b.city,",",b.name) as bookName
+        from award_pool a left join region_group_info b on a.book_id = b.id and b.category = 2
+        where 1=1
+        <if test="bookId != null and bookId != -1">
+            and a.book_id = #{bookId}
+        </if>
+        <if test="bookId != null and bookId == -1 ">
+            and a.book_id = -1
+        </if>
+        <if test="type != null and type != 0 ">
+            and a.type = #{type}
+        </if>
+        <if test="status != null ">
+            and a.status = #{status}
+        </if>
+        order by a.status asc, a.create_time desc
+    </select>
+    <select id="selectMiniAwardList" resultMap="BaseResultMap" parameterType="com.idream.commons.lib.model.AwardPool">
+        select
+        <include refid="Base_Column_List"/>
+        from award_pool
+        where end_time &gt;= date_format(NOW(),'%Y-%m-%d 00:00:00') and start_time &lt;= date_format(NOW(),'%Y-%m-%d
+        00:00:00')
+        and status = 1 order by create_time desc
+    </select>
+    <update id="updateStatus" parameterType="java.lang.Integer">
+        update award_pool
+        <if test="status != null and status==1">
+            set
+            status = 1
+            where id = #{id,jdbcType=INTEGER} and status = 2
+        </if>
+        <if test="status != null and status==2">
+            set
+            status = 2
+            where id = #{id,jdbcType=INTEGER} and status = 1
+        </if>
+
+    </update>
+    <select id="countPrizeActivityByUserId" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+        SELECT
+        count(*)
+        FROM
+        lottery_info a
+        LEFT JOIN user_activity_record b ON a.activity_id = b.activity_id
+        where b.user_id = #{userId,jdbcType=INTEGER} and a.end_time &gt;= date_format(NOW(),'%Y-%m-%d 00:00:00') and
+        a.start_time &lt;= date_format(NOW(),'%Y-%m-%d 00:00:00')
+    </select>
+    <select id="selectAwardById" resultType="com.idream.commons.lib.dto.marketing.AdminAwardPoolDto"
+            parameterType="java.lang.Integer">
+        SELECT
+        a.id,
+        a.`name`,
+        a.property,
+        a.award_value,
+        a.description,
+        a.instructions,
+        a.exchange_score,
+        a.exchange_count,
+        a.total_exchange_conut,
+        a.expire_day,
+        a.start_time,
+        a.end_time,
+        a.count,
+        a.`status`,
+        a.type,
+        a.user_id,
+        a.add_user_type,
+        a.book_id,
+        a.info_enable,
+        a.image,
+        a.introduce,
+        a.create_time,
+        a.update_time,
+        b.district_code as ad_code,
+        b.name as bookName
+        FROM
+        award_pool a left join region_group_info b on a.book_id = b.id and b.category = 2
+        where a.id = #{id,jdbcType=INTEGER}
+    </select>
+
+    <select id="selectAwardByIdAndUserId" resultType="com.idream.commons.lib.dto.marketing.AdminAwardPoolDto"
+            parameterType="java.lang.Integer">
+        SELECT
+        a.id,
+        a.`name`,
+        a.property,
+        a.award_value,
+        a.description,
+        a.instructions,
+        a.exchange_score,
+        (a.exchange_count- ifnull(c.drawCount,0)) exchangeCount,
+        a.total_exchange_conut,
+        a.expire_day,
+        a.start_time,
+        a.end_time,
+        a.count,
+        a.`status`,
+        a.type,
+        a.user_id,
+        a.add_user_type,
+        a.book_id,
+        a.info_enable,
+        a.image,
+        a.introduce,
+        a.create_time,
+        a.update_time,
+        b.district_code as ad_code,
+        b.name as bookName
+        FROM
+        award_pool a left join region_group_info b on a.book_id = b.id and b.category = 2
+        left join (
+        select count(*) as drawCount,award_id from coupon_info where user_id = #{userId} and DATE(create_time) =
+        DATE(now()) and from_type = 2 group by award_id
+        ) c on a.id = c.award_id
+        where a.id = #{id,jdbcType=INTEGER}
+    </select>
+    <select id="selectIdByPoolId" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+        select
+        id
+        from award_pool
+        where award_pool_id = #{poolId,jdbcType=INTEGER}
+    </select>
+    <!--查询兑换券列表-->
+    <select id="selectAwardsByBookId" resultType="com.idream.commons.lib.dto.marketing.AwardPoolDto">
+        select
+        a.id,a.exchange_score,a.count,a.status,a.exchange_count,a.total_exchange_conut,
+        a.name, a.description, a.instructions, ifnull(b.count,0) exchangeCount,a.expire_day,
+        a.start_time, a.end_time, a.info_enable, a.create_time,
+        a.update_time,a.image,a.type,a.property,a.book_id,a.award_value
+        from award_pool a
+        left join
+        (
+        select award_id, count(*) count from coupon_info where from_type = 2
+        AND date_format(create_time, '%Y-%m-%d 00:00:00')=date_format(NOW(), '%Y-%m-%d 00:00:00') GROUP BY award_id
+        ) b
+        on a.id = b.award_id
+        where
+        a.end_time &gt;= date_format(NOW(),'%Y-%m-%d 00:00:00')
+        and a.start_time &lt;= date_format(NOW(),'%Y-%m-%d 00:00:00')
+        and a.status = 1
+        and a.book_id=#{bookId} and a.type =1
+        order by create_time desc
+    </select>
+
+    <!--查询6条推荐可兑换券列表-->
+    <select id="selectRecommendedAwardsByBookIds" resultType="com.idream.commons.lib.dto.marketing.AwardPoolDto">
+        select
+        a.id,a.exchange_score,a.count,a.status,a.exchange_count,a.total_exchange_conut,
+        a.name, a.description, a.instructions, ifnull(b.count,0) exchangeCount,a.expire_day,
+        a.start_time, a.end_time, a.info_enable, a.create_time,
+        a.update_time,a.image,a.type,a.property,a.book_id,a.award_value
+        from award_pool a
+        left join
+        (
+        select award_id, count(*) count from coupon_info where from_type = 2 GROUP BY award_id
+        ) b
+        on a.id = b.award_id
+        where
+        a.end_time &gt;= date_format(NOW(),'%Y-%m-%d 00:00:00')
+        and a.start_time &lt;= date_format(NOW(),'%Y-%m-%d 00:00:00')
+        and a.status = 1 and a.count>0
+        <if test="bookIds != null and bookIds != ''">
+            <choose>
+                <when test="bookIds=='-1'">
+                    and a.book_id=-1 and a.type =1
+                </when>
+                <otherwise>
+                    and a.book_id in (${bookIds})
+                </otherwise>
+            </choose>
+        </if>
+        order by exchangeCount desc
+        limit 6
+    </select>
+    <!--查询距离比较近的6条奖品-->
+    <select id="selectNearAwards" resultType="com.idream.commons.lib.dto.marketing.AwardPoolDto">
+        select
+        b.id,b.exchange_score,b.count,b.status,b.total_exchange_conut,
+        b.name, b.description, b.instructions, ifnull(c.count,0) exchangeCount,b.expire_day,
+        b.start_time, b.end_time, b.info_enable, b.create_time,
+        b.update_time,b.image,b.type,b.property,b.book_id,b.award_value,
+        (
+        3959 * ACOS(
+        COS(RADIANS(#{latitude})) * cos(radians(a.latitude)) * cos(
+        RADIANS(a.longitude) - RADIANS(#{longitude})
+        ) + sin(radians(#{latitude})) * sin(radians(a.latitude))
+        )
+        ) * 1609.344 AS distance
+        from region_group_info a
+        inner join award_pool b
+        on a.id = b.book_id and b.end_time &gt;= date_format(NOW(),'%Y-%m-%d 00:00:00')
+        and b.start_time &lt;= date_format(NOW(),'%Y-%m-%d 00:00:00')
+        and b.status = 1
+        left join
+        (
+        select award_id, count(*) count from coupon_info where from_type = 2 GROUP BY award_id
+        ) c
+        on b.id = c.award_id
+        where a.category =2
+        <if test="cityCode!=null and cityCode!=''">
+            and a.city_code = #{cityCode}
+        </if>
+        order by distance asc
+        limit 6;
+    </select>
+
+    <select id="selectAwardsByUserAndBookIds" resultType="com.idream.commons.lib.dto.marketing.AwardPoolDto">
+        select
+        a.id,a.exchange_score,a.count,a.status,a.exchange_count,a.total_exchange_conut,
+        a.name, a.description, a.instructions, (a.exchange_count- ifnull(b.count,0)) exchangeCount,a.expire_day,
+        a.start_time, a.end_time, a.info_enable, a.create_time,
+        a.update_time,a.image,a.type,a.property,a.book_id,a.award_value
+        from award_pool a
+        left join
+        (
+        select award_id, count(*) count from coupon_info where from_type = 2 and user_id = #{userId}
+        AND date_format(create_time, '%Y-%m-%d 00:00:00')=date_format(NOW(), '%Y-%m-%d 00:00:00') GROUP BY award_id
+        ) b
+        on a.id = b.award_id
+        where
+        a.end_time &gt;= date_format(NOW(),'%Y-%m-%d 00:00:00')
+        and a.start_time &lt;= date_format(NOW(),'%Y-%m-%d 00:00:00')
+        and a.status = 1
+        and a.book_id in (${bookIds})
+        order by create_time desc
+    </select>
+    <select id="selectOutDateGuys" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from award_pool
+        where end_time &lt;= date_format(NOW(),'%Y-%m-%d 00:00:00')
+        and status = 1
+    </select>
+
+    <!--查询用户认证社区关联书屋的兑奖池-->
+    <select id="selectAwardPoolsByUserId" parameterType="java.lang.Integer"
+            resultType="com.idream.commons.lib.dto.marketing.UserRegionPoolInfo">
+        select a.region_id as regionId,c.group_id as bookId,b.longitude,b.latitude,e.awardCount,
+        d.longitude as bookLongitude,d.latitude as bookLatitude
+        from
+        user_region_relation a
+        inner join region_info b
+        on a.region_id = b.id
+        inner join region_group_relation c
+        on a.region_id = c.region_id
+        inner join region_group_info d
+        on c.group_id = d.id and d.category=2
+        inner join (
+        select book_id,sum(count) as awardCount
+        from award_pool
+        where status =1 and start_time &lt;=NOW() and end_time &gt;= NOW() and book_id>-1
+        group by book_id
+        ) e
+        on c.group_id = e.book_id
+        where a.user_id =#{userId} and e.awardCount>0
+    </select>
+
+    <select id="selectShelfAwardPoolsByUserId" parameterType="java.lang.Integer"
+            resultType="com.idream.commons.lib.dto.marketing.UserRegionPoolInfo">
+        select a.region_id as regionId,c.group_id as bookId,b.longitude,b.latitude,e.awardCount,
+        d.longitude as bookLongitude,d.latitude as bookLatitude
+        from
+        user_region_relation a
+        inner join region_info b
+        on a.region_id = b.id
+        inner join region_group_relation c
+        on a.region_id = c.region_id
+        inner join region_group_info d
+        on c.group_id = d.id and d.category=2
+        inner join (
+        select book_id,sum(count) as awardCount
+        from award_pool
+        where status =1 and start_time &lt;=NOW() and end_time &gt;= NOW() and book_id>-1
+        group by book_id
+        ) e
+        on c.group_id = e.book_id
+        where a.user_id =#{userId}
+    </select>
+    <!--查询社区关联书屋的兑奖池-->
+    <select id="selectAllAwardPoolsByRegion" parameterType="java.lang.Integer"
+            resultType="com.idream.commons.lib.dto.marketing.UserRegionPoolInfo">
+        select a.id as regionId,d.book_id,a.longitude,a.latitude,d.awardCount,
+        c.longitude as bookLongitude,c.latitude as bookLatitude
+        from region_info a
+        inner join region_group_relation b
+        on a.id = b.region_id
+        inner join region_group_info c
+        on b.group_id = c.id and c.category=2
+        inner join (
+        select book_id,sum(count) as awardCount
+        from award_pool
+        where status =1
+        and end_time &gt;= date_format(NOW(),'%Y-%m-%d 00:00:00')
+        and start_time &lt;= date_format(NOW(),'%Y-%m-%d 00:00:00')
+        and book_id>-1
+        group by book_id
+        ) d
+        on b.group_id = d.book_id
+        where d.awardCount>0
+        <if test="cityCode != null and cityCode!=''">
+            and a.city_code = #{cityCode}
+        </if>
+    </select>
+    <update id="updateBean" parameterType="com.idream.commons.lib.model.AwardPool">
+        update award_pool
+        <set>
+            <if test="name != null">
+                name = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="property != null">
+                property = #{property,jdbcType=TINYINT},
+            </if>
+            <if test="awardValue != null">
+                award_value = #{awardValue,jdbcType=VARCHAR},
+            </if>
+            <if test="description != null">
+                description = #{description,jdbcType=VARCHAR},
+            </if>
+            <if test="instructions != null">
+                instructions = #{instructions,jdbcType=VARCHAR},
+            </if>
+            <if test="exchangeScore != null">
+                exchange_score = #{exchangeScore,jdbcType=INTEGER},
+            </if>
+            <if test="exchangeCount != null">
+                exchange_count = #{exchangeCount,jdbcType=INTEGER},
+            </if>
+            <if test="totalExchangeConut != null">
+                total_exchange_conut = #{totalExchangeConut,jdbcType=SMALLINT},
+            </if>
+            expire_day = #{expireDay,jdbcType=INTEGER},
+            <if test="startTime != null">
+                start_time = #{startTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="endTime != null">
+                end_time = #{endTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="count != null">
+                count = #{count,jdbcType=INTEGER},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=TINYINT},
+            </if>
+            <if test="type != null">
+                type = #{type,jdbcType=TINYINT},
+            </if>
+            <if test="userId != null">
+                user_id = #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="addUserType != null">
+                add_user_type = #{addUserType,jdbcType=TINYINT},
+            </if>
+            <if test="bookId != null">
+                book_id = #{bookId,jdbcType=INTEGER},
+            </if>
+            <if test="infoEnable != null">
+                info_enable = #{infoEnable,jdbcType=BIT},
+            </if>
+            <if test="image != null">
+                image = #{image,jdbcType=VARCHAR},
+            </if>
+            <if test="introduce != null">
+                introduce = #{introduce,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <select id="getAwardDetailByBookId" parameterType="java.lang.Integer" resultType="com.idream.commons.lib.dto.marketing.AdminAwardPoolDto">
+        select
+        a.id,
+        a.name,
+        a.award_value,
+        a.property,
+        a.description,
+        a.instructions,
+        a.exchange_score,
+        a.exchange_count,
+        a.total_exchange_conut,
+        a.expire_day,
+        a.start_time,
+        a.end_time,
+        a.count,
+        a.status,
+        a.type,
+        a.user_id,
+        a.add_user_type,
+        a.book_id,
+        a.info_enable,
+        a.image,
+        a.introduce,
+        a.create_time,
+        a.update_time,
+        CONCAT(b.city,",",b.name) as bookName
+        from award_pool a
+        left join region_group_info b on a.book_id = b.id and b.category = 2
+        WHERE a.book_id = #{bookId}
+        order by a.status asc, a.create_time desc
+    </select>
+</mapper>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="commons-db" />
+        <module name="commons-lib" />
+        <module name="commons-mvc" />
+        <module name="commons-stream" />
+        <module name="config-server" />
+        <module name="eureka-server" />
+        <module name="gateway" />
+        <module name="service-activity" />
+        <module name="service-marketing" />
+        <module name="service-socket" />
+        <module name="service-task" />
+        <module name="service-user" />
+        <module name="third-interface" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="commons-db" target="1.8" />
+      <module name="commons-fdfs" target="1.8" />
+      <module name="commons-lib" target="1.8" />
+      <module name="commons-mvc" target="1.8" />
+      <module name="commons-stream" target="1.8" />
+      <module name="config-server" target="1.8" />
+      <module name="eureka-server" target="1.8" />
+      <module name="gateway" target="1.8" />
+      <module name="idream-community" target="1.8" />
+      <module name="service-activity" target="1.8" />
+      <module name="service-marketing" target="1.8" />
+      <module name="service-quartz" target="1.8" />
+      <module name="service-socket" target="1.8" />
+      <module name="service-task" target="1.8" />
+      <module name="service-user" target="1.8" />
+      <module name="third-interface" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.idream.commons.lib.mapper.UnityRegionInfoMapper">
+    <resultMap id="BaseResultMap" type="com.idream.commons.lib.model.UnityRegionInfo">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="region_id" property="regionId" jdbcType="INTEGER"/>
+        <result column="unity_region_id" property="unityRegionId" jdbcType="VARCHAR"/>
+        <result column="unity_region_name" property="unityRegionName" jdbcType="VARCHAR"/>
+        <result column="version" property="version" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, region_id, unity_region_id, unity_region_name, version, create_time
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from unity_region_info
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from unity_region_info
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.idream.commons.lib.model.UnityRegionInfo" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into unity_region_info (region_id, unity_region_id, unity_region_name,
+        version, create_time)
+        values (#{regionId,jdbcType=INTEGER}, #{unityRegionId,jdbcType=VARCHAR}, #{unityRegionName,jdbcType=VARCHAR},
+        #{version,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="com.idream.commons.lib.model.UnityRegionInfo" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into unity_region_info
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="regionId != null">
+                region_id,
+            </if>
+            <if test="unityRegionId != null">
+                unity_region_id,
+            </if>
+            <if test="unityRegionName != null">
+                unity_region_name,
+            </if>
+            <if test="version != null">
+                version,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="regionId != null">
+                #{regionId,jdbcType=INTEGER},
+            </if>
+            <if test="unityRegionId != null">
+                #{unityRegionId,jdbcType=VARCHAR},
+            </if>
+            <if test="unityRegionName != null">
+                #{unityRegionName,jdbcType=VARCHAR},
+            </if>
+            <if test="version != null">
+                #{version,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.idream.commons.lib.model.UnityRegionInfo">
+        update unity_region_info
+        <set>
+            <if test="regionId != null">
+                region_id = #{regionId,jdbcType=INTEGER},
+            </if>
+            <if test="unityRegionId != null">
+                unity_region_id = #{unityRegionId,jdbcType=VARCHAR},
+            </if>
+            <if test="unityRegionName != null">
+                unity_region_name = #{unityRegionName,jdbcType=VARCHAR},
+            </if>
+            <if test="version != null">
+                version = #{version,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.idream.commons.lib.model.UnityRegionInfo">
+        update unity_region_info
+        set region_id = #{regionId,jdbcType=INTEGER},
+        unity_region_id = #{unityRegionId,jdbcType=VARCHAR},
+        unity_region_name = #{unityRegionName,jdbcType=VARCHAR},
+        version = #{version,jdbcType=VARCHAR},
+        create_time = #{createTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+</mapper>

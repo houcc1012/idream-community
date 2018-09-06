@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.idream.commons.lib.mapper.CommunityLifeLikeRecordMapper">
+    <resultMap id="BaseResultMap" type="com.idream.commons.lib.model.CommunityLifeLikeRecord">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="owner_id" property="ownerId" jdbcType="INTEGER"/>
+        <result column="life_id" property="lifeId" jdbcType="INTEGER"/>
+        <result column="user_id" property="userId" jdbcType="INTEGER"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, owner_id, life_id, user_id, create_time, update_time
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from community_life_like_record
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from community_life_like_record
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.idream.commons.lib.model.CommunityLifeLikeRecord" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into community_life_like_record (owner_id, life_id, user_id,
+        create_time, update_time)
+        values (#{ownerId,jdbcType=INTEGER}, #{lifeId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER},
+        #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="com.idream.commons.lib.model.CommunityLifeLikeRecord"
+            useGeneratedKeys="true" keyProperty="id">
+        insert into community_life_like_record
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="ownerId != null">
+                owner_id,
+            </if>
+            <if test="lifeId != null">
+                life_id,
+            </if>
+            <if test="userId != null">
+                user_id,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="ownerId != null">
+                #{ownerId,jdbcType=INTEGER},
+            </if>
+            <if test="lifeId != null">
+                #{lifeId,jdbcType=INTEGER},
+            </if>
+            <if test="userId != null">
+                #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.idream.commons.lib.model.CommunityLifeLikeRecord">
+        update community_life_like_record
+        <set>
+            <if test="ownerId != null">
+                owner_id = #{ownerId,jdbcType=INTEGER},
+            </if>
+            <if test="lifeId != null">
+                life_id = #{lifeId,jdbcType=INTEGER},
+            </if>
+            <if test="userId != null">
+                user_id = #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.idream.commons.lib.model.CommunityLifeLikeRecord">
+        update community_life_like_record
+        set owner_id = #{ownerId,jdbcType=INTEGER},
+        life_id = #{lifeId,jdbcType=INTEGER},
+        user_id = #{userId,jdbcType=INTEGER},
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+        update_time = #{updateTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <select id="countCommunityLifeLikeByUserId" parameterType="int" resultType="int">
+        SELECT COUNT(*) FROM community_life_like_record l
+        WHERE l.owner_id=#{userId} and l.user_id!=#{userId}
+    </select>
+    <select id="countByLifeId" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM community_life_like_record where life_id = #{lifeId,jdbcType=INTEGER}
+    </select>
+    <select id="selectLikeUsersInfo" resultType="com.idream.commons.lib.dto.activity.AppNeighborInfoDto"
+            parameterType="java.lang.Integer">
+        SELECT
+        b.image,
+        b.nick_name,
+        a.user_id
+        FROM
+        community_life_like_record a
+        LEFT JOIN user_info b ON a.user_id = b.id
+        where a.life_id = #{lifeId,jdbcType=INTEGER}
+    </select>
+    <select id="getCountAllByUserId" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+        SELECT
+        count(*)
+        FROM
+        community_life_like_record
+        WHERE
+        life_id IN (
+        SELECT
+        id
+        FROM
+        community_life
+        WHERE
+        user_id = #{userId,jdbcType=INTEGER}
+        AND status = 2
+        )
+    </select>
+    <select id="getMsgThumbUpList" resultType="com.idream.commons.lib.dto.activity.AppThumbUpDetailDto"
+            parameterType="java.lang.Integer">
+        SELECT
+        a.user_id,
+        a.create_time,
+        c.nick_name,
+        c.image,
+        b.id as life_id,b.content
+        FROM
+        community_life_like_record a
+        left join community_life b on a.life_id = b.id
+        left join user_info c on a.user_id = c.id
+        WHERE
+        a.life_id IN (
+        SELECT
+        id
+        FROM
+        community_life
+        WHERE
+        user_id = #{userId,jdbcType=INTEGER}
+        AND status = 2
+        )
+    </select>
+    <resultMap id="ThumbUpDetailMap" type="com.idream.commons.lib.dto.activity.AdminThumbUpDetailDto">
+        <result column="user_id" property="userId" jdbcType="INTEGER"/>
+        <result column="nick_name" property="nickName" jdbcType="VARCHAR"/>
+        <result column="image" property="image" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <collection property="communityList" ofType="com.idream.commons.lib.dto.activity.AppCommunityInfoDto">
+            <id column="community_id" property="communityId"/>
+            <result column="community_name" property="communityName"/>
+        </collection>
+    </resultMap>
+    <select id="getThumbUpDetailList" resultMap="ThumbUpDetailMap"
+            parameterType="com.idream.commons.lib.dto.activity.AdminThumbUpParam">
+        SELECT
+        a.user_id,
+        a.create_time,
+        c.nick_name,
+        c.image,
+        b.community_id,
+        d.name as community_name
+        FROM
+        (select * from community_life_like_record WHERE
+        life_id = #{id,jdbcType=INTEGER} limit #{page,jdbcType=INTEGER},#{rows,jdbcType=INTEGER}) a
+        LEFT JOIN user_community_relation b ON b.user_id = a.user_id
+        LEFT JOIN region_group_info d ON d.id = b.community_id and d.category = 1
+        LEFT JOIN user_info c ON a.user_id = c.id
+    </select>
+    <select id="getThumbUpCount" resultType="java.lang.Integer"
+            parameterType="com.idream.commons.lib.dto.activity.AdminThumbUpParam">
+        select IFNULL(count(*),0) from
+        community_life_like_record a
+        where
+        a.life_id = #{id,jdbcType=INTEGER}
+    </select>
+    <select id="getLikeRecordByUserIdAndLifeId" resultType="com.idream.commons.lib.model.CommunityLifeLikeRecord">
+        SELECT id,user_id userId,life_id lifeId,create_time createTime,update_time updateTime FROM
+        community_life_like_record WHERE user_id=#{userId} AND life_id=#{lifeId}
+    </select>
+
+    <resultMap id="GroupInteractionResultMap" type="com.idream.commons.lib.dto.activity.AppCommunityLifeDto">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="user_id" property="userId" jdbcType="INTEGER"/>
+        <result column="nick_name" property="nickName" jdbcType="VARCHAR"/>
+        <result column="image" property="image" jdbcType="VARCHAR"/>
+        <result column="content" property="content" jdbcType="VARCHAR"/>
+        <result column="privacy_level" property="privacyLevel" jdbcType="TINYINT"/>
+        <result column="from_type" property="fromType" jdbcType="TINYINT"/>
+        <result column="activity_id" property="activityId" jdbcType="INTEGER"/>
+        <result column="activity_title" property="activityTitle" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="thumbuped" property="thumbuped" jdbcType="INTEGER"/>
+        <result column="thumbup_num" property="thumbupNum" jdbcType="INTEGER"/>
+        <result column="attended" property="attended" jdbcType="INTEGER"/>
+        <result column="mine" property="mine" jdbcType="INTEGER"/>
+        <collection property="userLabelList" ofType="com.idream.commons.lib.dto.activity.AppUserLabelDto">
+            <id column="tag_id" property="id"/>
+            <result column="label" property="label"/>
+        </collection>
+        <collection property="imageList" ofType="com.idream.commons.lib.dto.activity.AppImageParam">
+            <result column="image_url" property="imageUrl"/>
+            <result column="cover_img" property="coverImg"/>
+        </collection>
+        <collection property="neighborInfoList" ofType="com.idream.commons.lib.dto.activity.AppNeighborInfoDto">
+            <result column="other_uid" property="userId"/>
+            <result column="other_image" property="image"/>
+        </collection>
+    </resultMap>
+    <select id="getGroupInteractionList" resultMap="GroupInteractionResultMap"
+            parameterType="com.idream.commons.lib.dto.appactivity.AppActivityGroupRequestDto">
+        SELECT
+        a.id,a.user_id,a.content,a.privacy_level,a.create_time,a.from_type,a.activity_id,
+        b.nick_name,b.image,
+        c.cover_img,c.image_url,
+        IFNULL(d.thumbuped,0) as thumbuped,
+        IFNULL(e.attended,0) as attended,
+        f.user_id AS other_uid,
+        h.image AS other_image,
+        IFNULL(i.thumbup_num,0) as thumbup_num,
+        j.title AS activity_title,
+        a.user_id = #{authUserId,jdbcType=INTEGER} as mine,
+        k.achieve_id tag_id,
+        k.achieve_name label
+        FROM community_life a
+        LEFT JOIN user_info b ON b.id = a.user_id
+        LEFT JOIN community_life_image c ON c.life_id = a.id
+        LEFT JOIN (select count(*) as thumbuped ,life_id from community_life_like_record where user_id =
+        #{authUserId,jdbcType=INTEGER} GROUP BY life_id) d
+        on d.life_id = a.id
+        LEFT JOIN (select count(*) as attended,target_user_id as user_id from user_attention where user_id =
+        #{authUserId} GROUP BY target_user_id) e on e.user_id = a.user_id
+        LEFT JOIN community_life_like_record f ON f.life_id = a.id
+        LEFT JOIN user_info h ON h.id = f.user_id
+        LEFT JOIN (
+        SELECT
+        count(*) AS thumbup_num,
+        life_id
+        FROM
+        community_life_like_record
+        GROUP BY
+        life_id
+        ) i ON i.life_id = a.id
+        LEFT JOIN activity_info j ON j.id = a.activity_id
+        LEFT JOIN achievement_user k ON a.user_id=k.user_id AND k.completed=TRUE
+        WHERE a.activity_id = #{activityId} AND a.from_type=2 And a.status=2 ORDER BY a.create_time DESC
+    </select>
+
+    <select id="getMyActivityGroup" parameterType="java.lang.Integer" resultMap="GroupInteractionResultMap">
+        SELECT
+        a.id lifeId,
+        d.id activityId,d.title,d.subtitle,d.image activityImage,
+        f.image userImage,f.nick_name,
+        a.create_time publishTime,a.content,
+        b.id imageId,b.user_id,b.life_id,b.image_url,b.cover_img,b.create_time,b.update_time,
+        (SELECT count(*) FROM community_life_like_record c WHERE c.life_id= a.id AND c.owner_id=#{userId}) likeCount,
+        j.label achievement,
+        e.icon
+        FROM
+        community_life a
+        LEFT JOIN community_life_image b ON a.id=b.life_id
+        LEFT JOIN activity_info d ON a.activity_id=d.id
+        LEFT JOIN activity_type e ON d.type_id=e.id
+        LEFT JOIN user_info f ON a.user_id=f.id
+        LEFT JOIN user_tag_relation i ON a.user_id=i.user_id
+        LEFT JOIN user_tag j ON i.tag_id=j.id
+        WHERE a.user_id=#{userId} AND a.from_type=2 ORDER BY a.create_time DESC
+    </select>
+    <select id="selectCommunityLifeLikeChecked" resultType="com.idream.commons.lib.dto.app.LifeLikeResponseDto">
+        SELECT
+        a.id communityLifeLikeId,
+        a.owner_id userId,
+        (SELECT d.image FROM user_info d WHERE d.id =a.owner_id) AS userIconImage,
+        a.user_id likeId,
+        a.create_time createTime,
+        b.content,
+        (SELECT c.image_url FROM community_life_image c WHERE c.life_id =a.life_id LIMIT 1) AS image,
+        d.image likeIconImage,
+        d.nick_name likeNickName
+        FROM community_life_like_record a
+        LEFT JOIN community_life b ON b.id=a.life_id
+        LEFT JOIN user_info d ON d.id=a.user_id
+        WHERE a.owner_id=#{userId} AND a.id &lt;= #{likeRecordId} AND a.id &gt; #{emptyId} AND a.user_id
+        <![CDATA[ <> ]]> #{userId}
+        ORDER BY a.id DESC
+    </select>
+    <select id="selectCommunityLifeLikeUnchecked" resultType="com.idream.commons.lib.dto.app.LifeLikeResponseDto">
+        SELECT
+        a.id communityLifeLikeId,
+        a.owner_id userId,
+        (SELECT d.image FROM user_info d WHERE d.id =a.owner_id) AS userIconImage,
+        a.user_id likeId,
+        a.create_time createTime,
+        b.content,
+        (SELECT c.image_url FROM community_life_image c WHERE c.life_id =a.life_id LIMIT 1) AS image,
+        d.image likeIconImage,
+        d.nick_name likeNickName
+        FROM community_life_like_record a
+        LEFT JOIN community_life b ON b.id=a.life_id
+        LEFT JOIN user_info d ON d.id=a.user_id
+        WHERE a.owner_id=#{userId} AND a.id &gt; #{likeRecordId} AND a.user_id <![CDATA[ <> ]]> #{userId}
+        ORDER BY a.id DESC
+    </select>
+    <select id="selectLikeListByUserIdAndActivity"
+            resultType="com.idream.commons.lib.model.CommunityLifeLikeRecord">
+        SELECT a.* FROM community_life_like_record a INNER JOIN community_life b ON a.life_id=b.id
+        WHERE b.activity_id=#{activityId} AND a.owner_id=#{userId} AND a.id &gt; #{recordId} AND a.user_id!=#{userId}
+    </select>
+</mapper>

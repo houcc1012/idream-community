@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.idream.commons.lib.mapper.QuartzTaskMapper">
+    <!--     查询当天要开始的定时任务 -->
+    <select id="listTodayTask" resultType="com.idream.commons.lib.model.ActivityTask">
+        SELECT
+        a.id,
+        a.activity_id activityId,
+        a.start_time startTime,
+        a.end_time endTime
+        FROM
+        activity_task a
+        INNER JOIN activity_info b ON b.id = a.activity_id AND b.`status` = 4
+        WHERE a.`status` = 1 AND DATE(a.start_time) = CURDATE()
+    </select>
+    <!--     修改活动的状态 -->
+    <update id="updateTaskStatus">
+        update activity_task SET status=#{status}
+        WHERE id =#{taskId}
+    </update>
+    <!--     当天要开始的活动 -->
+    <select id="listTodayActivity" resultType="int">
+        SELECT activity_id FROM activity_time_rule_detail
+        WHERE DATE(start_time) = CURDATE() and status =4
+    </select>
+    <select id="getActivityRuleByActivityId" resultType="com.idream.commons.lib.model.ActivityTimeRule">
+        SELECT b.activity_id activityId,b.type,b.week_day weekDay FROM activity_time_rule b INNER JOIN activity_info a
+        ON a.id=b.activity_id
+        where b.activity_id=#{activityId} AND DATE(a.start_time) &lt;= CURDATE() AND a.end_time &gt;CURDATE()
+    </select>
+    <select id="listNextActivityTimeDetailByActivityId"
+            resultType="com.idream.commons.lib.model.ActivityTimeRuleDetail">
+        SELECT id, activity_id activityId,start_time startTime,end_time endTime,`status` FROM activity_time_rule_detail
+        WHERE activity_id=#{activityId} AND start_time > NOW()
+    </select>
+    <select id="findTaskExistByActivityIdAndStartTime" resultType="int">
+        SELECT COUNT(*) FROM activity_task
+        WHERE activity_id=#{activityId} AND Date(start_time)=Date(#{startTime})
+    </select>
+    <insert id="addActivityTask">
+        INSERT INTO activity_task
+        (activity_id,theme_id,start_time,end_time,create_time,update_time)
+        VALUES (#{activityId},#{themeId},#{startTime},#{endTime},#{createTime},#{updateTime})
+    </insert>
+    <select id="listIntervalActivity" resultType="com.idream.commons.lib.dto.quartz.IntervalActivityDto">
+        SELECT a.id activityId,a.start_time,a.end_time,b.type timeType,b.week_day weekDay FROM activity_info a INNER
+        JOIN activity_time_rule b ON a.id=b.activity_id
+        WHERE a.`status`=4 AND b.type=3 AND DATE(a.start_time) &lt;= CURDATE() AND a.end_time &gt;CURDATE()
+    </select>
+    <update id="updateActivityTimeDetailStatus">
+        update activity_time_rule_detail set status=#{status}
+        where id=#{id}
+    </update>
+    <select id="checkUncreateDetail" resultType="int">
+        select count(*) from activity_time_rule_detail
+        where activity_id=#{activityId} and Date(start_time)=#{nextDate}
+    </select>
+    <select id="getIntervalTimeDetail" resultType="com.idream.commons.lib.model.ActivityTimeRuleDetail">
+        SELECT id, activity_id activityId,start_time startTime,end_time endTime,`status` FROM activity_time_rule_detail
+        where activity_id=#{activityId}
+    </select>
+    <select id="getDefaultThemeIdByActivityId" resultType="java.lang.Integer">
+        select id from activity_theme where activity_id=#{activityId} and type=1
+    </select>
+    <select id="listTodayTime" resultType="com.idream.commons.lib.model.ActivityTimeRuleDetail">
+        SELECT * FROM activity_time_rule_detail a WHERE DATE(a.start_time)=CURDATE()
+    </select>
+</mapper>

@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.idream.commons.lib.mapper.ActivityTagMapper">
+    <resultMap id="BaseResultMap" type="com.idream.commons.lib.model.ActivityTag">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="label" property="label" jdbcType="VARCHAR"/>
+        <result column="pid" property="pid" jdbcType="INTEGER"/>
+        <result column="admin_user_id" property="adminUserId" jdbcType="INTEGER"/>
+        <result column="admin_nick_name" property="adminNickName" jdbcType="VARCHAR"/>
+        <result column="status" property="status" jdbcType="TINYINT"/>
+        <result column="level" property="level" jdbcType="INTEGER"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, label, pid, admin_user_id, admin_nick_name, status, level, create_time, update_time
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from activity_tag
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from activity_tag
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.idream.commons.lib.model.ActivityTag" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into activity_tag (label, pid, admin_user_id,
+        admin_nick_name, status, level,
+        create_time, update_time)
+        values (#{label,jdbcType=VARCHAR}, #{pid,jdbcType=INTEGER}, #{adminUserId,jdbcType=INTEGER},
+        #{adminNickName,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT}, #{level,jdbcType=INTEGER},
+        #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="com.idream.commons.lib.model.ActivityTag" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into activity_tag
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="label != null">
+                label,
+            </if>
+            <if test="pid != null">
+                pid,
+            </if>
+            <if test="adminUserId != null">
+                admin_user_id,
+            </if>
+            <if test="adminNickName != null">
+                admin_nick_name,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+            <if test="level != null">
+                level,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="label != null">
+                #{label,jdbcType=VARCHAR},
+            </if>
+            <if test="pid != null">
+                #{pid,jdbcType=INTEGER},
+            </if>
+            <if test="adminUserId != null">
+                #{adminUserId,jdbcType=INTEGER},
+            </if>
+            <if test="adminNickName != null">
+                #{adminNickName,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=TINYINT},
+            </if>
+            <if test="level != null">
+                #{level,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.idream.commons.lib.model.ActivityTag">
+        update activity_tag
+        <set>
+            <if test="label != null">
+                label = #{label,jdbcType=VARCHAR},
+            </if>
+            <if test="pid != null">
+                pid = #{pid,jdbcType=INTEGER},
+            </if>
+            <if test="adminUserId != null">
+                admin_user_id = #{adminUserId,jdbcType=INTEGER},
+            </if>
+            <if test="adminNickName != null">
+                admin_nick_name = #{adminNickName,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=TINYINT},
+            </if>
+            <if test="level != null">
+                level = #{level,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.idream.commons.lib.model.ActivityTag">
+        update activity_tag
+        set label = #{label,jdbcType=VARCHAR},
+        pid = #{pid,jdbcType=INTEGER},
+        admin_user_id = #{adminUserId,jdbcType=INTEGER},
+        admin_nick_name = #{adminNickName,jdbcType=VARCHAR},
+        status = #{status,jdbcType=TINYINT},
+        level = #{level,jdbcType=INTEGER},
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+        update_time = #{updateTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <select id="getAllParent" resultType="com.idream.commons.lib.model.TagInfoTree">
+        SELECT
+        id,
+        label,
+        pid
+        FROM
+        user_tag
+        where pid = 0 and status = 1 and category = 1
+    </select>
+    <select id="getAllChildren" resultType="com.idream.commons.lib.model.TagInfoTree">
+        SELECT id,
+        label,
+        pid
+        FROM
+        user_tag
+        where pid > 0 and status = 1 and category = 1
+    </select>
+    <!-- 通过前端传来的参数查询活动标签库中的二级标签 -->
+    <select id="selectActivityTagListByActivityTag"
+            resultType="com.idream.commons.lib.dto.activity.ActivityTagResponseDto">
+        select
+        id,
+        label,
+        admin_nick_name adminNickName,
+        create_time createTime
+        from activity_tag
+        <where>
+            <if test="label != null">
+                and label LIKE CONCAT(CONCAT('%', #{label}), '%')
+            </if>
+            and status = 1
+        </where>
+    </select>
+    <!-- 通过一级标签id查询二级标签,并且对已关联一级标签的二级标签做区分 -->
+    <select id="selectSecondTagToFirstTag" parameterType="java.lang.Integer"
+            resultType="com.idream.commons.lib.model.ActivityTag">
+        select
+        a.id,
+        a.label
+        from activity_tag a
+        LEFT JOIN activity_type_tag_relation b ON a.id=b.tag_id
+        LEFT JOIN activity_type c ON c.id=b.type_id
+        where c.id = #{id}
+    </select>
+    <!-- 查询所有的二级标签 -->
+    <select id="selectAllSecondTag" parameterType="java.lang.Integer"
+            resultType="com.idream.commons.lib.model.ActivityTag">
+        select
+        t.id,
+        t.label,
+        t.pid
+        from activity_tag t
+        left join activity_type_tag_relation ttr on ttr.tag_id=t.id
+        where ttr.type_id = #{id} AND t.status=1
+    </select>
+
+    <select id="getActivityTypeRelateTagList"
+            resultType="com.idream.commons.lib.dto.activity.AppActivityTypeRelateTagResponseDto">
+        SELECT
+        a.tag_id id,
+        b.label,
+        b.pid,
+        b.`level`
+        FROM
+        activity_type_tag_relation a
+        LEFT JOIN activity_tag b ON a.tag_id = b.id
+        WHERE
+        a.type_id = #{typeId}
+        AND b.`level` = 2 AND b.`status`=1
+    </select>
+    <!-- 通过空白数据查询所有活动标签数据 -->
+    <select id="selectActivityTagAllList"
+            resultType="com.idream.commons.lib.dto.activity.ActivityTagResponseDto">
+        select id,label,admin_nick_name adminNickName,create_time createTime,2 as type from activity_tag where status =
+        1
+        union all
+        select id,name label,admin_nick_name adminNickName,create_time createTime,1 as type from activity_type where
+        status = 1
+        ORDER BY createTime DESC
+    </select>
+
+    <select id="getActivityTagByActivityType" parameterType="java.lang.Integer"
+            resultType="com.idream.commons.lib.dto.activity.ActivityTypeLibraryResponseDto">
+        SELECT a.id id,a.label label,a.admin_nick_name adminNickName,a.create_time createTime
+        FROM activity_tag a INNER JOIN activity_type_tag_relation b
+        ON a.id = b.tag_id
+        WHERE b.type_id = #{typeId}
+    </select>
+
+    <resultMap id="activityTypeLibraryResultMap"
+               type="com.idream.commons.lib.dto.activity.ActivityTypeLibraryResponseDto">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="name" property="typeName" jdbcType="VARCHAR"/>
+        <result column="admin_nick_name" property="creater" jdbcType="VARCHAR"/>
+        <result column="icon" property="icon" jdbcType="VARCHAR"/>
+        <result column="icon_light" property="iconLight" jdbcType="VARCHAR"/>
+        <result column="background" property="background" jdbcType="VARCHAR"/>
+        <result column="description" property="description" jdbcType="VARCHAR"/>
+        <result column="kind" property="kind" jdbcType="TINYINT"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <collection property="tagList" ofType="com.idream.commons.lib.model.ActivityTag">
+            <id column="c_id" property="id"/>
+            <result column="label" property="label"/>
+            <result column="pid" property="pid"/>
+            <result column="admin_user_id" property="adminUserId"/>
+            <result column="adminNickName" property="adminNickName"/>
+            <result column="status" property="status"/>
+            <result column="level" property="level"/>
+            <result column="createTime" property="createTime"/>
+            <result column="update_time" property="updateTime"/>
+        </collection>
+    </resultMap>
+
+    <select id="selectActivityTypeLibrary" parameterType="java.lang.String" resultMap="activityTypeLibraryResultMap">
+        SELECT a.id,a.name,a.kind,a.icon,a.icon_light,a.background,a.description,a.admin_nick_name,a.create_time,
+        c.id c_id,c.label,c.pid,c.admin_user_id,c.admin_nick_name adminNickName,c.status,c.level,c.create_time
+        createTime,c.update_time
+        FROM activity_type a
+        LEFT JOIN activity_type_tag_relation b ON a.id=b.type_id
+        LEFT JOIN activity_tag c ON b.tag_id=c.id and c.pid = 0
+        <where>
+            1 = 1 and a.`status`=1
+            <if test="type != null">
+                and a.`name` LIKE CONCAT(CONCAT('%', #{type}), '%')
+            </if>
+        </where>
+        ORDER BY a.create_time DESC
+    </select>
+
+    <select id="selectActivityTagsByTypeId" parameterType="java.lang.Integer"
+            resultType="com.idream.commons.lib.model.ActivityTag">
+        SELECT
+        a.id,a.label,a.pid,a.admin_user_id authUserId,a.admin_nick_name adminNickName,a.`status`,a.create_time
+        createTime,a.update_time updateTime
+        FROM
+        activity_tag a LEFT JOIN activity_type_tag_relation b ON a.id=b.tag_id
+        LEFT JOIN activity_type c ON c.id=b.type_id
+        WHERE type_id = #{typeId}
+        AND a.`status`=1 AND a.pid=0
+    </select>
+
+    <select id="selectActivityTagLibraryByExample" resultType="com.idream.commons.lib.model.ActivityTag">
+        select id,label,pid,level,admin_user_id adminUserId,admin_nick_name adminNickName,create_time createTime from
+        activity_tag where status = 1
+        <if test="label!=null and label!=''">
+            and label like concat('%',#{label},'%')
+        </if>
+        ORDER BY createTime DESC
+    </select>
+</mapper>

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.idream.commons.lib.mapper.AchievementUserRecordMapper">
+    <resultMap id="BaseResultMap" type="com.idream.commons.lib.model.AchievementUserRecord">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="user_id" property="userId" jdbcType="INTEGER"/>
+        <result column="event_id" property="eventId" jdbcType="INTEGER"/>
+        <result column="count" property="count" jdbcType="INTEGER"/>
+        <result column="cycle_num" property="cycleNum" jdbcType="INTEGER"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, user_id, event_id, count, cycle_num, create_time, update_time
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from achievement_user_record
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from achievement_user_record
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.idream.commons.lib.model.AchievementUserRecord" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into achievement_user_record (user_id, event_id, count,
+        cycle_num, create_time, update_time
+        )
+        values (#{userId,jdbcType=INTEGER}, #{eventId,jdbcType=INTEGER}, #{count,jdbcType=INTEGER},
+        #{cycleNum,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+        )
+    </insert>
+    <insert id="insertSelective" parameterType="com.idream.commons.lib.model.AchievementUserRecord"
+            useGeneratedKeys="true" keyProperty="id">
+        insert into achievement_user_record
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userId != null">
+                user_id,
+            </if>
+            <if test="eventId != null">
+                event_id,
+            </if>
+            <if test="count != null">
+                count,
+            </if>
+            <if test="cycleNum != null">
+                cycle_num,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="userId != null">
+                #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="eventId != null">
+                #{eventId,jdbcType=INTEGER},
+            </if>
+            <if test="count != null">
+                #{count,jdbcType=INTEGER},
+            </if>
+            <if test="cycleNum != null">
+                #{cycleNum,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.idream.commons.lib.model.AchievementUserRecord">
+        update achievement_user_record
+        <set>
+            <if test="userId != null">
+                user_id = #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="eventId != null">
+                event_id = #{eventId,jdbcType=INTEGER},
+            </if>
+            <if test="count != null">
+                count = #{count,jdbcType=INTEGER},
+            </if>
+            <if test="cycleNum != null">
+                cycle_num = #{cycleNum,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.idream.commons.lib.model.AchievementUserRecord">
+        update achievement_user_record
+        set user_id = #{userId,jdbcType=INTEGER},
+        event_id = #{eventId,jdbcType=INTEGER},
+        count = #{count,jdbcType=INTEGER},
+        cycle_num = #{cycleNum,jdbcType=INTEGER},
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+        update_time = #{updateTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <select id="selectByUserIdAndCategoryAndKind"
+            resultType="com.idream.commons.lib.model.AchievementUserRecord">
+        SELECT * FROM achievement_user_record a WHERE a.user_id=#{userId} AND a.category=#{category} AND a.kind=#{kind}
+    </select>
+    <update id="updateCountByPrimaryKey">
+        update achievement_user_record
+        set count=#{countValue},
+        cycle_num=#{cycleValue}
+        where id=#{id}
+    </update>
+    <select id="selectByUserIdAndEventId" resultType="com.idream.commons.lib.model.AchievementUserRecord">
+        SELECT * FROM achievement_user_record a WHERE a.user_id=#{userId} AND a.event_id=#{eventId}
+    </select>
+</mapper>

@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.idream.commons.lib.mapper.UserComplaintMapper">
+    <resultMap id="BaseResultMap" type="com.idream.commons.lib.model.UserComplaint">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="from_user_id" property="fromUserId" jdbcType="INTEGER"/>
+        <result column="from_user_nick_name" property="fromUserNickName" jdbcType="VARCHAR"/>
+        <result column="business_id" property="businessId" jdbcType="INTEGER"/>
+        <result column="business_type" property="businessType" jdbcType="TINYINT"/>
+        <result column="type_id" property="typeId" jdbcType="INTEGER"/>
+        <result column="content" property="content" jdbcType="VARCHAR"/>
+        <result column="status" property="status" jdbcType="TINYINT"/>
+        <result column="images" property="images" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, from_user_id, from_user_nick_name, business_id, business_type, type_id, content,
+        status, images, create_time, update_time
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from user_complaint
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from user_complaint
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.idream.commons.lib.model.UserComplaint" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into user_complaint (from_user_id, from_user_nick_name, business_id,
+        business_type, type_id, content,
+        status, images, create_time,
+        update_time)
+        values (#{fromUserId,jdbcType=INTEGER}, #{fromUserNickName,jdbcType=VARCHAR}, #{businessId,jdbcType=INTEGER},
+        #{businessType,jdbcType=TINYINT}, #{typeId,jdbcType=INTEGER}, #{content,jdbcType=VARCHAR},
+        #{status,jdbcType=TINYINT}, #{images,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP},
+        #{updateTime,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="com.idream.commons.lib.model.UserComplaint" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into user_complaint
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="fromUserId != null">
+                from_user_id,
+            </if>
+            <if test="fromUserNickName != null">
+                from_user_nick_name,
+            </if>
+            <if test="businessId != null">
+                business_id,
+            </if>
+            <if test="businessType != null">
+                business_type,
+            </if>
+            <if test="typeId != null">
+                type_id,
+            </if>
+            <if test="content != null">
+                content,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+            <if test="images != null">
+                images,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="fromUserId != null">
+                #{fromUserId,jdbcType=INTEGER},
+            </if>
+            <if test="fromUserNickName != null">
+                #{fromUserNickName,jdbcType=VARCHAR},
+            </if>
+            <if test="businessId != null">
+                #{businessId,jdbcType=INTEGER},
+            </if>
+            <if test="businessType != null">
+                #{businessType,jdbcType=TINYINT},
+            </if>
+            <if test="typeId != null">
+                #{typeId,jdbcType=INTEGER},
+            </if>
+            <if test="content != null">
+                #{content,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=TINYINT},
+            </if>
+            <if test="images != null">
+                #{images,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.idream.commons.lib.model.UserComplaint">
+        update user_complaint
+        <set>
+            <if test="fromUserId != null">
+                from_user_id = #{fromUserId,jdbcType=INTEGER},
+            </if>
+            <if test="fromUserNickName != null">
+                from_user_nick_name = #{fromUserNickName,jdbcType=VARCHAR},
+            </if>
+            <if test="businessId != null">
+                business_id = #{businessId,jdbcType=INTEGER},
+            </if>
+            <if test="businessType != null">
+                business_type = #{businessType,jdbcType=TINYINT},
+            </if>
+            <if test="typeId != null">
+                type_id = #{typeId,jdbcType=INTEGER},
+            </if>
+            <if test="content != null">
+                content = #{content,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=TINYINT},
+            </if>
+            <if test="images != null">
+                images = #{images,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.idream.commons.lib.model.UserComplaint">
+        update user_complaint
+        set from_user_id = #{fromUserId,jdbcType=INTEGER},
+        from_user_nick_name = #{fromUserNickName,jdbcType=VARCHAR},
+        business_id = #{businessId,jdbcType=INTEGER},
+        business_type = #{businessType,jdbcType=TINYINT},
+        type_id = #{typeId,jdbcType=INTEGER},
+        content = #{content,jdbcType=VARCHAR},
+        status = #{status,jdbcType=TINYINT},
+        images = #{images,jdbcType=VARCHAR},
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+        update_time = #{updateTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <select id="selectAdminComplaintByQuery"
+            resultType="com.idream.commons.lib.dto.adminuser.AdminComplaintDto">
+        SELECT
+        a.id complaintId,
+        b.phone fromPhone,
+        CASE
+        WHEN a.business_type = 1 THEN
+        (
+        SELECT
+        c.phone
+        FROM
+        user_info c
+        WHERE
+        c.id = a.business_id
+        )
+        ELSE
+        NULL
+        END toPhone,
+        CASE
+        WHEN a.business_type = 1 THEN
+        (
+        SELECT
+        c.nick_name
+        FROM
+        user_info c
+        WHERE
+        c.id = a.business_id
+        )
+        ELSE
+        NULL
+        END nickName,
+        CASE
+        WHEN a.business_type = 2 THEN
+        (
+        SELECT
+        d.group_name
+        FROM
+        wxim_group d
+        WHERE
+        d.tid = a.business_id
+        )
+        ELSE
+        NULL
+        END groupName,
+        a.business_type,
+        a.content,
+        a.create_time complaintTime,
+        a.`status` complaintStatus,
+        a.images strImages,
+        e.title typeName
+        FROM
+        user_complaint a
+        LEFT JOIN user_info b ON b.id = a.from_user_id
+        LEFT JOIN user_complaint_type e ON e.id=a.type_id
+        <where>
+            <if test="complaintStatus!=null">
+                and a.status=#{complaintStatus}
+            </if>
+            <if test="keyWord!=null and keyWord!=''">
+                AND a.content LIKE CONCAT('%',#{keyWord},'%')
+            </if>
+            <if test="businessType!=null">
+                and a.business_type=#{businessType}
+            </if>
+        </where>
+    </select>
+
+</mapper>

@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.idream.commons.lib.mapper.UserAttentionMapper">
+    <resultMap id="BaseResultMap" type="com.idream.commons.lib.model.UserAttention">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="user_id" property="userId" jdbcType="INTEGER"/>
+        <result column="target_user_id" property="targetUserId" jdbcType="INTEGER"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, user_id, target_user_id, create_time, update_time
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from user_attention
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from user_attention
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.idream.commons.lib.model.UserAttention" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into user_attention (user_id, target_user_id, create_time,
+        update_time)
+        values (#{userId,jdbcType=INTEGER}, #{targetUserId,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP},
+        #{updateTime,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="com.idream.commons.lib.model.UserAttention" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into user_attention
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userId != null">
+                user_id,
+            </if>
+            <if test="targetUserId != null">
+                target_user_id,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="userId != null">
+                #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="targetUserId != null">
+                #{targetUserId,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.idream.commons.lib.model.UserAttention">
+        update user_attention
+        <set>
+            <if test="userId != null">
+                user_id = #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="targetUserId != null">
+                target_user_id = #{targetUserId,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.idream.commons.lib.model.UserAttention">
+        update user_attention
+        set user_id = #{userId,jdbcType=INTEGER},
+        target_user_id = #{targetUserId,jdbcType=INTEGER},
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+        update_time = #{updateTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <resultMap id="MyFansMap" type="com.idream.commons.lib.dto.activity.AppFansInfoDto">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="user_id" property="userId" jdbcType="INTEGER"/>
+        <result column="nick_name" property="nickName" jdbcType="VARCHAR"/>
+        <result column="image" property="image" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="attended" property="attendEachOther" jdbcType="INTEGER"/>
+    </resultMap>
+    <select id="getMyFansList" resultMap="MyFansMap"
+            parameterType="com.idream.commons.lib.dto.activity.AppSearchFansInfoParam">
+        SELECT
+        a.id,
+        a.create_time,
+        a.user_id,
+        b.image,
+        b.nick_name,
+        IFNULL(c.attended,0) as attended
+        FROM
+        (select * from user_attention WHERE
+        target_user_id = #{authUserId,jdbcType=INTEGER}
+        ) a
+        INNER JOIN user_info b ON a.user_id = b.id
+        left join (select count(*) as attended,target_user_id as user_id from user_attention where user_id =
+        #{authUserId,jdbcType=INTEGER} GROUP BY target_user_id) c
+        on c.user_id = a.user_id
+        order by a.id DESC
+    </select>
+    <select id="getMyFansListCount" resultType="java.lang.Integer"
+            parameterType="com.idream.commons.lib.dto.activity.AppSearchFansInfoParam">
+        select IFNULL(count(*),0) from user_attention WHERE
+        target_user_id = #{authUserId,jdbcType=INTEGER}
+        <if test="attendId != null">
+            and id &lt;= #{attendId,jdbcType=INTEGER}
+        </if>
+    </select>
+    <select id="getMyNewFansList" resultMap="MyFansMap"
+            parameterType="com.idream.commons.lib.dto.activity.AppSearchFansInfoParam">
+        SELECT
+        a.id,
+        a.create_time,
+        a.user_id,
+        b.image,
+        b.phone,
+        b.nick_name,
+        IFNULL(c.attended,0) as attended
+        FROM
+        (select * from user_attention WHERE
+        target_user_id = #{authUserId,jdbcType=INTEGER}
+        <if test="attendId != null">
+            and id &gt; #{attendId,jdbcType=INTEGER}
+        </if>
+        )a
+        INNER JOIN user_info b ON a.user_id = b.id
+        left join (select count(*) as attended,target_user_id as user_id from user_attention where user_id =
+        #{authUserId,jdbcType=INTEGER} GROUP BY target_user_id) c
+        on c.user_id = a.user_id
+        order by a.id DESC
+    </select>
+    <select id="getMyNewFansListCount" resultType="java.lang.Integer"
+            parameterType="com.idream.commons.lib.dto.activity.AppSearchFansInfoParam">
+        SELECT
+        IFNULL(count(*), 0)
+        FROM
+        user_attention a
+        WHERE
+        a.target_user_id = #{authUserId,jdbcType=INTEGER}
+        <if test="attendId != null">
+            and a.id &gt; #{attendId,jdbcType=INTEGER}
+        </if>
+    </select>
+    <resultMap id="FansInfoMap" type="com.idream.commons.lib.dto.activity.AdminFansInfoDto">
+        <result column="user_id" property="userId" jdbcType="INTEGER"/>
+        <result column="nick_name" property="nickName" jdbcType="VARCHAR"/>
+        <result column="image" property="image" jdbcType="VARCHAR"/>
+        <result column="phone" property="phone" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <collection property="communityList" ofType="com.idream.commons.lib.dto.activity.AppCommunityInfoDto">
+            <id column="community_id" property="communityId"/>
+            <result column="community_name" property="communityName"/>
+        </collection>
+    </resultMap>
+    <select id="getFansListByAttendMe" resultMap="FansInfoMap"
+            parameterType="com.idream.commons.lib.dto.activity.AdminSearchFansInfoParam">
+        SELECT
+        a.create_time,
+        a.user_id,
+        b.image,
+        b.phone,
+        b.nick_name,
+        d.id AS community_id,
+        d.region_name AS community_name
+        FROM
+        (select * from user_attention where target_user_id = #{userId,jdbcType=INTEGER} limit #{page,jdbcType=INTEGER},
+        #{rows,jdbcType=INTEGER}) a
+        LEFT JOIN user_info b ON a.user_id = b.id
+        left join user_region_relation c on c.user_id = a.user_id
+        left JOIN region_info d ON d.id = c.region_id
+        order by a.create_time desc
+    </select>
+    <select id="getAttendMeCount" resultType="java.lang.Integer"
+            parameterType="com.idream.commons.lib.dto.activity.AdminSearchFansInfoParam">
+        SELECT
+        IFNULL(count(*),0)
+        FROM
+        user_attention where target_user_id = #{userId,jdbcType=INTEGER}
+    </select>
+    <select id="getFansListByAttendOther" resultMap="FansInfoMap"
+            parameterType="com.idream.commons.lib.dto.activity.AdminSearchFansInfoParam">
+        SELECT
+        a.create_time,
+        a.target_user_id as user_id,
+        b.image,
+        b.phone,
+        b.nick_name,
+        d.id AS community_id,
+        d.region_name AS community_name
+        FROM
+        (select * from user_attention where user_id = #{userId,jdbcType=INTEGER} limit #{page,jdbcType=INTEGER},
+        #{rows,jdbcType=INTEGER}) a
+        LEFT JOIN user_info b ON a.target_user_id = b.id
+        left join user_region_relation c on c.user_id = b.id
+        left JOIN region_info d ON d.id = c.region_id
+        order by a.create_time desc
+    </select>
+    <select id="getMyAttendList" resultMap="MyFansMap"
+            parameterType="com.idream.commons.lib.dto.activity.AdminSearchFansInfoParam">
+        SELECT
+        a.id,
+        a.create_time,
+        a.target_user_id as user_id,
+        b.image,
+        b.nick_name,
+        IFNULL(c.attended,0) as attended
+        FROM
+        (select * from user_attention where user_id = #{userId,jdbcType=INTEGER}
+        <if test="page >= 0">
+            limit #{page,jdbcType=INTEGER}, #{rows,jdbcType=INTEGER}
+        </if>
+        ) a
+        LEFT JOIN user_info b ON a.target_user_id = b.id
+        left join (select count(*) as attended,user_id from user_attention where target_user_id =
+        #{userId,jdbcType=INTEGER} GROUP BY user_id) c
+        on c.user_id = a.target_user_id
+        order by a.id desc
+    </select>
+    <select id="getMyAttendListCount" resultType="java.lang.Integer"
+            parameterType="com.idream.commons.lib.dto.activity.AdminSearchFansInfoParam">
+        select IFNULL(count(*),0) from user_attention
+        where user_id = #{userId,jdbcType=INTEGER}
+    </select>
+    <select id="getAttendOtherCount" resultType="java.lang.Integer"
+            parameterType="com.idream.commons.lib.dto.activity.AdminSearchFansInfoParam">
+        SELECT
+        IFNULL(count(*),0)
+        FROM
+        user_attention where user_id = #{userId,jdbcType=INTEGER}
+    </select>
+    <select id="getFansListByAttendEachOther" resultMap="FansInfoMap"
+            parameterType="com.idream.commons.lib.dto.activity.AdminSearchFansInfoParam">
+        SELECT
+        a.create_time,
+        a.user_id,
+        b.image,
+        b.nick_name,
+        b.phone,
+        d.id AS community_id,
+        d.region_name AS community_name
+        FROM
+        (select a.create_time,
+        a.user_id from user_attention a
+        INNER JOIN (
+        SELECT
+        count(*) AS num,
+        target_user_id
+        FROM
+        user_attention
+        WHERE
+        user_id = #{userId,jdbcType=INTEGER}
+        GROUP BY
+        target_user_id
+        ) c ON c.target_user_id = a.user_id
+        WHERE
+        a.target_user_id = #{userId,jdbcType=INTEGER}
+        AND c.num = 1 LIMIT #{page,jdbcType=INTEGER},#{rows,jdbcType=INTEGER}) a
+        LEFT JOIN user_info b ON a.user_id = b.id
+        left join user_region_relation e on e.user_id = b.id
+        left JOIN region_info d ON d.id = e.region_id
+
+    </select>
+    <select id="getAttendEachOtherCount" resultType="java.lang.Integer"
+            parameterType="com.idream.commons.lib.dto.activity.AdminSearchFansInfoParam">
+        SELECT
+        IFNULL(count(*),0)
+        FROM
+        ( SELECT
+        a.create_time,
+        a.user_id
+        FROM
+        user_attention a
+        right JOIN (
+        SELECT
+        count(*) AS num,
+        target_user_id
+        FROM
+        user_attention
+        WHERE
+        user_id = #{userId,jdbcType=INTEGER}
+        GROUP BY
+        target_user_id
+        ) c ON c.target_user_id = a.user_id and a.target_user_id= #{userId,jdbcType=INTEGER}) b
+    </select>
+
+</mapper>

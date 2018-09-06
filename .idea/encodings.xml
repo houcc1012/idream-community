@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding" defaultCharsetForPropertiesFiles="UTF-8">
+    <file url="file://$PROJECT_DIR$" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/commons-db" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/commons-fdfs" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/commons-lib" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/commons-mvc" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/commons-stream" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/config-server" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/eureka-server" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/gateway" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/service-activity" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/service-marketing" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/service-quartz" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/service-socket" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/service-task" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/service-user" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/third-interface" charset="UTF-8" />
+  </component>
+</project>

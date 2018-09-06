@@ -1,0 +1,1361 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.idream.commons.lib.mapper.ActivityInfoMapper">
+    <resultMap id="BaseResultMap" type="com.idream.commons.lib.model.ActivityInfo">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="title" property="title" jdbcType="VARCHAR"/>
+        <result column="subtitle" property="subtitle" jdbcType="VARCHAR"/>
+        <result column="image" property="image" jdbcType="VARCHAR"/>
+        <result column="content" property="content" jdbcType="VARCHAR"/>
+        <result column="status" property="status" jdbcType="TINYINT"/>
+        <result column="start_time" property="startTime" jdbcType="TIMESTAMP"/>
+        <result column="end_time" property="endTime" jdbcType="TIMESTAMP"/>
+        <result column="user_id" property="userId" jdbcType="INTEGER"/>
+        <result column="type_id" property="typeId" jdbcType="INTEGER"/>
+        <result column="province" property="province" jdbcType="VARCHAR"/>
+        <result column="province_code" property="provinceCode" jdbcType="VARCHAR"/>
+        <result column="city" property="city" jdbcType="VARCHAR"/>
+        <result column="city_code" property="cityCode" jdbcType="VARCHAR"/>
+        <result column="district" property="district" jdbcType="VARCHAR"/>
+        <result column="district_code" property="districtCode" jdbcType="VARCHAR"/>
+        <result column="longitude" property="longitude" jdbcType="DECIMAL"/>
+        <result column="latitude" property="latitude" jdbcType="DECIMAL"/>
+        <result column="count" property="count" jdbcType="INTEGER"/>
+        <result column="type" property="type" jdbcType="TINYINT"/>
+        <result column="level" property="level" jdbcType="TINYINT"/>
+        <result column="time_type" property="timeType" jdbcType="TINYINT"/>
+        <result column="week_day" property="weekDay" jdbcType="VARCHAR"/>
+        <result column="address" property="address" jdbcType="VARCHAR"/>
+        <result column="create_id" property="createId" jdbcType="INTEGER"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, title, subtitle, image, content, status, start_time, end_time, user_id, type_id,
+        province, province_code, city, city_code, district, district_code, longitude, latitude,
+        count, type, level, time_type, week_day, address, create_id, create_time, update_time
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from activity_info
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from activity_info
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.idream.commons.lib.model.ActivityInfo" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into activity_info (title, subtitle, image,
+        content, status, start_time,
+        end_time, user_id, type_id,
+        province, province_code, city,
+        city_code, district, district_code,
+        longitude, latitude, count,
+        type, level, time_type,
+        week_day, address, create_id,
+        create_time, update_time)
+        values (#{title,jdbcType=VARCHAR}, #{subtitle,jdbcType=VARCHAR}, #{image,jdbcType=VARCHAR},
+        #{content,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT}, #{startTime,jdbcType=TIMESTAMP},
+        #{endTime,jdbcType=TIMESTAMP}, #{userId,jdbcType=INTEGER}, #{typeId,jdbcType=INTEGER},
+        #{province,jdbcType=VARCHAR}, #{provinceCode,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR},
+        #{cityCode,jdbcType=VARCHAR}, #{district,jdbcType=VARCHAR}, #{districtCode,jdbcType=VARCHAR},
+        #{longitude,jdbcType=DECIMAL}, #{latitude,jdbcType=DECIMAL}, #{count,jdbcType=INTEGER},
+        #{type,jdbcType=TINYINT}, #{level,jdbcType=TINYINT}, #{timeType,jdbcType=TINYINT},
+        #{weekDay,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{createId,jdbcType=INTEGER},
+        #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="com.idream.commons.lib.model.ActivityInfo" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into activity_info
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="title != null">
+                title,
+            </if>
+            <if test="subtitle != null">
+                subtitle,
+            </if>
+            <if test="image != null">
+                image,
+            </if>
+            <if test="content != null">
+                content,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+            <if test="startTime != null">
+                start_time,
+            </if>
+            <if test="endTime != null">
+                end_time,
+            </if>
+            <if test="userId != null">
+                user_id,
+            </if>
+            <if test="typeId != null">
+                type_id,
+            </if>
+            <if test="province != null">
+                province,
+            </if>
+            <if test="provinceCode != null">
+                province_code,
+            </if>
+            <if test="city != null">
+                city,
+            </if>
+            <if test="cityCode != null">
+                city_code,
+            </if>
+            <if test="district != null">
+                district,
+            </if>
+            <if test="districtCode != null">
+                district_code,
+            </if>
+            <if test="longitude != null">
+                longitude,
+            </if>
+            <if test="latitude != null">
+                latitude,
+            </if>
+            <if test="count != null">
+                count,
+            </if>
+            <if test="type != null">
+                type,
+            </if>
+            <if test="level != null">
+                level,
+            </if>
+            <if test="timeType != null">
+                time_type,
+            </if>
+            <if test="weekDay != null">
+                week_day,
+            </if>
+            <if test="address != null">
+                address,
+            </if>
+            <if test="createId != null">
+                create_id,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="title != null">
+                #{title,jdbcType=VARCHAR},
+            </if>
+            <if test="subtitle != null">
+                #{subtitle,jdbcType=VARCHAR},
+            </if>
+            <if test="image != null">
+                #{image,jdbcType=VARCHAR},
+            </if>
+            <if test="content != null">
+                #{content,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=TINYINT},
+            </if>
+            <if test="startTime != null">
+                #{startTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="endTime != null">
+                #{endTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="userId != null">
+                #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="typeId != null">
+                #{typeId,jdbcType=INTEGER},
+            </if>
+            <if test="province != null">
+                #{province,jdbcType=VARCHAR},
+            </if>
+            <if test="provinceCode != null">
+                #{provinceCode,jdbcType=VARCHAR},
+            </if>
+            <if test="city != null">
+                #{city,jdbcType=VARCHAR},
+            </if>
+            <if test="cityCode != null">
+                #{cityCode,jdbcType=VARCHAR},
+            </if>
+            <if test="district != null">
+                #{district,jdbcType=VARCHAR},
+            </if>
+            <if test="districtCode != null">
+                #{districtCode,jdbcType=VARCHAR},
+            </if>
+            <if test="longitude != null">
+                #{longitude,jdbcType=DECIMAL},
+            </if>
+            <if test="latitude != null">
+                #{latitude,jdbcType=DECIMAL},
+            </if>
+            <if test="count != null">
+                #{count,jdbcType=INTEGER},
+            </if>
+            <if test="type != null">
+                #{type,jdbcType=TINYINT},
+            </if>
+            <if test="level != null">
+                #{level,jdbcType=TINYINT},
+            </if>
+            <if test="timeType != null">
+                #{timeType,jdbcType=TINYINT},
+            </if>
+            <if test="weekDay != null">
+                #{weekDay,jdbcType=VARCHAR},
+            </if>
+            <if test="address != null">
+                #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="createId != null">
+                #{createId,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.idream.commons.lib.model.ActivityInfo">
+        update activity_info
+        <set>
+            <if test="title != null">
+                title = #{title,jdbcType=VARCHAR},
+            </if>
+            <if test="subtitle != null">
+                subtitle = #{subtitle,jdbcType=VARCHAR},
+            </if>
+            <if test="image != null">
+                image = #{image,jdbcType=VARCHAR},
+            </if>
+            <if test="content != null">
+                content = #{content,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=TINYINT},
+            </if>
+            <if test="startTime != null">
+                start_time = #{startTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="endTime != null">
+                end_time = #{endTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="userId != null">
+                user_id = #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="typeId != null">
+                type_id = #{typeId,jdbcType=INTEGER},
+            </if>
+            <if test="province != null">
+                province = #{province,jdbcType=VARCHAR},
+            </if>
+            <if test="provinceCode != null">
+                province_code = #{provinceCode,jdbcType=VARCHAR},
+            </if>
+            <if test="city != null">
+                city = #{city,jdbcType=VARCHAR},
+            </if>
+            <if test="cityCode != null">
+                city_code = #{cityCode,jdbcType=VARCHAR},
+            </if>
+            <if test="district != null">
+                district = #{district,jdbcType=VARCHAR},
+            </if>
+            <if test="districtCode != null">
+                district_code = #{districtCode,jdbcType=VARCHAR},
+            </if>
+            <if test="longitude != null">
+                longitude = #{longitude,jdbcType=DECIMAL},
+            </if>
+            <if test="latitude != null">
+                latitude = #{latitude,jdbcType=DECIMAL},
+            </if>
+            <if test="count != null">
+                count = #{count,jdbcType=INTEGER},
+            </if>
+            <if test="type != null">
+                type = #{type,jdbcType=TINYINT},
+            </if>
+            <if test="level != null">
+                level = #{level,jdbcType=TINYINT},
+            </if>
+            <if test="timeType != null">
+                time_type = #{timeType,jdbcType=TINYINT},
+            </if>
+            <if test="weekDay != null">
+                week_day = #{weekDay,jdbcType=VARCHAR},
+            </if>
+            <if test="address != null">
+                address = #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="createId != null">
+                create_id = #{createId,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.idream.commons.lib.model.ActivityInfo">
+        update activity_info
+        set title = #{title,jdbcType=VARCHAR},
+        subtitle = #{subtitle,jdbcType=VARCHAR},
+        image = #{image,jdbcType=VARCHAR},
+        content = #{content,jdbcType=VARCHAR},
+        status = #{status,jdbcType=TINYINT},
+        start_time = #{startTime,jdbcType=TIMESTAMP},
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+        user_id = #{userId,jdbcType=INTEGER},
+        type_id = #{typeId,jdbcType=INTEGER},
+        province = #{province,jdbcType=VARCHAR},
+        province_code = #{provinceCode,jdbcType=VARCHAR},
+        city = #{city,jdbcType=VARCHAR},
+        city_code = #{cityCode,jdbcType=VARCHAR},
+        district = #{district,jdbcType=VARCHAR},
+        district_code = #{districtCode,jdbcType=VARCHAR},
+        longitude = #{longitude,jdbcType=DECIMAL},
+        latitude = #{latitude,jdbcType=DECIMAL},
+        count = #{count,jdbcType=INTEGER},
+        type = #{type,jdbcType=TINYINT},
+        level = #{level,jdbcType=TINYINT},
+        time_type = #{timeType,jdbcType=TINYINT},
+        week_day = #{weekDay,jdbcType=VARCHAR},
+        address = #{address,jdbcType=VARCHAR},
+        create_id = #{createId,jdbcType=INTEGER},
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+        update_time = #{updateTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <!--根据主键查询-->
+    <select id="getActivityInfoByPrimaryKey" parameterType="java.lang.Integer"
+            resultType="com.idream.commons.lib.dto.activity.ActivityInfoDto">
+        SELECT a.title,
+        a.subtitle,
+        a.id,
+        a.image,
+        GROUP_CONCAT(c.`name`) as community_name
+        FROM activity_info a
+        LEFT JOIN activity_group_relation b
+        on b.activity_id = a.id and b.group_type = 60
+        LEFT JOIN region_group_info c on c.id = b.group_id
+        WHERE a.id= #{id,jdbcType=INTEGER}
+    </select>
+
+    <!-- 根据社区名查询社区活动列表 -->
+    <sql id="getActivityInfo">
+        a.id,
+        a.title,
+        a.subtitle,
+        a.image,
+        a.content,
+        a.status,
+        a.start_time startTime,
+        a.end_time endTime,
+        a.user_id userId,
+        a.type_id typeId,
+        a.city_code cityCode,
+        a.city,
+        a.create_time createTime,
+        a.update_time updateTime
+    </sql>
+    <select id="getActivityInfoByCommunityId" parameterType="java.lang.Integer"
+            resultType="com.idream.commons.lib.model.ActivityInfo">
+        SELECT
+        <include refid="getActivityInfo"/>
+        FROM activity_community_relation acr
+        LEFT JOIN activity_info a ON acr.activity_id=a.id
+        WHERE acr.community_id=#{community_id} AND a.`status`=4 AND a.end_time &gt; NOW()
+    </select>
+
+    <!--查询所有活动信息-->
+    <select id="getAllActivityInfos" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from activity_info
+    </select>
+
+    <select id="getPublishedActivityDetailByUserId" parameterType="java.lang.Integer"
+            resultType="com.idream.commons.lib.dto.activity.FindPublishedActivityDetailResponseDto">
+        SELECT
+        ai.id activityId,ai.time_type timeRule,ai.week_day weekDay,
+        `at`.`name` activityType,ai.title activityTitle,(SELECT GROUP_CONCAT(act.title) FROM activity_theme act WHERE
+        act.activity_id=ai.id) themeTitle,
+        (SELECT GROUP_CONCAT(agr.group_name) FROM activity_group_relation agr WHERE agr.activity_id=ai.id AND
+        agr.group_type=40) regionNames,
+        ai.start_time startTime,ai.end_time endTime,ai.status status,
+        <!--  (1,待开始) (2,进行中) (3,已结束)-->
+        CASE ai.`status`=4
+        WHEN NOW() &lt; (SELECT h.start_time FROM activity_info h WHERE h.id=ai.id) THEN 1
+        WHEN NOW() &gt; (SELECT h.start_time FROM activity_info h WHERE h.id=ai.id) and NOW() &lt; (SELECT h.end_time
+        FROM activity_info h WHERE h.id=ai.id) THEN 2
+        ELSE 3 END AS activityStatus
+        from activity_info ai LEFT JOIN activity_type at ON ai.type_id = `at`.id
+        WHERE ai.create_id = #{userId} AND ai.status =4
+    </select>
+
+    <!--查询-->
+    <select id="getActivityInfoByPrimary" parameterType="java.lang.Integer"
+            resultType="com.idream.commons.lib.model.ActivityInfo">
+        SELECT
+        title,
+        subtitle,
+        image,
+        content,
+        status,
+        start_time startTime,
+        end_time endTime,
+        user_id userId,
+        type_id typeId,
+        create_time createTime,
+        update_time updateTime
+        FROM activity_info WHERE id=#{id}
+    </select>
+
+  <resultMap type="com.idream.commons.lib.dto.activity.FindAllActivityResponseDto" id="ActivityListResultMap">
+    <id column="a_id" property="activityId"/>
+    <result column="userId" property="userId"/>
+    <result column="name" property="activityType"/>
+    <result column="activityTitle" property="title"/>
+    <result column="city" property="city"/>
+    <result column="district" property="district"/>
+    <result column="time_type" property="timeRule"/>
+    <result column="startTime" property="startTime"/>
+    <result column="endTime" property="endTime"/>
+    <result column="week_day" property="weekDay"/>
+    <result column="real_name" property="publisher"/>
+    <result column="platForm" property="platForm"/>
+    <result column="status" property="status"/>
+    <result column="existGroup" property="existGroup"/>
+    <result column="chatName" property="chatName"/>
+    <result column="isCancel" property="isCancel"/>
+    <collection property="regions" ofType="com.idream.commons.lib.model.ActivityGroupRelation">
+      <id column="b_id" property="id"/>
+      <result column="group_name" property="groupName"/>
+      <result column="activity_id" property="activityId"/>
+      <result column="group_id" property="groupId"/>
+      <result column="group_type" property="groupType"/>
+      <result column="create_time" property="createTime"/>
+    </collection>
+  </resultMap>
+
+  <!-- 后台活动列表查询-->
+ <select id="selectActivityByQuery" parameterType="com.idream.commons.lib.dto.activity.QueryActivityPage" resultMap="ActivityListResultMap">
+     select
+       a.id a_id,
+       a.user_id userId,
+       a.time_type time_type,
+       a.week_day week_day,
+       c.name name,
+       a.title AS activityTitle,
+       a.city city,
+       a.district district,
+       b.id b_id,
+       b.group_name,
+       b.activity_id,
+       b.group_id,
+       b.group_type,
+       b.create_time,
+       a.start_time startTime,
+       a.end_time endTime,
+       d.real_name real_name,
+       CASE WHEN f.`name` IS NULL THEN (SELECT nick_name FROM user_info WHERE id=2 ) ELSE f.`name` END AS platForm,
+       (case when g.business_id is null then 0 else 1 end )as existGroup,
+       g.id,
+       g.group_name chatName,
+       (case when h.activity_id is null then 0 else 1 end ) as isCancel,
+       a.status status
+     FROM activity_info a
+     LEFT JOIN activity_group_relation b ON a.id=b.activity_id
+     LEFT JOIN activity_type c on c.id=a.type_id
+     LEFT JOIN user_info d on d.id =a.create_id
+     LEFT JOIN user_manager e ON e.user_id=a.user_id
+     LEFT JOIN region_group_info f ON e.book_id=f.id AND f.category=2
+     LEFT JOIN wxim_group g ON g.business_id=a.id AND g.business_type=1
+     LEFT JOIN (SELECT activity_id,category,type FROM activity_operate_record)h ON h.activity_id=a.id AND h.category=1 AND h.type=1
+     <where>
+         1=1 AND a.status &gt; 2 AND a.status &lt; 6
+       <if test="communityName!=null and communityName!=''">
+         and b.group_name like concat('%',#{communityName},'%')
+       </if>
+       <if test="activityTitle!=null and activityTitle!=''">
+           and a.title like concat('%',#{activityTitle},'%')
+       </if>
+       <if test="typeId!=null and typeId!=''">
+           and a.type_id=#{typeId}
+       </if>
+       <if test="provinceCode!=null and provinceCode!=''" >
+           and a.province_code=#{provinceCode}
+       </if>
+       <if test="cityCode!=null and cityCode!=''">
+           and a.city_code=#{cityCode}
+       </if>
+       <if test="adCode!=null and adCode!=''">
+           and a.district_code=#{adCode}
+       </if>
+       <if test="bookName!=null and bookName!=''">
+           and f.name like concat('%',#{bookName},'%')
+       </if>
+       <if test="activityStatus!=null">
+         <if test="activityStatus==1">
+           and (a.status=3 or a.status=5)
+         </if>
+         <if test="activityStatus==2">
+           and a.status=4 AND a.start_time &gt; NOW()
+         </if>
+         <if test="activityStatus==3">
+           and a.status=4 AND a.start_time &lt; NOW() AND a.end_time &gt; NOW()
+         </if>
+         <if test="activityStatus==4">
+           and a.status=4 AND a.end_time &lt; NOW()
+         </if>
+       </if>
+       <if test="existGroup!=null">
+         <if test="existGroup==0">
+           and g.id IS NULL
+         </if>
+         <if test="existGroup==1">
+           and g.id IS NOT NULL
+         </if>
+       </if>
+     </where>
+    order by CASE
+      WHEN a.`status`=3 OR a.`status`=5 THEN 1
+      WHEN (a.`status`=4 AND a.start_time &gt; NOW()) THEN 2
+      WHEN (a.`status`=4 AND a.start_time &lt; NOW() AND a.end_time &gt; NOW()) THEN 3
+      WHEN (a.`status`=4 AND a.end_time &lt; NOW()) THEN 9
+      ELSE 5 END ,
+      a.update_time desc
+ </select>
+
+    <resultMap type="com.idream.commons.lib.dto.activity.FindAllActivityResponseDto" id="ManagerActivityListResultMap">
+        <id column="a_id" property="activityId"/>
+        <result column="userId" property="userId"/>
+        <result column="name" property="activityType"/>
+        <result column="activityTitle" property="title"/>
+        <result column="city" property="city"/>
+        <result column="district" property="district"/>
+        <result column="time_type" property="timeRule"/>
+        <result column="startTime" property="startTime"/>
+        <result column="endTime" property="endTime"/>
+        <result column="week_day" property="weekDay"/>
+        <result column="real_name" property="publisher"/>
+        <result column="platForm" property="platForm"/>
+        <result column="fromType" property="fromType"/>
+        <result column="status" property="status"/>
+        <result column="existGroup" property="existGroup"/>
+        <result column="chatName" property="chatName"/>
+        <result column="isCancel" property="isCancel"/>
+        <collection property="regions" ofType="com.idream.commons.lib.model.ActivityGroupRelation">
+            <id column="d_id" property="id"/>
+            <result column="group_id" property="groupId"/>
+            <result column="group_name" property="groupName"/>
+            <result column="activity_id" property="activityId"/>
+            <result column="group_type" property="groupType"/>
+        </collection>
+    </resultMap>
+    <!--管理者平台活动列表查询 -->
+    <select id="selectManagerActivityListByQuery"
+            parameterType="com.idream.commons.lib.dto.activity.Manager.ActivityListRequestDto"
+            resultMap="ManagerActivityListResultMap">
+        select
+        a.id a_id,
+        a.time_type time_type,
+        a.week_day week_day,
+        a.title AS activityTitle,
+        a.city city,
+        a.district district,
+        a.start_time startTime,
+        a.end_time endTime,
+        a.status status,
+        d.id d_id,
+        d.group_id,
+        d.group_name,
+        d.activity_id,
+        d.group_type,
+        c.name name,
+        CASE WHEN a.user_id=a.create_id THEN 1 ELSE 0 END AS fromType,
+        CASE WHEN f.`name` IS NULL THEN (SELECT nick_name FROM user_info WHERE id=2 ) ELSE f.`name` END AS platForm,
+        (case when g.business_id is null then 0 else 1 end )as existGroup,
+        g.group_name chatName,
+        (case when h.activity_id is null then 0 else 1 end ) as isCancel
+        from activity_info a
+        INNER JOIN activity_group_relation b ON a.id=b.activity_id and b.group_id= #{bookId} and b.group_type=70
+        LEFT JOIN activity_type c on c.id=a.type_id
+        LEFT JOIN activity_group_relation d ON a.id=d.activity_id AND d.group_type = 40
+        LEFT JOIN user_manager i ON i.user_id=a.user_id
+        LEFT JOIN region_group_info f ON f.id=i.book_id
+        LEFT JOIN (SELECT id,business_id,group_name FROM wxim_group )g ON g.business_id=a.id
+        LEFT JOIN (SELECT activity_id,category,type FROM activity_operate_record)h ON h.activity_id=a.id AND
+        h.category=1 AND h.type=1
+        <where>
+            a.status &lt; 9
+            <if test="activityTitle!=null and activityTitle!=''">
+                and a.title like concat('%',#{activityTitle},'%')
+            </if>
+            <if test="typeId!=null">
+                and a.type_id=#{typeId}
+            </if>
+            <if test="regionId!=null">
+                and d.group_id = #{regionId}
+            </if>
+            <if test="activityStatus!=null">
+                <if test="activityStatus==1">
+                    and (a.status=3 or a.status=5)
+                </if>
+                <if test="activityStatus==2">
+                    and a.status=4 AND a.start_time &gt; NOW()
+                </if>
+                <if test="activityStatus==3">
+                    and a.status=4 AND a.start_time &lt; NOW() AND a.end_time &gt; NOW()
+                </if>
+                <if test="activityStatus==4">
+                    and a.status=4 AND a.end_time &lt; NOW()
+                </if>
+                <if test="activityStatus==5">
+                    and a.status=1
+                </if>
+            </if>
+            <if test="existGroup!=null">
+                <if test="existGroup==0">
+                    and g.id IS NULL
+                </if>
+                <if test="existGroup==1">
+                    and g.id IS NOT NULL
+                </if>
+            </if>
+            <if test="checkStatus!=null">
+                <if test="checkStatus==1">
+                    and a.status=2 OR a.status=7
+                </if>
+                <if test="checkStatus==2">
+                    and a.status &gt; 2 AND a.status &lt; 6
+                </if>
+                <if test="checkStatus==3">
+                    and a.status=6 OR a.status=8
+                </if>
+            </if>
+        </where>
+        order by CASE
+        WHEN a.`status`=1 THEN 1
+        WHEN a.`status`=3 THEN 2
+        WHEN a.`status`=2 THEN 3
+        WHEN a.`status`=5 THEN 4
+        WHEN (a.`status`=4 AND a.start_time &gt; NOW()) THEN 5
+        WHEN (a.`status`=4 AND a.start_time &lt; NOW() AND a.end_time &gt; NOW()) THEN 6
+        WHEN (a.`status`=4 AND a.end_time &lt; NOW()) THEN 9
+        ELSE 7 END , a.update_time desc
+    </select>
+
+    <resultMap type="com.idream.commons.lib.dto.activity.ActivityListCheckResponseDto" id="ActivityCheckListResultMap">
+        <id column="a_id" property="activityId"/>
+        <result column="name" property="activityType"/>
+        <result column="activityTitle" property="title"/>
+        <result column="city" property="city"/>
+        <result column="district" property="district"/>
+        <result column="time_type" property="timeRule"/>
+        <result column="startTime" property="startTime"/>
+        <result column="endTime" property="endTime"/>
+        <result column="week_day" property="weekDay"/>
+        <result column="real_name" property="publisher"/>
+        <result column="status" property="status"/>
+        <result column="regionGroupBook" property="regionGroupBook"/>
+    </resultMap>
+
+    <select id="selectActivityCheckListByQuery"
+            parameterType="com.idream.commons.lib.dto.activity.ActivityListCheckRequestDto"
+            resultMap="ActivityCheckListResultMap">
+        select
+        a.id a_id,
+        a.time_type time_type,
+        a.week_day week_day,
+        c.name name,
+        a.title AS activityTitle,
+        a.city city,
+        a.district district,
+        a.start_time startTime,
+        a.end_time endTime,
+        d.real_name real_name,
+        a.status status,
+        f.name as regionGroupBook
+        from activity_info a
+        LEFT JOIN user_info d on d.id =a.create_id AND d.user_type=1
+        LEFT JOIN activity_type c on c.id=a.type_id
+        LEFT JOIN user_manager e ON a.create_id = e.user_id
+        LEFT JOIN region_group_info f ON f.id = e.book_id
+        <where>
+            1=1 AND a.status &gt; 1 AND a.status &lt; 9 AND a.user_id=a.create_id
+            <if test="activityTitle!=null and activityTitle!=''">
+                and a.title like concat('%',#{activityTitle},'%')
+            </if>
+            <if test="typeId!=null ">
+                and a.type_id=#{typeId}
+            </if>
+            <if test="bookName!=null and bookName!=''">
+                and f.name like concat('%',#{bookName},'%')
+            </if>
+            <if test="provinceCode!=null and provinceCode!=''">
+                and a.province_code=#{provinceCode}
+            </if>
+            <if test="cityCode!=null and cityCode!=''">
+                and a.city_code=#{cityCode}
+            </if>
+            <if test="adCode!=null and adCode!=''">
+                and a.district_code=#{adCode}
+            </if>
+            <if test="checkStatus!=null">
+                and
+                <if test="checkStatus==1">
+                    a.status &lt; 3
+                </if>
+                <if test="checkStatus==2">
+                    a.status &gt; 2 AND a.status &lt; 6
+                </if>
+                <if test="checkStatus==3">
+                    a.status &gt; 5
+                </if>
+            </if>
+        </where>
+        order by a.create_time desc
+    </select>
+
+    <select id="participateActivityDetailList" parameterType="java.lang.Integer"
+            resultType="com.idream.commons.lib.dto.activity.FindParticipateActivityDetailResponseDto">
+        SELECT
+        b.id activityId,
+        (select count(*) from user_activity_record where user_id=#{userId} AND exit_status = 1 ) activityTotal,
+        d.`name` activityType,b.title activityTitle,b.time_type timeRule,b.week_day weekDay,
+        (SELECT GROUP_CONCAT(c.title) FROM activity_theme c WHERE c.activity_id=b.id) themeTitle,
+        (SELECT GROUP_CONCAT(agr.group_name) FROM activity_group_relation agr WHERE agr.activity_id=b.id AND
+        agr.group_type=40) regionNames,
+        (SELECT GROUP_CONCAT(agr.group_name) FROM activity_group_relation agr WHERE agr.activity_id=b.id AND
+        agr.group_type=60) regionGroupNames,
+        b.start_time startTime,
+        b.end_time endTime,
+        e.nick_name publisher,
+        <!-- (1,未发布) (2,待开始) (3,进行中) (4,已结束)-->
+        CASE
+        WHEN b.status &gt; 0 and b.status &lt; 4 THEN 1
+        WHEN b.status=4 and NOW() &lt; (SELECT h.start_time FROM activity_info h WHERE h.id=b.id) THEN 2
+        WHEN b.status=4 and NOW() &gt; (SELECT h.start_time FROM activity_info h WHERE h.id=b.id) and NOW() &lt; (SELECT
+        h.end_time FROM activity_info h WHERE h.id=b.id) THEN 3
+        ELSE 4 END AS status
+        FROM
+        user_activity_record a
+        LEFT JOIN activity_info b ON a.activity_id=b.id
+        LEFT JOIN activity_theme c ON a.activity_id=c.activity_id
+        LEFT JOIN activity_type d ON b.type_id=d.id
+        LEFT JOIN user_info e ON e.id=b.user_id
+        WHERE
+        a.user_id=#{userId} AND a.exit_status=1 GROUP BY b.id
+    </select>
+
+    <select id="getActivityStatus" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+        SELECT
+        CASE
+        WHEN `status` = 0 THEN 4
+        WHEN start_time &gt; NOW() THEN 1
+        WHEN start_time &lt; NOW() AND end_time &gt; NOW() THEN 2
+        WHEN end_time &lt; NOW() THEN 3
+        ELSE 5 END AS activityStatus
+        from
+        activity_info
+        WHERE id = #{activityId}
+    </select>
+
+
+    <select id="getActivityDetailByActivityId"
+            resultType="com.idream.commons.lib.dto.appactivity.AppActivityInfoResponseDto">
+        SELECT
+        a.id activityId,a.title,a.subtitle,a.image,a.type fromType,a.content,
+        a.start_time startTime,a.end_time endTime,a.create_time publishTime,
+        a.province , a.city, a.district , a.address ,a.time_type AS timeType,
+        (select GROUP_CONCAT(agr.group_name) FROM activity_group_relation agr where agr.activity_id = a.id and
+        agr.group_type = 40 ) AS regionName,
+        (select GROUP_CONCAT(agr.group_name) FROM activity_group_relation agr where agr.activity_id = a.id and
+        agr.group_type = 60 ) AS groupName,
+        (select GROUP_CONCAT(agr.group_name) FROM activity_group_relation agr where agr.activity_id = a.id and
+        agr.group_type = 70 ) AS bookName,
+        CASE (SELECT count(*) FROM user_activity_record u WHERE u.activity_id=a.id AND u.exit_status=1 AND user_id =
+        #{userId})
+        WHEN 0 THEN 0
+        ELSE 1
+        END AS joinedStatus,
+        CASE WHEN NOW() &lt; a.start_time THEN 1
+        WHEN NOW() &gt; a.start_time AND NOW() &lt; a.end_time THEN 2
+        ELSE 3
+        END AS activityStatus,
+        CASE (SELECT count(*) FROM activity_information_relation air WHERE air.activity_id=a.id)
+        WHEN 0 THEN 0
+        ELSE 1
+        END AS infoCollection,
+        (SELECT SUM(count) FROM user_visit_record u where u.business_id = a.id AND u.business_type = 1 ) userVisitCount,
+        b.nick_name publishName,b.image publishImage
+        FROM activity_info a
+        LEFT JOIN user_info b ON a.user_id = b.id
+        where a.id = #{activityId} and a.`status` IN (0,4)
+    </select>
+
+    <!-- 社区活动列表展示 -->
+    <select id="selectCommunityActivityList" resultType="com.idream.commons.lib.dto.app.CommunityActivityResponseDto">
+        select
+        a.id activityId,
+        a.title,
+        a.subtitle subTitle,
+        1 AS activityStatus,
+        a.type,
+        c.longitude,
+        c.latitude,
+        c.id communityId,
+        c.community_name communityName,
+        c.book_id bookId,
+        (
+        3959 * ACOS(
+        COS(RADIANS(#{latitude})) * cos(radians(latitude)) * cos(
+        RADIANS(longitude) - RADIANS(#{longitude})
+        ) + sin(radians(#{latitude})) * sin(radians(latitude))
+        )
+        ) * 1609.344 AS distance
+        from activity_info a
+        left join activity_community_relation b on b.activity_id=a.id
+        inner join community_info c on c.id=b.community_id
+        where a.start_time &lt;= NOW() and a.end_time &gt; NOW() and a.status=4
+        order by distance
+    </select>
+    <select id="selectCommunityActivityListByCommunityId" parameterType="java.lang.Integer"
+            resultType="com.idream.commons.lib.dto.app.CommunityActivityResponseDto">
+        select
+        a.id activityId,
+        a.title,
+        a.subtitle subTitle,
+        1 AS activityStatus,
+        a.type,
+        c.longitude,
+        c.latitude,
+        c.id communityId,
+        c.community_name communityName,
+        c.book_id bookId
+        from activity_info a
+        left join activity_community_relation b on b.activity_id=a.id
+        inner join community_info c on c.id=b.community_id
+        where a.start_time &lt;= NOW() and a.end_time &gt; NOW() and a.status=4 and c.id=#{communityId}
+    </select>
+
+
+    <select id="getByActivityId" resultType="com.idream.commons.lib.dto.appactivity.AppActivityInfoDto">
+        SELECT
+        a.title,a.start_time startTime,a.end_time endTime,
+        (SELECT GROUP_CONCAT(c.community_name,d.`name`,'-',c.address)) address
+        FROM activity_info a
+        LEFT JOIN activity_community_relation b ON a.id=b.activity_id
+        LEFT JOIN community_info c on c.id=b.community_id
+        LEFT JOIN activity_place d ON b.place_id=d.id
+        WHERE a.id = #{activityId}
+    </select>
+
+    <select id="selectCommunityActivityListByRegionId" parameterType="java.lang.Integer"
+            resultType="com.idream.commons.lib.dto.app.CommunityActivityResponseDto">
+        SELECT
+        a.id activityId,
+        a.title,
+        a.subtitle subTitle,
+        1 AS activityStatus,
+        a.type,
+        c.longitude,
+        c.latitude,
+        c.id communityId,
+        c.community_name communityName,
+        c.book_id bookId,
+        e.id regionId,
+        e.region_name regionName
+        FROM activity_info a
+        LEFT JOIN activity_community_relation b ON b.activity_id=a.id
+        INNER JOIN community_info c ON c.id=b.community_id
+        INNER JOIN community_region_relation d ON d.community_id = c.id
+        INNER JOIN community_region_info e ON e.id = d.region_id
+        WHERE a.start_time &lt;= NOW() AND a.end_time &gt; NOW() AND a.status=4 and e.id= #{regionId}
+    </select>
+
+
+    <select id="getActivityByRegionId" parameterType="java.util.List"
+            resultType="com.idream.commons.lib.model.ActivityInfo">
+        select * from activity_info where id in
+        <foreach item="item" index="index" collection="activityIds"
+                 open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+
+    <select id="getActivityInfoByRegionId" parameterType="com.idream.commons.lib.dto.app.RegionActivityParams"
+            resultType="com.idream.commons.lib.dto.app.RegionActivityDto">
+        SELECT
+        b.id activityId,
+        b.title,
+        b.subtitle subTitle,
+        b.start_time startTime,
+        b.end_time endTime,
+        b.address,
+        b.longitude,
+        b.latitude
+        FROM activity_display_relation a
+        INNER JOIN activity_info b ON b.id = a.activity_id AND b.`status` = 4
+        WHERE NOW() &gt;= a.start_time AND NOW() &lt; a.end_time
+        AND CASE WHEN a.display_type = 20 THEN a.display_id = #{cityCode}
+        WHEN a.display_type = 1 THEN TRUE
+        WHEN a.display_type =40 THEN a.display_id = #{regionId}
+        END
+        AND NOW() &lt; b.end_time AND NOW() &gt;= b.start_time
+        GROUP BY b.id
+        ORDER BY a.display_type DESC
+    </select>
+
+    <select id="getNearbyActivityByTypeIdAndCityCode"
+            resultType="com.idream.commons.lib.dto.appactivity.AppActivityListDto">
+        SELECT
+        b.id activityId,
+        b.title,
+        b.subtitle,
+        b.image,
+        CASE WHEN g.start_time IS NULL THEN b.start_time ELSE g.start_time END AS startTime,
+        CASE WHEN g.end_time IS NULL THEN b.end_time ELSE g.end_time END AS endTime,
+        CASE WHEN NOW() &lt; g.start_time THEN 1
+        WHEN NOW() &lt; g.end_time THEN 2
+        ELSE 3
+        END AS activityStatus,
+        b.time_type AS timeType,
+        b.week_day AS weekDay,
+        b.type AS fromType,
+        b.city,
+        e.region_name AS regionName,
+        e.district,
+        (
+        GROUP_CONCAT( b.province,b.city,b.district, e.region_name ,b.address)
+        ) address,
+        (
+        3959 * ACOS(
+        COS(RADIANS(#{latitude})) * cos(radians(b.latitude)) * cos(
+        RADIANS(b.longitude) - RADIANS(#{longitude})
+        ) + sin(radians(#{latitude})) * sin(radians(b.latitude))
+        )
+        ) * 1609.344 AS distance,
+        CASE ( SELECT count(*) FROM user_activity_record u where u.activity_id = b.id AND u.user_id = #{userId} ) WHEN 0
+        THEN 0 ELSE 1 END joined,
+        CASE WHEN g.distanceCurrentDay IS NULL THEN -1 else g.distanceCurrentDay END AS distanceCurrentDay,
+        CASE WHEN (SELECT COUNT(*) from user_community_relation tem WHERE tem.user_id= #{userId} AND EXISTS (SELECT * FROM
+        activity_group_relation tat WHERE tat.activity_id=b.id AND tat.group_type=60 and tat.group_id=tem.community_id))
+        THEN 60 ELSE a.display_type END as displayOrder
+        FROM activity_display_relation a
+        INNER JOIN activity_info b ON b.id = a.activity_id
+        LEFT JOIN activity_group_relation d ON d.activity_id = b.id AND d.group_type = 40
+        LEFT JOIN region_info e ON e.id = d.group_id
+        LEFT JOIN region_group_relation f ON f.region_id = e.id
+        LEFT JOIN
+        (SELECT activity_id, start_time, end_time, TIMESTAMPDIFF(SECOND,NOW(), start_time) AS distanceCurrentDay
+        FROM activity_task WHERE NOW() &lt; end_time GROUP BY activity_id ORDER BY end_time) g
+        ON b.id = g.activity_id
+        WHERE b.type_id = #{typeId}
+        AND b.`status` = 4
+        AND NOW() &gt; a.start_time
+        AND NOW() &lt; a.end_time
+        AND
+        CASE WHEN a.display_type = 20 THEN a.display_id = #{cityCode}
+        WHEN a.display_type =40 THEN a.display_id in ( SELECT h.region_id FROM user_region_relation h WHERE
+        user_id=#{userId} )
+        WHEN a.display_type =60 THEN a.display_id in (SELECT w.community_id FROM user_community_relation w WHERE w.user_id = #{userId})
+        WHEN a.display_type = 1 THEN TRUE
+        END
+        GROUP BY activityId
+        ORDER BY
+        FIELD(activityStatus,2,1,3),displayOrder DESC, startTime,distance
+    </select>
+
+    <sql id="appActivityDisplayCommonSql">
+        <where>
+            1=1
+            <if test="typeId!=null and typeId!=''">
+                and b.type_id = #{typeId}
+            </if>
+        </where>
+        AND b.`status` = 4
+        AND NOW() &gt; a.start_time
+        AND NOW() &lt; a.end_time
+        AND
+        CASE WHEN a.display_type = 20 THEN a.display_id = #{cityCode}
+        WHEN a.display_type =40 THEN a.display_id in (
+        <include refid="selectRegionIdByUserId"/>
+        )
+        WHEN a.display_type = 1 THEN TRUE
+        END
+        GROUP BY activityId
+        ORDER BY FIELD(activityStatus,2,1,3),a.display_type,distance
+    </sql>
+
+    <sql id="selectRegionIdByUserId">
+        SELECT h.region_id FROM user_region_relation h WHERE user_id=#{userId}
+    </sql>
+
+    <select id="selectActivityByTitleAndCityCode"
+            resultType="com.idream.commons.lib.dto.appactivity.AppActivitySearchDto">
+        SELECT
+        a.id activityId,a.title,a.subtitle,a.image,
+        CASE WHEN e.start_time &gt; NOW() THEN 1
+        WHEN e.end_time &gt; NOW() THEN 2
+        ELSE 3 END AS activityStatus,
+        CASE
+        WHEN (SELECT COUNT(*) FROM activity_group_relation b INNER JOIN user_community_relation c ON
+        c.community_id=b.group_id AND c.user_id=#{userId} WHERE a.id=b.activity_id AND b.group_type=60)
+        THEN 4
+        ELSE a.level END orderNum,
+        CASE WHEN (SELECT COUNT(*) FROM user_activity_record b WHERE b.user_id=#{userId} AND b.activity_id=a.id) THEN 1
+        ELSE 0 END joined,
+        a.time_type,
+        a.week_day,
+        CASE WHEN e.start_time IS NULL THEN a.start_time ELSE e.start_time END AS startTime,
+        CASE WHEN e.end_time IS NULL THEN a.end_time ELSE e.end_time END AS endTime,
+        e.distanceCurrentDay
+        FROM
+        activity_info a
+        LEFT JOIN (SELECT activity_id, start_time, end_time, TIMESTAMPDIFF(SECOND,NOW(), start_time) AS
+        distanceCurrentDay
+        FROM activity_task WHERE NOW() &lt; end_time GROUP BY activity_id ORDER BY end_time) e ON e.activity_id=a.id
+        LEFT JOIN activity_display_relation adr on adr.activity_id = a.id
+        WHERE
+        a.city_code = #{cityCode}
+        AND a.`status` = 4
+        <if test="title==''">
+            AND FALSE
+        </if>
+        AND a.title like CONCAT('%',#{title},'%')
+        AND
+        CASE
+        WHEN adr.display_type = 1 THEN TRUE
+        WHEN adr.display_type = 20 THEN adr.display_id = #{cityCode}
+        WHEN adr.display_type = 40 THEN adr.display_id in ( SELECT urr.region_id FROM user_region_relation urr
+        WHERE user_id=#{userId} )
+        WHEN adr.display_type = 60 THEN adr.display_id in ( SELECT ucr.community_id FROM user_community_relation ucr
+        WHERE user_id=#{userId} )
+        ELSE FALSE END
+        group by a.id
+        ORDER BY FIELD(activityStatus,2,1,3),orderNum desc
+    </select>
+
+
+    <select id="activityDetailBottom" resultType="com.idream.commons.lib.dto.activity.ActivityDetailBottomResponseDto">
+        SELECT
+        CASE (SELECT COUNT(id) FROM wxim_group where business_id = #{activityId}) WHEN 0 THEN 0 ELSE 1 END AS chat,
+        CASE (SELECT COUNT(id) FROM user_activity_collection where activity_id = #{activityId} and user_id = #{userId})
+        WHEN 0 THEN 0 ELSE 1 END AS collection,
+        CASE (SELECT COUNT(id) FROM user_activity_record where activity_id = #{activityId} and user_id = #{userId}) WHEN
+        0 THEN 0 ELSE 1 END AS joined,
+        CASE WHEN NOW() &lt; a.start_time THEN 1 WHEN NOW() &gt; a.start_time AND NOW() &lt; a.end_time THEN 2 WHEN
+        NOW() &gt; a.end_time THEN 3 END AS activityStatus,
+        (SELECT COUNT(id) FROM user_activity_record b WHERE b.activity_id = #{activityId} ) currentActivityCountPeople,
+        a.count
+        FROM activity_info a
+        WHERE a.id = #{activityId}
+    </select>
+
+    <select id="selectJoinedGroupStatus" resultType="java.lang.Integer">
+        SELECT count(*) FROM activity_info a
+        INNER JOIN wxim_group b ON a.id = b.business_id
+        INNER JOIN wxim_group_members c ON b.tid = c.group_id
+        WHERE a.id = #{activityId} and c.user_id = #{userId}
+    </select>
+
+
+    <select id="especiallyActivity" parameterType="java.util.List"
+            resultType="com.idream.commons.lib.dto.activity.EspeciallyActivityResponseDto">
+        SELECT
+        a.id AS activityId,
+        a.image,
+        a.title,
+        a.subtitle,
+        a.address,
+        a.time_type AS timeType,
+        a.week_day AS weekDay,
+        CASE WHEN e.start_time IS NULL THEN a.start_time ELSE e.start_time END AS startTime,
+        CASE WHEN e.end_time IS NULL THEN a.end_time ELSE e.end_time END AS endTime,
+        CASE WHEN (SELECT COUNT(*) FROM user_activity_record b WHERE b.user_id=#{userId} AND b.activity_id=a.id) THEN 1
+        ELSE 0 END joined,
+        CASE WHEN e.start_time &gt;NOW() THEN 1 WHEN NOW() &lt; e.end_time THEN 2 WHEN e.end_time &lt; NOW() THEN 3 END
+        AS activityStatus,
+        IFNULL(e.distanceCurrentDay, -1) AS distanceCurrentDay
+        FROM activity_info a
+        LEFT JOIN (SELECT activity_id, start_time, end_time, TIMESTAMPDIFF(SECOND,NOW(), start_time) AS
+        distanceCurrentDay
+        FROM activity_task WHERE NOW() &lt; end_time GROUP BY activity_id ORDER BY end_time) e ON e.activity_id=a.id
+        WHERE a.id IN (${ids})
+        ORDER BY FIELD(activityStatus,2,1,3),FIELD(a.id,${ids})
+    </select>
+
+    <select id="selectMiniDiscoverpage"
+            resultType="com.idream.commons.lib.dto.activity.MiniActivityDiscoverypageResponseDto"
+            parameterType="com.idream.commons.lib.dto.activity.DiscoveryPageRequestParams">
+        SELECT
+        b.id AS activityId,
+        b.title AS title,
+        b.subtitle AS subtitle,
+        b.image AS image,
+        CASE WHEN g.start_time IS NULL THEN b.start_time ELSE g.start_time END AS startTime,
+        CASE WHEN g.end_time IS NULL THEN b.end_time ELSE g.end_time END AS endTime,
+        b.time_type AS timeType,
+        b.week_day AS WEEKDAY,
+        b.address AS address,
+        b.city AS city,
+        (
+        3959 * ACOS(
+        COS(RADIANS(#{latitude})) * COS(RADIANS(b.latitude)) * COS(
+        RADIANS(b.longitude) - RADIANS(#{longitude})
+        ) + SIN(RADIANS(#{latitude})) * SIN(RADIANS(b.latitude))
+        )
+        ) * 1609.344 AS distance,
+        CASE ( SELECT count(*) FROM user_activity_record u where u.activity_id = b.id AND u.user_id = #{authUserId} ) WHEN 0
+        THEN 0 ELSE 1 END joined,
+        IF(NOW() &lt; g.start_time , 1 , 2) activityStatus,
+        IFNULL(g.distanceCurrentDay, -1) distanceCurrentDay
+        FROM
+        activity_display_relation a
+        INNER JOIN activity_info b ON b.id = a.activity_id
+        LEFT JOIN activity_group_relation d ON d.activity_id = b.id AND d.group_type = 40
+        LEFT JOIN region_info e ON e.id = d.group_id
+        LEFT JOIN region_group_relation f ON f.region_id = e.id
+        LEFT JOIN
+        (SELECT activity_id, start_time, end_time, TIMESTAMPDIFF(SECOND,NOW(), start_time) AS distanceCurrentDay
+        FROM activity_task WHERE NOW() &lt; end_time GROUP BY activity_id ORDER BY end_time) g
+        ON b.id = g.activity_id
+        WHERE
+        b.`status` = 4
+        AND NOW() &lt; b.end_time
+        AND
+        CASE WHEN a.display_type = 20 THEN a.display_id = #{cityCode}
+        WHEN a.display_type = 40 THEN a.display_id in ( SELECT h.region_id FROM user_region_relation h WHERE user_id=#{authUserId} )
+        WHEN a.display_type = 60 THEN a.display_id in ( select w.community_id FROM user_community_relation w where w.user_id = #{authUserId} and status = 1 )
+        WHEN a.display_type = 1 THEN TRUE
+        END
+        GROUP BY activityId
+        ORDER BY
+        FIELD(activityStatus,2,1)
+        <if test="sortType!=null and sortType==1">
+            ,distance
+        </if>
+        <if test="sortType!=null and sortType==2">
+            ,startTime
+        </if>
+
+    </select>
+
+
+
+    <select id="miniActivityByType"
+            resultType="com.idream.commons.lib.dto.activity.MiniActivityDiscoverypageResponseDto"
+            parameterType="com.idream.commons.lib.dto.activity.DiscoveryPageRequestParams">
+        SELECT
+        b.id activityId,
+        b.title,
+        b.subtitle,
+        b.image,
+        CASE WHEN g.start_time IS NULL THEN b.start_time ELSE g.start_time END AS startTime,
+        CASE WHEN g.end_time IS NULL THEN b.end_time ELSE g.end_time END AS endTime,
+        CASE WHEN NOW() &lt; g.start_time THEN 1
+        WHEN NOW() &lt; g.end_time THEN 2
+        ELSE 3
+        END AS activityStatus,
+        b.time_type AS timeType,
+        b.week_day AS weekDay,
+        b.type AS fromType,
+        b.city,
+        b.address address,
+        (
+        3959 * ACOS(
+        COS(RADIANS(#{latitude})) * COS(RADIANS(b.latitude)) * COS(
+        RADIANS(b.longitude) - RADIANS(#{longitude})
+        ) + SIN(RADIANS(#{latitude})) * SIN(RADIANS(b.latitude))
+        )
+        ) * 1609.344 AS distance,
+        CASE ( SELECT count(*) FROM user_activity_record u where u.activity_id = b.id AND u.user_id = #{authUserId} ) WHEN 0
+        THEN 0 ELSE 1 END joined,
+        CASE WHEN g.distanceCurrentDay IS NULL THEN -1 else g.distanceCurrentDay END AS distanceCurrentDay
+        FROM
+		activity_display_relation a
+        INNER JOIN activity_info b ON b.id = a.activity_id
+        LEFT JOIN activity_group_relation d ON d.activity_id = b.id AND d.group_type = 40
+        LEFT JOIN region_info e ON e.id = d.group_id
+        LEFT JOIN region_group_relation f ON f.region_id = e.id
+        LEFT JOIN
+        (SELECT activity_id, start_time, end_time, TIMESTAMPDIFF(SECOND,NOW(), start_time) AS distanceCurrentDay
+        FROM activity_task WHERE NOW() &lt; end_time GROUP BY activity_id ORDER BY end_time) g
+        ON b.id = g.activity_id
+        WHERE
+         b.type_id = #{typeId}
+        AND b.`status` = 4
+        AND NOW() > a.start_time
+        AND NOW() &lt; a.end_time
+        AND
+        CASE WHEN a.display_type = 20 THEN a.display_id = #{cityCode}
+        WHEN a.display_type = 40 THEN a.display_id IN ( SELECT h.region_id FROM user_region_relation h WHERE user_id=#{authUserId} )
+        WHEN a.display_type = 60 THEN a.display_id IN ( SELECT w.community_id FROM user_community_relation w where w.user_id = #{authUserId} and status = 1 )
+        WHEN a.display_type = 1 THEN TRUE
+        END
+        GROUP BY activityId
+        ORDER BY
+        FIELD(activityStatus,2,1,3)
+        <if test="sortType!=null and sortType==1">
+            ,distance
+        </if>
+        <if test="sortType!=null and sortType==2">
+            ,startTime
+        </if>
+    </select>
+
+
+    <select id="selectMiniDiscoverpageByLocation"
+            resultType="com.idream.commons.lib.dto.activity.MiniActivityDiscoverypageResponseDto">
+        SELECT
+        a.id AS activityId,
+        a.title AS title,
+        a.subtitle AS subtitle,
+        a.image AS image,
+        a.start_time AS startTime,
+        a.end_time AS endTime,
+        a.time_type AS timeType,
+        a.week_day AS weekDay,
+        a.address AS address,
+        a.city AS city,
+        (
+        3959 * ACOS(
+        COS(RADIANS(#{latitude})) * cos(radians(a.latitude)) * cos(
+        RADIANS(a.longitude) - RADIANS(#{longitude})
+        ) + sin(radians(#{latitude})) * sin(radians(a.latitude))
+        )
+        ) * 1609.344 AS distance,
+        CASE (SELECT count(*) FROM user_activity_record u where u.activity_id = a.id AND u.user_id = #{userId} ) WHEN 0
+        THEN 0 ELSE 1 END joined,
+        CASE WHEN a.start_time > NOW() THEN 1 WHEN a.start_time &lt; NOW() AND a.end_time > NOW() THEN 2 WHEN NOW() >
+        a.end_time THEN 3 END AS activityStatus
+        FROM activity_info a
+        WHERE a.city_code = #{cityCode} AND a.`status` = 4 AND a.end_time > NOW()
+        ORDER BY FIELD(activityStatus,2,1 ) , distance
+    </select>
+    <select id="selectDiscoverActivity" resultType="com.idream.commons.lib.dto.app.AppDiscoveryDto">
+        SELECT
+        a.id businessId,
+        1 businessType,
+        a.title title,
+        a.image image,
+        a.type_id,
+        CASE
+        WHEN
+        a.level &gt; 1 THEN 1
+        ELSE 9 END orderNum
+        FROM
+        activity_info a
+        LEFT JOIN activity_display_relation adr on adr.activity_id = a.id
+        WHERE
+        a.`status` = 4 AND a.end_time&gt;NOW()
+        <if test="typeId!=null and typeId!=0">
+            and a.type_id=#{typeId}
+        </if>
+        AND
+        CASE
+        WHEN adr.display_type = 1 THEN TRUE
+        WHEN adr.display_type = 20 THEN adr.display_id = #{cityCode}
+        WHEN adr.display_type = 40 THEN adr.display_id in ( SELECT urr.region_id FROM user_region_relation urr
+        WHERE user_id=#{authUserId} )
+        WHEN adr.display_type = 60 THEN adr.display_id in ( SELECT ucr.community_id FROM user_community_relation ucr
+        WHERE user_id=#{authUserId} )
+        END
+        AND NOT EXISTS (
+        SELECT
+        *
+        FROM
+        user_dislike_record c
+        WHERE
+        c.business_type = 1
+        AND c.user_id = #{authUserId}
+        AND c.business_id = a.id
+        )
+        GROUP BY
+        a.id
+        ORDER BY
+        orderNum,a.id DESC
+    </select>
+
+    <select id="selectMiniDiscoverpageOverEndTime"
+            resultType="com.idream.commons.lib.dto.activity.MiniActivityDiscoverypageResponseDto">
+        SELECT
+        a.id AS activityId,
+        a.title AS title,
+        a.subtitle AS subtitle,
+        a.image AS image,
+        IF(a.time_type = 2, b.start_time, a.start_time) AS startTime,
+        IF(a.time_type = 2, b.end_time, a.end_time) AS endTime,
+        a.time_type AS timeType,
+        a.week_day AS weekDay,
+        a.address AS address,
+        a.city AS city,
+        IF(u.joinFlag > 0 , 1, 0) AS joined,
+        3 AS activityStatus,
+        ifnull(b.distanceCurrentDay, -1) AS distanceCurrentDay
+        FROM activity_info a
+        LEFT JOIN
+        (SELECT activity_id, start_time, end_time, TIMESTAMPDIFF(SECOND,NOW(), start_time) AS distanceCurrentDay
+        FROM activity_task WHERE NOW() &lt; end_time GROUP BY activity_id ORDER BY end_time) b
+        ON b.activity_id = a.id
+        LEFT JOIN (SELECT COUNT(id) joinFlag, activity_id, user_id FROM user_activity_record GROUP BY activity_id,
+        user_id) u
+        ON u.activity_id = a.id AND u.user_id = #{authUserId}
+        WHERE a.city_code = #{cityCode} AND a.`status` = 4 AND NOW() > a.end_time ORDER BY a.end_time DESC LIMIT 3
+    </select>
+
+    <select id="getActivityStatisticsByActivityId"
+            resultType="com.idream.commons.lib.dto.activity.AdminActivityStatisticsResponseDto">
+        SELECT
+        a.id activityId,a.title activityTitle,b.`name` activityType,
+        (SELECT SUM(count) FROM user_visit_record WHERE business_id=a.id AND business_type=1) visitCount,
+        (SELECT count(*) FROM user_activity_record WHERE activity_id=a.id AND exit_status=1) applyNum,
+        (SELECT count(*) FROM activity_task_record b LEFT JOIN activity_task c ON b.task_id=c.id WHERE c.activity_id=a.id) taskNum,
+        (SELECT count(*) FROM activity_invitation_record WHERE activity_id=a.id AND `status`=1) invitationNum,
+        (SELECT count(*) FROM community_life WHERE activity_id=a.id AND `status`=2) messageNum,
+        CASE WHEN a.user_id=2 THEN e.nick_name
+        WHEN a.user_id != 2 THEN f.`name` END AS bookName
+        FROM
+        activity_info a
+        LEFT JOIN activity_type b ON a.type_id=b.id
+        LEFT JOIN user_manager d ON d.user_id=a.create_id
+        LEFT JOIN region_group_info f ON f.id=d.book_id AND f.category=2
+        LEFT JOIN user_info e ON e.id=a.user_id
+        WHERE a.id = #{activityId}
+    </select>
+
+    <select id="getImageInfoByActivityId"
+            resultType="com.idream.commons.lib.dto.appactivity.AppActivityImageResponseDto">
+        SELECT
+        a.id activityId,
+        a.title,
+        a.image,
+        a.type_id typeId,
+        IFNULL((SELECT count(*) FROM user_activity_record WHERE activity_id=a.id AND user_id=#{userId} AND
+        exit_status=1),0) joined
+        FROM
+        activity_info a
+        WHERE
+        a.id = #{activityId}
+    </select>
+</mapper>

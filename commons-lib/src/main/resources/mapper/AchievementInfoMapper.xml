@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.idream.commons.lib.mapper.AchievementInfoMapper">
+    <resultMap id="BaseResultMap" type="com.idream.commons.lib.model.AchievementInfo">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="event_id" property="eventId" jdbcType="INTEGER"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="description" property="description" jdbcType="VARCHAR"/>
+        <result column="instructions" property="instructions" jdbcType="VARCHAR"/>
+        <result column="type" property="type" jdbcType="TINYINT"/>
+        <result column="black_image" property="blackImage" jdbcType="VARCHAR"/>
+        <result column="bright_image" property="brightImage" jdbcType="VARCHAR"/>
+        <result column="designation_id" property="designationId" jdbcType="INTEGER"/>
+        <result column="count" property="count" jdbcType="INTEGER"/>
+        <result column="sorted" property="sorted" jdbcType="INTEGER"/>
+        <result column="status" property="status" jdbcType="TINYINT"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, event_id, name, description, instructions, type, black_image, bright_image, designation_id,
+        count, sorted, status, create_time, update_time
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from achievement_info
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from achievement_info
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.idream.commons.lib.model.AchievementInfo" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into achievement_info (event_id, name, description,
+        instructions, type, black_image,
+        bright_image, designation_id, count,
+        sorted, status, create_time,
+        update_time)
+        values (#{eventId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR},
+        #{instructions,jdbcType=VARCHAR}, #{type,jdbcType=TINYINT}, #{blackImage,jdbcType=VARCHAR},
+        #{brightImage,jdbcType=VARCHAR}, #{designationId,jdbcType=INTEGER}, #{count,jdbcType=INTEGER},
+        #{sorted,jdbcType=INTEGER}, #{status,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP},
+        #{updateTime,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="com.idream.commons.lib.model.AchievementInfo" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into achievement_info
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="eventId != null">
+                event_id,
+            </if>
+            <if test="name != null">
+                name,
+            </if>
+            <if test="description != null">
+                description,
+            </if>
+            <if test="instructions != null">
+                instructions,
+            </if>
+            <if test="type != null">
+                type,
+            </if>
+            <if test="blackImage != null">
+                black_image,
+            </if>
+            <if test="brightImage != null">
+                bright_image,
+            </if>
+            <if test="designationId != null">
+                designation_id,
+            </if>
+            <if test="count != null">
+                count,
+            </if>
+            <if test="sorted != null">
+                sorted,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="eventId != null">
+                #{eventId,jdbcType=INTEGER},
+            </if>
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="description != null">
+                #{description,jdbcType=VARCHAR},
+            </if>
+            <if test="instructions != null">
+                #{instructions,jdbcType=VARCHAR},
+            </if>
+            <if test="type != null">
+                #{type,jdbcType=TINYINT},
+            </if>
+            <if test="blackImage != null">
+                #{blackImage,jdbcType=VARCHAR},
+            </if>
+            <if test="brightImage != null">
+                #{brightImage,jdbcType=VARCHAR},
+            </if>
+            <if test="designationId != null">
+                #{designationId,jdbcType=INTEGER},
+            </if>
+            <if test="count != null">
+                #{count,jdbcType=INTEGER},
+            </if>
+            <if test="sorted != null">
+                #{sorted,jdbcType=INTEGER},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=TINYINT},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.idream.commons.lib.model.AchievementInfo">
+        update achievement_info
+        <set>
+            <if test="eventId != null">
+                event_id = #{eventId,jdbcType=INTEGER},
+            </if>
+            <if test="name != null">
+                name = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="description != null">
+                description = #{description,jdbcType=VARCHAR},
+            </if>
+            <if test="instructions != null">
+                instructions = #{instructions,jdbcType=VARCHAR},
+            </if>
+            <if test="type != null">
+                type = #{type,jdbcType=TINYINT},
+            </if>
+            <if test="blackImage != null">
+                black_image = #{blackImage,jdbcType=VARCHAR},
+            </if>
+            <if test="brightImage != null">
+                bright_image = #{brightImage,jdbcType=VARCHAR},
+            </if>
+            <if test="designationId != null">
+                designation_id = #{designationId,jdbcType=INTEGER},
+            </if>
+            <if test="count != null">
+                count = #{count,jdbcType=INTEGER},
+            </if>
+            <if test="sorted != null">
+                sorted = #{sorted,jdbcType=INTEGER},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=TINYINT},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.idream.commons.lib.model.AchievementInfo">
+        update achievement_info
+        set event_id = #{eventId,jdbcType=INTEGER},
+        name = #{name,jdbcType=VARCHAR},
+        description = #{description,jdbcType=VARCHAR},
+        instructions = #{instructions,jdbcType=VARCHAR},
+        type = #{type,jdbcType=TINYINT},
+        black_image = #{blackImage,jdbcType=VARCHAR},
+        bright_image = #{brightImage,jdbcType=VARCHAR},
+        designation_id = #{designationId,jdbcType=INTEGER},
+        count = #{count,jdbcType=INTEGER},
+        sorted = #{sorted,jdbcType=INTEGER},
+        status = #{status,jdbcType=TINYINT},
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+        update_time = #{updateTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <select id="selectUncompletedByUserIdAndCategoryAndKind" resultType="com.idream.commons.lib.model.AchievementInfo">
+        SELECT
+        a.*
+        FROM
+        achievement_info a
+        LEFT JOIN achievement_user b ON a.id = b.achieve_id
+        WHERE
+        b.user_id = #{userId}
+        AND b.completed=TRUE
+        AND a.category = #{category}
+        AND a.kind = #{kind}
+    </select>
+    <select id="selectAdminPageList" resultType="com.idream.commons.lib.dto.achievement.AchievementPageDto">
+        SELECT
+        a.id achievementId,
+        a.`name` achievementName,
+        a.description,
+        a.instructions,
+        a.bright_image icon,
+        count(b.id) userCount,
+        (SELECT GROUP_CONCAT(DISTINCT c.`name`) FROM achievement_pool c WHERE c.achieve_id=a.id) awardNames,
+        d.state timeType,
+        d.start_time,
+        d.end_time,
+        CASE WHEN d.state=1 THEN 1
+        WHEN d.state=2 AND d.end_time &gt;NOW() THEN 1
+        ELSE 2 END achievementStatus,
+        a.category_id,
+        e.category_name,
+        a.status,
+        (SELECT c.award_value FROM achievement_pool c WHERE c.achieve_id=a.id AND c.type=2) score
+        FROM
+        achievement_info a
+        LEFT JOIN achievement_user b ON a.id = b.achieve_id AND b.completed = TRUE
+        INNER JOIN event_info d ON d.id=a.event_id
+        LEFT JOIN achievement_category e ON e.id=a.category_id
+        <where>
+            <if test="achievementName!=null and achievementName !=''">
+                a.name like concat('%',#{achievementName},'%')
+            </if>
+            <if test="achievementStatus!=null and achievementStatus==1">
+                and d.state=1 or d.state=2 AND d.end_time &gt;NOW()
+            </if>
+            <if test="achievementStatus!=null and achievementStatus==2">
+                and d.state=2 AND d.end_time &lt;NOW()
+            </if>
+        </where>
+        GROUP BY
+        a.id
+        ORDER BY achievementStatus,a.id DESC
+    </select>
+
+</mapper>

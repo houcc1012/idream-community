@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.idream.commons.lib.mapper.LotteryDetailMapper">
+    <resultMap id="BaseResultMap" type="com.idream.commons.lib.model.LotteryDetail">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="lottery_id" property="lotteryId" jdbcType="INTEGER"/>
+        <result column="type" property="type" jdbcType="TINYINT"/>
+        <result column="speak_secret" property="speakSecret" jdbcType="VARCHAR"/>
+        <result column="start_date" property="startDate" jdbcType="DATE"/>
+        <result column="start_time" property="startTime" jdbcType="TIME"/>
+        <result column="end_date" property="endDate" jdbcType="DATE"/>
+        <result column="end_time" property="endTime" jdbcType="TIME"/>
+        <result column="lottery_count" property="lotteryCount" jdbcType="INTEGER"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, lottery_id, type, speak_secret, start_date, start_time, end_date, end_time, lottery_count,
+        create_time, update_time
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from lottery_detail
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from lottery_detail
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.idream.commons.lib.model.LotteryDetail" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into lottery_detail (lottery_id, type, speak_secret,
+        start_date, start_time, end_date,
+        end_time, lottery_count, create_time,
+        update_time)
+        values (#{lotteryId,jdbcType=INTEGER}, #{type,jdbcType=TINYINT}, #{speakSecret,jdbcType=VARCHAR},
+        #{startDate,jdbcType=DATE}, #{startTime,jdbcType=TIME}, #{endDate,jdbcType=DATE},
+        #{endTime,jdbcType=TIME}, #{lotteryCount,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP},
+        #{updateTime,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="com.idream.commons.lib.model.LotteryDetail" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into lottery_detail
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="lotteryId != null">
+                lottery_id,
+            </if>
+            <if test="type != null">
+                type,
+            </if>
+            <if test="speakSecret != null">
+                speak_secret,
+            </if>
+            <if test="startDate != null">
+                start_date,
+            </if>
+            <if test="startTime != null">
+                start_time,
+            </if>
+            <if test="endDate != null">
+                end_date,
+            </if>
+            <if test="endTime != null">
+                end_time,
+            </if>
+            <if test="lotteryCount != null">
+                lottery_count,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="lotteryId != null">
+                #{lotteryId,jdbcType=INTEGER},
+            </if>
+            <if test="type != null">
+                #{type,jdbcType=TINYINT},
+            </if>
+            <if test="speakSecret != null">
+                #{speakSecret,jdbcType=VARCHAR},
+            </if>
+            <if test="startDate != null">
+                #{startDate,jdbcType=DATE},
+            </if>
+            <if test="startTime != null">
+                #{startTime,jdbcType=TIME},
+            </if>
+            <if test="endDate != null">
+                #{endDate,jdbcType=DATE},
+            </if>
+            <if test="endTime != null">
+                #{endTime,jdbcType=TIME},
+            </if>
+            <if test="lotteryCount != null">
+                #{lotteryCount,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.idream.commons.lib.model.LotteryDetail">
+        update lottery_detail
+        <set>
+            <if test="lotteryId != null">
+                lottery_id = #{lotteryId,jdbcType=INTEGER},
+            </if>
+            <if test="type != null">
+                type = #{type,jdbcType=TINYINT},
+            </if>
+            <if test="speakSecret != null">
+                speak_secret = #{speakSecret,jdbcType=VARCHAR},
+            </if>
+            <if test="startDate != null">
+                start_date = #{startDate,jdbcType=DATE},
+            </if>
+            <if test="startTime != null">
+                start_time = #{startTime,jdbcType=TIME},
+            </if>
+            <if test="endDate != null">
+                end_date = #{endDate,jdbcType=DATE},
+            </if>
+            <if test="endTime != null">
+                end_time = #{endTime,jdbcType=TIME},
+            </if>
+            <if test="lotteryCount != null">
+                lottery_count = #{lotteryCount,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.idream.commons.lib.model.LotteryDetail">
+        update lottery_detail
+        set lottery_id = #{lotteryId,jdbcType=INTEGER},
+        type = #{type,jdbcType=TINYINT},
+        speak_secret = #{speakSecret,jdbcType=VARCHAR},
+        start_date = #{startDate,jdbcType=DATE},
+        start_time = #{startTime,jdbcType=TIME},
+        end_date = #{endDate,jdbcType=DATE},
+        end_time = #{endTime,jdbcType=TIME},
+        lottery_count = #{lotteryCount,jdbcType=INTEGER},
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+        update_time = #{updateTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <select id="selectByLotteryId" resultType="com.idream.commons.lib.dto.marketing.LotteryDetailParams"
+            parameterType="java.lang.Integer">
+        select
+        id, lottery_id, type, speak_secret, start_time, end_time,start_date, end_date, create_time, update_time,
+        lottery_count
+        from lottery_detail
+        where lottery_id = #{letteryId,jdbcType=INTEGER} order by start_time ASC
+    </select>
+    <select id="selectByLotteryIds" resultType="com.idream.commons.lib.dto.marketing.LotteryDetailParams"
+            parameterType="java.lang.String">
+        select lottery_id, start_time, end_time,start_date, end_date
+        from lottery_detail
+        where lottery_id in (${lotteryIds}) order by start_time ASC
+    </select>
+    <select id="selectTimeByPoolId" resultType="com.idream.commons.lib.dto.marketing.LotteryTimeDto"
+            parameterType="java.lang.Integer">
+        SELECT
+        a.start_time,
+        a.end_time
+        FROM
+        lottery_detail a
+        LEFT JOIN lottery_detail_pool_relation b
+        on a.id = b.detail_id
+        where b.pool_id =#{poolId}
+        ORDER BY a.start_time asc
+    </select>
+    <select id="selectIdByLotteryIdAndTime" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        from lottery_detail
+        where lottery_id = #{lotteryId,jdbcType=INTEGER}
+        and Time(start_time) = Time(#{time,jdbcType=TIMESTAMP})
+    </select>
+    <select id="selectTimeByLotteryId" resultType="com.idream.commons.lib.dto.marketing.LotteryTimeDto"
+            parameterType="java.lang.Integer">
+        SELECT
+        start_time,
+        end_time
+        from lottery_detail
+        where lottery_id = #{lotteryId,jdbcType=INTEGER}
+        ORDER BY start_time asc
+    </select>
+</mapper>

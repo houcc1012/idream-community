@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.idream.commons.lib.mapper.HotCityMapper">
+    <resultMap id="BaseResultMap" type="com.idream.commons.lib.model.HotCity">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="city" property="city" jdbcType="VARCHAR"/>
+        <result column="index" property="index" jdbcType="INTEGER"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, city, index, create_time, update_time
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from hot_city
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from hot_city
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.idream.commons.lib.model.HotCity" useGeneratedKeys="true" keyProperty="id">
+        insert into hot_city (city, `index`, create_time,
+        update_time)
+        values (#{city,jdbcType=VARCHAR}, #{index,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP},
+        #{updateTime,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="com.idream.commons.lib.model.HotCity" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into hot_city
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="city != null">
+                city,
+            </if>
+            <if test="index != null">
+                index,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="city != null">
+                #{city,jdbcType=VARCHAR},
+            </if>
+            <if test="index != null">
+                #{index,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.idream.commons.lib.model.HotCity">
+        update hot_city
+        <set>
+            <if test="city != null">
+                city = #{city,jdbcType=VARCHAR},
+            </if>
+            <if test="index != null">
+                index = #{index,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.idream.commons.lib.model.HotCity">
+        update hot_city
+        set city = #{city,jdbcType=VARCHAR},
+        index = #{index,jdbcType=INTEGER},
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+        update_time = #{updateTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <!--根据主键查询-->
+    <select id="getHotCityByPrimaryKey" parameterType="java.lang.Integer"
+            resultType="com.idream.commons.lib.model.HotCity">
+        SELECT id FROM hot_city WHERE id=#{id}
+    </select>
+    <!-- 根据热点城市的index来查询返回热门城市 -->
+    <select id="getHotCityByIndex" resultType="com.idream.commons.lib.model.HotCity">
+        SELECT
+        id,
+        city,
+        `index`,
+        create_time createTime,
+        update_time updateTime
+        FROM hot_city
+        order by `index`
+    </select>
+    <select id="getHotCityList" resultType="com.idream.commons.lib.dto.activity.HotCityResponseDto">
+        SELECT
+        city,
+        city_code cityCode,
+        count(city) count
+        FROM activity_info
+        WHERE city IS NOT NULL AND city <![CDATA[ <> ]]> '' AND status=4 AND NOW() &lt; DATE_ADD(end_time, INTERVAL 7
+        DAY)
+        GROUP BY city
+        ORDER BY count DESC
+    </select>
+    <!--新增-->
+    <insert id="addHotCity" parameterType="com.idream.commons.lib.model.HotCity" statementType="PREPARED"
+            useGeneratedKeys="true" keyProperty="id">
+        insert into hot_city(
+        city,
+        index,
+        create_time,
+        update_time) values(
+        #{city},
+        #{index},
+        #{create_time},
+        #{update_time}
+        )
+    </insert>
+    <!--修改-->
+    <update id="updateHotCity" parameterType="com.idream.commons.lib.model.HotCity" statementType="PREPARED">
+        update hot_city set
+        city = #{city},
+        index = #{index},
+        create_time = #{create_time},
+        update_time = #{update_time}
+        where id = #{id}
+    </update>
+    <!--删除-->
+    <delete id="deleteHotCity" parameterType="com.idream.commons.lib.model.HotCity" statementType="PREPARED">
+        delete from hot_city where id = #{id}
+    </delete>
+</mapper>

@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.idream.commons.lib.mapper.CouponRecordMapper">
+    <resultMap id="BaseResultMap" type="com.idream.commons.lib.model.CouponRecord">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="coupon_id" property="couponId" jdbcType="INTEGER"/>
+        <result column="coupon_code" property="couponCode" jdbcType="VARCHAR"/>
+        <result column="type" property="type" jdbcType="TINYINT"/>
+        <result column="from_type" property="fromType" jdbcType="TINYINT"/>
+        <result column="from_description" property="fromDescription" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, coupon_id, coupon_code, type, from_type, from_description, create_time, update_time
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from coupon_record
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from coupon_record
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.idream.commons.lib.model.CouponRecord" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into coupon_record (coupon_id, coupon_code, type,
+        from_type, from_description, create_time,
+        update_time)
+        values (#{couponId,jdbcType=INTEGER}, #{couponCode,jdbcType=VARCHAR}, #{type,jdbcType=TINYINT},
+        #{fromType,jdbcType=TINYINT}, #{fromDescription,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP},
+        #{updateTime,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="com.idream.commons.lib.model.CouponRecord" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into coupon_record
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="couponId != null">
+                coupon_id,
+            </if>
+            <if test="couponCode != null">
+                coupon_code,
+            </if>
+            <if test="type != null">
+                type,
+            </if>
+            <if test="fromType != null">
+                from_type,
+            </if>
+            <if test="fromDescription != null">
+                from_description,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="couponId != null">
+                #{couponId,jdbcType=INTEGER},
+            </if>
+            <if test="couponCode != null">
+                #{couponCode,jdbcType=VARCHAR},
+            </if>
+            <if test="type != null">
+                #{type,jdbcType=TINYINT},
+            </if>
+            <if test="fromType != null">
+                #{fromType,jdbcType=TINYINT},
+            </if>
+            <if test="fromDescription != null">
+                #{fromDescription,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.idream.commons.lib.model.CouponRecord">
+        update coupon_record
+        <set>
+            <if test="couponId != null">
+                coupon_id = #{couponId,jdbcType=INTEGER},
+            </if>
+            <if test="couponCode != null">
+                coupon_code = #{couponCode,jdbcType=VARCHAR},
+            </if>
+            <if test="type != null">
+                type = #{type,jdbcType=TINYINT},
+            </if>
+            <if test="fromType != null">
+                from_type = #{fromType,jdbcType=TINYINT},
+            </if>
+            <if test="fromDescription != null">
+                from_description = #{fromDescription,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.idream.commons.lib.model.CouponRecord">
+        update coupon_record
+        set coupon_id = #{couponId,jdbcType=INTEGER},
+        coupon_code = #{couponCode,jdbcType=VARCHAR},
+        type = #{type,jdbcType=TINYINT},
+        from_type = #{fromType,jdbcType=TINYINT},
+        from_description = #{fromDescription,jdbcType=VARCHAR},
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+        update_time = #{updateTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+</mapper>

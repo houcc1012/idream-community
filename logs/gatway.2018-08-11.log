@@ -1,0 +1,18 @@
+[2018-08-11 09:24:14] [ERROR] [AMQP Connection 192.168.37.99:5672] in  com.rabbitmq.client.impl.ForgivingExceptionHandler - An unexpected connection driver error occured
+java.net.SocketException: Socket Closed
+	at java.net.SocketInputStream.socketRead0(Native Method)
+	at java.net.SocketInputStream.socketRead(SocketInputStream.java:116)
+	at java.net.SocketInputStream.read(SocketInputStream.java:171)
+	at java.net.SocketInputStream.read(SocketInputStream.java:141)
+	at java.io.BufferedInputStream.fill(BufferedInputStream.java:246)
+	at java.io.BufferedInputStream.read(BufferedInputStream.java:265)
+	at java.io.DataInputStream.readUnsignedByte(DataInputStream.java:288)
+	at com.rabbitmq.client.impl.Frame.readFrom(Frame.java:91)
+	at com.rabbitmq.client.impl.SocketFrameHandler.readFrame(SocketFrameHandler.java:164)
+	at com.rabbitmq.client.impl.AMQConnection$MainLoop.run(AMQConnection.java:580)
+	at java.lang.Thread.run(Thread.java:748)
+[2018-08-11 09:24:20] [INFO ] [springCloudBus.anonymous.x_cj3yC-QG-TZG6FNbLcQA-7] in  o.s.a.r.listener.SimpleMessageListenerContainer - Restarting Consumer@417e3039: tags=[{}], channel=null, acknowledgeMode=AUTO local queue size=0
+[2018-08-11 09:24:20] [INFO ] [springCloudBus.anonymous.x_cj3yC-QG-TZG6FNbLcQA-8] in  o.s.a.rabbit.connection.CachingConnectionFactory - Attempting to connect to: [192.168.37.99:5672]
+[2018-08-11 09:24:20] [INFO ] [springCloudBus.anonymous.x_cj3yC-QG-TZG6FNbLcQA-8] in  o.s.a.rabbit.connection.CachingConnectionFactory - Created new connection: rabbitConnectionFactory#25efacba:7/SimpleConnection@1d8573d9 [delegate=amqp://admin@192.168.37.99:5672/, localPort= 50106]
+[2018-08-11 09:24:20] [INFO ] [springCloudBus.anonymous.x_cj3yC-QG-TZG6FNbLcQA-8] in  org.springframework.amqp.rabbit.core.RabbitAdmin - Auto-declaring a non-durable, auto-delete, or exclusive Queue (springCloudBus.anonymous.x_cj3yC-QG-TZG6FNbLcQA) durable:false, auto-delete:true, exclusive:true. It will be redeclared if the broker stops and is restarted while the connection factory is alive, but all messages will be lost.
+[2018-08-11 09:27:27] [INFO ] [AsyncResolver-bootstrap-executor-0] in  c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration

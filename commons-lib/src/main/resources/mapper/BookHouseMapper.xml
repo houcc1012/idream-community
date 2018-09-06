@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.idream.commons.lib.mapper.BookHouseMapper">
+    <resultMap id="BaseResultMap" type="com.idream.commons.lib.model.BookHouse">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="code" property="code" jdbcType="VARCHAR"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="longitude" property="longitude" jdbcType="DECIMAL"/>
+        <result column="latitude" property="latitude" jdbcType="DECIMAL"/>
+        <result column="ad_code" property="adCode" jdbcType="VARCHAR"/>
+        <result column="address" property="address" jdbcType="VARCHAR"/>
+        <result column="description" property="description" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, code, name, longitude, latitude, ad_code, address, description, create_time,
+        update_time
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from book_house
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from book_house
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.idream.commons.lib.model.BookHouse" useGeneratedKeys="true" keyProperty="id">
+        insert into book_house (code, name, longitude,
+        latitude, ad_code, address,
+        description, create_time, update_time
+        )
+        values (#{code,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{longitude,jdbcType=DECIMAL},
+        #{latitude,jdbcType=DECIMAL}, #{adCode,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR},
+        #{description,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+        )
+    </insert>
+    <insert id="insertSelective" parameterType="com.idream.commons.lib.model.BookHouse" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into book_house
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="code != null">
+                code,
+            </if>
+            <if test="name != null">
+                name,
+            </if>
+            <if test="longitude != null">
+                longitude,
+            </if>
+            <if test="latitude != null">
+                latitude,
+            </if>
+            <if test="adCode != null">
+                ad_code,
+            </if>
+            <if test="address != null">
+                address,
+            </if>
+            <if test="description != null">
+                description,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="code != null">
+                #{code,jdbcType=VARCHAR},
+            </if>
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="longitude != null">
+                #{longitude,jdbcType=DECIMAL},
+            </if>
+            <if test="latitude != null">
+                #{latitude,jdbcType=DECIMAL},
+            </if>
+            <if test="adCode != null">
+                #{adCode,jdbcType=VARCHAR},
+            </if>
+            <if test="address != null">
+                #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="description != null">
+                #{description,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.idream.commons.lib.model.BookHouse">
+        update book_house
+        <set>
+            <if test="code != null">
+                code = #{code,jdbcType=VARCHAR},
+            </if>
+            <if test="name != null">
+                name = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="longitude != null">
+                longitude = #{longitude,jdbcType=DECIMAL},
+            </if>
+            <if test="latitude != null">
+                latitude = #{latitude,jdbcType=DECIMAL},
+            </if>
+            <if test="adCode != null">
+                ad_code = #{adCode,jdbcType=VARCHAR},
+            </if>
+            <if test="address != null">
+                address = #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="description != null">
+                description = #{description,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.idream.commons.lib.model.BookHouse">
+        update book_house
+        set code = #{code,jdbcType=VARCHAR},
+        name = #{name,jdbcType=VARCHAR},
+        longitude = #{longitude,jdbcType=DECIMAL},
+        latitude = #{latitude,jdbcType=DECIMAL},
+        ad_code = #{adCode,jdbcType=VARCHAR},
+        address = #{address,jdbcType=VARCHAR},
+        description = #{description,jdbcType=VARCHAR},
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+        update_time = #{updateTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <!-- 查询书屋名称 -->
+    <select id="selectBookHouseListByAddress" resultType="com.idream.commons.lib.dto.activity.BookHouseListDto">
+        select
+        id bookHouseId,
+        name value
+        FROM region_group_info
+        <where>
+            AND category = 2
+            <if test="provinceCode != null and provinceCode !=''">
+                AND province_code = #{provinceCode}
+            </if>
+            <if test="cityCode != null and cityCode !=''">
+                AND city_code = #{cityCode}
+            </if>
+            <if test="adCode != null and adCode !=''">
+                AND district_code = #{adCode}
+            </if>
+            <if test="bookHouseName != null and bookHouseName != ''">
+                AND name like CONCAT('%',#{bookHouseName},'%')
+            </if>
+        </where>
+    </select>
+    <!-- 查询书屋列表 -->
+    <resultMap id="getBookHouseList" type="com.idream.commons.lib.dto.activity.CommunityBookHouseDto">
+        <id column="id" property="bookHouseId"/>
+        <result column="name" property="bookHouseName"/>
+        <result column="ad_code" property="adCode"/>
+        <result column="address" property="bookHouseAddress"/>
+        <result column="code" property="bookHouseCode"/>
+        <result column="create_time" property="bookHouseCreateTime"/>
+        <collection property="realName" ofType="java.lang.String">
+            <result column="real_name" property="realName"/>
+        </collection>
+    </resultMap>
+    <select id="selectBookHouseListByExample"
+            parameterType="com.idream.commons.lib.dto.activity.CommunityBookHouseRequestDto"
+            resultMap="getBookHouseList">
+        select
+        a.id,
+        a.name,
+        a.ad_code,
+        a.address,
+        a.code,
+        a.create_time,
+        c.real_name
+        from (SELECT id,name,ad_code,address,code,create_time FROM book_house
+        <where>
+            <if test="adCode != null and adCode!=''">
+                and ad_code = #{adCode}
+            </if>
+            <if test="bookHouseName != null and bookHouseName!=''">
+                and name = #{bookHouseName}
+            </if>
+        </where>
+        order by create_time DESC limit #{page},#{rows} ) a
+        LEFT JOIN user_manager b ON a.id = b.book_id
+        LEFT JOIN user_info c ON b.user_id = c.id
+        order by a.create_time DESC
+    </select>
+    <select id="getTotal"
+            parameterType="com.idream.commons.lib.dto.activity.CommunityBookHouseRequestDto"
+            resultType="java.lang.Integer">
+        SELECT count(*) FROM book_house
+        <where>
+            <if test="adCode != null and adCode!=''">
+                and ad_code = #{adCode}
+            </if>
+            <if test="bookHouseName != null and bookHouseName!=''">
+                and name = #{bookHouseName}
+            </if>
+        </where>
+    </select>
+    <select id="selectBookHouseById" parameterType="java.lang.Integer"
+            resultType="com.idream.commons.lib.dto.activity.CommunityBookHouseDto">
+        select
+        id bookHouseId,
+        name bookHouseName,
+        longitude bookHouseLongitude,
+        latitude bookHouseLatitude,
+        ad_code adCode,
+        address bookHouseAddress,
+        description
+        from book_house
+        where id=#{bookHouseId}
+    </select>
+
+    <select id="selectBookHouseByName" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from book_house
+        where name=#{bookHouseName}
+        group by name
+    </select>
+
+    <select id="getBookAssociationCommunity" parameterType="java.lang.Integer"
+            resultType="com.idream.commons.lib.dto.activity.FindBookAssociationCommunityResponseDto">
+        SELECT
+        d.phone phone,
+        d.nick_name nickName,
+        a.city city,
+        a.city_code cityCode,
+        a.district district,
+        a.id communityId,
+        a.community_name communityName,
+        b.`name` bookName,
+        (SELECT count(1) FROM activity_community_relation LEFT JOIN activity_info ai ON activity_id=ai.id WHERE
+        community_id = a.id AND ai.`status`=4) publishedTotal
+        FROM community_info a
+        LEFT JOIN book_house b ON a.book_id=b.id
+        LEFT JOIN user_manager c ON b.id=c.book_id
+        LEFT JOIN user_info d ON d.id=c.user_id
+        WHERE b.id=#{bookId} GROUP BY a.community_name
+    </select>
+    <select id="getBookAndUserAssociationCommunity"
+            resultType="com.idream.commons.lib.dto.activity.FindBookAssociationCommunityResponseDto">
+        SELECT
+        d.phone phone,
+        d.nick_name nickName,
+        a.city city,
+        a.district district,
+        a.id communityId,
+        a.community_name communityName,
+        b.`name` bookName,
+        (SELECT count(1) FROM activity_community_relation LEFT JOIN activity_info ai ON activity_id=ai.id WHERE
+        community_id = a.id AND ai.`status`=4) publishedTotal,
+        (select count(distinct user_id) from user_community_relation where community_id =a.id and status = 2)
+        communityUserCount
+        FROM community_info a
+        LEFT JOIN book_house b ON a.book_id=b.id
+        LEFT JOIN user_manager c ON b.id=c.book_id
+        LEFT JOIN user_info d ON d.id=c.user_id
+        WHERE b.id=#{bookId} AND d.id=#{userId}
+    </select>
+
+</mapper>

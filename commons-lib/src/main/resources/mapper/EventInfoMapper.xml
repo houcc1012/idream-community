@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.idream.commons.lib.mapper.EventInfoMapper">
+    <resultMap id="BaseResultMap" type="com.idream.commons.lib.model.EventInfo">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="category" property="category" jdbcType="TINYINT"/>
+        <result column="state" property="state" jdbcType="TINYINT"/>
+        <result column="start_time" property="startTime" jdbcType="TIMESTAMP"/>
+        <result column="end_time" property="endTime" jdbcType="TIMESTAMP"/>
+        <result column="status" property="status" jdbcType="TINYINT"/>
+        <result column="continue_able" property="continueAble" jdbcType="BIT"/>
+        <result column="cycle_type" property="cycleType" jdbcType="TINYINT"/>
+        <result column="cycle_num" property="cycleNum" jdbcType="INTEGER"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, name, category, state, start_time, end_time, status, continue_able, cycle_type,
+        cycle_num, create_time, update_time
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from event_info
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from event_info
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.idream.commons.lib.model.EventInfo" useGeneratedKeys="true" keyProperty="id">
+        insert into event_info (name, category, state,
+        start_time, end_time, status,
+        continue_able, cycle_type, cycle_num,
+        create_time, update_time)
+        values (#{name,jdbcType=VARCHAR}, #{category,jdbcType=TINYINT}, #{state,jdbcType=TINYINT},
+        #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, #{status,jdbcType=TINYINT},
+        #{continueAble,jdbcType=BIT}, #{cycleType,jdbcType=TINYINT}, #{cycleNum,jdbcType=INTEGER},
+        #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="com.idream.commons.lib.model.EventInfo" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into event_info
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="name != null">
+                name,
+            </if>
+            <if test="category != null">
+                category,
+            </if>
+            <if test="state != null">
+                state,
+            </if>
+            <if test="startTime != null">
+                start_time,
+            </if>
+            <if test="endTime != null">
+                end_time,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+            <if test="continueAble != null">
+                continue_able,
+            </if>
+            <if test="cycleType != null">
+                cycle_type,
+            </if>
+            <if test="cycleNum != null">
+                cycle_num,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="category != null">
+                #{category,jdbcType=TINYINT},
+            </if>
+            <if test="state != null">
+                #{state,jdbcType=TINYINT},
+            </if>
+            <if test="startTime != null">
+                #{startTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="endTime != null">
+                #{endTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=TINYINT},
+            </if>
+            <if test="continueAble != null">
+                #{continueAble,jdbcType=BIT},
+            </if>
+            <if test="cycleType != null">
+                #{cycleType,jdbcType=TINYINT},
+            </if>
+            <if test="cycleNum != null">
+                #{cycleNum,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.idream.commons.lib.model.EventInfo">
+        update event_info
+        <set>
+            <if test="name != null">
+                name = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="category != null">
+                category = #{category,jdbcType=TINYINT},
+            </if>
+            <if test="state != null">
+                state = #{state,jdbcType=TINYINT},
+            </if>
+            <if test="startTime != null">
+                start_time = #{startTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="endTime != null">
+                end_time = #{endTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=TINYINT},
+            </if>
+            <if test="continueAble != null">
+                continue_able = #{continueAble,jdbcType=BIT},
+            </if>
+            <if test="cycleType != null">
+                cycle_type = #{cycleType,jdbcType=TINYINT},
+            </if>
+            <if test="cycleNum != null">
+                cycle_num = #{cycleNum,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.idream.commons.lib.model.EventInfo">
+        update event_info
+        set name = #{name,jdbcType=VARCHAR},
+        category = #{category,jdbcType=TINYINT},
+        state = #{state,jdbcType=TINYINT},
+        start_time = #{startTime,jdbcType=TIMESTAMP},
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+        status = #{status,jdbcType=TINYINT},
+        continue_able = #{continueAble,jdbcType=BIT},
+        cycle_type = #{cycleType,jdbcType=TINYINT},
+        cycle_num = #{cycleNum,jdbcType=INTEGER},
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+        update_time = #{updateTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <select id="selectByTypeIdAndCategory" resultType="com.idream.commons.lib.model.EventInfo">
+        SELECT b.* FROM event_type_relation a INNER JOIN event_info b ON a.event_id=b.id AND b.category=#{category}
+        WHERE a.type_id=#{typeId}
+    </select>
+</mapper>

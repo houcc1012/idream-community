@@ -1,0 +1,798 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.idream.commons.lib.mapper.CommunityLifeMapper">
+    <resultMap id="BaseResultMap" type="com.idream.commons.lib.model.CommunityLife">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="user_id" property="userId" jdbcType="INTEGER"/>
+        <result column="content" property="content" jdbcType="VARCHAR"/>
+        <result column="privacy_level" property="privacyLevel" jdbcType="TINYINT"/>
+        <result column="status" property="status" jdbcType="TINYINT"/>
+        <result column="type_id" property="typeId" jdbcType="INTEGER"/>
+        <result column="from_type" property="fromType" jdbcType="TINYINT"/>
+        <result column="activity_id" property="activityId" jdbcType="INTEGER"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, user_id, content, privacy_level, status, type_id, from_type, activity_id, create_time,
+        update_time
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from community_life
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from community_life
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.idream.commons.lib.model.CommunityLife" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into community_life (user_id, content, privacy_level,
+        status, type_id, from_type,
+        activity_id, create_time, update_time
+        )
+        values (#{userId,jdbcType=INTEGER}, #{content,jdbcType=VARCHAR}, #{privacyLevel,jdbcType=TINYINT},
+        #{status,jdbcType=TINYINT}, #{typeId,jdbcType=INTEGER}, #{fromType,jdbcType=TINYINT},
+        #{activityId,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+        )
+    </insert>
+    <insert id="insertSelective" parameterType="com.idream.commons.lib.model.CommunityLife" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into community_life
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userId != null">
+                user_id,
+            </if>
+            <if test="content != null">
+                content,
+            </if>
+            <if test="privacyLevel != null">
+                privacy_level,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+            <if test="typeId != null">
+                type_id,
+            </if>
+            <if test="fromType != null">
+                from_type,
+            </if>
+            <if test="activityId != null">
+                activity_id,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="userId != null">
+                #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="content != null">
+                #{content,jdbcType=VARCHAR},
+            </if>
+            <if test="privacyLevel != null">
+                #{privacyLevel,jdbcType=TINYINT},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=TINYINT},
+            </if>
+            <if test="typeId != null">
+                #{typeId,jdbcType=INTEGER},
+            </if>
+            <if test="fromType != null">
+                #{fromType,jdbcType=TINYINT},
+            </if>
+            <if test="activityId != null">
+                #{activityId,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.idream.commons.lib.model.CommunityLife">
+        update community_life
+        <set>
+            <if test="userId != null">
+                user_id = #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="content != null">
+                content = #{content,jdbcType=VARCHAR},
+            </if>
+            <if test="privacyLevel != null">
+                privacy_level = #{privacyLevel,jdbcType=TINYINT},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=TINYINT},
+            </if>
+            <if test="typeId != null">
+                type_id = #{typeId,jdbcType=INTEGER},
+            </if>
+            <if test="fromType != null">
+                from_type = #{fromType,jdbcType=TINYINT},
+            </if>
+            <if test="activityId != null">
+                activity_id = #{activityId,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.idream.commons.lib.model.CommunityLife">
+        update community_life
+        set user_id = #{userId,jdbcType=INTEGER},
+        content = #{content,jdbcType=VARCHAR},
+        privacy_level = #{privacyLevel,jdbcType=TINYINT},
+        status = #{status,jdbcType=TINYINT},
+        type_id = #{typeId,jdbcType=INTEGER},
+        from_type = #{fromType,jdbcType=TINYINT},
+        activity_id = #{activityId,jdbcType=INTEGER},
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+        update_time = #{updateTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <sql id="SelectCommunityIdByUserId">
+        SELECT
+        community_id
+        FROM
+        user_community_relation
+        WHERE
+        user_id = #{authUserId,jdbcType=INTEGER}
+        AND `status` != 3
+    </sql>
+    <resultMap id="MyCommunityLifeMap" type="com.idream.commons.lib.dto.activity.AppMyCommunityLifeByTimeDto">
+        <result column="year_num" property="yearNum" jdbcType="INTEGER"/>
+        <collection property="appMyCommunityLifeList"
+                    ofType="com.idream.commons.lib.dto.activity.AppMyCommunityLifeDto">
+            <id column="id" property="id" jdbcType="INTEGER"/>
+            <result column="content" property="content" jdbcType="VARCHAR"/>
+            <result column="privacy_level" property="privacyLevel" jdbcType="TINYINT"/>
+            <result column="from_type" property="fromType" jdbcType="TINYINT"/>
+            <result column="activity_id" property="activityId" jdbcType="INTEGER"/>
+            <result column="activity_title" property="activityTitle" jdbcType="VARCHAR"/>
+            <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+            <result column="thumbuped" property="thumbuped" jdbcType="INTEGER"/>
+            <result column="thumbup_num" property="thumbupNum" jdbcType="INTEGER"/>
+            <collection property="imageList" ofType="com.idream.commons.lib.dto.activity.AppImageParam">
+                <id column="image_id" property="id" jdbcType="INTEGER"/>
+                <result column="image_url" property="imageUrl"/>
+                <result column="cover_img" property="coverImg"/>
+            </collection>
+        </collection>
+    </resultMap>
+    <select id="getMyDynamicList" resultMap="MyCommunityLifeMap"
+            parameterType="com.idream.commons.lib.dto.activity.AppNeighborRequestParams">
+        SELECT
+        a.id,
+        a.content,
+        a.privacy_level,
+        a.create_time,
+        a.from_type,
+        a.activity_id,
+        b.id as image_id,
+        b.cover_img,
+        b.image_url,
+        c.title AS activity_title,
+        (case when e.thumbuped is null then 0 else 1 end) as thumbuped,
+        (case when f.thumbup_num is null then 0 else f.thumbup_num end) as thumbup_num,
+        g.year_num
+        FROM
+        (select
+        a.id,
+        a.content,
+        a.privacy_level,
+        a.create_time,
+        a.from_type,
+        a.activity_id
+        from community_life a where a.user_id = #{authUserId,jdbcType=INTEGER} and a.`status` = 2 ORDER BY
+        a.create_time DESC limit #{page,jdbcType=INTEGER}, #{rows,jdbcType=INTEGER} )a
+        LEFT JOIN community_life_image b ON b.life_id = a.id
+        LEFT JOIN activity_info c ON c.id = a.activity_id
+        LEFT JOIN (select id as thumbuped ,life_id from community_life_like_record where user_id =
+        #{authUserId,jdbcType=INTEGER} GROUP BY life_id) e
+        on e.life_id = a.id
+        LEFT JOIN (
+        SELECT
+        count(*) AS thumbup_num,
+        life_id
+        FROM
+        community_life_like_record
+        GROUP BY
+        life_id
+        ) f ON f.life_id = a.id
+        INNER JOIN (
+        SELECT
+        YEAR (create_time) AS year_num
+
+        FROM
+        community_life
+        group by YEAR (create_time)
+        ) g ON g.year_num = YEAR (a.create_time)
+        ORDER BY
+        a.create_time DESC,image_id asc
+    </select>
+    <select id="getMyDynamicListCount" resultType="java.lang.Integer"
+            parameterType="com.idream.commons.lib.dto.activity.AppNeighborRequestParams">
+        select IFNULL(count(*) ,0) from
+        community_life a where a.user_id = #{authUserId,jdbcType=INTEGER} and a.`status` = 2
+    </select>
+    <resultMap id="CommunityNewLifeMap" type="com.idream.commons.lib.dto.activity.AppCommunityLifeDto">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="user_id" property="userId" jdbcType="INTEGER"/>
+        <result column="nick_name" property="nickName" jdbcType="VARCHAR"/>
+        <result column="image" property="image" jdbcType="VARCHAR"/>
+        <result column="content" property="content" jdbcType="VARCHAR"/>
+        <result column="privacy_level" property="privacyLevel" jdbcType="TINYINT"/>
+        <result column="from_type" property="fromType" jdbcType="TINYINT"/>
+        <result column="activity_id" property="activityId" jdbcType="INTEGER"/>
+        <result column="activity_status" property="activityStatus" jdbcType="INTEGER"/>
+        <result column="activity_title" property="activityTitle" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="attended" property="attended" jdbcType="INTEGER"/>
+        <result column="thumbuped" property="thumbuped" jdbcType="INTEGER"/>
+        <result column="thumbup_num" property="thumbupNum" jdbcType="INTEGER"/>
+        <result column="joined" property="joined" jdbcType="BIT"/>
+        <result column="mine" property="mine" jdbcType="INTEGER"/>
+        <collection property="userLabelList" ofType="com.idream.commons.lib.dto.activity.AppUserLabelDto">
+            <id column="achieve_id" property="id"/>
+            <result column="achieve_name" property="label"/>
+        </collection>
+        <collection property="imageList" ofType="com.idream.commons.lib.dto.activity.AppImageParam">
+            <result column="image_id" property="id"/>
+            <result column="image_url" property="imageUrl"/>
+            <result column="cover_img" property="coverImg"/>
+        </collection>
+        <collection property="neighborInfoList" ofType="com.idream.commons.lib.dto.activity.AppNeighborInfoDto">
+            <result column="other_uid" property="userId"/>
+            <result column="other_image" property="image"/>
+            <result column="nick" property="nickName" jdbcType="VARCHAR"/>
+        </collection>
+    </resultMap>
+    <select id="getMyNeighborDynamicList" resultMap="CommunityNewLifeMap"
+            parameterType="com.idream.commons.lib.dto.activity.AppNeighborRequestParams">
+        SELECT
+        a.id,
+        a.user_id,
+        a.content,
+        a.privacy_level,
+        a.create_time,
+        a.from_type,
+        a.activity_id,
+        b.nick_name,
+        b.image,
+        c.cover_img,
+        c.image_url,
+        IFNULL(d.thumbuped,0) as thumbuped,
+        IFNULL(e.attended,0) as attended,
+        f.user_id AS other_uid,
+        h.image AS other_image,
+        h.nick_name as nick,
+        IFNULL(i.thumbup_num,0) as thumbup_num,
+        j.title AS activity_title,
+        CASE WHEN j.start_time &gt; NOW() THEN 1 WHEN j.start_time &lt; NOW() and j.end_time &gt; NOW() then 2 else 3
+        end as activity_status,
+        a.user_id = #{authUserId,jdbcType=INTEGER} as mine,
+        k.achieve_id ,
+        k.achieve_name ,
+        (case when m.id is null then 0 else 1 end )as joined
+        FROM( SELECT
+        life_id
+        FROM
+        `community_life_time_line`
+        WHERE
+        community_id IN (
+        <include refid="SelectCommunityIdByUserId"/>
+        ) union select life_id from community_life_time_line where user_id = #{authUserId,jdbcType=INTEGER} order by
+        life_id desc
+        ) g
+        INNER JOIN community_life a ON g.life_id = a.id
+        INNER JOIN user_info b ON b.id = a.user_id
+        LEFT JOIN community_life_image c ON c.life_id = a.id
+        LEFT JOIN (select count(*) as thumbuped ,life_id from community_life_like_record where user_id =
+        #{authUserId,jdbcType=INTEGER} GROUP BY life_id) d
+        on d.life_id = a.id
+        left join (select count(*) as attended,target_user_id as user_id from user_attention where user_id =
+        #{authUserId,jdbcType=INTEGER} GROUP BY target_user_id) e
+        on e.user_id = a.user_id
+        LEFT JOIN community_life_like_record f ON f.life_id = a.id
+        LEFT JOIN user_info h ON h.id = f.user_id
+        LEFT JOIN (
+        SELECT
+        count(*) AS thumbup_num,
+        life_id
+        FROM
+        community_life_like_record
+        GROUP BY
+        life_id
+        ) i ON i.life_id = a.id
+        LEFT JOIN activity_info j ON j.id = a.activity_id
+        LEFT JOIN achievement_user k ON k.user_id = a.user_id and k.completed = 1
+
+        LEFT JOIN user_activity_record m on m.activity_id = a.activity_id and m.exit_status = 1 and m.user_id =
+        a.user_id
+        WHERE a.status = 2
+        ORDER BY
+        a.create_time DESC,c.id asc,k.id desc
+    </select>
+    <select id="selectById" resultType="com.idream.commons.lib.dto.activity.AppCommunityLifeDetailDto"
+            parameterType="java.lang.Integer">
+        SELECT
+        a.id,
+        a.user_id,
+        a.content,
+        a.privacy_level,
+        a.from_type,
+        a.activity_id,
+        a.type_id,
+        a. STATUS,
+        a.create_time,
+        a.update_time,
+        b.title as activity_title,
+        IFNULL(c.thumbuped,0) as thumbuped,
+        d.nick_name,
+        d.image
+        FROM
+        community_life a
+        left join activity_info b on a.activity_id = b.id
+        LEFT JOIN (select count(*) as thumbuped ,life_id from community_life_like_record where user_id =
+        #{authUserId,jdbcType=INTEGER} and life_id = #{id,jdbcType=INTEGER}) c
+        on c.life_id = a.id
+        LEFT JOIN user_info d ON d.id = a.user_id
+        where a.id = #{id,jdbcType=INTEGER}
+    </select>
+    <select id="getWetherAuthenticated" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+        select
+        count(*)
+        from user_community_relation where user_id = #{userId,jdbcType=INTEGER}
+    </select>
+    <select id="selectPublishLifeByUserId" resultType="com.idream.commons.lib.model.CommunityLife" parameterType="int">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM
+        community_life
+        WHERE
+        status = 2
+        AND user_id = #{userId}
+    </select>
+    <resultMap id="AdminMyDynamicMap" type="com.idream.commons.lib.dto.activity.AdminMyDynamicDto">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="content" property="content" jdbcType="VARCHAR"/>
+        <result column="privacy_level" property="privacyLevel" jdbcType="TINYINT"/>
+        <result column="status" property="status" jdbcType="TINYINT"/>
+        <result column="type_id" property="typeId" jdbcType="INTEGER"/>
+        <result column="from_type" property="fromType" jdbcType="TINYINT"/>
+        <result column="activity_id" property="activityId" jdbcType="INTEGER"/>
+        <result column="activity_title" property="activityTitle" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+        <result column="thumbup_num" property="thumbupNum" jdbcType="INTEGER"/>
+        <result column="comment_num" property="commentNum" jdbcType="INTEGER"/>
+        <collection property="imageList" ofType="com.idream.commons.lib.dto.activity.AppImageParam">
+            <result column="image_url" property="imageUrl"/>
+            <result column="cover_img" property="coverImg"/>
+        </collection>
+    </resultMap>
+    <select id="getMyDynamicByUserId" resultMap="AdminMyDynamicMap"
+            parameterType="com.idream.commons.lib.dto.activity.AppNeighborRequestParams">
+        SELECT
+        a.id,
+        a.content,
+        a.privacy_level,
+        a. STATUS,
+        a.create_time,
+        a.update_time,
+        a.type_id,
+        a.from_type,
+        a.activity_id,
+        b.title as activity_title,
+        IFNULL(g.thumbuped, 0) AS thumbup_num,
+        e.cover_img,
+        e.image_url
+        FROM
+        (select a.id,
+        a.content,
+        a.privacy_level,
+        a. STATUS,
+        a.create_time,
+        a.update_time,
+        a.type_id,
+        a.from_type,
+        a.activity_id
+        from community_life a
+        WHERE
+        a.`status` != 1
+        AND a.user_id = #{authUserId,jdbcType=INTEGER} limit #{page,jdbcType=INTEGER},#{rows,jdbcType=INTEGER}) a
+        left join activity_info b on a.activity_id = b.title
+        LEFT JOIN (
+        SELECT
+        count(*) AS thumbuped,
+        life_id
+        FROM
+        community_life_like_record
+        GROUP BY
+        life_id
+        ) g ON g.life_id = a.id
+        LEFT JOIN
+        community_life_image e
+        ON e.life_id = a.id
+        ORDER BY
+        a.create_time DESC
+    </select>
+    <select id="getMyDynamicByUserIdCount" resultType="java.lang.Integer"
+            parameterType="com.idream.commons.lib.dto.activity.AppNeighborRequestParams">
+        select IFNULL(count(*),0)
+        FROM community_life a
+        WHERE
+        a.`status` != 1
+        AND a.user_id = #{authUserId,jdbcType=INTEGER}
+    </select>
+    <resultMap id="DynamicMap" type="com.idream.commons.lib.dto.activity.AdminMyNeighborDynamicDto">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="nick_name" property="nickName" jdbcType="VARCHAR"/>
+        <result column="content" property="content" jdbcType="VARCHAR"/>
+        <result column="privacy_level" property="privacyLevel" jdbcType="TINYINT"/>
+        <result column="status" property="status" jdbcType="TINYINT"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="thumbup_num" property="thumbupNum" jdbcType="INTEGER"/>
+        <result column="comment_num" property="commentNum" jdbcType="INTEGER"/>
+        <collection property="communityList" ofType="com.idream.commons.lib.dto.activity.AppCommunityInfoDto">
+            <id column="community_id" property="communityId"/>
+            <result column="community_name" property="communityName"/>
+        </collection>
+        <collection property="imageList" ofType="com.idream.commons.lib.dto.activity.AppImageParam">
+            <result column="image_url" property="imageUrl"/>
+            <result column="cover_img" property="coverImg"/>
+        </collection>
+    </resultMap>
+    <select id="getAllNeighborDynamicList" resultMap="DynamicMap"
+            parameterType="com.idream.commons.lib.dto.activity.AdminMyNeighborDynamicParam">
+        SELECT
+        a.id,
+        a.user_id,
+        a.content,
+        a.privacy_level,
+        a.create_time,
+        a.type_id,
+        a.from_type,
+        a.activity_id,
+        a.`status`,
+        k.title as activity_title,
+        d.id as community_id,
+        d.name as community_name,
+        i.nick_name,
+        i.image,
+        e.cover_img,
+        e.image_url,
+        h.thumbup_num
+        FROM
+        community_life a
+        left join user_community_relation c on c.user_id = a.user_id
+        left join region_group_info d ON d.id = c.community_id
+        left join activity_info k on a.activity_id = k.title
+        LEFT JOIN user_info i ON i.id = a.user_id
+        LEFT JOIN community_life_image e ON e.life_id = a.id
+        LEFT JOIN (
+        SELECT
+        count(*) AS thumbup_num,
+        life_id
+        FROM
+        community_life_like_record
+        GROUP BY
+        life_id
+        ) h ON h.life_id = a.id
+        WHERE
+        a.from_type = 1 and  a.status != 4
+        <if test="bookId != null">
+            and d.id in (select group_id from region_group_relation where region_id in (select region_id from
+            region_group_relation where group_id = #{bookId}))
+        </if>
+        <if test="nickName != null and nickName != ''">
+            and i.nick_name like concat('%',#{nickName,jdbcType=VARCHAR},'%')
+        </if>
+        <if test="content != null and content !=''">
+            and a.content like concat('%',#{content,jdbcType=VARCHAR},'%')
+        </if>
+        <if test="communityName != null and communityName != ''">
+            and d.name like concat('%',#{communityName,jdbcType=VARCHAR},'%')
+        </if>
+        <if test="status != null">
+            and a.status = #{status,jdbcType=INTEGER}
+        </if>
+        order by a.create_time DESC
+    </select>
+    <update id="updateStatus" parameterType="com.idream.commons.lib.model.CommunityLife">
+        update community_life
+        <set>
+            <if test="status != null and status == 2">
+                status = 2
+            </if>
+            <if test="status != null and status == 3">
+                status = 3
+            </if>
+        </set>
+        <if test="status != null and status == 2">
+            where id = #{id,jdbcType=INTEGER} and status = 3
+        </if>
+        <if test="status != null and status == 3">
+            where id = #{id,jdbcType=INTEGER} and status = 2
+        </if>
+    </update>
+    <select id="selectCommentsByDate" resultType="com.idream.commons.lib.dto.activity.AdminActivityStatisticsDto">
+        SELECT count(*) as count ,DATE_FORMAT(create_time,'%Y%m%d') as date
+        FROM community_life
+        WHERE create_time between #{startTime} and #{endTime}
+        group by DATE_FORMAT(create_time,'%Y%m%d') order by date asc
+    </select>
+
+    <resultMap id="CommunityLifeMessageResultMap"
+               type="com.idream.commons.lib.dto.activity.FindActivityMessageResponseDto">
+        <id column="aid" property="lifeId"/>
+        <result column="content" property="content"/>
+        <result column="createTime" property="createTime"/>
+        <result column="status" property="status"/>
+        <result column="nickName" property="nickName"/>
+        <result column="phone" property="phone"/>
+        <result column="likeCount" property="likeCount"/>
+        <collection property="imageList" ofType="com.idream.commons.lib.dto.activity.AppImageParam">
+            <id column="cid" property="id"/>
+            <result column="imageUrl" property="imageUrl"/>
+            <result column="coverImg" property="coverImg"/>
+        </collection>
+    </resultMap>
+    <select id="getCommunityLife" parameterType="com.idream.commons.lib.dto.activity.ActivityAdminCommunityLifeRequestDto" resultMap="CommunityLifeMessageResultMap">
+        SELECT
+        a.id aid,
+        a.content content,
+        a.create_time createTime,
+        a.status status,
+        b.nick_name nickName,
+        b.phone phone,
+        c.id cid,
+        c.image_url imageUrl,
+        c.cover_img coverImg,
+        (SELECT count(*) FROM community_life_like_record WHERE life_id=a.id) likeCount,
+        (SELECT d.title FROM activity_info d WHERE d.id=a.activity_id) activityTitle,
+        (SELECT e.`name` FROM activity_type e LEFT JOIN activity_info f ON e.id=f.type_id WHERE f.id=a.activity_id)
+        activityType
+        FROM
+        community_life a
+        LEFT JOIN user_info b ON a.user_id = b.id
+        LEFT JOIN community_life_image c ON a.id=c.life_id
+        <where>
+            1=1 AND a.activity_id=#{activityId} AND a.`status` &gt; 1 AND a.`status` &lt; 4
+            <if test="content!=null and content!=''">
+                and a.content like concat('%',#{content},'%')
+            </if>
+            <if test="status!=null ">
+                and a.status=#{status}
+            </if>
+            <if test="nickName!=null and nickName!=''">
+                and b.nick_name like concat('%',#{nickName},'%')
+            </if>
+        </where>
+    </select>
+
+    <select id="selectDiscoverLife" resultType="com.idream.commons.lib.dto.app.AppDiscoveryDto">
+        SELECT
+        a.id businessId,
+        3 businessType,
+        a.content title,
+        b.image_url image,
+        a.type_id,
+        CASE
+        WHEN
+        (SELECT COUNT(*) FROM user_community_relation d WHERE d.user_id=a.user_id AND EXISTS (SELECT * FROM
+        user_community_relation e WHERE d.community_id=e.community_id AND e.user_id=#{authUserId})) THEN 1
+        WHEN
+        (SELECT COUNT(*) FROM user_region_relation f WHERE f.user_id=a.user_id AND EXISTS (SELECT * FROM
+        user_region_relation g WHERE g.region_id=f.region_id AND g.user_id=#{authUserId})) THEN 1
+        ELSE 9 END orderNum
+        FROM
+        community_life a
+        INNER JOIN community_life_image b ON a.id = b.life_id
+        WHERE
+        a.`status` = 2
+        <if test="typeId!=null and typeId!=0">
+            and a.type_id=#{typeId}
+        </if>
+        AND a.type_id &gt; 0
+        AND a.activity_id IS NULL
+        AND NOT EXISTS (
+        SELECT
+        *
+        FROM
+        user_dislike_record c
+        WHERE
+        c.business_type = 3
+        AND c.user_id = #{authUserId}
+        AND c.business_id = a.id
+        )
+        GROUP BY
+        a.id
+        ORDER BY
+        orderNum,a.id DESC
+    </select>
+    <select id="selectDiscoverActivityLife" resultType="com.idream.commons.lib.dto.app.AppDiscoveryDto">
+        SELECT
+        a.id businessId,
+        2 businessType,
+        a.content title,
+        b.image_url image,
+        a.type_id,
+        CASE
+        WHEN
+        act.level &gt; 1 THEN 1
+        ELSE 9 END orderNum
+        FROM
+        community_life a
+        INNER JOIN community_life_image b ON a.id = b.life_id
+        INNER JOIN activity_info act on act.id=a.activity_id
+        LEFT JOIN activity_display_relation adr on adr.activity_id = a.activity_id
+        WHERE
+        a.`status` = 2 and act.status=4
+        <if test="typeId!=null and typeId!=0">
+            and a.type_id=#{typeId}
+        </if>
+        AND a.type_id &gt; 0
+        AND a.activity_id IS NOT NULL
+        AND
+        CASE
+        WHEN adr.display_type = 1 THEN TRUE
+        WHEN adr.display_type = 20 THEN adr.display_id = #{cityCode}
+        WHEN adr.display_type = 40 THEN adr.display_id in ( SELECT urr.region_id FROM user_region_relation urr
+        WHERE user_id=#{authUserId} )
+        WHEN adr.display_type = 60 THEN adr.display_id in ( SELECT ucr.community_id FROM user_community_relation ucr
+        WHERE user_id=#{authUserId} )
+        END
+        AND NOT EXISTS (
+        SELECT
+        *
+        FROM
+        user_dislike_record c
+        WHERE
+        c.business_type = 2
+        AND c.user_id = #{authUserId}
+        AND c.business_id = a.id
+        )
+        GROUP BY
+        a.id
+        ORDER BY
+        orderNum,a.id DESC
+    </select>
+
+    <!-- 发现页生活动态列表 -->
+    <select id="selectDiscoverLifeDynamicListByTypeId"
+            parameterType="com.idream.commons.lib.dto.appactivity.AppExploreDynamicRequestDto"
+            resultMap="CommunityNewLifeMap">
+        SELECT
+        a.id,
+        a.user_id,
+        a.content,
+        a.privacy_level,
+        a.create_time,
+        a.from_type,
+        b.nick_name,
+        b.image,
+        c.id image_id,
+        c.cover_img,
+        c.image_url,
+        IFNULL(d.thumbuped,0) as thumbuped,
+        IFNULL(e.attended,0) as attended,
+        f.user_id AS other_uid,
+        h.image AS other_image,
+        h.nick_name AS nick,
+        IFNULL(i.thumbup_num, 0) AS thumbup_num,
+        a.user_id = #{authUserId} as mine,
+        k.achieve_id ,
+        k.achieve_name
+        FROM
+        community_life a
+        INNER JOIN user_info b ON b.id = a.user_id
+        LEFT JOIN community_life_image c ON c.life_id = a.id
+        LEFT JOIN (
+                    SELECT
+                    count(*) AS thumbuped,
+                    life_id
+                    FROM
+                    community_life_like_record
+                    WHERE
+                    user_id = #{authUserId} GROUP BY life_id) d on d.life_id = a.id
+        LEFT JOIN (
+                    SELECT
+                    count(*) AS attended, target_user_id AS user_id
+                    FROM user_attention
+                    WHERE user_id = #{authUserId}
+                    GROUP BY target_user_id) e on e.user_id = a.user_id
+        LEFT JOIN community_life_like_record f ON f.life_id = a.id
+        LEFT JOIN user_info h ON h.id = f.user_id
+        LEFT JOIN (
+                    SELECT
+                    count(*) AS thumbup_num, life_id
+                    FROM community_life_like_record GROUP BY life_id
+                    ) i ON i.life_id = a.id
+        LEFT JOIN achievement_user k ON a.user_id=k.user_id AND k.completed=TRUE
+        WHERE
+        a.type_id = #{typeId} AND a.status = 2 AND a.activity_id IS NULL
+        ORDER BY
+        CASE WHEN a.id = #{businessId} THEN 1 ELSE 2 END, a.create_time DESC,i.thumbup_num DESC,k.id DESC,image_id ASC
+    </select>
+
+    <!-- 发现页活动动态列表 -->
+    <select id="selectActivityDynamicListByActivityId"
+            parameterType="com.idream.commons.lib.dto.activity.AppActivityDynamicRequestDto"
+            resultMap="CommunityNewLifeMap">
+        SELECT
+        a.id,
+        a.user_id,
+        a.content,
+        a.privacy_level,
+        a.create_time,
+        a.from_type,
+        a.activity_id,
+        b.nick_name,
+        b.image,
+        c.id image_id,
+        c.cover_img,
+        c.image_url,
+        IFNULL(d.thumbuped,0) as thumbuped,
+        IFNULL(e.attended,0) as attended,
+        f.user_id AS other_uid,
+        h.image AS other_image,
+        h.nick_name as nick,
+        IFNULL(i.thumbup_num,0) as thumbup_num,
+        j.title AS activity_title,
+        CASE WHEN j.start_time &gt; NOW() THEN 1 WHEN j.start_time &lt; NOW() and j.end_time &gt; NOW() then 2 else 3
+        end as activity_status,
+        a.user_id = #{authUserId} as mine,
+        k.achieve_id ,
+        k.achieve_name,
+        (case when m.id is null then 0 else 1 end )as joined
+        FROM
+        community_life a
+        INNER JOIN user_info b ON b.id = a.user_id
+        LEFT JOIN community_life_image c ON c.life_id = a.id
+        LEFT JOIN (select count(*) as thumbuped ,life_id from community_life_like_record where user_id = #{authUserId}
+                    GROUP BY life_id) d on d.life_id = a.id
+        LEFT JOIN (select count(*) as attended,target_user_id as user_id from user_attention where user_id =
+                    #{authUserId} GROUP BY target_user_id) e on e.user_id = a.user_id
+        LEFT JOIN community_life_like_record f ON f.life_id = a.id
+        LEFT JOIN user_info h ON h.id = f.user_id
+        LEFT JOIN (
+                    SELECT
+                    count(*) AS thumbup_num,
+                    life_id
+                    FROM
+                    community_life_like_record
+                    GROUP BY
+                    life_id
+                  ) i ON i.life_id = a.id
+        LEFT JOIN activity_info j ON j.id = a.activity_id
+        LEFT JOIN achievement_user k ON a.user_id=k.user_id AND k.completed=TRUE
+        LEFT JOIN user_activity_record m on m.activity_id = a.activity_id and m.exit_status = 1 and m.user_id = a.user_id
+        WHERE a.activity_id = #{activityId} AND a.status = 2
+        ORDER BY
+        <if test="businessId != null">
+            CASE WHEN a.id = #{businessId} THEN 1 ELSE 2 END,
+        </if>
+        a.create_time DESC ,thumbup_num DESC,k.id DESC,image_id ASC
+    </select>
+
+    <select id="selectTotalComments" resultType="java.lang.Integer">
+        SELECT count(*) FROM community_life
+    </select>
+</mapper>

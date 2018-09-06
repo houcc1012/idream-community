@@ -1,0 +1,122 @@
+[2018-08-29 09:11:53] [WARN ] [AMQP Connection 192.168.37.99:5672] in com.rabbitmq.client.impl.ForgivingExceptionHandler - An unexpected connection driver error occured (Exception message: Connection reset)
+[2018-08-29 09:11:53] [ERROR] [AMQP Connection 192.168.37.99:5672] in o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+[2018-08-29 09:11:53] [ERROR] [AMQP Connection 192.168.37.99:5672] in o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+[2018-08-29 09:11:53] [ERROR] [AMQP Connection 192.168.37.99:5672] in o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+[2018-08-29 09:11:53] [ERROR] [AMQP Connection 192.168.37.99:5672] in o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+[2018-08-29 09:11:53] [INFO ] [SimpleAsyncTaskExecutor-5] in o.s.a.r.listener.SimpleMessageListenerContainer - Restarting Consumer@1503c612: tags=[{amq.ctag-rvtvTfcmrBkz-EOg0MFrLg=communityLifeTimeLineQueue}], channel=Cached Rabbit Channel: PublisherCallbackChannelImpl: AMQChannel(amqp://admin@192.168.37.99:5672/,3), conn: Proxy@328bc067 Shared Rabbit Connection: SimpleConnection@32c4f9bc [delegate=amqp://admin@192.168.37.99:5672/, localPort= 56376], acknowledgeMode=MANUAL local queue size=0
+[2018-08-29 09:11:53] [INFO ] [SimpleAsyncTaskExecutor-7] in o.s.a.rabbit.connection.CachingConnectionFactory - Attempting to connect to: 192.168.37.99:5672
+[2018-08-29 09:11:53] [INFO ] [SimpleAsyncTaskExecutor-7] in o.s.a.rabbit.connection.CachingConnectionFactory - Created new connection: connectionFactory#5a3d99a:3/SimpleConnection@538e3569 [delegate=amqp://admin@192.168.37.99:5672/, localPort= 59281]
+[2018-08-29 09:11:53] [INFO ] [SimpleAsyncTaskExecutor-7] in org.springframework.amqp.rabbit.core.RabbitAdmin - Auto-declaring a non-durable, auto-delete, or exclusive Queue (springCloudBus.anonymous.oV8D51PjSia3HRhyNXjjxg) durable:false, auto-delete:true, exclusive:true. It will be redeclared if the broker stops and is restarted while the connection factory is alive, but all messages will be lost.
+[2018-08-29 09:11:53] [INFO ] [SimpleAsyncTaskExecutor-6] in o.s.a.r.listener.SimpleMessageListenerContainer - Restarting Consumer@3fad8d21: tags=[{amq.ctag-v1KBZfnLC_z0xqIA5ZDhjQ=communityLifeTimeLineQueue}], channel=Cached Rabbit Channel: PublisherCallbackChannelImpl: AMQChannel(amqp://admin@192.168.37.99:5672/,4), conn: Proxy@328bc067 Shared Rabbit Connection: SimpleConnection@538e3569 [delegate=amqp://admin@192.168.37.99:5672/, localPort= 59281], acknowledgeMode=MANUAL local queue size=0
+[2018-08-29 09:11:54] [INFO ] [springCloudBus.anonymous.oV8D51PjSia3HRhyNXjjxg-3] in o.s.a.r.listener.SimpleMessageListenerContainer - Restarting Consumer@4e097d7c: tags=[{amq.ctag-8MCyorIsYu6W9oJOOk_ERQ=springCloudBus.anonymous.oV8D51PjSia3HRhyNXjjxg}], channel=Cached Rabbit Channel: PublisherCallbackChannelImpl: AMQChannel(amqp://admin@192.168.37.99:5672/,2), conn: Proxy@328bc067 Shared Rabbit Connection: SimpleConnection@538e3569 [delegate=amqp://admin@192.168.37.99:5672/, localPort= 59281], acknowledgeMode=AUTO local queue size=0
+[2018-08-29 09:11:54] [INFO ] [SimpleAsyncTaskExecutor-3] in o.s.a.r.listener.SimpleMessageListenerContainer - Restarting Consumer@2bd08557: tags=[{amq.ctag-aJrcrCfTpoMoq3hAj1LDvQ=dl_communityLifeTimeLineQueue}], channel=Cached Rabbit Channel: PublisherCallbackChannelImpl: AMQChannel(amqp://admin@192.168.37.99:5672/,1), conn: Proxy@328bc067 Shared Rabbit Connection: SimpleConnection@538e3569 [delegate=amqp://admin@192.168.37.99:5672/, localPort= 59281], acknowledgeMode=AUTO local queue size=0
+[2018-08-29 09:12:24] [INFO ] [AsyncResolver-bootstrap-executor-0] in c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+[2018-08-29 09:17:24] [INFO ] [AsyncResolver-bootstrap-executor-0] in c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+[2018-08-29 09:22:24] [INFO ] [AsyncResolver-bootstrap-executor-0] in c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+[2018-08-29 09:27:24] [INFO ] [AsyncResolver-bootstrap-executor-0] in c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+[2018-08-29 09:32:24] [INFO ] [AsyncResolver-bootstrap-executor-0] in c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+[2018-08-29 09:37:24] [INFO ] [AsyncResolver-bootstrap-executor-0] in c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+[2018-08-29 09:42:24] [INFO ] [AsyncResolver-bootstrap-executor-0] in c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+[2018-08-29 09:47:24] [INFO ] [AsyncResolver-bootstrap-executor-0] in c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+[2018-08-29 09:52:24] [INFO ] [AsyncResolver-bootstrap-executor-0] in c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+[2018-08-29 09:57:24] [INFO ] [AsyncResolver-bootstrap-executor-0] in c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+[2018-08-29 10:02:24] [INFO ] [AsyncResolver-bootstrap-executor-0] in c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+[2018-08-29 10:07:24] [INFO ] [AsyncResolver-bootstrap-executor-0] in c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+[2018-08-29 10:12:24] [INFO ] [AsyncResolver-bootstrap-executor-0] in c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+[2018-08-29 10:17:24] [INFO ] [AsyncResolver-bootstrap-executor-0] in c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+[2018-08-29 10:22:24] [INFO ] [AsyncResolver-bootstrap-executor-0] in c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+[2018-08-29 10:27:19] [INFO ] [SimpleAsyncTaskExecutor-7] in com.idream.rabbitmq.CommunityLifeReceiver - 接收到来自communityLifeTimeLineQueue队列的消息, data={"createTime":1535509517655,"lifeId":63,"privacyLevel":1,"userId":139}
+[2018-08-29 10:27:24] [INFO ] [AsyncResolver-bootstrap-executor-0] in c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+[2018-08-29 10:27:26] [INFO ] [SimpleAsyncTaskExecutor-8] in com.idream.rabbitmq.CommunityLifeReceiver - 接收到来自communityLifeTimeLineQueue队列的消息, data={"createTime":1535509525130,"lifeId":64,"privacyLevel":1,"userId":139}
+[2018-08-29 10:29:17] [INFO ] [SimpleAsyncTaskExecutor-7] in com.idream.rabbitmq.CommunityLifeReceiver - 接收到来自communityLifeTimeLineQueue队列的消息, data={"createTime":1535509635670,"lifeId":71,"privacyLevel":1,"userId":139}
+[2018-08-29 10:29:33] [INFO ] [SimpleAsyncTaskExecutor-8] in com.idream.rabbitmq.CommunityLifeReceiver - 接收到来自communityLifeTimeLineQueue队列的消息, data={"createTime":1535509652225,"lifeId":72,"privacyLevel":1,"userId":139}
+[2018-08-29 10:32:24] [INFO ] [AsyncResolver-bootstrap-executor-0] in c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+[2018-08-29 10:37:24] [INFO ] [AsyncResolver-bootstrap-executor-0] in c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+[2018-08-29 10:42:24] [INFO ] [AsyncResolver-bootstrap-executor-0] in c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+[2018-08-29 10:47:24] [INFO ] [AsyncResolver-bootstrap-executor-0] in c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+[2018-08-29 10:52:24] [INFO ] [AsyncResolver-bootstrap-executor-0] in c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+[2018-08-29 10:57:24] [INFO ] [AsyncResolver-bootstrap-executor-0] in c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+[2018-08-29 11:02:24] [INFO ] [AsyncResolver-bootstrap-executor-0] in c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+[2018-08-29 11:07:24] [INFO ] [AsyncResolver-bootstrap-executor-0] in c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+[2018-08-29 11:12:24] [INFO ] [AsyncResolver-bootstrap-executor-0] in c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+[2018-08-29 11:17:24] [INFO ] [AsyncResolver-bootstrap-executor-0] in c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+[2018-08-29 11:22:24] [INFO ] [AsyncResolver-bootstrap-executor-0] in c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+[2018-08-29 11:27:24] [INFO ] [AsyncResolver-bootstrap-executor-0] in c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+[2018-08-29 13:05:32] [WARN ] [AMQP Connection 192.168.37.99:5672] in com.rabbitmq.client.impl.ForgivingExceptionHandler - An unexpected connection driver error occured (Exception message: Connection reset)
+[2018-08-29 13:05:32] [ERROR] [AMQP Connection 192.168.37.99:5672] in o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+[2018-08-29 13:05:32] [ERROR] [AMQP Connection 192.168.37.99:5672] in o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+[2018-08-29 13:05:32] [ERROR] [AMQP Connection 192.168.37.99:5672] in o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+[2018-08-29 13:05:32] [ERROR] [AMQP Connection 192.168.37.99:5672] in o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+[2018-08-29 13:05:33] [INFO ] [SimpleAsyncTaskExecutor-8] in o.s.a.r.listener.SimpleMessageListenerContainer - Restarting Consumer@6170d4aa: tags=[{amq.ctag-cqYMKetZ9xNnlHKS2FaxLA=communityLifeTimeLineQueue}], channel=Cached Rabbit Channel: PublisherCallbackChannelImpl: AMQChannel(amqp://admin@192.168.37.99:5672/,2), conn: Proxy@328bc067 Shared Rabbit Connection: SimpleConnection@538e3569 [delegate=amqp://admin@192.168.37.99:5672/, localPort= 59281], acknowledgeMode=MANUAL local queue size=0
+[2018-08-29 13:05:33] [INFO ] [SimpleAsyncTaskExecutor-4] in o.s.a.r.listener.SimpleMessageListenerContainer - Restarting Consumer@3dd55fcd: tags=[{amq.ctag-09yMJb0emOIXDYT0Ey41UA=dl_communityLifeTimeLineQueue}], channel=Cached Rabbit Channel: PublisherCallbackChannelImpl: AMQChannel(amqp://admin@192.168.37.99:5672/,4), conn: Proxy@328bc067 Shared Rabbit Connection: SimpleConnection@538e3569 [delegate=amqp://admin@192.168.37.99:5672/, localPort= 59281], acknowledgeMode=AUTO local queue size=0
+[2018-08-29 13:05:33] [INFO ] [springCloudBus.anonymous.oV8D51PjSia3HRhyNXjjxg-4] in o.s.a.r.listener.SimpleMessageListenerContainer - Restarting Consumer@2f0fa765: tags=[{amq.ctag-psZF7Yxr-hlX7HjXrRdbTw=springCloudBus.anonymous.oV8D51PjSia3HRhyNXjjxg}], channel=Cached Rabbit Channel: PublisherCallbackChannelImpl: AMQChannel(amqp://admin@192.168.37.99:5672/,3), conn: Proxy@328bc067 Shared Rabbit Connection: SimpleConnection@538e3569 [delegate=amqp://admin@192.168.37.99:5672/, localPort= 59281], acknowledgeMode=AUTO local queue size=0
+[2018-08-29 13:05:33] [INFO ] [springCloudBus.anonymous.oV8D51PjSia3HRhyNXjjxg-5] in o.s.a.rabbit.connection.CachingConnectionFactory - Attempting to connect to: 192.168.37.99:5672
+[2018-08-29 13:05:33] [INFO ] [springCloudBus.anonymous.oV8D51PjSia3HRhyNXjjxg-5] in o.s.a.rabbit.connection.CachingConnectionFactory - Created new connection: connectionFactory#5a3d99a:4/SimpleConnection@39bd9770 [delegate=amqp://admin@192.168.37.99:5672/, localPort= 53822]
+[2018-08-29 13:05:33] [INFO ] [SimpleAsyncTaskExecutor-7] in o.s.a.r.listener.SimpleMessageListenerContainer - Restarting Consumer@3d81a86a: tags=[{amq.ctag-ZsJgjJXj5oR9faTNTJcRtw=communityLifeTimeLineQueue}], channel=Cached Rabbit Channel: PublisherCallbackChannelImpl: AMQChannel(amqp://admin@192.168.37.99:5672/,1), conn: Proxy@328bc067 Shared Rabbit Connection: SimpleConnection@39bd9770 [delegate=amqp://admin@192.168.37.99:5672/, localPort= 53822], acknowledgeMode=MANUAL local queue size=0
+[2018-08-29 13:05:33] [INFO ] [springCloudBus.anonymous.oV8D51PjSia3HRhyNXjjxg-5] in org.springframework.amqp.rabbit.core.RabbitAdmin - Auto-declaring a non-durable, auto-delete, or exclusive Queue (springCloudBus.anonymous.oV8D51PjSia3HRhyNXjjxg) durable:false, auto-delete:true, exclusive:true. It will be redeclared if the broker stops and is restarted while the connection factory is alive, but all messages will be lost.
+[2018-08-29 13:07:04] [INFO ] [AsyncResolver-bootstrap-executor-0] in c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+[2018-08-29 13:12:04] [INFO ] [AsyncResolver-bootstrap-executor-0] in c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+[2018-08-29 13:17:04] [INFO ] [AsyncResolver-bootstrap-executor-0] in c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+[2018-08-29 13:22:04] [INFO ] [AsyncResolver-bootstrap-executor-0] in c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+[2018-08-29 13:27:04] [INFO ] [AsyncResolver-bootstrap-executor-0] in c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+[2018-08-29 13:32:04] [INFO ] [AsyncResolver-bootstrap-executor-0] in c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+[2018-08-29 13:37:04] [INFO ] [AsyncResolver-bootstrap-executor-0] in c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+[2018-08-29 13:42:04] [INFO ] [AsyncResolver-bootstrap-executor-0] in c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+[2018-08-29 13:47:04] [INFO ] [AsyncResolver-bootstrap-executor-0] in c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+[2018-08-29 13:52:04] [INFO ] [AsyncResolver-bootstrap-executor-0] in c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+[2018-08-29 13:57:04] [INFO ] [AsyncResolver-bootstrap-executor-0] in c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+[2018-08-29 14:02:04] [INFO ] [AsyncResolver-bootstrap-executor-0] in c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+[2018-08-29 14:07:04] [INFO ] [AsyncResolver-bootstrap-executor-0] in c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+[2018-08-29 14:12:04] [INFO ] [AsyncResolver-bootstrap-executor-0] in c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+[2018-08-29 14:17:04] [INFO ] [AsyncResolver-bootstrap-executor-0] in c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+[2018-08-29 14:22:04] [INFO ] [AsyncResolver-bootstrap-executor-0] in c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+[2018-08-29 14:27:04] [INFO ] [AsyncResolver-bootstrap-executor-0] in c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+[2018-08-29 14:32:04] [INFO ] [AsyncResolver-bootstrap-executor-0] in c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+[2018-08-29 14:37:04] [INFO ] [AsyncResolver-bootstrap-executor-0] in c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+[2018-08-29 14:42:04] [INFO ] [AsyncResolver-bootstrap-executor-0] in c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+[2018-08-29 14:47:04] [INFO ] [AsyncResolver-bootstrap-executor-0] in c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+[2018-08-29 14:52:04] [INFO ] [AsyncResolver-bootstrap-executor-0] in c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+[2018-08-29 14:57:04] [INFO ] [AsyncResolver-bootstrap-executor-0] in c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+[2018-08-29 15:02:04] [INFO ] [AsyncResolver-bootstrap-executor-0] in c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+[2018-08-29 15:07:04] [INFO ] [AsyncResolver-bootstrap-executor-0] in c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+[2018-08-29 15:07:47] [INFO ] [SimpleAsyncTaskExecutor-9] in com.idream.rabbitmq.CommunityLifeReceiver - 接收到来自communityLifeTimeLineQueue队列的消息, data={"createTime":1535526466131,"lifeId":78,"privacyLevel":1,"userId":135}
+[2018-08-29 15:08:16] [INFO ] [SimpleAsyncTaskExecutor-10] in com.idream.rabbitmq.CommunityLifeReceiver - 接收到来自communityLifeTimeLineQueue队列的消息, data={"createTime":1535526495084,"lifeId":79,"privacyLevel":1,"userId":135}
+[2018-08-29 15:12:04] [INFO ] [AsyncResolver-bootstrap-executor-0] in c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+[2018-08-29 15:17:04] [INFO ] [AsyncResolver-bootstrap-executor-0] in c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+[2018-08-29 15:22:01] [INFO ] [AsyncResolver-bootstrap-executor-0] in c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+[2018-08-29 15:27:01] [INFO ] [AsyncResolver-bootstrap-executor-0] in c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+[2018-08-29 15:32:01] [INFO ] [AsyncResolver-bootstrap-executor-0] in c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+[2018-08-29 15:37:01] [INFO ] [AsyncResolver-bootstrap-executor-0] in c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+[2018-08-29 15:42:01] [INFO ] [AsyncResolver-bootstrap-executor-0] in c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+[2018-08-29 15:47:01] [INFO ] [AsyncResolver-bootstrap-executor-0] in c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+[2018-08-29 15:52:01] [INFO ] [AsyncResolver-bootstrap-executor-0] in c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+[2018-08-29 15:57:01] [INFO ] [AsyncResolver-bootstrap-executor-0] in c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+[2018-08-29 16:02:01] [INFO ] [AsyncResolver-bootstrap-executor-0] in c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+[2018-08-29 16:07:01] [INFO ] [AsyncResolver-bootstrap-executor-0] in c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+[2018-08-29 16:12:01] [INFO ] [AsyncResolver-bootstrap-executor-0] in c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+[2018-08-29 16:17:01] [INFO ] [AsyncResolver-bootstrap-executor-0] in c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+[2018-08-29 16:22:01] [INFO ] [AsyncResolver-bootstrap-executor-0] in c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+[2018-08-29 16:27:01] [INFO ] [AsyncResolver-bootstrap-executor-0] in c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+[2018-08-29 16:32:01] [INFO ] [AsyncResolver-bootstrap-executor-0] in c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+[2018-08-29 16:37:01] [INFO ] [AsyncResolver-bootstrap-executor-0] in c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+[2018-08-29 16:42:01] [INFO ] [AsyncResolver-bootstrap-executor-0] in c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+[2018-08-29 16:47:01] [INFO ] [AsyncResolver-bootstrap-executor-0] in c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+[2018-08-29 16:52:01] [INFO ] [AsyncResolver-bootstrap-executor-0] in c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+[2018-08-29 16:57:01] [INFO ] [AsyncResolver-bootstrap-executor-0] in c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+[2018-08-29 17:02:01] [INFO ] [AsyncResolver-bootstrap-executor-0] in c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+[2018-08-29 17:07:01] [INFO ] [AsyncResolver-bootstrap-executor-0] in c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+[2018-08-29 17:12:01] [INFO ] [AsyncResolver-bootstrap-executor-0] in c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+[2018-08-29 17:17:01] [INFO ] [AsyncResolver-bootstrap-executor-0] in c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+[2018-08-29 17:22:01] [INFO ] [AsyncResolver-bootstrap-executor-0] in c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+[2018-08-29 17:27:01] [INFO ] [AsyncResolver-bootstrap-executor-0] in c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+[2018-08-29 17:32:01] [INFO ] [AsyncResolver-bootstrap-executor-0] in c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+[2018-08-29 17:37:01] [INFO ] [AsyncResolver-bootstrap-executor-0] in c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+[2018-08-29 17:42:01] [INFO ] [AsyncResolver-bootstrap-executor-0] in c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+[2018-08-29 17:47:01] [INFO ] [AsyncResolver-bootstrap-executor-0] in c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+[2018-08-29 20:50:05] [WARN ] [AMQP Connection 192.168.37.99:5672] in com.rabbitmq.client.impl.ForgivingExceptionHandler - An unexpected connection driver error occured (Exception message: Connection reset)
+[2018-08-29 20:50:05] [ERROR] [AMQP Connection 192.168.37.99:5672] in o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+[2018-08-29 20:50:05] [ERROR] [AMQP Connection 192.168.37.99:5672] in o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+[2018-08-29 20:50:05] [ERROR] [AMQP Connection 192.168.37.99:5672] in o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+[2018-08-29 20:50:05] [ERROR] [AMQP Connection 192.168.37.99:5672] in o.s.a.rabbit.connection.CachingConnectionFactory - Channel shutdown: connection error
+[2018-08-29 20:50:05] [INFO ] [SimpleAsyncTaskExecutor-9] in o.s.a.r.listener.SimpleMessageListenerContainer - Restarting Consumer@187aa6a2: tags=[{amq.ctag-25LB8KBn_n4tnZ0yUPZpeA=communityLifeTimeLineQueue}], channel=Cached Rabbit Channel: PublisherCallbackChannelImpl: AMQChannel(amqp://admin@192.168.37.99:5672/,1), conn: Proxy@328bc067 Shared Rabbit Connection: SimpleConnection@39bd9770 [delegate=amqp://admin@192.168.37.99:5672/, localPort= 53822], acknowledgeMode=MANUAL local queue size=0
+[2018-08-29 20:50:05] [INFO ] [SimpleAsyncTaskExecutor-11] in o.s.a.rabbit.connection.CachingConnectionFactory - Attempting to connect to: 192.168.37.99:5672

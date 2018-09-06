@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.idream.commons.lib.mapper.WximGroupMapper">
+    <resultMap id="BaseResultMap" type="com.idream.commons.lib.model.WximGroup">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="tid" property="tid" jdbcType="VARCHAR"/>
+        <result column="business_type" property="businessType" jdbcType="TINYINT"/>
+        <result column="business_id" property="businessId" jdbcType="INTEGER"/>
+        <result column="group_name" property="groupName" jdbcType="VARCHAR"/>
+        <result column="group_announcement" property="groupAnnouncement" jdbcType="VARCHAR"/>
+        <result column="group_desc" property="groupDesc" jdbcType="VARCHAR"/>
+        <result column="imgae_url" property="imgaeUrl" jdbcType="VARCHAR"/>
+        <result column="join_role" property="joinRole" jdbcType="TINYINT"/>
+        <result column="invite_role" property="inviteRole" jdbcType="TINYINT"/>
+        <result column="update_groupinfo_role" property="updateGroupinfoRole" jdbcType="TINYINT"/>
+        <result column="magree_role" property="magreeRole" jdbcType="TINYINT"/>
+        <result column="mute_type" property="muteType" jdbcType="TINYINT"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, tid, business_type, business_id, group_name, group_announcement, group_desc,
+        imgae_url, join_role, invite_role, update_groupinfo_role, magree_role, mute_type,
+        create_time, update_time
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from wxim_group
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from wxim_group
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.idream.commons.lib.model.WximGroup" useGeneratedKeys="true" keyProperty="id">
+        insert into wxim_group (tid, business_type, business_id,
+        group_name, group_announcement, group_desc,
+        imgae_url, join_role, invite_role,
+        update_groupinfo_role, magree_role, mute_type,
+        create_time, update_time)
+        values (#{tid,jdbcType=VARCHAR}, #{businessType,jdbcType=TINYINT}, #{businessId,jdbcType=INTEGER},
+        #{groupName,jdbcType=VARCHAR}, #{groupAnnouncement,jdbcType=VARCHAR}, #{groupDesc,jdbcType=VARCHAR},
+        #{imgaeUrl,jdbcType=VARCHAR}, #{joinRole,jdbcType=TINYINT}, #{inviteRole,jdbcType=TINYINT},
+        #{updateGroupinfoRole,jdbcType=TINYINT}, #{magreeRole,jdbcType=TINYINT}, #{muteType,jdbcType=TINYINT},
+        #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="com.idream.commons.lib.model.WximGroup" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into wxim_group
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="tid != null">
+                tid,
+            </if>
+            <if test="businessType != null">
+                business_type,
+            </if>
+            <if test="businessId != null">
+                business_id,
+            </if>
+            <if test="groupName != null">
+                group_name,
+            </if>
+            <if test="groupAnnouncement != null">
+                group_announcement,
+            </if>
+            <if test="groupDesc != null">
+                group_desc,
+            </if>
+            <if test="imgaeUrl != null">
+                imgae_url,
+            </if>
+            <if test="joinRole != null">
+                join_role,
+            </if>
+            <if test="inviteRole != null">
+                invite_role,
+            </if>
+            <if test="updateGroupinfoRole != null">
+                update_groupinfo_role,
+            </if>
+            <if test="magreeRole != null">
+                magree_role,
+            </if>
+            <if test="muteType != null">
+                mute_type,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="tid != null">
+                #{tid,jdbcType=VARCHAR},
+            </if>
+            <if test="businessType != null">
+                #{businessType,jdbcType=TINYINT},
+            </if>
+            <if test="businessId != null">
+                #{businessId,jdbcType=INTEGER},
+            </if>
+            <if test="groupName != null">
+                #{groupName,jdbcType=VARCHAR},
+            </if>
+            <if test="groupAnnouncement != null">
+                #{groupAnnouncement,jdbcType=VARCHAR},
+            </if>
+            <if test="groupDesc != null">
+                #{groupDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="imgaeUrl != null">
+                #{imgaeUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="joinRole != null">
+                #{joinRole,jdbcType=TINYINT},
+            </if>
+            <if test="inviteRole != null">
+                #{inviteRole,jdbcType=TINYINT},
+            </if>
+            <if test="updateGroupinfoRole != null">
+                #{updateGroupinfoRole,jdbcType=TINYINT},
+            </if>
+            <if test="magreeRole != null">
+                #{magreeRole,jdbcType=TINYINT},
+            </if>
+            <if test="muteType != null">
+                #{muteType,jdbcType=TINYINT},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.idream.commons.lib.model.WximGroup">
+        update wxim_group
+        <set>
+            <if test="tid != null">
+                tid = #{tid,jdbcType=VARCHAR},
+            </if>
+            <if test="businessType != null">
+                business_type = #{businessType,jdbcType=TINYINT},
+            </if>
+            <if test="businessId != null">
+                business_id = #{businessId,jdbcType=INTEGER},
+            </if>
+            <if test="groupName != null">
+                group_name = #{groupName,jdbcType=VARCHAR},
+            </if>
+            <if test="groupAnnouncement != null">
+                group_announcement = #{groupAnnouncement,jdbcType=VARCHAR},
+            </if>
+            <if test="groupDesc != null">
+                group_desc = #{groupDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="imgaeUrl != null">
+                imgae_url = #{imgaeUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="joinRole != null">
+                join_role = #{joinRole,jdbcType=TINYINT},
+            </if>
+            <if test="inviteRole != null">
+                invite_role = #{inviteRole,jdbcType=TINYINT},
+            </if>
+            <if test="updateGroupinfoRole != null">
+                update_groupinfo_role = #{updateGroupinfoRole,jdbcType=TINYINT},
+            </if>
+            <if test="magreeRole != null">
+                magree_role = #{magreeRole,jdbcType=TINYINT},
+            </if>
+            <if test="muteType != null">
+                mute_type = #{muteType,jdbcType=TINYINT},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.idream.commons.lib.model.WximGroup">
+        update wxim_group
+        set tid = #{tid,jdbcType=VARCHAR},
+        business_type = #{businessType,jdbcType=TINYINT},
+        business_id = #{businessId,jdbcType=INTEGER},
+        group_name = #{groupName,jdbcType=VARCHAR},
+        group_announcement = #{groupAnnouncement,jdbcType=VARCHAR},
+        group_desc = #{groupDesc,jdbcType=VARCHAR},
+        imgae_url = #{imgaeUrl,jdbcType=VARCHAR},
+        join_role = #{joinRole,jdbcType=TINYINT},
+        invite_role = #{inviteRole,jdbcType=TINYINT},
+        update_groupinfo_role = #{updateGroupinfoRole,jdbcType=TINYINT},
+        magree_role = #{magreeRole,jdbcType=TINYINT},
+        mute_type = #{muteType,jdbcType=TINYINT},
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+        update_time = #{updateTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <resultMap id="ActivityGroupInfoResultMap" type="com.idream.commons.lib.dto.wangyi.ActivityGroupInfoResponseDto">
+        <result column="group_icon" property="groupIcon" jdbcType="VARCHAR"/>
+        <result column="group_name" property="groupName" jdbcType="VARCHAR"/>
+        <result column="group_announcement" property="groupAnnounceme" jdbcType="VARCHAR"/>
+        <result column="group_desc" property="groupDesc" jdbcType="VARCHAR"/>
+        <result column="activityId" property="activityId" jdbcType="VARCHAR"/>
+        <collection property="members" ofType="com.idream.commons.lib.dto.wangyi.GrroupMember">
+            <result column="user_icon" property="icon"/>
+            <result column="user_gender" property="gender"/>
+            <result column="user_id" property="userId"/>
+            <result column="user_nickname" property="nickName"/>
+            <result column="user_accid" property="userAccid"/>
+        </collection>
+    </resultMap>
+
+    <select id="selectActivityGroupInfo" parameterType="java.lang.Integer" resultMap="ActivityGroupInfoResultMap">
+        SELECT wg.business_id AS activityId, ai.image AS group_icon,wg.group_name AS group_name ,wg.group_announcement
+        AS group_announcement , wg.group_desc AS group_desc
+        ,ui.image AS user_icon ,ui.gender AS user_gender ,ui.id AS user_id ,ui.nick_name AS user_nickname, gm.acc_id AS
+        user_accid
+        FROM wxim_group wg
+        INNER JOIN wxim_group_members gm ON wg.tid=gm.group_id
+        INNER JOIN user_info ui ON ui.id = gm.user_id
+        LEFT JOIN activity_info ai ON ai.id = wg.business_id
+        where wg.tid = #{tid}
+    </select>
+
+
+    <select id="selectgroupMuteList" resultType="com.idream.commons.lib.dto.wangyi.GroupMuteListResponseDto"
+            parameterType="java.lang.Integer">
+        SELECT mu.user_id AS userId,mu.memo AS memo,mu.group_identity AS groupIdentity,ui.image As icon,ui.gender AS
+        gender
+        from user_info ui
+        INNER JOIN (SELECT * FROM wxim_group_members where group_id = #{tid} and an_excuse = 1) mu
+        on ui.id = mu.user_id
+
+    </select>
+
+    <select id="joinGroupList" resultType="com.idream.commons.lib.dto.wangyi.JoinGroupListResposeDto"
+            parameterType="java.lang.Integer">
+        SELECT wg.tid AS tid ,wg.group_name AS groupName,wg.imgae_url AS icon ,wg.group_announcement AS
+        announcement,wg.group_desc AS groupDesc, wg.business_id AS activityId
+        FROM wxim_group wg
+        INNER JOIN wxim_group_members wgm
+        ON wg.tid = wgm.group_id
+        WHERE wgm.user_id = #{userId}
+    </select>
+
+    <resultMap id="neighborChat" type="com.idream.commons.lib.dto.app.NeighborChatDto">
+        <result column="tid" property="tid"/>
+        <result column="group_name" property="groupName"/>
+        <result column="id" property="activityId"/>
+        <result column="imgae_url" property="imageUrl"/>
+        <result column="subtitle" property="subTitle"/>
+        <result column="activityStatus" property="activityStatus"/>
+        <collection property="imageList" ofType="java.lang.String">
+            <result column="image" property="imageList"/>
+        </collection>
+    </resultMap>
+    <select id="getNeighborChat" parameterType="java.lang.String" resultMap="neighborChat">
+        SELECT d.*, f.`image` FROM
+
+        (
+        SELECT a.`tid`, a.`group_name`, b.id , b.subtitle, a.`imgae_url`, IF(NOW() BETWEEN b.start_time AND
+        b.end_time,1,2) activityStatus FROM
+        wxim_group a
+        INNER JOIN activity_info b ON a.`business_id` = b.`id` AND b.status = 4 AND business_type = 1 AND NOW() &lt;
+        b.end_time
+        INNER JOIN activity_display_relation c ON c.activity_id = b.id AND IF (c.display_type = 1, TRUE,
+        IF(c.display_type = 20 , c.display_id = #{cityCode}, FALSE))
+
+        GROUP BY tid ORDER BY activityStatus,b.id DESC LIMIT 6
+        ) d
+        INNER JOIN `wxim_group_members` e ON d.tid = e.`group_id`
+        INNER JOIN user_info f ON e.`user_id`= f.`id`
+    </select>
+
+    <select id="getNeighborChatByLogin" resultMap="neighborChat">
+        SELECT d.*, f.`image` FROM
+        (
+        SELECT a.`tid`, a.`group_name`,b.id , b.subtitle, a.`imgae_url`, IF(NOW() BETWEEN b.start_time AND
+        b.end_time,1,2) activityStatus FROM
+        wxim_group a
+        INNER JOIN activity_info b ON a.`business_id` = b.`id` AND b.status = 4 AND business_type = 1 AND NOW() &lt;
+        b.end_time
+        INNER JOIN activity_display_relation c ON c.activity_id = b.id AND IF (c.display_type = 1, TRUE,
+        IF(c.display_type = 20 , c.display_id = #{cityCode,jdbcType=VARCHAR}, IF(c.display_type = 40, c.display_id in
+        (SELECT h.region_id FROM user_region_relation h WHERE h.user_id=#{userId,jdbcType=INTEGER}),IF(c.display_type = 60,c.display_id in
+        (SELECT j.community_id FROM user_community_relation j WHERE j.user_id=#{userId,jdbcType=INTEGER}),FALSE))))
+        WHERE a.tid NOT IN (SELECT business_id tid FROM user_dislike_record WHERE user_id = #{userId,jdbcType=INTEGER}
+        AND business_type = 4 ) AND a.tid NOT IN (SELECT group_id tid FROM wxim_group_members WHERE user_id =
+        #{userId,jdbcType=INTEGER})
+        GROUP BY tid ORDER BY activityStatus,b.id DESC LIMIT #{number,jdbcType=INTEGER}
+        ) d
+        INNER JOIN `wxim_group_members` e ON d.tid = e.`group_id`
+        INNER JOIN user_info f ON e.`user_id`= f.`id`
+    </select>
+
+    <resultMap id="ChatList" type="com.idream.commons.lib.dto.app.SearchChatListDto">
+        <result column="tid" property="tid"/>
+        <result column="group_name" property="groupName"/>
+        <result column="imgae_url" property="imageUrl"/>
+        <result column="business_id" property="activityId"/>
+        <collection property="imageList" ofType="java.lang.String">
+            <result column="image" property="imageList"/>
+        </collection>
+    </resultMap>
+    <select id="getChatList" resultMap="ChatList">
+        SELECT
+        f.tid,f.group_name,f.imgae_url,f.business_id, e.image
+        FROM
+        wxim_group_members g
+        LEFT JOIN
+        (
+        SELECT a.group_id, a.`user_id` FROM wxim_group_members AS a
+        WHERE (SELECT COUNT(*) FROM wxim_group_members b WHERE group_id = a.group_id AND create_time &lt;
+        a.`create_time` ) &lt; 4
+        ORDER BY a.group_id, a.create_time
+        ) d
+        ON g.`group_id` = d.group_id
+        INNER JOIN
+        user_info e
+        ON d.user_id = e.`id`
+        INNER JOIN
+        wxim_group f
+        ON d.group_id = f.`tid` AND f.business_type = 1
+        WHERE g.`user_id` = #{userId} AND f.group_name LIKE CONCAT('%',#{groupName} ,'%' )
+    </select>
+
+    <update id="updateGroupInfo" parameterType="com.idream.commons.lib.dto.activity.UpdateGroupInfo">
+        UPDATE wxim_group
+        <set>
+            <if test="groupName != null and groupName != ''">
+                group_name = #{groupName},
+            </if>
+            <if test="icon != null and icon != ''">
+                imgae_url = #{icon},
+            </if>
+            <if test="intro != null and intro != ''">
+                group_desc = #{intro},
+            </if>
+            <if test="announcement != null and announcement != ''">
+                group_announcement = #{announcement},
+            </if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+
+</mapper>

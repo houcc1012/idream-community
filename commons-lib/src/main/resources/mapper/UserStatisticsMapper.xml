@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.idream.commons.lib.mapper.UserStatisticsMapper">
+    <resultMap id="BaseResultMap" type="com.idream.commons.lib.model.UserStatistics">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="user_id" property="userId" jdbcType="INTEGER"/>
+        <result column="fans_count" property="fansCount" jdbcType="SMALLINT"/>
+        <result column="life_count" property="lifeCount" jdbcType="SMALLINT"/>
+        <result column="achievement_count" property="achievementCount" jdbcType="SMALLINT"/>
+        <result column="score_count" property="scoreCount" jdbcType="SMALLINT"/>
+        <result column="coupon_count" property="couponCount" jdbcType="SMALLINT"/>
+        <result column="sign_count" property="signCount" jdbcType="SMALLINT"/>
+        <result column="join_activity_count" property="joinActivityCount" jdbcType="SMALLINT"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, user_id, fans_count, life_count, achievement_count, score_count, coupon_count,
+        sign_count, join_activity_count, create_time, update_time
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from user_statistics
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from user_statistics
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.idream.commons.lib.model.UserStatistics" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into user_statistics (user_id, fans_count, life_count,
+        achievement_count, score_count, coupon_count,
+        sign_count, join_activity_count, create_time,
+        update_time)
+        values (#{userId,jdbcType=INTEGER}, #{fansCount,jdbcType=SMALLINT}, #{lifeCount,jdbcType=SMALLINT},
+        #{achievementCount,jdbcType=SMALLINT}, #{scoreCount,jdbcType=SMALLINT}, #{couponCount,jdbcType=SMALLINT},
+        #{signCount,jdbcType=SMALLINT}, #{joinActivityCount,jdbcType=SMALLINT}, #{createTime,jdbcType=TIMESTAMP},
+        #{updateTime,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="com.idream.commons.lib.model.UserStatistics" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into user_statistics
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userId != null">
+                user_id,
+            </if>
+            <if test="fansCount != null">
+                fans_count,
+            </if>
+            <if test="lifeCount != null">
+                life_count,
+            </if>
+            <if test="achievementCount != null">
+                achievement_count,
+            </if>
+            <if test="scoreCount != null">
+                score_count,
+            </if>
+            <if test="couponCount != null">
+                coupon_count,
+            </if>
+            <if test="signCount != null">
+                sign_count,
+            </if>
+            <if test="joinActivityCount != null">
+                join_activity_count,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="userId != null">
+                #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="fansCount != null">
+                #{fansCount,jdbcType=SMALLINT},
+            </if>
+            <if test="lifeCount != null">
+                #{lifeCount,jdbcType=SMALLINT},
+            </if>
+            <if test="achievementCount != null">
+                #{achievementCount,jdbcType=SMALLINT},
+            </if>
+            <if test="scoreCount != null">
+                #{scoreCount,jdbcType=SMALLINT},
+            </if>
+            <if test="couponCount != null">
+                #{couponCount,jdbcType=SMALLINT},
+            </if>
+            <if test="signCount != null">
+                #{signCount,jdbcType=SMALLINT},
+            </if>
+            <if test="joinActivityCount != null">
+                #{joinActivityCount,jdbcType=SMALLINT},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.idream.commons.lib.model.UserStatistics">
+        update user_statistics
+        <set>
+            <if test="userId != null">
+                user_id = #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="fansCount != null">
+                fans_count = #{fansCount,jdbcType=SMALLINT},
+            </if>
+            <if test="lifeCount != null">
+                life_count = #{lifeCount,jdbcType=SMALLINT},
+            </if>
+            <if test="achievementCount != null">
+                achievement_count = #{achievementCount,jdbcType=SMALLINT},
+            </if>
+            <if test="scoreCount != null">
+                score_count = #{scoreCount,jdbcType=SMALLINT},
+            </if>
+            <if test="couponCount != null">
+                coupon_count = #{couponCount,jdbcType=SMALLINT},
+            </if>
+            <if test="signCount != null">
+                sign_count = #{signCount,jdbcType=SMALLINT},
+            </if>
+            <if test="joinActivityCount != null">
+                join_activity_count = #{joinActivityCount,jdbcType=SMALLINT},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.idream.commons.lib.model.UserStatistics">
+        update user_statistics
+        set user_id = #{userId,jdbcType=INTEGER},
+        fans_count = #{fansCount,jdbcType=SMALLINT},
+        life_count = #{lifeCount,jdbcType=SMALLINT},
+        achievement_count = #{achievementCount,jdbcType=SMALLINT},
+        score_count = #{scoreCount,jdbcType=SMALLINT},
+        coupon_count = #{couponCount,jdbcType=SMALLINT},
+        sign_count = #{signCount,jdbcType=SMALLINT},
+        join_activity_count = #{joinActivityCount,jdbcType=SMALLINT},
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+        update_time = #{updateTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <update id="updateBatchSelective" parameterType="java.util.List">
+        <foreach collection="list" separator=";" item="item">
+            update user_statistics
+            <set>
+                <if test="userId != null">
+                    user_id = #{item.userId,jdbcType=INTEGER},
+                </if>
+                <if test="fansCount != null">
+                    fans_count = #{item.fansCount,jdbcType=SMALLINT},
+                </if>
+                <if test="lifeCount != null">
+                    life_count = #{item.lifeCount,jdbcType=SMALLINT},
+                </if>
+                <if test="achievementCount != null">
+                    achievement_count = #{item.achievementCount,jdbcType=SMALLINT},
+                </if>
+                <if test="scoreCount != null">
+                    score_count = #{item.scoreCount,jdbcType=SMALLINT},
+                </if>
+                <if test="couponCount != null">
+                    coupon_count = #{item.couponCount,jdbcType=SMALLINT},
+                </if>
+                <if test="signCount != null">
+                    sign_count = #{item.signCount,jdbcType=SMALLINT},
+                </if>
+                <if test="joinActivityCount != null">
+                    join_activity_count = #{item.joinActivityCount,jdbcType=SMALLINT},
+                </if>
+                update_time = now()
+            </set>
+            where user_id = #{id,jdbcType=INTEGER}
+        </foreach>
+    </update>
+</mapper>

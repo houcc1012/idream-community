@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.idream.commons.lib.mapper.SysPermissionMapper">
+    <resultMap id="BaseResultMap" type="com.idream.commons.lib.model.SysPermission">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="code" property="code" jdbcType="VARCHAR"/>
+        <result column="type" property="type" jdbcType="VARCHAR"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="uri" property="uri" jdbcType="VARCHAR"/>
+        <result column="menu_id" property="menuId" jdbcType="VARCHAR"/>
+        <result column="pid" property="pid" jdbcType="VARCHAR"/>
+        <result column="path" property="path" jdbcType="VARCHAR"/>
+        <result column="method" property="method" jdbcType="VARCHAR"/>
+        <result column="description" property="description" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, code, type, name, uri, menu_id, pid, path, method, description, create_time,
+        update_time
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_permission
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from sys_permission
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.idream.commons.lib.model.SysPermission" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into sys_permission (code, type, name,
+        uri, menu_id, pid, path,
+        method, description, create_time,
+        update_time)
+        values (#{code,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR},
+        #{uri,jdbcType=VARCHAR}, #{menuId,jdbcType=VARCHAR}, #{pid,jdbcType=VARCHAR}, #{path,jdbcType=VARCHAR},
+        #{method,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP},
+        #{updateTime,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="com.idream.commons.lib.model.SysPermission" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into sys_permission
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="code != null">
+                code,
+            </if>
+            <if test="type != null">
+                type,
+            </if>
+            <if test="name != null">
+                name,
+            </if>
+            <if test="uri != null">
+                uri,
+            </if>
+            <if test="menuId != null">
+                menu_id,
+            </if>
+            <if test="pid != null">
+                pid,
+            </if>
+            <if test="path != null">
+                path,
+            </if>
+            <if test="method != null">
+                method,
+            </if>
+            <if test="description != null">
+                description,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="code != null">
+                #{code,jdbcType=VARCHAR},
+            </if>
+            <if test="type != null">
+                #{type,jdbcType=VARCHAR},
+            </if>
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="uri != null">
+                #{uri,jdbcType=VARCHAR},
+            </if>
+            <if test="menuId != null">
+                #{menuId,jdbcType=VARCHAR},
+            </if>
+            <if test="pid != null">
+                #{pid,jdbcType=VARCHAR},
+            </if>
+            <if test="path != null">
+                #{path,jdbcType=VARCHAR},
+            </if>
+            <if test="method != null">
+                #{method,jdbcType=VARCHAR},
+            </if>
+            <if test="description != null">
+                #{description,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.idream.commons.lib.model.SysPermission">
+        update sys_permission
+        <set>
+            <if test="code != null">
+                code = #{code,jdbcType=VARCHAR},
+            </if>
+            <if test="type != null">
+                type = #{type,jdbcType=VARCHAR},
+            </if>
+            <if test="name != null">
+                name = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="uri != null">
+                uri = #{uri,jdbcType=VARCHAR},
+            </if>
+            <if test="menuId != null">
+                menu_id = #{menuId,jdbcType=VARCHAR},
+            </if>
+            <if test="pid != null">
+                pid = #{pid,jdbcType=VARCHAR},
+            </if>
+            <if test="path != null">
+                path = #{path,jdbcType=VARCHAR},
+            </if>
+            <if test="method != null">
+                method = #{method,jdbcType=VARCHAR},
+            </if>
+            <if test="description != null">
+                description = #{description,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.idream.commons.lib.model.SysPermission">
+        update sys_permission
+        set code = #{code,jdbcType=VARCHAR},
+        type = #{type,jdbcType=VARCHAR},
+        name = #{name,jdbcType=VARCHAR},
+        uri = #{uri,jdbcType=VARCHAR},
+        menu_id = #{menuId,jdbcType=VARCHAR},
+        pid = #{pid,jdbcType=VARCHAR},
+        path = #{path,jdbcType=VARCHAR},
+        method = #{method,jdbcType=VARCHAR},
+        description = #{description,jdbcType=VARCHAR},
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+        update_time = #{updateTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <!--根据用户id,查询所有的权限  -->
+    <select id="selectPermissionListByUserId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        SELECT DISTINCT p.* FROM sys_permission p
+        LEFT JOIN sys_role_permission_relation rpr ON rpr.sys_permission_id=p.id
+        LEFT JOIN sys_role r ON r.id=rpr.sys_role_id
+        LEFT JOIN sys_user_role_relation urr ON urr.role_id=r.id
+        WHERE urr.user_id=#{authUserId} and rpr.resource_type="button" and p.menu_id is not null
+    </select>
+    <!--根据id和menuid查询权限 -->
+    <select id="selectPermissionListByUserIdAndMenuId" resultMap="BaseResultMap">
+        SELECT DISTINCT p.* FROM sys_permission p
+        LEFT JOIN sys_role_permission_relation rpr ON rpr.sys_permission_id=p.id
+        LEFT JOIN sys_role r ON r.id=rpr.sys_role_id
+        LEFT JOIN sys_user_role_relation urr ON urr.role_id=r.id
+        WHERE urr.user_id=#{authUserId} and rpr.resource_type="button" and p.menu_id=#{menuId}
+    </select>
+
+    <select id="selectAll" resultMap="BaseResultMap">
+        SELECT DISTINCT p.* FROM sys_permission p where p.menu_id is not null
+    </select>
+
+    <select id="selectByRoleId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        SELECT DISTINCT p.* FROM sys_permission p
+        LEFT JOIN sys_role_permission_relation rpr ON rpr.sys_permission_id=p.id
+        WHERE rpr.sys_role_id=#{roleId} and rpr.resource_type="button" and p.menu_id is not null
+    </select>
+    <select id="selectBasis" resultMap="BaseResultMap">
+        SELECT DISTINCT p.* FROM sys_permission p
+        where p.type='basis'
+    </select>
+    <select id="selectByMenuId" parameterType="int" resultMap="BaseResultMap">
+        SELECT DISTINCT p.* FROM sys_permission p
+        where p.menu_id=#{id}
+    </select>
+</mapper>

@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.idream.commons.lib.mapper.ActivityThemeMapper">
+    <resultMap id="BaseResultMap" type="com.idream.commons.lib.model.ActivityTheme">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="activity_id" property="activityId" jdbcType="INTEGER"/>
+        <result column="title" property="title" jdbcType="VARCHAR"/>
+        <result column="content" property="content" jdbcType="VARCHAR"/>
+        <result column="image" property="image" jdbcType="VARCHAR"/>
+        <result column="type" property="type" jdbcType="TINYINT"/>
+        <result column="user_id" property="userId" jdbcType="INTEGER"/>
+        <result column="longitude" property="longitude" jdbcType="DECIMAL"/>
+        <result column="latitude" property="latitude" jdbcType="DECIMAL"/>
+        <result column="address" property="address" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, activity_id, title, content, image, type, user_id, longitude, latitude, address,
+        create_time, update_time
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from activity_theme
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from activity_theme
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.idream.commons.lib.model.ActivityTheme" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into activity_theme (activity_id, title, content,
+        image, type, user_id,
+        longitude, latitude, address,
+        create_time, update_time)
+        values (#{activityId,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR},
+        #{image,jdbcType=VARCHAR}, #{type,jdbcType=TINYINT}, #{userId,jdbcType=INTEGER},
+        #{longitude,jdbcType=DECIMAL}, #{latitude,jdbcType=DECIMAL}, #{address,jdbcType=VARCHAR},
+        #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="com.idream.commons.lib.model.ActivityTheme" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into activity_theme
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="activityId != null">
+                activity_id,
+            </if>
+            <if test="title != null">
+                title,
+            </if>
+            <if test="content != null">
+                content,
+            </if>
+            <if test="image != null">
+                image,
+            </if>
+            <if test="type != null">
+                type,
+            </if>
+            <if test="userId != null">
+                user_id,
+            </if>
+            <if test="longitude != null">
+                longitude,
+            </if>
+            <if test="latitude != null">
+                latitude,
+            </if>
+            <if test="address != null">
+                address,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="activityId != null">
+                #{activityId,jdbcType=INTEGER},
+            </if>
+            <if test="title != null">
+                #{title,jdbcType=VARCHAR},
+            </if>
+            <if test="content != null">
+                #{content,jdbcType=VARCHAR},
+            </if>
+            <if test="image != null">
+                #{image,jdbcType=VARCHAR},
+            </if>
+            <if test="type != null">
+                #{type,jdbcType=TINYINT},
+            </if>
+            <if test="userId != null">
+                #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="longitude != null">
+                #{longitude,jdbcType=DECIMAL},
+            </if>
+            <if test="latitude != null">
+                #{latitude,jdbcType=DECIMAL},
+            </if>
+            <if test="address != null">
+                #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.idream.commons.lib.model.ActivityTheme">
+        update activity_theme
+        <set>
+            <if test="activityId != null">
+                activity_id = #{activityId,jdbcType=INTEGER},
+            </if>
+            <if test="title != null">
+                title = #{title,jdbcType=VARCHAR},
+            </if>
+            <if test="content != null">
+                content = #{content,jdbcType=VARCHAR},
+            </if>
+            <if test="image != null">
+                image = #{image,jdbcType=VARCHAR},
+            </if>
+            <if test="type != null">
+                type = #{type,jdbcType=TINYINT},
+            </if>
+            <if test="userId != null">
+                user_id = #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="longitude != null">
+                longitude = #{longitude,jdbcType=DECIMAL},
+            </if>
+            <if test="latitude != null">
+                latitude = #{latitude,jdbcType=DECIMAL},
+            </if>
+            <if test="address != null">
+                address = #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.idream.commons.lib.model.ActivityTheme">
+        update activity_theme
+        set activity_id = #{activityId,jdbcType=INTEGER},
+        title = #{title,jdbcType=VARCHAR},
+        content = #{content,jdbcType=VARCHAR},
+        image = #{image,jdbcType=VARCHAR},
+        type = #{type,jdbcType=TINYINT},
+        user_id = #{userId,jdbcType=INTEGER},
+        longitude = #{longitude,jdbcType=DECIMAL},
+        latitude = #{latitude,jdbcType=DECIMAL},
+        address = #{address,jdbcType=VARCHAR},
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+        update_time = #{updateTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <!-- 通过活动id查询活动主题和活动打卡 -->
+    <select id="getActivityThemeByActivityId" parameterType="java.lang.Integer"
+            resultType="com.idream.commons.lib.dto.activity.ActivityThemesDto">
+        SELECT
+        ath.id themeId,
+        ath.activity_id activityId,
+        ath.image image,
+        ath.content,
+        ath.image image,
+        ath.id themeId,
+        ath.title
+        FROM activity_theme AS ath
+        WHERE ath.activity_id=#{activityId} order by create_time DESC
+    </select>
+
+    <select id="getTitleAndPublisherByThemeId" parameterType="java.lang.Integer"
+            resultType="com.idream.commons.lib.dto.activity.ThemePublisherDto">
+        SELECT
+        `at`.title theme,
+        ui.nick_name publisher,
+        ai.title activityTitle
+        FROM
+        activity_theme at LEFT JOIN user_info ui ON `at`.user_id = ui.id left JOIN activity_info ai ON `at`.activity_id
+        = ai.id
+        WHERE `at`.id = #{themeId}
+    </select>
+
+    <select id="getActivityMessageByActivityId" parameterType="java.lang.Integer"
+            resultType="com.idream.commons.lib.dto.activity.FindActivityMessageResponseDto">
+        SELECT
+        c.phone phone,c.nick_name nickName,a.title themeTitle,b.message message,b.create_time createTime,b.likeCount
+        likeCount
+        FROM activity_theme a INNER JOIN activity_message b ON a.id = b.theme_id
+        INNER JOIN user_info c on b.user_id = c.id
+        WHERE a.activity_id = #{activityId}
+    </select>
+
+    <select id="getThemesByActivityId" parameterType="java.lang.Integer"
+            resultType="com.idream.commons.lib.model.ActivityTheme">
+        SELECT
+        id,
+        activity_id activityId,
+        title,content,image,type,user_id userId,create_time createTime,update_time updateTime
+        FROM activity_theme WHERE activity_id = #{activityId}
+    </select>
+</mapper>

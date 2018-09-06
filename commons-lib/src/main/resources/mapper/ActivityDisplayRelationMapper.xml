@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.idream.commons.lib.mapper.ActivityDisplayRelationMapper">
+    <resultMap id="BaseResultMap" type="com.idream.commons.lib.model.ActivityDisplayRelation">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="activity_id" property="activityId" jdbcType="INTEGER"/>
+        <result column="display_id" property="displayId" jdbcType="INTEGER"/>
+        <result column="display_type" property="displayType" jdbcType="TINYINT"/>
+        <result column="start_time" property="startTime" jdbcType="TIMESTAMP"/>
+        <result column="end_time" property="endTime" jdbcType="TIMESTAMP"/>
+        <result column="from_region_id" property="fromRegionId" jdbcType="INTEGER"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, activity_id, display_id, display_type, start_time, end_time, from_region_id,
+        create_time
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from activity_display_relation
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from activity_display_relation
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.idream.commons.lib.model.ActivityDisplayRelation" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into activity_display_relation (activity_id, display_id, display_type,
+        start_time, end_time, from_region_id,
+        create_time)
+        values (#{activityId,jdbcType=INTEGER}, #{displayId,jdbcType=INTEGER}, #{displayType,jdbcType=TINYINT},
+        #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, #{fromRegionId,jdbcType=INTEGER},
+        #{createTime,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="com.idream.commons.lib.model.ActivityDisplayRelation"
+            useGeneratedKeys="true" keyProperty="id">
+        insert into activity_display_relation
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="activityId != null">
+                activity_id,
+            </if>
+            <if test="displayId != null">
+                display_id,
+            </if>
+            <if test="displayType != null">
+                display_type,
+            </if>
+            <if test="startTime != null">
+                start_time,
+            </if>
+            <if test="endTime != null">
+                end_time,
+            </if>
+            <if test="fromRegionId != null">
+                from_region_id,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="activityId != null">
+                #{activityId,jdbcType=INTEGER},
+            </if>
+            <if test="displayId != null">
+                #{displayId,jdbcType=INTEGER},
+            </if>
+            <if test="displayType != null">
+                #{displayType,jdbcType=TINYINT},
+            </if>
+            <if test="startTime != null">
+                #{startTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="endTime != null">
+                #{endTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="fromRegionId != null">
+                #{fromRegionId,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.idream.commons.lib.model.ActivityDisplayRelation">
+        update activity_display_relation
+        <set>
+            <if test="activityId != null">
+                activity_id = #{activityId,jdbcType=INTEGER},
+            </if>
+            <if test="displayId != null">
+                display_id = #{displayId,jdbcType=INTEGER},
+            </if>
+            <if test="displayType != null">
+                display_type = #{displayType,jdbcType=TINYINT},
+            </if>
+            <if test="startTime != null">
+                start_time = #{startTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="endTime != null">
+                end_time = #{endTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="fromRegionId != null">
+                from_region_id = #{fromRegionId,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.idream.commons.lib.model.ActivityDisplayRelation">
+        update activity_display_relation
+        set activity_id = #{activityId,jdbcType=INTEGER},
+        display_id = #{displayId,jdbcType=INTEGER},
+        display_type = #{displayType,jdbcType=TINYINT},
+        start_time = #{startTime,jdbcType=TIMESTAMP},
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+        from_region_id = #{fromRegionId,jdbcType=INTEGER},
+        create_time = #{createTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <select id="getActivityIdByRegionId" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+        SELECT activity_id AS activityId from activity_display_relation where display_id = #{regionId} AND display_type
+        = 40
+    </select>
+
+
+    <select id="getActivityIdByRegionIdAndCityCode"
+            parameterType="com.idream.commons.lib.dto.activity.ActivityByRegionAndCityCodeDto"
+            resultType="com.idream.commons.lib.dto.activity.ActivityByRegionAndCityCodeResonDto">
+        select a.activity_id activityId , b.title , b.image , b.start_time , b.end_time
+        FROM activity_display_relation a
+        INNER JOIN activity_info b ON a.activity_id = b.id AND b.`status` = 4
+        WHERE
+        a.start_time &lt; NOW() AND a.end_time &gt; NOW()
+        AND
+        CASE WHEN a.display_type = 20 THEN a.display_id = #{cityCode}
+        WHEN a.display_type =40 THEN a.display_id = #{regionId}
+        WHEN a.display_type = 1 THEN TRUE
+        END
+        GROUP BY activityId
+
+
+    </select>
+
+</mapper>

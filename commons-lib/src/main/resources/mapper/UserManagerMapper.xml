@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.idream.commons.lib.mapper.UserManagerMapper">
+    <resultMap id="BaseResultMap" type="com.idream.commons.lib.model.UserManager">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="user_id" property="userId" jdbcType="INTEGER"/>
+        <result column="status" property="status" jdbcType="TINYINT"/>
+        <result column="book_id" property="bookId" jdbcType="INTEGER"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, user_id, status, book_id, create_time, update_time
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from user_manager
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from user_manager
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.idream.commons.lib.model.UserManager" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into user_manager (user_id, status, book_id,
+        create_time, update_time)
+        values (#{userId,jdbcType=INTEGER}, #{status,jdbcType=TINYINT}, #{bookId,jdbcType=INTEGER},
+        #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="com.idream.commons.lib.model.UserManager" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into user_manager
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userId != null">
+                user_id,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+            <if test="bookId != null">
+                book_id,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="userId != null">
+                #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=TINYINT},
+            </if>
+            <if test="bookId != null">
+                #{bookId,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.idream.commons.lib.model.UserManager">
+        update user_manager
+        <set>
+            <if test="userId != null">
+                user_id = #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=TINYINT},
+            </if>
+            <if test="bookId != null">
+                book_id = #{bookId,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.idream.commons.lib.model.UserManager">
+        update user_manager
+        set user_id = #{userId,jdbcType=INTEGER},
+        status = #{status,jdbcType=TINYINT},
+        book_id = #{bookId,jdbcType=INTEGER},
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+        update_time = #{updateTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <select id="selectUserManagerDtoByUserIdAndId" resultType="com.idream.commons.lib.dto.user.UserManagerDto">
+        SELECT b.phone, b.nick_name, b.real_name, b.identity, d.province_code provinceCode, d.province,
+        d.city_code cityCode, d.city, d.district_code districtCode, d.district,
+        d.id bookHouseId, d.name bookHouseName, a.status authStatus, a.user_id
+        FROM user_manager a
+        INNER JOIN
+        user_info b
+        ON a.user_id = b.id
+        LEFT JOIN
+        region_group_info d
+        ON a.book_id = d.id
+        WHERE a.id = #{id}
+    </select>
+
+    <select id="selectUserManagerByRegionId" resultType="com.idream.commons.lib.model.UserManager">
+        SELECT
+        DISTINCT a.*
+        FROM user_manager a
+        INNER JOIN region_group_info b ON a.book_id=b.id
+        INNER JOIN region_group_relation c ON c.group_id=b.id
+        INNER JOIN user_info d ON a.user_id = d.id AND d.real_name IS NOT NULL
+        WHERE region_id IN
+        <foreach collection="regionIds" open="(" close=")" separator="," item="regionId">
+            #{regionId}
+        </foreach>
+        AND b.category=2
+    </select>
+
+
+    <select id="selectActivityPublisherBook" resultType="com.idream.commons.lib.dto.activity.PublisherInfo">
+        SELECT
+        b.name as publishName ,
+        b.icon as publishImage
+        FROM user_manager a INNER JOIN region_group_info b ON a.book_id = b.id WHERE a.user_id = #{userId} AND
+        b.category = 2
+    </select>
+
+</mapper>

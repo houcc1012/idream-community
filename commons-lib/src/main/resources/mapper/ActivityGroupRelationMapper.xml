@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.idream.commons.lib.mapper.ActivityGroupRelationMapper">
+    <resultMap id="BaseResultMap" type="com.idream.commons.lib.model.ActivityGroupRelation">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="activity_id" property="activityId" jdbcType="INTEGER"/>
+        <result column="group_id" property="groupId" jdbcType="INTEGER"/>
+        <result column="group_name" property="groupName" jdbcType="VARCHAR"/>
+        <result column="group_type" property="groupType" jdbcType="TINYINT"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, activity_id, group_id, group_name, group_type, create_time
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from activity_group_relation
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from activity_group_relation
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.idream.commons.lib.model.ActivityGroupRelation" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into activity_group_relation (activity_id, group_id, group_name,
+        group_type, create_time)
+        values (#{activityId,jdbcType=INTEGER}, #{groupId,jdbcType=INTEGER}, #{groupName,jdbcType=VARCHAR},
+        #{groupType,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="com.idream.commons.lib.model.ActivityGroupRelation"
+            useGeneratedKeys="true" keyProperty="id">
+        insert into activity_group_relation
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="activityId != null">
+                activity_id,
+            </if>
+            <if test="groupId != null">
+                group_id,
+            </if>
+            <if test="groupName != null">
+                group_name,
+            </if>
+            <if test="groupType != null">
+                group_type,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="activityId != null">
+                #{activityId,jdbcType=INTEGER},
+            </if>
+            <if test="groupId != null">
+                #{groupId,jdbcType=INTEGER},
+            </if>
+            <if test="groupName != null">
+                #{groupName,jdbcType=VARCHAR},
+            </if>
+            <if test="groupType != null">
+                #{groupType,jdbcType=TINYINT},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.idream.commons.lib.model.ActivityGroupRelation">
+        update activity_group_relation
+        <set>
+            <if test="activityId != null">
+                activity_id = #{activityId,jdbcType=INTEGER},
+            </if>
+            <if test="groupId != null">
+                group_id = #{groupId,jdbcType=INTEGER},
+            </if>
+            <if test="groupName != null">
+                group_name = #{groupName,jdbcType=VARCHAR},
+            </if>
+            <if test="groupType != null">
+                group_type = #{groupType,jdbcType=TINYINT},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.idream.commons.lib.model.ActivityGroupRelation">
+        update activity_group_relation
+        set activity_id = #{activityId,jdbcType=INTEGER},
+        group_id = #{groupId,jdbcType=INTEGER},
+        group_name = #{groupName,jdbcType=VARCHAR},
+        group_type = #{groupType,jdbcType=TINYINT},
+        create_time = #{createTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <select id="getRegionGroupInfoByRegionId" resultType="com.idream.commons.lib.dto.activity.RegionGroupInfoExtention">
+        select
+        b.id id,b.`name` name
+        FROM region_group_relation a LEFT JOIN region_group_info b ON a.group_id=b.id
+        WHERE a.region_id = #{regionId} AND b.category=1
+    </select>
+
+    <select id="selectRegionIdsByActivityId" resultType="java.lang.Integer">
+        SELECT
+        DISTINCT
+        b.region_id
+        FROM
+        activity_group_relation a
+        INNER JOIN region_group_relation b ON a.group_id = b.group_id
+        INNER JOIN region_info c ON b.region_id=c.id AND c.type=2
+        WHERE
+        a.activity_id = #{activityId} AND a.group_type = 60
+        UNION
+        SELECT
+        DISTINCT
+        b.id
+        FROM
+        activity_group_relation a
+        INNER JOIN region_info b ON a.group_id = b.id
+        WHERE
+        a.activity_id = #{activityId} AND b.type=2 AND a.group_type=40
+    </select>
+    <select id="getActivityInfoByBookId" parameterType="com.idream.commons.lib.dto.admin.BookHouseListActivityDetailParams"
+            resultType="com.idream.commons.lib.dto.admin.BookHouseListActivityDetailDto">
+        SELECT
+        b.id activityId,
+        c.`name` activityType,
+        b.title,
+        b.time_type timeType,
+        IF(b.time_type = 3,b.week_day,(CONCAT(DATE_FORMAT(b.start_time,'%Y-%m-%d'),' 至 ',DATE_FORMAT(b.end_time,'%Y-%m-%d')))) AS activityDate,
+        CONCAT(DATE_FORMAT(b.start_time,'%H:%i'),' - ',DATE_FORMAT(b.end_time,'%H:%i')) AS activityTime,
+        IF(b.start_time IS NOT NULL AND b.end_time IS NOT NULL AND b.status = 4,CASE WHEN b.start_time &gt; NOW() THEN 1
+        WHEN b.start_time &lt; NOW() AND b.end_time &gt; NOW() THEN 2
+        ELSE 3 END,0) activityStatus
+        FROM user_manager a
+        INNER JOIN activity_info b ON b.create_id = a.user_id AND b.status = 4
+        LEFT JOIN activity_type c ON c.id = b.type_id
+        <where>
+            AND a.book_id = #{bookId}
+            <if test="activityType != null and activityType != '' or activityType == 0">
+                AND c.id = #{activityType}
+            </if>
+            <if test="title != null and title != ''">
+                AND b.title LIKE CONCAT('%',#{title},'%')
+            </if>
+        </where>
+    </select>
+</mapper>

@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.idream.commons.lib.mapper.ActivityCommunityRelationMapper">
+    <resultMap id="BaseResultMap" type="com.idream.commons.lib.model.ActivityCommunityRelation">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="activity_id" property="activityId" jdbcType="INTEGER"/>
+        <result column="community_id" property="communityId" jdbcType="INTEGER"/>
+        <result column="place_id" property="placeId" jdbcType="INTEGER"/>
+        <result column="address" property="address" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, activity_id, community_id, place_id, address, create_time, update_time
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from activity_community_relation
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from activity_community_relation
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.idream.commons.lib.model.ActivityCommunityRelation" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into activity_community_relation (activity_id, community_id, place_id,
+        address, create_time, update_time
+        )
+        values (#{activityId,jdbcType=INTEGER}, #{communityId,jdbcType=INTEGER}, #{placeId,jdbcType=INTEGER},
+        #{address,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+        )
+    </insert>
+    <insert id="insertSelective" parameterType="com.idream.commons.lib.model.ActivityCommunityRelation"
+            useGeneratedKeys="true" keyProperty="id">
+        insert into activity_community_relation
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="activityId != null">
+                activity_id,
+            </if>
+            <if test="communityId != null">
+                community_id,
+            </if>
+            <if test="placeId != null">
+                place_id,
+            </if>
+            <if test="address != null">
+                address,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="activityId != null">
+                #{activityId,jdbcType=INTEGER},
+            </if>
+            <if test="communityId != null">
+                #{communityId,jdbcType=INTEGER},
+            </if>
+            <if test="placeId != null">
+                #{placeId,jdbcType=INTEGER},
+            </if>
+            <if test="address != null">
+                #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.idream.commons.lib.model.ActivityCommunityRelation">
+        update activity_community_relation
+        <set>
+            <if test="activityId != null">
+                activity_id = #{activityId,jdbcType=INTEGER},
+            </if>
+            <if test="communityId != null">
+                community_id = #{communityId,jdbcType=INTEGER},
+            </if>
+            <if test="placeId != null">
+                place_id = #{placeId,jdbcType=INTEGER},
+            </if>
+            <if test="address != null">
+                address = #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.idream.commons.lib.model.ActivityCommunityRelation">
+        update activity_community_relation
+        set activity_id = #{activityId,jdbcType=INTEGER},
+        community_id = #{communityId,jdbcType=INTEGER},
+        place_id = #{placeId,jdbcType=INTEGER},
+        address = #{address,jdbcType=VARCHAR},
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+        update_time = #{updateTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <!--根据活动id查询活动社区名称-->
+    <select id="getCommunityNameByActivityId" parameterType="java.lang.Integer" resultType="String">
+        SELECT community_name FROM activity_community_relation LEFT JOIN community_info ON
+        community_info.id=activity_community_relation.community_id WHERE activity_id=#{activityId}
+    </select>
+
+    <!--根据活动id查询活动场地名称-->
+    <select id="getActivityPlaceByActivityId" parameterType="java.lang.Integer" resultType="String">
+        SELECT ap.name activityPlace FROM activity_place ap INNER JOIN activity_community_relation acr ON ap.id =
+        acr.place_id WHERE activity_id = #{activityId}
+    </select>
+
+    <!-- 根据活动id查询 -->
+    <select id="getActivityCommunityRelationByActivityId" parameterType="Integer"
+            resultType="com.idream.commons.lib.model.ActivityCommunityRelation">
+        SELECT
+        id,
+        activity_id activityId,
+        community_id communityId,
+        place_id placeId,
+        address,
+        create_time createTime,
+        update_time updateTime
+        FROM activity_community_relation WHERE activity_id=#{activityId}
+    </select>
+
+    <delete id="deleteByActivityId" parameterType="java.lang.Integer">
+        delete from activity_community_relation
+        where activity_id = #{activityId}
+    </delete>
+</mapper>

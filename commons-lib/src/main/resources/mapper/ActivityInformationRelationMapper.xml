@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.idream.commons.lib.mapper.ActivityInformationRelationMapper">
+    <resultMap id="BaseResultMap" type="com.idream.commons.lib.model.ActivityInformationRelation">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="activity_id" property="activityId" jdbcType="INTEGER"/>
+        <result column="info_id" property="infoId" jdbcType="INTEGER"/>
+        <result column="info_name" property="infoName" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, activity_id, info_id, info_name, create_time, update_time
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from activity_information_relation
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from activity_information_relation
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.idream.commons.lib.model.ActivityInformationRelation" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into activity_information_relation (activity_id, info_id, info_name,
+        create_time, update_time)
+        values (#{activityId,jdbcType=INTEGER}, #{infoId,jdbcType=INTEGER}, #{infoName,jdbcType=VARCHAR},
+        #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="com.idream.commons.lib.model.ActivityInformationRelation"
+            useGeneratedKeys="true" keyProperty="id">
+        insert into activity_information_relation
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="activityId != null">
+                activity_id,
+            </if>
+            <if test="infoId != null">
+                info_id,
+            </if>
+            <if test="infoName != null">
+                info_name,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="activityId != null">
+                #{activityId,jdbcType=INTEGER},
+            </if>
+            <if test="infoId != null">
+                #{infoId,jdbcType=INTEGER},
+            </if>
+            <if test="infoName != null">
+                #{infoName,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.idream.commons.lib.model.ActivityInformationRelation">
+        update activity_information_relation
+        <set>
+            <if test="activityId != null">
+                activity_id = #{activityId,jdbcType=INTEGER},
+            </if>
+            <if test="infoId != null">
+                info_id = #{infoId,jdbcType=INTEGER},
+            </if>
+            <if test="infoName != null">
+                info_name = #{infoName,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.idream.commons.lib.model.ActivityInformationRelation">
+        update activity_information_relation
+        set activity_id = #{activityId,jdbcType=INTEGER},
+        info_id = #{infoId,jdbcType=INTEGER},
+        info_name = #{infoName,jdbcType=VARCHAR},
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+        update_time = #{updateTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <!--根据主键查询报名信息名称-->
+    <select id="getRegistInfoByActivityId" parameterType="java.lang.Integer" resultType="String">
+        SELECT ir.name registInfo FROM information_rule ir INNER JOIN activity_information_relation air ON air.info_id =
+        ir.id WHERE activity_id = #{activityId}
+    </select>
+
+    <!-- 根据活动id查询默认报名设置集合 -->
+    <select id="getActivityInformationRelationByActivityId" parameterType="Integer"
+            resultType="com.idream.commons.lib.model.ActivityInformationRelation">
+        SELECT
+            a.id,
+            a.activity_id activityId,
+            a.info_id infoId,
+            a.info_name infoName,
+            a.create_time createTime,
+            a.update_time updateTime
+        FROM
+            activity_information_relation a
+        LEFT JOIN information_rule b ON a.info_id = b.id
+        WHERE
+            activity_id = #{activityId}
+        AND b.type = 1
+    </select>
+
+    <!-- 用户参加活动校验有没有搜集报名信息 -->
+    <select id="checkJoinActivityGetActivityInformationRelationByActivityId" parameterType="Integer"
+            resultType="java.lang.Integer">
+      SELECT
+      COUNT(id)
+      FROM activity_information_relation
+      WHERE activity_id = #{activityId}
+    </select>
+
+
+
+    <!-- 根据活动id查询自定义报名设置集合 -->
+    <select id="getCustomInfoListByActivityId" parameterType="Integer"
+            resultType="com.idream.commons.lib.model.ActivityInformationRelation">
+        SELECT
+            a.id,
+            a.activity_id activityId,
+            a.info_id infoId,
+            a.info_name infoName,
+            a.create_time createTime,
+            a.update_time updateTime
+        FROM
+            activity_information_relation a
+        LEFT JOIN information_rule b ON a.info_id = b.id
+        WHERE
+            activity_id = #{activityId}
+        AND b.type = 0
+    </select>
+
+    <!--根据h活动ID和活动规则ID查询主键-->
+    <select id="getKeyByActivityIdAndInfoId" parameterType="com.idream.commons.lib.model.ActivityInformationRelation"
+            resultType="java.lang.Integer">
+        SELECT id FROM activity_information_relation WHERE
+        1=1
+        <if test="id != null and id !='' ">
+            and id = #{id, jdbcType=INTEGER}
+        </if>
+        <if test="activityId != null and activityId !='' ">
+            and activity_id = #{activityId, jdbcType=INTEGER}
+        </if>
+        <if test="infoId != null and infoId !='' ">
+            and info_id = #{infoId, jdbcType=VARCHAR}
+        </if>
+        <if test="createTime != null and createTime !='' ">
+            and create_time = #{createTime, jdbcType=TIMESTAMP}
+        </if>
+        <if test="updateTime != null and updateTime !='' ">
+            and update_time = #{updateTime, jdbcType=TIMESTAMP}
+        </if>
+    </select>
+    <!--根据活动id删除-->
+    <delete id="deleteActivityInformationRelationByActivityId" parameterType="Integer" statementType="PREPARED">
+        delete from activity_information_relation where activity_id = #{activityId}
+    </delete>
+    <select id="selectInformationRuleList"
+            resultType="com.idream.commons.lib.dto.information.InformationRuleDto">
+        SELECT
+        a.info_id,
+        a.info_name,
+        b.`code` as infoCode
+        FROM
+        activity_information_relation a
+        INNER JOIN information_rule b ON a.info_id = b.id
+        WHERE
+        a.activity_id = #{activityId} order by a.info_id
+    </select>
+</mapper>

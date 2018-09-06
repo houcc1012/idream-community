@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.idream.commons.lib.mapper.NoticeTemplateMapper">
+    <resultMap id="BaseResultMap" type="com.idream.commons.lib.model.NoticeTemplate">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="title" property="title" jdbcType="VARCHAR"/>
+        <result column="content" property="content" jdbcType="VARCHAR"/>
+        <result column="template_type" property="templateType" jdbcType="TINYINT"/>
+        <result column="business_type" property="businessType" jdbcType="TINYINT"/>
+        <result column="template_status" property="templateStatus" jdbcType="TINYINT"/>
+        <result column="go_to_url" property="goToUrl" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, title, content, template_type, business_type, template_status, go_to_url, create_time,
+        update_time
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from notice_template
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from notice_template
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.idream.commons.lib.model.NoticeTemplate" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into notice_template (title, content, template_type,
+        business_type, template_status, go_to_url,
+        create_time, update_time)
+        values (#{title,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, #{templateType,jdbcType=TINYINT},
+        #{businessType,jdbcType=TINYINT}, #{templateStatus,jdbcType=TINYINT}, #{goToUrl,jdbcType=VARCHAR},
+        #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="com.idream.commons.lib.model.NoticeTemplate" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into notice_template
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="title != null">
+                title,
+            </if>
+            <if test="content != null">
+                content,
+            </if>
+            <if test="templateType != null">
+                template_type,
+            </if>
+            <if test="businessType != null">
+                business_type,
+            </if>
+            <if test="templateStatus != null">
+                template_status,
+            </if>
+            <if test="goToUrl != null">
+                go_to_url,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="title != null">
+                #{title,jdbcType=VARCHAR},
+            </if>
+            <if test="content != null">
+                #{content,jdbcType=VARCHAR},
+            </if>
+            <if test="templateType != null">
+                #{templateType,jdbcType=TINYINT},
+            </if>
+            <if test="businessType != null">
+                #{businessType,jdbcType=TINYINT},
+            </if>
+            <if test="templateStatus != null">
+                #{templateStatus,jdbcType=TINYINT},
+            </if>
+            <if test="goToUrl != null">
+                #{goToUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.idream.commons.lib.model.NoticeTemplate">
+        update notice_template
+        <set>
+            <if test="title != null">
+                title = #{title,jdbcType=VARCHAR},
+            </if>
+            <if test="content != null">
+                content = #{content,jdbcType=VARCHAR},
+            </if>
+            <if test="templateType != null">
+                template_type = #{templateType,jdbcType=TINYINT},
+            </if>
+            <if test="businessType != null">
+                business_type = #{businessType,jdbcType=TINYINT},
+            </if>
+            <if test="templateStatus != null">
+                template_status = #{templateStatus,jdbcType=TINYINT},
+            </if>
+            <if test="goToUrl != null">
+                go_to_url = #{goToUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.idream.commons.lib.model.NoticeTemplate">
+        update notice_template
+        set title = #{title,jdbcType=VARCHAR},
+        content = #{content,jdbcType=VARCHAR},
+        template_type = #{templateType,jdbcType=TINYINT},
+        business_type = #{businessType,jdbcType=TINYINT},
+        template_status = #{templateStatus,jdbcType=TINYINT},
+        go_to_url = #{goToUrl,jdbcType=VARCHAR},
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+        update_time = #{updateTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+</mapper>

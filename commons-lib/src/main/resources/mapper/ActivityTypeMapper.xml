@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.idream.commons.lib.mapper.ActivityTypeMapper">
+    <resultMap id="BaseResultMap" type="com.idream.commons.lib.model.ActivityType">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="admin_user_id" property="adminUserId" jdbcType="INTEGER"/>
+        <result column="admin_nick_name" property="adminNickName" jdbcType="VARCHAR"/>
+        <result column="status" property="status" jdbcType="TINYINT"/>
+        <result column="icon" property="icon" jdbcType="VARCHAR"/>
+        <result column="icon_light" property="iconLight" jdbcType="VARCHAR"/>
+        <result column="background" property="background" jdbcType="VARCHAR"/>
+        <result column="kind" property="kind" jdbcType="TINYINT"/>
+        <result column="description" property="description" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, name, admin_user_id, admin_nick_name, status, icon, icon_light, background, kind,
+        description, create_time, update_time
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from activity_type
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from activity_type
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.idream.commons.lib.model.ActivityType" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into activity_type (name, admin_user_id, admin_nick_name,
+        status, icon, icon_light,
+        background, kind, description,
+        create_time, update_time)
+        values (#{name,jdbcType=VARCHAR}, #{adminUserId,jdbcType=INTEGER}, #{adminNickName,jdbcType=VARCHAR},
+        #{status,jdbcType=TINYINT}, #{icon,jdbcType=VARCHAR}, #{iconLight,jdbcType=VARCHAR},
+        #{background,jdbcType=VARCHAR}, #{kind,jdbcType=TINYINT}, #{description,jdbcType=VARCHAR},
+        #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="com.idream.commons.lib.model.ActivityType" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into activity_type
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="name != null">
+                name,
+            </if>
+            <if test="adminUserId != null">
+                admin_user_id,
+            </if>
+            <if test="adminNickName != null">
+                admin_nick_name,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+            <if test="icon != null">
+                icon,
+            </if>
+            <if test="iconLight != null">
+                icon_light,
+            </if>
+            <if test="background != null">
+                background,
+            </if>
+            <if test="kind != null">
+                kind,
+            </if>
+            <if test="description != null">
+                description,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="adminUserId != null">
+                #{adminUserId,jdbcType=INTEGER},
+            </if>
+            <if test="adminNickName != null">
+                #{adminNickName,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=TINYINT},
+            </if>
+            <if test="icon != null">
+                #{icon,jdbcType=VARCHAR},
+            </if>
+            <if test="iconLight != null">
+                #{iconLight,jdbcType=VARCHAR},
+            </if>
+            <if test="background != null">
+                #{background,jdbcType=VARCHAR},
+            </if>
+            <if test="kind != null">
+                #{kind,jdbcType=TINYINT},
+            </if>
+            <if test="description != null">
+                #{description,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.idream.commons.lib.model.ActivityType">
+        update activity_type
+        <set>
+            <if test="name != null">
+                name = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="adminUserId != null">
+                admin_user_id = #{adminUserId,jdbcType=INTEGER},
+            </if>
+            <if test="adminNickName != null">
+                admin_nick_name = #{adminNickName,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=TINYINT},
+            </if>
+            <if test="icon != null">
+                icon = #{icon,jdbcType=VARCHAR},
+            </if>
+            <if test="iconLight != null">
+                icon_light = #{iconLight,jdbcType=VARCHAR},
+            </if>
+            <if test="background != null">
+                background = #{background,jdbcType=VARCHAR},
+            </if>
+            <if test="kind != null">
+                kind = #{kind,jdbcType=TINYINT},
+            </if>
+            <if test="description != null">
+                description = #{description,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.idream.commons.lib.model.ActivityType">
+        update activity_type
+        set name = #{name,jdbcType=VARCHAR},
+        admin_user_id = #{adminUserId,jdbcType=INTEGER},
+        admin_nick_name = #{adminNickName,jdbcType=VARCHAR},
+        status = #{status,jdbcType=TINYINT},
+        icon = #{icon,jdbcType=VARCHAR},
+        icon_light = #{iconLight,jdbcType=VARCHAR},
+        background = #{background,jdbcType=VARCHAR},
+        kind = #{kind,jdbcType=TINYINT},
+        description = #{description,jdbcType=VARCHAR},
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+        update_time = #{updateTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <!-- 查询所有活动类别详情 -->
+    <select id="queryActivityType" resultType="com.idream.commons.lib.model.ActivityType">
+        SELECT id,name,icon,create_time,update_time FROM activity_type where status=1
+    </select>
+
+    <!-- 通过前端传来的参数查询活动标签库中的一级标签 -->
+    <select id="selectActivityTypeListByActivityTag"
+            resultType="com.idream.commons.lib.dto.activity.ActivityTagResponseDto">
+        select
+        id,
+        name label,
+        admin_nick_name adminNickName,
+        create_time createTime
+        from activity_type
+        <where>
+            <if test="label != null">
+                and name LIKE CONCAT(CONCAT('%', #{label}), '%')
+            </if>
+            and status = 1
+        </where>
+    </select>
+
+    <select id="getActivityTypeByUserId" parameterType="java.lang.Integer"
+            resultType="com.idream.commons.lib.model.ActivityType">
+        SELECT DISTINCT
+        a.id id,a.`name` name,a.admin_nick_name adminNickName,
+        a.admin_user_id authUserId,a.create_time createTime,
+        a.update_time updateTime,a.`status` `status`
+        FROM activity_type a
+        LEFT JOIN activity_info b ON a.id=b.type_id
+        <where>
+            <if test="userId != null and userId != ''">
+                and b.user_id = #{userId}
+            </if>
+            AND a.`status`=1
+        </where>
+    </select>
+
+    <select id="getActivityTypeLibrary" resultType="com.idream.commons.lib.dto.activity.ActivityTypeLibraryResponseDto">
+        SELECT a.id,name typeName,a.kind kind,a.icon icon,b.real_name creater
+        from
+        activity_type a
+        LEFT JOIN user_info b
+        ON a.admin_user_id = b.id
+    </select>
+
+    <select id="getAllActivityType"
+            resultType="com.idream.commons.lib.dto.appactivity.AppActivityUserLikeTypeResponseDto">
+        SELECT
+        id typeId,
+        `name` typeName,
+        icon icon,
+        icon_light iconLight
+        FROM
+        activity_type
+        WHERE
+        `status` = 1
+        AND kind = 1
+    </select>
+
+    <select id="getMiniActivityTypeByCityCode"
+            resultType="com.idream.commons.lib.dto.appactivity.AppActivityTypeResponseDto">
+        SELECT b.id AS typeId,b.`name` AS typeName , b.icon AS icon
+        FROM activity_info a INNER JOIN activity_type b ON a.type_id = b.id
+        WHERE a.city_code = #{cityCode} AND a.status = 4
+        GROUP BY b.id ORDER BY count(b.id) DESC
+    </select>
+
+
+</mapper>

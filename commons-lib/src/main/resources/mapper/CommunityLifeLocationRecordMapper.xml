@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.idream.commons.lib.mapper.CommunityLifeLocationRecordMapper">
+    <resultMap id="BaseResultMap" type="com.idream.commons.lib.model.CommunityLifeLocationRecord">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="community_id" property="communityId" jdbcType="INTEGER"/>
+        <result column="user_id" property="userId" jdbcType="INTEGER"/>
+        <result column="longitude" property="longitude" jdbcType="DECIMAL"/>
+        <result column="latitude" property="latitude" jdbcType="DECIMAL"/>
+        <result column="community_label" property="communityLabel" jdbcType="VARCHAR"/>
+        <result column="community_label_id" property="communityLabelId" jdbcType="INTEGER"/>
+        <result column="user_description" property="userDescription" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, community_id, user_id, longitude, latitude, community_label, community_label_id,
+        user_description, create_time, update_time
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from community_life_location_record
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from community_life_location_record
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.idream.commons.lib.model.CommunityLifeLocationRecord" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into community_life_location_record (community_id, user_id, longitude,
+        latitude, community_label, community_label_id,
+        user_description, create_time, update_time
+        )
+        values (#{communityId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{longitude,jdbcType=DECIMAL},
+        #{latitude,jdbcType=DECIMAL}, #{communityLabel,jdbcType=VARCHAR}, #{communityLabelId,jdbcType=INTEGER},
+        #{userDescription,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+        )
+    </insert>
+    <insert id="insertSelective" parameterType="com.idream.commons.lib.model.CommunityLifeLocationRecord"
+            useGeneratedKeys="true" keyProperty="id">
+        insert into community_life_location_record
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="communityId != null">
+                community_id,
+            </if>
+            <if test="userId != null">
+                user_id,
+            </if>
+            <if test="longitude != null">
+                longitude,
+            </if>
+            <if test="latitude != null">
+                latitude,
+            </if>
+            <if test="communityLabel != null">
+                community_label,
+            </if>
+            <if test="communityLabelId != null">
+                community_label_id,
+            </if>
+            <if test="userDescription != null">
+                user_description,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="communityId != null">
+                #{communityId,jdbcType=INTEGER},
+            </if>
+            <if test="userId != null">
+                #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="longitude != null">
+                #{longitude,jdbcType=DECIMAL},
+            </if>
+            <if test="latitude != null">
+                #{latitude,jdbcType=DECIMAL},
+            </if>
+            <if test="communityLabel != null">
+                #{communityLabel,jdbcType=VARCHAR},
+            </if>
+            <if test="communityLabelId != null">
+                #{communityLabelId,jdbcType=INTEGER},
+            </if>
+            <if test="userDescription != null">
+                #{userDescription,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.idream.commons.lib.model.CommunityLifeLocationRecord">
+        update community_life_location_record
+        <set>
+            <if test="communityId != null">
+                community_id = #{communityId,jdbcType=INTEGER},
+            </if>
+            <if test="userId != null">
+                user_id = #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="longitude != null">
+                longitude = #{longitude,jdbcType=DECIMAL},
+            </if>
+            <if test="latitude != null">
+                latitude = #{latitude,jdbcType=DECIMAL},
+            </if>
+            <if test="communityLabel != null">
+                community_label = #{communityLabel,jdbcType=VARCHAR},
+            </if>
+            <if test="communityLabelId != null">
+                community_label_id = #{communityLabelId,jdbcType=INTEGER},
+            </if>
+            <if test="userDescription != null">
+                user_description = #{userDescription,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.idream.commons.lib.model.CommunityLifeLocationRecord">
+        update community_life_location_record
+        set community_id = #{communityId,jdbcType=INTEGER},
+        user_id = #{userId,jdbcType=INTEGER},
+        longitude = #{longitude,jdbcType=DECIMAL},
+        latitude = #{latitude,jdbcType=DECIMAL},
+        community_label = #{communityLabel,jdbcType=VARCHAR},
+        community_label_id = #{communityLabelId,jdbcType=INTEGER},
+        user_description = #{userDescription,jdbcType=VARCHAR},
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+        update_time = #{updateTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <!-- 邻居 -->
+    <select id="selectNeighborhoodAll" parameterType="java.lang.Integer"
+            resultType="com.idream.commons.lib.dto.app.NeighborCommunityResponseDto">
+        select
+        user_id userId,
+        longitude,
+        latitude,
+        user_description userDescription
+        from community_life_location_record
+        where community_id = #{communityId}
+    </select>
+</mapper>

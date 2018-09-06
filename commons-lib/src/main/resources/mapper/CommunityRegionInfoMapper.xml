@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.idream.commons.lib.mapper.CommunityRegionInfoMapper">
+    <resultMap id="BaseResultMap" type="com.idream.commons.lib.model.CommunityRegionInfo">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="region_name" property="regionName" jdbcType="VARCHAR"/>
+        <result column="longitude" property="longitude" jdbcType="DECIMAL"/>
+        <result column="latitude" property="latitude" jdbcType="DECIMAL"/>
+        <result column="description" property="description" jdbcType="VARCHAR"/>
+        <result column="province" property="province" jdbcType="VARCHAR"/>
+        <result column="province_code" property="provinceCode" jdbcType="VARCHAR"/>
+        <result column="city" property="city" jdbcType="VARCHAR"/>
+        <result column="city_code" property="cityCode" jdbcType="VARCHAR"/>
+        <result column="district" property="district" jdbcType="VARCHAR"/>
+        <result column="district_code" property="districtCode" jdbcType="VARCHAR"/>
+        <result column="status" property="status" jdbcType="TINYINT"/>
+        <result column="range_level" property="rangeLevel" jdbcType="TINYINT"/>
+        <result column="icon" property="icon" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, region_name, longitude, latitude, description, province, province_code, city,
+        city_code, district, district_code, status, range_level, icon, create_time, update_time
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from community_region_info
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from community_region_info
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.idream.commons.lib.model.CommunityRegionInfo" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into community_region_info (region_name, longitude, latitude,
+        description, province, province_code,
+        city, city_code, district,
+        district_code, status, range_level,
+        icon, create_time, update_time
+        )
+        values (#{regionName,jdbcType=VARCHAR}, #{longitude,jdbcType=DECIMAL}, #{latitude,jdbcType=DECIMAL},
+        #{description,jdbcType=VARCHAR}, #{province,jdbcType=VARCHAR}, #{provinceCode,jdbcType=VARCHAR},
+        #{city,jdbcType=VARCHAR}, #{cityCode,jdbcType=VARCHAR}, #{district,jdbcType=VARCHAR},
+        #{districtCode,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT}, #{rangeLevel,jdbcType=TINYINT},
+        #{icon,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+        )
+    </insert>
+    <insert id="insertSelective" parameterType="com.idream.commons.lib.model.CommunityRegionInfo"
+            useGeneratedKeys="true" keyProperty="id">
+        insert into community_region_info
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="regionName != null">
+                region_name,
+            </if>
+            <if test="longitude != null">
+                longitude,
+            </if>
+            <if test="latitude != null">
+                latitude,
+            </if>
+            <if test="description != null">
+                description,
+            </if>
+            <if test="province != null">
+                province,
+            </if>
+            <if test="provinceCode != null">
+                province_code,
+            </if>
+            <if test="city != null">
+                city,
+            </if>
+            <if test="cityCode != null">
+                city_code,
+            </if>
+            <if test="district != null">
+                district,
+            </if>
+            <if test="districtCode != null">
+                district_code,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+            <if test="rangeLevel != null">
+                range_level,
+            </if>
+            <if test="icon != null">
+                icon,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="regionName != null">
+                #{regionName,jdbcType=VARCHAR},
+            </if>
+            <if test="longitude != null">
+                #{longitude,jdbcType=DECIMAL},
+            </if>
+            <if test="latitude != null">
+                #{latitude,jdbcType=DECIMAL},
+            </if>
+            <if test="description != null">
+                #{description,jdbcType=VARCHAR},
+            </if>
+            <if test="province != null">
+                #{province,jdbcType=VARCHAR},
+            </if>
+            <if test="provinceCode != null">
+                #{provinceCode,jdbcType=VARCHAR},
+            </if>
+            <if test="city != null">
+                #{city,jdbcType=VARCHAR},
+            </if>
+            <if test="cityCode != null">
+                #{cityCode,jdbcType=VARCHAR},
+            </if>
+            <if test="district != null">
+                #{district,jdbcType=VARCHAR},
+            </if>
+            <if test="districtCode != null">
+                #{districtCode,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=TINYINT},
+            </if>
+            <if test="rangeLevel != null">
+                #{rangeLevel,jdbcType=TINYINT},
+            </if>
+            <if test="icon != null">
+                #{icon,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.idream.commons.lib.model.CommunityRegionInfo">
+        update community_region_info
+        <set>
+            <if test="regionName != null">
+                region_name = #{regionName,jdbcType=VARCHAR},
+            </if>
+            <if test="longitude != null">
+                longitude = #{longitude,jdbcType=DECIMAL},
+            </if>
+            <if test="latitude != null">
+                latitude = #{latitude,jdbcType=DECIMAL},
+            </if>
+            <if test="description != null">
+                description = #{description,jdbcType=VARCHAR},
+            </if>
+            <if test="province != null">
+                province = #{province,jdbcType=VARCHAR},
+            </if>
+            <if test="provinceCode != null">
+                province_code = #{provinceCode,jdbcType=VARCHAR},
+            </if>
+            <if test="city != null">
+                city = #{city,jdbcType=VARCHAR},
+            </if>
+            <if test="cityCode != null">
+                city_code = #{cityCode,jdbcType=VARCHAR},
+            </if>
+            <if test="district != null">
+                district = #{district,jdbcType=VARCHAR},
+            </if>
+            <if test="districtCode != null">
+                district_code = #{districtCode,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=TINYINT},
+            </if>
+            <if test="rangeLevel != null">
+                range_level = #{rangeLevel,jdbcType=TINYINT},
+            </if>
+            <if test="icon != null">
+                icon = #{icon,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.idream.commons.lib.model.CommunityRegionInfo">
+        update community_region_info
+        set region_name = #{regionName,jdbcType=VARCHAR},
+        longitude = #{longitude,jdbcType=DECIMAL},
+        latitude = #{latitude,jdbcType=DECIMAL},
+        description = #{description,jdbcType=VARCHAR},
+        province = #{province,jdbcType=VARCHAR},
+        province_code = #{provinceCode,jdbcType=VARCHAR},
+        city = #{city,jdbcType=VARCHAR},
+        city_code = #{cityCode,jdbcType=VARCHAR},
+        district = #{district,jdbcType=VARCHAR},
+        district_code = #{districtCode,jdbcType=VARCHAR},
+        status = #{status,jdbcType=TINYINT},
+        range_level = #{rangeLevel,jdbcType=TINYINT},
+        icon = #{icon,jdbcType=VARCHAR},
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+        update_time = #{updateTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <select id="selectByUserId" resultType="com.idream.commons.lib.model.CommunityRegionInfo">
+        SELECT a.id,a.region_name FROM community_region_info a
+        INNER JOIN community_region_relation b ON b.region_id = a.id
+        LEFT JOIN user_community_relation c ON c.community_id=b.community_id
+        WHERE c.user_id=#{userId}
+    </select>
+    <select id="getMyCommunity" resultType="com.idream.commons.lib.dto.activity.AppCommunityInfoDto">
+        SELECT DISTINCT
+        c.id AS community_id,
+        c.name AS community_name
+        FROM
+        user_community_relation b
+        LEFT JOIN region_group_info c ON c.id = b.community_id and c.category=1
+        WHERE
+        b.user_id = #{userId}
+    </select>
+
+</mapper>

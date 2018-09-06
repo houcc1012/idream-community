@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.idream.commons.lib.mapper.ActivityTaskMapper">
+    <resultMap id="BaseResultMap" type="com.idream.commons.lib.model.ActivityTask">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="activity_id" property="activityId" jdbcType="INTEGER"/>
+        <result column="theme_id" property="themeId" jdbcType="INTEGER"/>
+        <result column="start_time" property="startTime" jdbcType="TIMESTAMP"/>
+        <result column="end_time" property="endTime" jdbcType="TIMESTAMP"/>
+        <result column="status" property="status" jdbcType="TINYINT"/>
+        <result column="enabled" property="enabled" jdbcType="BIT"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, activity_id, theme_id, start_time, end_time, status, enabled, create_time, update_time
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from activity_task
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from activity_task
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.idream.commons.lib.model.ActivityTask" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into activity_task (activity_id, theme_id, start_time,
+        end_time, status, enabled,
+        create_time, update_time)
+        values (#{activityId,jdbcType=INTEGER}, #{themeId,jdbcType=INTEGER}, #{startTime,jdbcType=TIMESTAMP},
+        #{endTime,jdbcType=TIMESTAMP}, #{status,jdbcType=TINYINT}, #{enabled,jdbcType=BIT},
+        #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="com.idream.commons.lib.model.ActivityTask" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into activity_task
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="activityId != null">
+                activity_id,
+            </if>
+            <if test="themeId != null">
+                theme_id,
+            </if>
+            <if test="startTime != null">
+                start_time,
+            </if>
+            <if test="endTime != null">
+                end_time,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+            <if test="enabled != null">
+                enabled,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="activityId != null">
+                #{activityId,jdbcType=INTEGER},
+            </if>
+            <if test="themeId != null">
+                #{themeId,jdbcType=INTEGER},
+            </if>
+            <if test="startTime != null">
+                #{startTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="endTime != null">
+                #{endTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=TINYINT},
+            </if>
+            <if test="enabled != null">
+                #{enabled,jdbcType=BIT},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.idream.commons.lib.model.ActivityTask">
+        update activity_task
+        <set>
+            <if test="activityId != null">
+                activity_id = #{activityId,jdbcType=INTEGER},
+            </if>
+            <if test="themeId != null">
+                theme_id = #{themeId,jdbcType=INTEGER},
+            </if>
+            <if test="startTime != null">
+                start_time = #{startTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="endTime != null">
+                end_time = #{endTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=TINYINT},
+            </if>
+            <if test="enabled != null">
+                enabled = #{enabled,jdbcType=BIT},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.idream.commons.lib.model.ActivityTask">
+        update activity_task
+        set activity_id = #{activityId,jdbcType=INTEGER},
+        theme_id = #{themeId,jdbcType=INTEGER},
+        start_time = #{startTime,jdbcType=TIMESTAMP},
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+        status = #{status,jdbcType=TINYINT},
+        enabled = #{enabled,jdbcType=BIT},
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+        update_time = #{updateTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <!-- 查询指定活动地址 -->
+    <select id="getactivityCommunity" resultType="com.idream.commons.lib.dto.activity.ActivityCommunityDto">
+        SELECT
+        a.activity_id as activityId,
+        a.community_id as communityId,
+        b.user_id as userId,
+        c.longitude,
+        c.latitude,
+        b.title,
+        a.address,
+        c.community_name as communityName,
+        b.content
+        FROM
+        activity_community_relation a
+        LEFT JOIN
+        activity_info b
+        ON
+        a.activity_id
+        = b.id
+        LEFT JOIN community_info c
+        ON
+        a.community_id = c.id
+        WHERE
+        b.id=#{activityId}
+    </select>
+    <!-- 获取活动打卡ID -->
+    <select id="getactivitytaskId" resultType="com.idream.commons.lib.dto.activity.ActivityDto">
+        SELECT
+        a.id as taskId
+        FROM
+        activity_task a
+        WHERE
+        a.activity_id=#{activity_id}
+        ORDER BY
+        a.start_time > now(),if(a.start_time>now(),0,a.start_time)
+    </select>
+    <!-- 通过activity_id查询活动打卡表中的信息 -->
+    <select id="getActivityTaskByActivityId" parameterType="java.lang.Integer"
+            resultType="com.idream.commons.lib.model.ActivityTask">
+        SELECT
+        id,
+        activity_id activityId,
+        theme_id themeId,
+        start_time
+        startTime,
+        end_time endTime,
+        status,
+        create_time
+        createTime,
+        update_time
+        updateTime
+        FROM activity_task
+        WHERE
+        activity_id=#{activityId}
+    </select>
+    <!-- 通过起始时间来查询theme_id -->
+    <select id="getThemeIdByTime" resultType="com.idream.commons.lib.model.ActivityTask">
+        SELECT
+        id,
+        activity_id
+        activityId,
+        theme_id themeId,
+        start_time startTime,
+        end_time
+        endTime,
+        status,
+        create_time createTime,
+        update_time updateTime
+        FROM
+        activity_task
+        WHERE start_time=#{startTime} and end_time=#{endTime}
+    </select>
+
+    <!-- 获取当前用户的UnionId -->
+    <select id="userCurrent" resultType="com.idream.commons.lib.model.UserInfo">
+        SELECT
+        b.union_id as unionId
+        FROM
+        activity_info a LEFT JOIN user_info b ON a.user_id=b.id
+        WHERE
+        a.user_id=#{userId}
+    </select>
+    <!-- 判断用户是否参加过活动 -->
+    <select id="countByUserIdAndActivityId" resultType="java.lang.Integer">
+        SELECT
+        count(*) from user_activity_record
+        where user_id = #{userId} and activity_id = #{activityId} and exit_status = 1
+    </select>
+    <!-- 判断用户是否退出过活动，返回Id -->
+    <select id="isExisted" resultType="java.lang.Integer">
+        SELECT
+        id from user_activity_record
+        where user_id = #{userId} and activity_id = #{activityId} and exit_status = 2
+    </select>
+    <!-- 修改活动状态-->
+    <update id="updateStatusById" parameterType="java.lang.Integer">
+        UPDATE
+        user_activity_record
+        SET exit_status = 1
+        where id = #{id}
+    </update>
+    <!-- //判断用户是否是活动发起人 -->
+    <select id="getCountByUserIdAndActivityId" resultType="java.lang.Integer">
+        SELECT
+        count(*) from activity_info
+        where user_id = #{userId} and id = #{activityId}
+    </select>
+    <select id="getCommunityInfoByActivityId" resultType="com.idream.commons.lib.model.CommunityInfo">
+        SELECT a.* FROM community_info a LEFT JOIN activity_community_relation b ON b.community_id=a.id
+        WHERE b.activity_id=#{activityId}
+    </select>
+
+    <insert id="addTheme" parameterType="com.idream.commons.lib.model.ActivityTheme"
+            useGeneratedKeys="true" keyProperty="id">
+        insert into activity_theme
+        (activity_id,title,content,image,user_id,type,create_time,update_time) values
+        (#{activityId},#{title},#{content},#{image},#{userId},#{type},#{createTime},#{updateTime})
+    </insert>
+
+    <!--修改 -->
+    <update id="updateActivityTask" parameterType="com.idream.commons.lib.dto.activity.ActivityTaskDto"
+            statementType="PREPARED">
+        update activity_task set
+        start_time = #{startTime},
+        end_time = #{endTime},
+        update_time = #{updateTime},
+        create_time =
+        #{createTime},
+        status = #{status}
+        where id = #{id}
+    </update>
+    <update id="updateByActivityIdAndStartTime" parameterType="com.idream.commons.lib.model.ActivityTask">
+        update activity_task set
+        theme_id = #{themeId,jdbcType=INTEGER},
+        enabled = #{enabled,jdbcType=BIT}
+        where activity_id = #{activityId,jdbcType=INTEGER} and DATE(start_time)=DATE(#{startTime,jdbcType=TIMESTAMP})
+    </update>
+
+    <select id="getActivityRecentOne" parameterType="java.lang.Integer"
+            resultType="com.idream.commons.lib.dto.admin.ActivityRecentOneDto">
+        SELECT
+        a.start_time AS startTime,
+        a.end_time AS endTime,
+        TIMESTAMPDIFF(SECOND,NOW(),a.start_time) AS distanceCurrentDay
+        FROM
+        activity_task a
+        WHERE a.activity_id = #{activityId} AND NOW() &lt; a.end_time ORDER BY a.end_time limit 1
+    </select>
+    <select id="getMiniActivityRecentOne" parameterType="java.lang.Integer"
+            resultType="com.idream.commons.lib.dto.admin.ActivityRecentOneDto">
+        SELECT
+        a.start_time AS startTime,
+        a.end_time AS endTime,
+        TIMESTAMPDIFF(SECOND,NOW(),a.start_time) AS distanceCurrentDay
+        FROM
+        activity_task a
+        WHERE a.activity_id = #{activityId} ORDER BY a.end_time limit 1
+    </select>
+
+    <select id="selectTaskTimeByActivityId" parameterType="java.lang.Integer" resultType="java.util.Date">
+        select start_time from activity_task
+        where activity_id =#{activityId} and DATE_FORMAT(start_time,'%Y-%m-%d %H') &gt; DATE_FORMAT(NOW(),'%Y-%m-%d %H')
+    </select>
+
+
+    <select id="selectActiviyAssociationByActiviyId" parameterType="java.lang.Integer"
+            resultType="com.idream.commons.lib.dto.activity.MiniActivityAssociationTask">
+        SELECT
+        id AS taskId,
+        enabled,
+        a.start_time AS startTime,
+        a.end_time AS endTime,
+        TIMESTAMPDIFF(SECOND,NOW(),a.start_time) AS distanceCurrentDay
+        FROM
+        activity_task a
+        WHERE a.activity_id = #{activityId} AND NOW() &lt; a.end_time ORDER BY a.end_time limit 1
+    </select>
+
+</mapper>
+
+

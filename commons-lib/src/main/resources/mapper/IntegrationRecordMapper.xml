@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.idream.commons.lib.mapper.IntegrationRecordMapper">
+    <resultMap id="BaseResultMap" type="com.idream.commons.lib.model.IntegrationRecord">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="user_id" property="userId" jdbcType="INTEGER"/>
+        <result column="score" property="score" jdbcType="INTEGER"/>
+        <result column="type" property="type" jdbcType="TINYINT"/>
+        <result column="business_id" property="businessId" jdbcType="INTEGER"/>
+        <result column="from_type" property="fromType" jdbcType="TINYINT"/>
+        <result column="from_description" property="fromDescription" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, user_id, score, type, business_id, from_type, from_description, create_time,
+        update_time
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from integration_record
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from integration_record
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.idream.commons.lib.model.IntegrationRecord" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into integration_record (user_id, score, type,
+        business_id, from_type, from_description,
+        create_time, update_time)
+        values (#{userId,jdbcType=INTEGER}, #{score,jdbcType=INTEGER}, #{type,jdbcType=TINYINT},
+        #{businessId,jdbcType=INTEGER}, #{fromType,jdbcType=TINYINT}, #{fromDescription,jdbcType=VARCHAR},
+        #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="com.idream.commons.lib.model.IntegrationRecord" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into integration_record
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userId != null">
+                user_id,
+            </if>
+            <if test="score != null">
+                score,
+            </if>
+            <if test="type != null">
+                type,
+            </if>
+            <if test="businessId != null">
+                business_id,
+            </if>
+            <if test="fromType != null">
+                from_type,
+            </if>
+            <if test="fromDescription != null">
+                from_description,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="userId != null">
+                #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="score != null">
+                #{score,jdbcType=INTEGER},
+            </if>
+            <if test="type != null">
+                #{type,jdbcType=TINYINT},
+            </if>
+            <if test="businessId != null">
+                #{businessId,jdbcType=INTEGER},
+            </if>
+            <if test="fromType != null">
+                #{fromType,jdbcType=TINYINT},
+            </if>
+            <if test="fromDescription != null">
+                #{fromDescription,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.idream.commons.lib.model.IntegrationRecord">
+        update integration_record
+        <set>
+            <if test="userId != null">
+                user_id = #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="score != null">
+                score = #{score,jdbcType=INTEGER},
+            </if>
+            <if test="type != null">
+                type = #{type,jdbcType=TINYINT},
+            </if>
+            <if test="businessId != null">
+                business_id = #{businessId,jdbcType=INTEGER},
+            </if>
+            <if test="fromType != null">
+                from_type = #{fromType,jdbcType=TINYINT},
+            </if>
+            <if test="fromDescription != null">
+                from_description = #{fromDescription,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.idream.commons.lib.model.IntegrationRecord">
+        update integration_record
+        set user_id = #{userId,jdbcType=INTEGER},
+        score = #{score,jdbcType=INTEGER},
+        type = #{type,jdbcType=TINYINT},
+        business_id = #{businessId,jdbcType=INTEGER},
+        from_type = #{fromType,jdbcType=TINYINT},
+        from_description = #{fromDescription,jdbcType=VARCHAR},
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+        update_time = #{updateTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <!--查询指定用户当前连续签到天数， 大于最大累计积分天数不管-->
+    <select id="selectSignDayByUserId" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM (
+        SELECT user_id,
+        @cont_day :=
+        (CASE
+        WHEN (@last_uid = user_id AND DATEDIFF(sign_time, @last_dt) = -1) THEN (@cont_day + 1)
+        ELSE 1 END ) AS days,
+        (@cont_ix := (@cont_ix + IF(@cont_day = 1, 1, 0))) AS cont_ix,
+        @last_uid := user_id,
+        @last_dt := sign_time sign_day
+        FROM (
+        SELECT user_id, DATE(create_time) AS sign_time
+        FROM integration_record
+        WHERE user_id = #{userId} and from_type = 1 ORDER BY create_time DESC
+        ) AS t,
+        (
+        SELECT @last_uid := '', @last_dt := '', @cont_ix := 0, @cont_day := 0
+        ) AS t1
+        ) t2 GROUP BY cont_ix LIMIT 1
+    </select>
+
+    <!--用户签到排行榜查询-->
+    <select id="selectUserSignRankingList"
+            resultType="com.idream.commons.lib.dto.integration.FindUserSignRankingListDto">
+        SELECT
+        user_id, nick_name, phone, MAX(continue_sign_day) continuedSignDay,
+        SUM(continue_sign_day) totalSignDay, SUM(score) totalScore, MAX(last_sign_day) lastSignDay
+        FROM (
+        SELECT user_id, nick_name, phone, MAX(days) continue_sign_day, MAX(sign_day) last_sign_day, SUM(score) AS score
+        FROM (
+        SELECT user_id, nick_name, phone,
+        @cont_day :=
+        (CASE
+        WHEN (@last_uid = user_id AND DATEDIFF(sign_time, @last_dt) = 1) THEN
+        (@cont_day + 1)
+        WHEN (@last_uid = user_id AND DATEDIFF(sign_time, @last_dt) &lt; 1) THEN
+        (@cont_day + 0)
+        ELSE
+        1
+        END ) AS days,
+        (@cont_ix := (@cont_ix + IF(@cont_day = 1, 1, 0))) AS cont_ix,
+        @last_uid := user_id,
+        @last_dt := sign_time sign_day,
+        @last_scope := score score
+        FROM
+        (SELECT user_id, DATE(create_time) AS sign_time, score FROM integration_record WHERE from_type = 1 ORDER BY
+        user_id, create_time) AS t
+        INNER JOIN
+        (SELECT id, nick_name, phone FROM user_info) AS t1
+        ON t.user_id = t1.id
+        INNER JOIN
+        (SELECT @last_uid := '', @last_dt := '', @cont_ix := 0, @cont_day := 0, @last_scope := 0) AS t2
+        ) AS t3
+        GROUP BY user_id, cont_ix
+        ) AS t4
+        GROUP BY user_id
+        ORDER BY totalSignDay DESC
+    </select>
+</mapper>

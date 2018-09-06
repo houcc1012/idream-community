@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.idream.commons.lib.mapper.ActivityTimeRuleMapper">
+    <resultMap id="BaseResultMap" type="com.idream.commons.lib.model.ActivityTimeRule">
+        <id column="activity_id" property="activityId" jdbcType="INTEGER"/>
+        <result column="type" property="type" jdbcType="TINYINT"/>
+        <result column="week_day" property="weekDay" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        activity_id, type, week_day, create_time, update_time
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from activity_time_rule
+        where activity_id = #{activityId,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from activity_time_rule
+        where activity_id = #{activityId,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.idream.commons.lib.model.ActivityTimeRule">
+        insert into activity_time_rule (activity_id, type, week_day,
+        create_time, update_time)
+        values (#{activityId,jdbcType=INTEGER}, #{type,jdbcType=TINYINT}, #{weekDay,jdbcType=VARCHAR},
+        #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="com.idream.commons.lib.model.ActivityTimeRule">
+        insert into activity_time_rule
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="activityId != null">
+                activity_id,
+            </if>
+            <if test="type != null">
+                type,
+            </if>
+            <if test="weekDay != null">
+                week_day,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="activityId != null">
+                #{activityId,jdbcType=INTEGER},
+            </if>
+            <if test="type != null">
+                #{type,jdbcType=TINYINT},
+            </if>
+            <if test="weekDay != null">
+                #{weekDay,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.idream.commons.lib.model.ActivityTimeRule">
+        update activity_time_rule
+        <set>
+            <if test="type != null">
+                type = #{type,jdbcType=TINYINT},
+            </if>
+            <if test="weekDay != null">
+                week_day = #{weekDay,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where activity_id = #{activityId,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.idream.commons.lib.model.ActivityTimeRule">
+        update activity_time_rule
+        set type = #{type,jdbcType=TINYINT},
+        week_day = #{weekDay,jdbcType=VARCHAR},
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+        update_time = #{updateTime,jdbcType=TIMESTAMP}
+        where activity_id = #{activityId,jdbcType=INTEGER}
+    </update>
+
+    <!--修改-->
+    <update id="updateActivityTimeRule" parameterType="com.idream.commons.lib.model.ActivityTimeRule"
+            statementType="PREPARED">
+        update activity_time_rule set
+        type = #{type},
+        create_time = #{createTime},
+        update_time = #{updateTime}
+        where activity_id = #{activityId}
+    </update>
+
+    <!--根据活动id删除-->
+    <delete id="deleteActivityTimeRuleByActivityId" parameterType="Integer" statementType="PREPARED">
+        delete from activity_time_rule where activity_id = #{activity_id}
+    </delete>
+
+    <select id="getActivityTimeRuleByActivityId" parameterType="java.lang.Integer"
+            resultType="com.idream.commons.lib.model.ActivityTimeRule">
+        SELECT activity_id activityId,type type,week_day weekDay,create_time createTime,update_time updateTime
+        from activity_time_rule
+        WHERE
+        activity_id = #{activityId}
+    </select>
+
+</mapper>

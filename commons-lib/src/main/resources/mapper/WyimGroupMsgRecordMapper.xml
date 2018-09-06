@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.idream.commons.lib.mapper.WyimGroupMsgRecordMapper">
+    <resultMap id="BaseResultMap" type="com.idream.commons.lib.model.WyimGroupMsgRecord">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="from_account" property="fromAccount" jdbcType="VARCHAR"/>
+        <result column="send_client_type" property="sendClientType" jdbcType="VARCHAR"/>
+        <result column="send_device_code" property="sendDeviceCode" jdbcType="VARCHAR"/>
+        <result column="msg_type" property="msgType" jdbcType="VARCHAR"/>
+        <result column="content" property="content" jdbcType="VARCHAR"/>
+        <result column="attach" property="attach" jdbcType="VARCHAR"/>
+        <result column="send_time" property="sendTime" jdbcType="TIMESTAMP"/>
+        <result column="resend_flag" property="resendFlag" jdbcType="BIT"/>
+        <result column="msg_id" property="msgId" jdbcType="VARCHAR"/>
+        <result column="to_group_id" property="toGroupId" jdbcType="VARCHAR"/>
+        <result column="ext" property="ext" jdbcType="VARCHAR"/>
+        <result column="t_members" property="tMembers" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, from_account, send_client_type, send_device_code, msg_type, content, attach,
+        send_time, resend_flag, msg_id, to_group_id, ext, t_members, create_time
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from wyim_group_msg_record
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from wyim_group_msg_record
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.idream.commons.lib.model.WyimGroupMsgRecord" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into wyim_group_msg_record (from_account, send_client_type, send_device_code,
+        msg_type, content, attach,
+        send_time, resend_flag, msg_id,
+        to_group_id, ext, t_members,
+        create_time)
+        values (#{fromAccount,jdbcType=VARCHAR}, #{sendClientType,jdbcType=VARCHAR}, #{sendDeviceCode,jdbcType=VARCHAR},
+        #{msgType,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, #{attach,jdbcType=VARCHAR},
+        #{sendTime,jdbcType=TIMESTAMP}, #{resendFlag,jdbcType=BIT}, #{msgId,jdbcType=VARCHAR},
+        #{toGroupId,jdbcType=VARCHAR}, #{ext,jdbcType=VARCHAR}, #{tMembers,jdbcType=VARCHAR},
+        #{createTime,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="com.idream.commons.lib.model.WyimGroupMsgRecord" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into wyim_group_msg_record
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="fromAccount != null">
+                from_account,
+            </if>
+            <if test="sendClientType != null">
+                send_client_type,
+            </if>
+            <if test="sendDeviceCode != null">
+                send_device_code,
+            </if>
+            <if test="msgType != null">
+                msg_type,
+            </if>
+            <if test="content != null">
+                content,
+            </if>
+            <if test="attach != null">
+                attach,
+            </if>
+            <if test="sendTime != null">
+                send_time,
+            </if>
+            <if test="resendFlag != null">
+                resend_flag,
+            </if>
+            <if test="msgId != null">
+                msg_id,
+            </if>
+            <if test="toGroupId != null">
+                to_group_id,
+            </if>
+            <if test="ext != null">
+                ext,
+            </if>
+            <if test="tMembers != null">
+                t_members,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="fromAccount != null">
+                #{fromAccount,jdbcType=VARCHAR},
+            </if>
+            <if test="sendClientType != null">
+                #{sendClientType,jdbcType=VARCHAR},
+            </if>
+            <if test="sendDeviceCode != null">
+                #{sendDeviceCode,jdbcType=VARCHAR},
+            </if>
+            <if test="msgType != null">
+                #{msgType,jdbcType=VARCHAR},
+            </if>
+            <if test="content != null">
+                #{content,jdbcType=VARCHAR},
+            </if>
+            <if test="attach != null">
+                #{attach,jdbcType=VARCHAR},
+            </if>
+            <if test="sendTime != null">
+                #{sendTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="resendFlag != null">
+                #{resendFlag,jdbcType=BIT},
+            </if>
+            <if test="msgId != null">
+                #{msgId,jdbcType=VARCHAR},
+            </if>
+            <if test="toGroupId != null">
+                #{toGroupId,jdbcType=VARCHAR},
+            </if>
+            <if test="ext != null">
+                #{ext,jdbcType=VARCHAR},
+            </if>
+            <if test="tMembers != null">
+                #{tMembers,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.idream.commons.lib.model.WyimGroupMsgRecord">
+        update wyim_group_msg_record
+        <set>
+            <if test="fromAccount != null">
+                from_account = #{fromAccount,jdbcType=VARCHAR},
+            </if>
+            <if test="sendClientType != null">
+                send_client_type = #{sendClientType,jdbcType=VARCHAR},
+            </if>
+            <if test="sendDeviceCode != null">
+                send_device_code = #{sendDeviceCode,jdbcType=VARCHAR},
+            </if>
+            <if test="msgType != null">
+                msg_type = #{msgType,jdbcType=VARCHAR},
+            </if>
+            <if test="content != null">
+                content = #{content,jdbcType=VARCHAR},
+            </if>
+            <if test="attach != null">
+                attach = #{attach,jdbcType=VARCHAR},
+            </if>
+            <if test="sendTime != null">
+                send_time = #{sendTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="resendFlag != null">
+                resend_flag = #{resendFlag,jdbcType=BIT},
+            </if>
+            <if test="msgId != null">
+                msg_id = #{msgId,jdbcType=VARCHAR},
+            </if>
+            <if test="toGroupId != null">
+                to_group_id = #{toGroupId,jdbcType=VARCHAR},
+            </if>
+            <if test="ext != null">
+                ext = #{ext,jdbcType=VARCHAR},
+            </if>
+            <if test="tMembers != null">
+                t_members = #{tMembers,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.idream.commons.lib.model.WyimGroupMsgRecord">
+        update wyim_group_msg_record
+        set from_account = #{fromAccount,jdbcType=VARCHAR},
+        send_client_type = #{sendClientType,jdbcType=VARCHAR},
+        send_device_code = #{sendDeviceCode,jdbcType=VARCHAR},
+        msg_type = #{msgType,jdbcType=VARCHAR},
+        content = #{content,jdbcType=VARCHAR},
+        attach = #{attach,jdbcType=VARCHAR},
+        send_time = #{sendTime,jdbcType=TIMESTAMP},
+        resend_flag = #{resendFlag,jdbcType=BIT},
+        msg_id = #{msgId,jdbcType=VARCHAR},
+        to_group_id = #{toGroupId,jdbcType=VARCHAR},
+        ext = #{ext,jdbcType=VARCHAR},
+        t_members = #{tMembers,jdbcType=VARCHAR},
+        create_time = #{createTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+</mapper>

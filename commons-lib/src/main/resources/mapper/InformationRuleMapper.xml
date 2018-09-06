@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.idream.commons.lib.mapper.InformationRuleMapper">
+    <resultMap id="BaseResultMap" type="com.idream.commons.lib.model.InformationRule">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="code" property="code" jdbcType="VARCHAR"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="type" property="type" jdbcType="TINYINT"/>
+        <result column="sort" property="sort" jdbcType="INTEGER"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, code, name, type, sort
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from information_rule
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from information_rule
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.idream.commons.lib.model.InformationRule" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into information_rule (code, name, type,
+        sort)
+        values (#{code,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{type,jdbcType=TINYINT},
+        #{sort,jdbcType=INTEGER})
+    </insert>
+    <insert id="insertSelective" parameterType="com.idream.commons.lib.model.InformationRule" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into information_rule
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="code != null">
+                code,
+            </if>
+            <if test="name != null">
+                name,
+            </if>
+            <if test="type != null">
+                type,
+            </if>
+            <if test="sort != null">
+                sort,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="code != null">
+                #{code,jdbcType=VARCHAR},
+            </if>
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="type != null">
+                #{type,jdbcType=TINYINT},
+            </if>
+            <if test="sort != null">
+                #{sort,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.idream.commons.lib.model.InformationRule">
+        update information_rule
+        <set>
+            <if test="code != null">
+                code = #{code,jdbcType=VARCHAR},
+            </if>
+            <if test="name != null">
+                name = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="type != null">
+                type = #{type,jdbcType=TINYINT},
+            </if>
+            <if test="sort != null">
+                sort = #{sort,jdbcType=INTEGER},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.idream.commons.lib.model.InformationRule">
+        update information_rule
+        set code = #{code,jdbcType=VARCHAR},
+        name = #{name,jdbcType=VARCHAR},
+        type = #{type,jdbcType=TINYINT},
+        sort = #{sort,jdbcType=INTEGER}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <select id="getEntityByActivityinfoId" parameterType="java.lang.Integer"
+            resultType="com.idream.commons.lib.model.InformationRule">
+        SELECT a.id,a.name,a.type FROM information_rule a left join activity_information_relation b on a.id=b.info_id
+        WHERE b.id=#{id} ORDER BY a.id
+    </select>
+    <select id="getEntityByActivityId" parameterType="java.lang.Integer"
+            resultType="com.idream.commons.lib.model.InformationRule">
+        SELECT a.id,a.name,a.type FROM information_rule a left join activity_information_relation b on a.id=b.info_id
+        WHERE b.activity_id=#{id} ORDER BY a.id
+    </select>
+
+    <!-- 查询所有的报名设置信息 -->
+    <select id="getInformationRules" resultType="com.idream.commons.lib.model.InformationRule">
+        SELECT
+        id,
+        name,
+        type
+        FROM information_rule where type = 1
+    </select>
+
+    <!-- 查询所有设置奖品填写信息 -->
+    <select id="getAwardInformationRules" resultType="com.idream.commons.lib.model.InformationRule">
+        SELECT
+        id,
+        name,
+        type
+        FROM information_rule where type = 2
+    </select>
+
+    <select id="selectInfoListByType" resultType="com.idream.commons.lib.model.InformationRule">
+        SELECT
+        id,
+        name,
+        type
+        FROM information_rule where type = #{typeId}
+    </select>
+    <select id="getInfoItemsByCouponId" parameterType="java.lang.Integer"
+            resultType="com.idream.commons.lib.dto.marketing.InformationRuleDto">
+        SELECT
+        id,
+        info_id ,
+        info_code,
+        info_name,
+        info_sort
+        FROM coupon_collection
+        where coupon_id = #{couponId} order by info_id ASC
+    </select>
+
+    <select id="getInfoRuleByActivityId" parameterType="java.lang.Integer"
+            resultType="com.idream.commons.lib.model.InformationRule">
+        SELECT
+        a.id,a.code,a.name,a.type,a.sort
+        FROM information_rule a left join activity_information_relation b on a.id=b.info_id
+        WHERE b.activity_id=#{activityId} ORDER BY a.id
+    </select>
+    <select id="getInfoItemsValueByUserId" resultType="java.lang.String">
+        SELECT
+        b.detail
+        FROM coupon_info a right join coupon_collection b on a.id = b.coupon_id
+        where a.user_id = #{userId} and b.info_code = #{code} and b.detail !='' order by b.create_time desc limit 1
+    </select>
+</mapper>

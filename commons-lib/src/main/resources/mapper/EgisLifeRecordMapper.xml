@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.idream.commons.lib.mapper.EgisLifeRecordMapper">
+    <resultMap id="BaseResultMap" type="com.idream.commons.lib.model.EgisLifeRecord">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="user_id" property="userId" jdbcType="INTEGER"/>
+        <result column="line_id" property="lineId" jdbcType="INTEGER"/>
+        <result column="create_tiem" property="createTiem" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, user_id, line_id, create_tiem, update_time
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from egis_life_record
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from egis_life_record
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.idream.commons.lib.model.EgisLifeRecord" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into egis_life_record (user_id, line_id, create_tiem,
+        update_time)
+        values (#{userId,jdbcType=INTEGER}, #{lineId,jdbcType=INTEGER}, #{createTiem,jdbcType=TIMESTAMP},
+        #{updateTime,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="com.idream.commons.lib.model.EgisLifeRecord" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into egis_life_record
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userId != null">
+                user_id,
+            </if>
+            <if test="lineId != null">
+                line_id,
+            </if>
+            <if test="createTiem != null">
+                create_tiem,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="userId != null">
+                #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="lineId != null">
+                #{lineId,jdbcType=INTEGER},
+            </if>
+            <if test="createTiem != null">
+                #{createTiem,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.idream.commons.lib.model.EgisLifeRecord">
+        update egis_life_record
+        <set>
+            <if test="userId != null">
+                user_id = #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="lineId != null">
+                line_id = #{lineId,jdbcType=INTEGER},
+            </if>
+            <if test="createTiem != null">
+                create_tiem = #{createTiem,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.idream.commons.lib.model.EgisLifeRecord">
+        update egis_life_record
+        set user_id = #{userId,jdbcType=INTEGER},
+        line_id = #{lineId,jdbcType=INTEGER},
+        create_tiem = #{createTiem,jdbcType=TIMESTAMP},
+        update_time = #{updateTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <select id="selectUnReadByUserId" resultType="java.lang.Integer">
+        SELECT
+        COUNT(*)
+        FROM
+        community_life_time_line a
+        LEFT JOIN egis_life_record c ON c.user_id=#{userId}
+        WHERE
+        (
+        a.user_id = #{userId}
+        OR EXISTS (
+        SELECT
+        *
+        FROM
+        user_community_relation b
+        WHERE
+        b.user_id = 1
+        AND b.community_id = a.community_id
+        )
+        )
+        AND a.id &gt; CASE WHEN c.line_id&gt;0 THEN c.line_id ELSE 0 END
+    </select>
+    <select id="selectMaxLineIdByUserId" resultType="java.lang.Integer">
+        SELECT
+        CASE
+        WHEN MAX(a.id) THEN
+        MAX(a.id)
+        ELSE
+        0
+        END
+        FROM
+        community_life_time_line a
+        WHERE
+        a.user_id = #{userId}
+        OR EXISTS (
+        SELECT
+        *
+        FROM
+        user_community_relation b
+        WHERE
+        b.user_id = 1
+        AND b.community_id = a.community_id
+        )
+    </select>
+</mapper>

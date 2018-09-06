@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.idream.commons.lib.mapper.UserCommunityRelationRecordMapper">
+    <resultMap id="BaseResultMap" type="com.idream.commons.lib.model.UserCommunityRelationRecord">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="auth_id" property="authId" jdbcType="INTEGER"/>
+        <result column="user_id" property="userId" jdbcType="INTEGER"/>
+        <result column="community_id" property="communityId" jdbcType="INTEGER"/>
+        <result column="status" property="status" jdbcType="TINYINT"/>
+        <result column="type" property="type" jdbcType="TINYINT"/>
+        <result column="user_type" property="userType" jdbcType="TINYINT"/>
+        <result column="from_type" property="fromType" jdbcType="TINYINT"/>
+        <result column="admin_user_id" property="adminUserId" jdbcType="INTEGER"/>
+        <result column="handle_result" property="handleResult" jdbcType="TINYINT"/>
+        <result column="handle_time" property="handleTime" jdbcType="TIMESTAMP"/>
+        <result column="deleted" property="deleted" jdbcType="BIT"/>
+        <result column="deleted_time" property="deletedTime" jdbcType="TIMESTAMP"/>
+        <result column="description" property="description" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, auth_id, user_id, community_id, status, type, user_type, from_type, admin_user_id,
+        handle_result, handle_time, deleted, deleted_time, description, create_time, update_time
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from user_community_relation_record
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from user_community_relation_record
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.idream.commons.lib.model.UserCommunityRelationRecord" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into user_community_relation_record (auth_id, user_id, community_id,
+        status, type, user_type,
+        from_type, admin_user_id, handle_result,
+        handle_time, deleted, deleted_time,
+        description, create_time, update_time
+        )
+        values (#{authId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{communityId,jdbcType=INTEGER},
+        #{status,jdbcType=TINYINT}, #{type,jdbcType=TINYINT}, #{userType,jdbcType=TINYINT},
+        #{fromType,jdbcType=TINYINT}, #{adminUserId,jdbcType=INTEGER}, #{handleResult,jdbcType=TINYINT},
+        #{handleTime,jdbcType=TIMESTAMP}, #{deleted,jdbcType=BIT}, #{deletedTime,jdbcType=TIMESTAMP},
+        #{description,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+        )
+    </insert>
+    <insert id="insertSelective" parameterType="com.idream.commons.lib.model.UserCommunityRelationRecord"
+            useGeneratedKeys="true" keyProperty="id">
+        insert into user_community_relation_record
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="authId != null">
+                auth_id,
+            </if>
+            <if test="userId != null">
+                user_id,
+            </if>
+            <if test="communityId != null">
+                community_id,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+            <if test="type != null">
+                type,
+            </if>
+            <if test="userType != null">
+                user_type,
+            </if>
+            <if test="fromType != null">
+                from_type,
+            </if>
+            <if test="adminUserId != null">
+                admin_user_id,
+            </if>
+            <if test="handleResult != null">
+                handle_result,
+            </if>
+            <if test="handleTime != null">
+                handle_time,
+            </if>
+            <if test="deleted != null">
+                deleted,
+            </if>
+            <if test="deletedTime != null">
+                deleted_time,
+            </if>
+            <if test="description != null">
+                description,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="authId != null">
+                #{authId,jdbcType=INTEGER},
+            </if>
+            <if test="userId != null">
+                #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="communityId != null">
+                #{communityId,jdbcType=INTEGER},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=TINYINT},
+            </if>
+            <if test="type != null">
+                #{type,jdbcType=TINYINT},
+            </if>
+            <if test="userType != null">
+                #{userType,jdbcType=TINYINT},
+            </if>
+            <if test="fromType != null">
+                #{fromType,jdbcType=TINYINT},
+            </if>
+            <if test="adminUserId != null">
+                #{adminUserId,jdbcType=INTEGER},
+            </if>
+            <if test="handleResult != null">
+                #{handleResult,jdbcType=TINYINT},
+            </if>
+            <if test="handleTime != null">
+                #{handleTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="deleted != null">
+                #{deleted,jdbcType=BIT},
+            </if>
+            <if test="deletedTime != null">
+                #{deletedTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="description != null">
+                #{description,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.idream.commons.lib.model.UserCommunityRelationRecord">
+        update user_community_relation_record
+        <set>
+            <if test="authId != null">
+                auth_id = #{authId,jdbcType=INTEGER},
+            </if>
+            <if test="userId != null">
+                user_id = #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="communityId != null">
+                community_id = #{communityId,jdbcType=INTEGER},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=TINYINT},
+            </if>
+            <if test="type != null">
+                type = #{type,jdbcType=TINYINT},
+            </if>
+            <if test="userType != null">
+                user_type = #{userType,jdbcType=TINYINT},
+            </if>
+            <if test="fromType != null">
+                from_type = #{fromType,jdbcType=TINYINT},
+            </if>
+            <if test="adminUserId != null">
+                admin_user_id = #{adminUserId,jdbcType=INTEGER},
+            </if>
+            <if test="handleResult != null">
+                handle_result = #{handleResult,jdbcType=TINYINT},
+            </if>
+            <if test="handleTime != null">
+                handle_time = #{handleTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="deleted != null">
+                deleted = #{deleted,jdbcType=BIT},
+            </if>
+            <if test="deletedTime != null">
+                deleted_time = #{deletedTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="description != null">
+                description = #{description,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.idream.commons.lib.model.UserCommunityRelationRecord">
+        update user_community_relation_record
+        set auth_id = #{authId,jdbcType=INTEGER},
+        user_id = #{userId,jdbcType=INTEGER},
+        community_id = #{communityId,jdbcType=INTEGER},
+        status = #{status,jdbcType=TINYINT},
+        type = #{type,jdbcType=TINYINT},
+        user_type = #{userType,jdbcType=TINYINT},
+        from_type = #{fromType,jdbcType=TINYINT},
+        admin_user_id = #{adminUserId,jdbcType=INTEGER},
+        handle_result = #{handleResult,jdbcType=TINYINT},
+        handle_time = #{handleTime,jdbcType=TIMESTAMP},
+        deleted = #{deleted,jdbcType=BIT},
+        deleted_time = #{deletedTime,jdbcType=TIMESTAMP},
+        description = #{description,jdbcType=VARCHAR},
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+        update_time = #{updateTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateDeletedStatusByAuthId" parameterType="com.idream.commons.lib.model.UserCommunityRelationRecord">
+        update user_community_relation_record
+        set deleted = #{deleted,jdbcType=BIT},
+        deleted_time = #{deletedTime,jdbcType=TIMESTAMP},
+        update_time = #{updateTime,jdbcType=TIMESTAMP}
+        where auth_id = #{authId,jdbcType=INTEGER}
+    </update>
+    <update id="updateHandleStatusByAuthId" parameterType="com.idream.commons.lib.model.UserCommunityRelationRecord">
+        update user_community_relation_record
+        set admin_user_id = #{adminUserId,jdbcType=INTEGER},
+        handle_result = #{handleResult,jdbcType=TINYINT},
+        handle_time = #{handleTime,jdbcType=TIMESTAMP},
+        update_time = #{updateTime,jdbcType=TIMESTAMP}
+        where auth_id = #{authId,jdbcType=INTEGER}
+    </update>
+</mapper>

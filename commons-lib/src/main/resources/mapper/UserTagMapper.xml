@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.idream.commons.lib.mapper.UserTagMapper">
+    <resultMap id="BaseResultMap" type="com.idream.commons.lib.model.UserTag">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="label" property="label" jdbcType="VARCHAR"/>
+        <result column="pid" property="pid" jdbcType="INTEGER"/>
+        <result column="admin_user_id" property="adminUserId" jdbcType="INTEGER"/>
+        <result column="admin_nick_name" property="adminNickName" jdbcType="VARCHAR"/>
+        <result column="status" property="status" jdbcType="TINYINT"/>
+        <result column="category" property="category" jdbcType="TINYINT"/>
+        <result column="description" property="description" jdbcType="VARCHAR"/>
+        <result column="icon" property="icon" jdbcType="VARCHAR"/>
+        <result column="code" property="code" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, label, pid, admin_user_id, admin_nick_name, status, category, description, icon,
+        code, create_time, update_time
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from user_tag
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from user_tag
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.idream.commons.lib.model.UserTag" useGeneratedKeys="true" keyProperty="id">
+        insert into user_tag (label, pid, admin_user_id,
+        admin_nick_name, status, category,
+        description, icon, code,
+        create_time, update_time)
+        values (#{label,jdbcType=VARCHAR}, #{pid,jdbcType=INTEGER}, #{adminUserId,jdbcType=INTEGER},
+        #{adminNickName,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT}, #{category,jdbcType=TINYINT},
+        #{description,jdbcType=VARCHAR}, #{icon,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR},
+        #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="com.idream.commons.lib.model.UserTag" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into user_tag
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="label != null">
+                label,
+            </if>
+            <if test="pid != null">
+                pid,
+            </if>
+            <if test="adminUserId != null">
+                admin_user_id,
+            </if>
+            <if test="adminNickName != null">
+                admin_nick_name,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+            <if test="category != null">
+                category,
+            </if>
+            <if test="description != null">
+                description,
+            </if>
+            <if test="icon != null">
+                icon,
+            </if>
+            <if test="code != null">
+                code,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="label != null">
+                #{label,jdbcType=VARCHAR},
+            </if>
+            <if test="pid != null">
+                #{pid,jdbcType=INTEGER},
+            </if>
+            <if test="adminUserId != null">
+                #{adminUserId,jdbcType=INTEGER},
+            </if>
+            <if test="adminNickName != null">
+                #{adminNickName,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=TINYINT},
+            </if>
+            <if test="category != null">
+                #{category,jdbcType=TINYINT},
+            </if>
+            <if test="description != null">
+                #{description,jdbcType=VARCHAR},
+            </if>
+            <if test="icon != null">
+                #{icon,jdbcType=VARCHAR},
+            </if>
+            <if test="code != null">
+                #{code,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.idream.commons.lib.model.UserTag">
+        update user_tag
+        <set>
+            <if test="label != null">
+                label = #{label,jdbcType=VARCHAR},
+            </if>
+            <if test="pid != null">
+                pid = #{pid,jdbcType=INTEGER},
+            </if>
+            <if test="adminUserId != null">
+                admin_user_id = #{adminUserId,jdbcType=INTEGER},
+            </if>
+            <if test="adminNickName != null">
+                admin_nick_name = #{adminNickName,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=TINYINT},
+            </if>
+            <if test="category != null">
+                category = #{category,jdbcType=TINYINT},
+            </if>
+            <if test="description != null">
+                description = #{description,jdbcType=VARCHAR},
+            </if>
+            <if test="icon != null">
+                icon = #{icon,jdbcType=VARCHAR},
+            </if>
+            <if test="code != null">
+                code = #{code,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.idream.commons.lib.model.UserTag">
+        update user_tag
+        set label = #{label,jdbcType=VARCHAR},
+        pid = #{pid,jdbcType=INTEGER},
+        admin_user_id = #{adminUserId,jdbcType=INTEGER},
+        admin_nick_name = #{adminNickName,jdbcType=VARCHAR},
+        status = #{status,jdbcType=TINYINT},
+        category = #{category,jdbcType=TINYINT},
+        description = #{description,jdbcType=VARCHAR},
+        icon = #{icon,jdbcType=VARCHAR},
+        code = #{code,jdbcType=VARCHAR},
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+        update_time = #{updateTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <!-- 通过标签名查询用户标签库 -->
+    <select id="selectUserTagListByLabel" parameterType="java.lang.String"
+            resultType="com.idream.commons.lib.model.UserTag">
+        SELECT
+        id,
+        label,
+        pid,
+        admin_user_id authUserId,
+        admin_nick_name adminNickName,
+        status,
+        create_time createTime,
+        update_time updateTime
+        FROM user_tag
+        <where>
+            <if test="label != null">
+                and label LIKE CONCAT('%', #{label}, '%')
+            </if>
+            and status = 1
+            and category = 1
+        </where>
+    </select>
+    <!-- 通过空白数据查询所有用户标签 -->
+    <select id="selectUserTagListAll" resultType="com.idream.commons.lib.model.UserTag">
+        SELECT
+        id,
+        label,
+        pid,
+        admin_user_id authUserId,
+        admin_nick_name adminNickName,
+        status,
+        create_time createTime,
+        update_time updateTime
+        FROM user_tag
+        where status = 1 and category = 1
+    </select>
+    <select id="getAllParent" resultType="com.idream.commons.lib.model.TagInfoTree">
+        SELECT
+        id,
+        label,
+        pid
+        FROM
+        user_tag
+        where pid = 0 and status = 1 and category = 1
+    </select>
+    <select id="getAllChildren" resultType="com.idream.commons.lib.model.TagInfoTree">
+        SELECT id,
+        label,
+        pid
+        FROM
+        user_tag
+        where pid > 0 and status = 1 and category = 1
+    </select>
+    <select id="getTagInfoById" resultType="java.lang.String" parameterType="java.lang.Integer">
+        SELECT
+        label
+        FROM
+        user_tag
+        where id = #{id,jdbcType=INTEGER} and status = 1 and category = 1
+    </select>
+    <select id="selectUserTagListByUserTagLabel" parameterType="java.lang.String"
+            resultType="com.idream.commons.lib.model.UserTag">
+        SELECT
+        id,
+        label,
+        pid,
+        admin_user_id authUserId,
+        admin_nick_name adminNickName,
+        status,
+        create_time createTime,
+        update_time updateTime
+        FROM user_tag
+        WHERE label LIKE CONCAT('%', #{label}, '%') and status = 1 and category = 1
+    </select>
+    <select id="selectAllSecondUserTagById" parameterType="java.lang.Integer"
+            resultType="com.idream.commons.lib.model.UserTag">
+        SELECT
+        id,
+        label,
+        pid
+        FROM user_tag
+        WHERE id = #{pid}
+    </select>
+
+</mapper>

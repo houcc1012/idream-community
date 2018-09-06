@@ -1,0 +1,494 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.idream.commons.lib.mapper.IntegrationPoolMapper">
+    <resultMap id="BaseResultMap" type="com.idream.commons.lib.model.IntegrationPool">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="type" property="type" jdbcType="TINYINT"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="property" property="property" jdbcType="TINYINT"/>
+        <result column="integration_value" property="integrationValue" jdbcType="VARCHAR"/>
+        <result column="description" property="description" jdbcType="VARCHAR"/>
+        <result column="instructions" property="instructions" jdbcType="VARCHAR"/>
+        <result column="expire_day" property="expireDay" jdbcType="INTEGER"/>
+        <result column="start_time" property="startTime" jdbcType="TIMESTAMP"/>
+        <result column="end_time" property="endTime" jdbcType="TIMESTAMP"/>
+        <result column="count" property="count" jdbcType="INTEGER"/>
+        <result column="probability" property="probability" jdbcType="DECIMAL"/>
+        <result column="info_enable" property="infoEnable" jdbcType="BIT"/>
+        <result column="status" property="status" jdbcType="TINYINT"/>
+        <result column="user_id" property="userId" jdbcType="INTEGER"/>
+        <result column="add_user_type" property="addUserType" jdbcType="TINYINT"/>
+        <result column="book_id" property="bookId" jdbcType="INTEGER"/>
+        <result column="image" property="image" jdbcType="VARCHAR"/>
+        <result column="introduce" property="introduce" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, type, name, property, integration_value, description, instructions, expire_day,
+        start_time, end_time, count, probability, info_enable, status, user_id, add_user_type,
+        book_id, image, introduce, create_time, update_time
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from integration_pool
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from integration_pool
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.idream.commons.lib.model.IntegrationPool" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into integration_pool (type, name, property,
+        integration_value, description, instructions,
+        expire_day, start_time, end_time,
+        count, probability, info_enable,
+        status, user_id, add_user_type,
+        book_id, image, introduce,
+        create_time, update_time)
+        values (#{type,jdbcType=TINYINT}, #{name,jdbcType=VARCHAR}, #{property,jdbcType=TINYINT},
+        #{integrationValue,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{instructions,jdbcType=VARCHAR},
+        #{expireDay,jdbcType=INTEGER}, #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP},
+        #{count,jdbcType=INTEGER}, #{probability,jdbcType=DECIMAL}, #{infoEnable,jdbcType=BIT},
+        #{status,jdbcType=TINYINT}, #{userId,jdbcType=INTEGER}, #{addUserType,jdbcType=TINYINT},
+        #{bookId,jdbcType=INTEGER}, #{image,jdbcType=VARCHAR}, #{introduce,jdbcType=VARCHAR},
+        #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="com.idream.commons.lib.model.IntegrationPool" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into integration_pool
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="type != null">
+                type,
+            </if>
+            <if test="name != null">
+                name,
+            </if>
+            <if test="property != null">
+                property,
+            </if>
+            <if test="integrationValue != null">
+                integration_value,
+            </if>
+            <if test="description != null">
+                description,
+            </if>
+            <if test="instructions != null">
+                instructions,
+            </if>
+            <if test="expireDay != null">
+                expire_day,
+            </if>
+            <if test="startTime != null">
+                start_time,
+            </if>
+            <if test="endTime != null">
+                end_time,
+            </if>
+            <if test="count != null">
+                count,
+            </if>
+            <if test="probability != null">
+                probability,
+            </if>
+            <if test="infoEnable != null">
+                info_enable,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+            <if test="userId != null">
+                user_id,
+            </if>
+            <if test="addUserType != null">
+                add_user_type,
+            </if>
+            <if test="bookId != null">
+                book_id,
+            </if>
+            <if test="image != null">
+                image,
+            </if>
+            <if test="introduce != null">
+                introduce,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="type != null">
+                #{type,jdbcType=TINYINT},
+            </if>
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="property != null">
+                #{property,jdbcType=TINYINT},
+            </if>
+            <if test="integrationValue != null">
+                #{integrationValue,jdbcType=VARCHAR},
+            </if>
+            <if test="description != null">
+                #{description,jdbcType=VARCHAR},
+            </if>
+            <if test="instructions != null">
+                #{instructions,jdbcType=VARCHAR},
+            </if>
+            <if test="expireDay != null">
+                #{expireDay,jdbcType=INTEGER},
+            </if>
+            <if test="startTime != null">
+                #{startTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="endTime != null">
+                #{endTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="count != null">
+                #{count,jdbcType=INTEGER},
+            </if>
+            <if test="probability != null">
+                #{probability,jdbcType=DECIMAL},
+            </if>
+            <if test="infoEnable != null">
+                #{infoEnable,jdbcType=BIT},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=TINYINT},
+            </if>
+            <if test="userId != null">
+                #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="addUserType != null">
+                #{addUserType,jdbcType=TINYINT},
+            </if>
+            <if test="bookId != null">
+                #{bookId,jdbcType=INTEGER},
+            </if>
+            <if test="image != null">
+                #{image,jdbcType=VARCHAR},
+            </if>
+            <if test="introduce != null">
+                #{introduce,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.idream.commons.lib.model.IntegrationPool">
+        update integration_pool
+        <set>
+            <if test="type != null">
+                type = #{type,jdbcType=TINYINT},
+            </if>
+            <if test="name != null">
+                name = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="property != null">
+                property = #{property,jdbcType=TINYINT},
+            </if>
+            <if test="integrationValue != null">
+                integration_value = #{integrationValue,jdbcType=VARCHAR},
+            </if>
+            <if test="description != null">
+                description = #{description,jdbcType=VARCHAR},
+            </if>
+            <if test="instructions != null">
+                instructions = #{instructions,jdbcType=VARCHAR},
+            </if>
+            <if test="expireDay != null">
+                expire_day = #{expireDay,jdbcType=INTEGER},
+            </if>
+            <if test="startTime != null">
+                start_time = #{startTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="endTime != null">
+                end_time = #{endTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="count != null">
+                count = #{count,jdbcType=INTEGER},
+            </if>
+            <if test="probability != null">
+                probability = #{probability,jdbcType=DECIMAL},
+            </if>
+            <if test="infoEnable != null">
+                info_enable = #{infoEnable,jdbcType=BIT},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=TINYINT},
+            </if>
+            <if test="userId != null">
+                user_id = #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="addUserType != null">
+                add_user_type = #{addUserType,jdbcType=TINYINT},
+            </if>
+            <if test="bookId != null">
+                book_id = #{bookId,jdbcType=INTEGER},
+            </if>
+            <if test="image != null">
+                image = #{image,jdbcType=VARCHAR},
+            </if>
+            <if test="introduce != null">
+                introduce = #{introduce,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.idream.commons.lib.model.IntegrationPool">
+        update integration_pool
+        set type = #{type,jdbcType=TINYINT},
+        name = #{name,jdbcType=VARCHAR},
+        property = #{property,jdbcType=TINYINT},
+        integration_value = #{integrationValue,jdbcType=VARCHAR},
+        description = #{description,jdbcType=VARCHAR},
+        instructions = #{instructions,jdbcType=VARCHAR},
+        expire_day = #{expireDay,jdbcType=INTEGER},
+        start_time = #{startTime,jdbcType=TIMESTAMP},
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+        count = #{count,jdbcType=INTEGER},
+        probability = #{probability,jdbcType=DECIMAL},
+        info_enable = #{infoEnable,jdbcType=BIT},
+        status = #{status,jdbcType=TINYINT},
+        user_id = #{userId,jdbcType=INTEGER},
+        add_user_type = #{addUserType,jdbcType=TINYINT},
+        book_id = #{bookId,jdbcType=INTEGER},
+        image = #{image,jdbcType=VARCHAR},
+        introduce = #{introduce,jdbcType=VARCHAR},
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+        update_time = #{updateTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <select id="selectIntegrationPoolList" resultType="com.idream.commons.lib.dto.marketing.IntegrationPoolDto"
+            parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from integration_pool
+        where 1=1
+        <if test="bookId == -1">
+            and book_id = -1
+        </if>
+        <if test="bookId != -1">
+            and book_id = #{bookId}
+        </if>
+        <if test="type != 0">
+            and type = #{type}
+        </if>
+        order by status asc,create_time desc
+    </select>
+    <select id="selectMiniIntegrationPoolList" resultMap="BaseResultMap"
+            parameterType="com.idream.commons.lib.model.IntegrationPool">
+        select
+        <include refid="Base_Column_List"/>
+        from integration_pool
+        where end_time &gt;= date_format(NOW(),'%Y-%m-%d 00:00:00') and start_time &lt;= date_format(NOW(),'%Y-%m-%d
+        00:00:00')
+        and status = 1 order by create_time desc
+    </select>
+    <update id="updateStatus" parameterType="java.lang.Integer">
+        update integration_pool
+        <if test="status != null and status==1">
+            set
+            status = 1
+            where id = #{id,jdbcType=INTEGER} and status = 2
+        </if>
+        <if test="status != null and status==2">
+            set
+            status = 2
+            where id = #{id,jdbcType=INTEGER} and status = 1
+        </if>
+    </update>
+    <select id="selectIntegrationById" resultType="com.idream.commons.lib.dto.marketing.IntegrationPoolDto"
+            parameterType="java.lang.Integer">
+        SELECT
+        a.id,
+        a.type,
+        a.`name`,
+        a.property,
+        a.description,
+        a.instructions,
+        a.expire_day,
+        a.start_time,
+        a.end_time,
+        a.count,
+        a.probability,
+        a.info_enable,
+        a.`status`,
+        a.user_id,
+        a.add_user_type,
+        a.book_id,
+        a.image,
+        a.introduce,
+        a.create_time,
+        a.update_time,
+        a.integration_value,
+        b.district_code as ad_code,
+        b.name as bookHouseName
+        FROM
+        integration_pool a left join region_group_info b on a.book_id = b.id and b.category = 2
+        where a.id = #{id,jdbcType=INTEGER }
+    </select>
+    <select id="selectListByStatus" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from integration_pool
+        where status = 1 and book_id = -1
+    </select>
+    <select id="selectListByStatusAndBookId" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from integration_pool
+        where status = 1 and book_id = #{bookId}
+    </select>
+    <select id="selectOutDateGuys" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from integration_pool
+        where end_time &lt;= date_format(NOW(),'%Y-%m-%d 00:00:00')
+        and status = 1
+    </select>
+    <select id="selectListByUserId" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from integration_pool
+        where status = 1 and book_id = (select book_id from user_manager where user_id = #{userId} and status = 1)
+    </select>
+
+    <select id="selectListByBookId" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from integration_pool
+        where status = 1 and book_id = #{bookId}
+    </select>
+    <select id="selectIntegrationPoolByRegions" resultType="com.idream.commons.lib.dto.marketing.UserRegionPoolInfo">
+        select a.region_id,e.book_id,e.awardCount,f.latitude,f.longitude
+        from region_group_relation a
+        inner join region_group_info b
+        on a.group_id = b.id and b.category =2
+        inner join (
+        select c.book_id,sum(c.count) as awardCount
+        from integration_pool c
+        where c.status =1 and c.start_time &lt;=NOW() and c.end_time &gt;= NOW() and c.book_id>-1
+        group by c.book_id
+        ) e
+        on a.group_id = e.book_id
+        inner join region_info f
+        on f.id = a.region_id
+        where a.region_id in (${regionIds}) and e.awardCount>0
+    </select>
+
+    <select id="selectIntegrationPoolByCity" parameterType="java.lang.String"
+            resultType="com.idream.commons.lib.dto.marketing.UserRegionPoolInfo">
+        select a.id as regionId,d.book_id,a.longitude,a.latitude,d.awardCount
+        from region_info a
+        inner join region_group_relation b
+        on a.id = b.region_id
+        inner join region_group_info c
+        on b.group_id = c.id and c.category = 2
+        inner join (
+        select book_id,sum(count) as awardCount
+        from integration_pool
+        where status =1 and start_time &lt;=NOW() and end_time &gt;= NOW() and book_id>-1
+        group by book_id
+        ) d on b.group_id = d.book_id
+        where d.awardCount>0
+        <if test="cityCode!=null and cityCode!=''">
+            and a.city_code=#{cityCode,jdbcType=VARCHAR}
+        </if>
+
+    </select>
+
+    <select id="selectIntegrationPoolByBookId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from integration_pool a
+        where a.book_id = #{bookId} and a.status=1 and a.count>0 and start_time &lt;=NOW() and end_time &gt;= NOW()
+    </select>
+    <update id="updateBean" parameterType="com.idream.commons.lib.model.IntegrationPool">
+        update integration_pool
+        <set>
+            <if test="type != null">
+                type = #{type,jdbcType=TINYINT},
+            </if>
+            <if test="name != null">
+                name = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="property != null">
+                property = #{property,jdbcType=TINYINT},
+            </if>
+            <if test="integrationValue != null">
+                integration_value = #{integrationValue,jdbcType=VARCHAR},
+            </if>
+            <if test="description != null">
+                description = #{description,jdbcType=VARCHAR},
+            </if>
+            <if test="instructions != null">
+                instructions = #{instructions,jdbcType=VARCHAR},
+            </if>
+            expire_day = #{expireDay,jdbcType=INTEGER},
+            <if test="startTime != null">
+                start_time = #{startTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="endTime != null">
+                end_time = #{endTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="count != null">
+                count = #{count,jdbcType=INTEGER},
+            </if>
+            <if test="probability != null">
+                probability = #{probability,jdbcType=DECIMAL},
+            </if>
+            <if test="infoEnable != null">
+                info_enable = #{infoEnable,jdbcType=BIT},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=TINYINT},
+            </if>
+            <if test="userId != null">
+                user_id = #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="addUserType != null">
+                add_user_type = #{addUserType,jdbcType=TINYINT},
+            </if>
+            <if test="bookId != null">
+                book_id = #{bookId,jdbcType=INTEGER},
+            </if>
+            <if test="image != null">
+                image = #{image,jdbcType=VARCHAR},
+            </if>
+            <if test="introduce != null">
+                introduce = #{introduce,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <select id="getIntegrationDetailByBookId" resultType="com.idream.commons.lib.dto.marketing.IntegrationPoolDto"
+            parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from integration_pool
+        where book_id = #{bookId}
+        order by status asc,create_time desc
+    </select>
+</mapper>

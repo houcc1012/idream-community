@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.idream.commons.lib.mapper.UserCommunityRelationMapper">
+    <resultMap id="BaseResultMap" type="com.idream.commons.lib.model.UserCommunityRelation">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="user_id" property="userId" jdbcType="INTEGER"/>
+        <result column="community_id" property="communityId" jdbcType="INTEGER"/>
+        <result column="local_number" property="localNumber" jdbcType="INTEGER"/>
+        <result column="type" property="type" jdbcType="TINYINT"/>
+        <result column="status" property="status" jdbcType="TINYINT"/>
+        <result column="user_type" property="userType" jdbcType="TINYINT"/>
+        <result column="from_type" property="fromType" jdbcType="TINYINT"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, user_id, community_id, local_number, type, status, user_type, from_type, create_time,
+        update_time
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from user_community_relation
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from user_community_relation
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.idream.commons.lib.model.UserCommunityRelation" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into user_community_relation (user_id, community_id, local_number,
+        type, status, user_type,
+        from_type, create_time, update_time
+        )
+        values (#{userId,jdbcType=INTEGER}, #{communityId,jdbcType=INTEGER}, #{localNumber,jdbcType=INTEGER},
+        #{type,jdbcType=TINYINT}, #{status,jdbcType=TINYINT}, #{userType,jdbcType=TINYINT},
+        #{fromType,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+        )
+    </insert>
+    <insert id="insertSelective" parameterType="com.idream.commons.lib.model.UserCommunityRelation"
+            useGeneratedKeys="true" keyProperty="id">
+        insert into user_community_relation
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userId != null">
+                user_id,
+            </if>
+            <if test="communityId != null">
+                community_id,
+            </if>
+            <if test="localNumber != null">
+                local_number,
+            </if>
+            <if test="type != null">
+                type,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+            <if test="userType != null">
+                user_type,
+            </if>
+            <if test="fromType != null">
+                from_type,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="userId != null">
+                #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="communityId != null">
+                #{communityId,jdbcType=INTEGER},
+            </if>
+            <if test="localNumber != null">
+                #{localNumber,jdbcType=INTEGER},
+            </if>
+            <if test="type != null">
+                #{type,jdbcType=TINYINT},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=TINYINT},
+            </if>
+            <if test="userType != null">
+                #{userType,jdbcType=TINYINT},
+            </if>
+            <if test="fromType != null">
+                #{fromType,jdbcType=TINYINT},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.idream.commons.lib.model.UserCommunityRelation">
+        update user_community_relation
+        <set>
+            <if test="userId != null">
+                user_id = #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="communityId != null">
+                community_id = #{communityId,jdbcType=INTEGER},
+            </if>
+            <if test="localNumber != null">
+                local_number = #{localNumber,jdbcType=INTEGER},
+            </if>
+            <if test="type != null">
+                type = #{type,jdbcType=TINYINT},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=TINYINT},
+            </if>
+            <if test="userType != null">
+                user_type = #{userType,jdbcType=TINYINT},
+            </if>
+            <if test="fromType != null">
+                from_type = #{fromType,jdbcType=TINYINT},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.idream.commons.lib.model.UserCommunityRelation">
+        update user_community_relation
+        set user_id = #{userId,jdbcType=INTEGER},
+        community_id = #{communityId,jdbcType=INTEGER},
+        local_number = #{localNumber,jdbcType=INTEGER},
+        type = #{type,jdbcType=TINYINT},
+        status = #{status,jdbcType=TINYINT},
+        user_type = #{userType,jdbcType=TINYINT},
+        from_type = #{fromType,jdbcType=TINYINT},
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+        update_time = #{updateTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <select id="selectAuthCommunityByUserId" parameterType="int"
+            resultType="com.idream.commons.lib.dto.user.AppUserInfoDto$CommunityDisplayInfo">
+        SELECT
+        c.name communityName,
+        ucr.local_number numberOfCommunity
+        FROM
+        user_community_relation ucr
+        INNER JOIN region_group_info c ON ucr.community_id = c.id
+        WHERE ucr.user_id=#{userId} AND ucr.`status` &lt;3
+        ORDER BY ucr.create_time DESC
+    </select>
+
+    <select id="selectMyCommunityList" resultType="com.idream.commons.lib.dto.app.CommunityNameListResponseDto">
+        select
+        a.community_id communityId,
+        b.`name` communityName,
+        b.longitude,
+        b.latitude,
+        b.icon,
+        (
+        3959 * ACOS(
+        COS(RADIANS(#{latitude})) * cos(radians(latitude)) * cos(
+        RADIANS(longitude) - RADIANS(#{longitude})
+        ) + sin(radians(#{latitude})) * sin(radians(latitude))
+        )
+        ) * 1609.344 AS distance
+        from user_community_relation a
+        left join region_group_info b on b.id=a.community_id AND b.category = 1
+        where a.status &lt; 3 AND a.user_id=#{userId}
+        order by distance
+    </select>
+    <select id="selectByUserIdAndCommunityId" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM
+        user_community_relation
+        WHERE
+        user_id = #{userId}
+        AND community_id = #{communityId}
+    </select>
+    <select id="selectByUserId" resultMap="BaseResultMap" parameterType="int">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM
+        user_community_relation
+        WHERE
+        user_id = #{userId}
+    </select>
+    <!--根据user_id批量查询社区-->
+    <select id="selectBatchCommunityList" resultType="com.idream.commons.lib.dto.user.UserCommunityRelationDto">
+        SELECT a.user_id,a.community_id,b.name as communityName
+        FROM user_community_relation a
+        LEFT JOIN region_group_info b
+        ON a.community_id = b.id
+        WHERE 1=1
+        <if test="status != null and status != ''">
+            AND a.status = #{status,jdbcType=TINYINT}
+        </if>
+        AND a.user_id IN (${userIds})
+    </select>
+    <select id="selectAuthUserByQuery" resultType="com.idream.commons.lib.dto.activity.AdminCommunityAuthDto">
+        SELECT a.id authId,c.phone,c.nick_name,c.real_name,CONCAT(b.province,b.city,b.district)
+        location,b.community_name,a.user_type,a.`status` authStatus FROM user_community_relation a
+        LEFT JOIN community_info b ON b.id=a.community_id
+        LEFT JOIN user_info c ON c.id=a.user_id
+        <where>
+            <if test="phone!=null and phone!=''">
+                and c.phone LIKE CONCAT(#{phone},'%')
+            </if>
+            <if test="adCode!=null and adCode!=''">
+                AND b.ad_code=#{adCode}
+            </if>
+            <if test="communityName!=null and communityName!=''">
+                and b.community_name LIKE CONCAT('%',#{communityName},'%')
+            </if>
+            <if test="userType!=null">
+                and a.user_type =#{userType}
+            </if>
+            <if test="authStatus!=null">
+                AND a.`status`=#{authStatus}
+            </if>
+        </where>
+        ORDER BY a.create_time desc,a.status
+    </select>
+    <select id="selectCommunityByUserId" resultType="com.idream.commons.lib.model.RegionGroupInfo">
+        SELECT b.* FROM user_community_relation a
+        INNER JOIN region_group_info b ON a.community_id=b.id
+        WHERE a.`status` &lt;3 AND a.user_id=#{userId}
+        ORDER BY a.id
+    </select>
+    <select id="selectAuthRegionByUserId" resultType="com.idream.commons.lib.model.RegionInfo">
+        SELECT
+        DISTINCT c.id,c.region_name
+        FROM
+        user_community_relation a
+        INNER JOIN region_group_relation b ON a.community_id = b.group_id
+        INNER JOIN region_info c ON c.id = b.region_id and c.type=2
+        WHERE a.user_id=#{userId} AND a.`status` &lt; 3
+    </select>
+    <resultMap id="getSuggestAttention" type="com.idream.commons.lib.dto.app.SuggestAttentionDto">
+        <id column="userId" property="userId"/>
+        <result column="nickName" property="nickName"/>
+        <result column="userImage" property="userImage"/>
+        <result column="fromWhere" property="fromWhere"/>
+        <result column="accid" property="accid"/>
+        <result column="attendEachOther" property="attendEachOther"/>
+        <collection property="userLabelList" ofType="com.idream.commons.lib.dto.activity.AppUserLabelDto">
+            <id column="id" property="id"/>
+            <result column="label" property="label"/>
+        </collection>
+    </resultMap>
+    <select id="getSuggestAttentionByUserId" resultMap="getSuggestAttention">
+        SELECT
+        DISTINCT(b.id) userId ,b.nick_name nickName,b.image userImage,c.achieve_id id,c.achieve_name label,1 AS
+        fromWhere,d.acc_id accid,0 attendEachOther
+        FROM user_community_relation a
+        INNER JOIN user_info b ON a.user_id = b.id AND b.user_type = 1 AND b.user_role &lt;9 AND b.id &gt;2
+        LEFT JOIN achievement_user c ON c.user_id = b.id AND c.completed = 1
+        LEFT JOIN user_wyim_account d ON d.user_id = b.id
+        WHERE a.community_id in (SELECT community_id FROM user_community_relation WHERE user_id = #{userId})
+        ORDER BY c.id DESC
+    </select>
+</mapper>
